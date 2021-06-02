@@ -1,0 +1,19 @@
+{
+  "name": "fec",
+  "description": "front end capstone",
+  "version": "1.0.0",
+  "main": "./client/dist/bundle.js",
+  "scripts": {
+    "test": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teamofonealex/fec.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teamofonealex/fec/issues"
+  },
+  "homepage": "https://github.com/teamofonealex/fec#readme"
+}
