@@ -2,11 +2,12 @@
   "name": "fec",
   "description": "front end capstone",
   "version": "1.0.0",
-  "main": "./client/dist/bundle.js",
+  "main": "config.js",
   "scripts": {
-    "test": "nodemon server/index.js",
-    "start": "node /server/iind.js",
-    "react-dev": "npx webpack --watch"
+    "test": "jest ./public/bundle.js",
+    "start": "node ./server/index.js",
+    "react-dev": "npx webpack --watch",
+    "server-dev": "nodemon ./server/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +20,21 @@
   },
   "homepage": "https://github.com/teamofonealex/fec#readme",
   "dependencies": {
+    "axios": "^0.21.1",
+    "colors": "^1.4.0",
+    "express": "^4.17.1",
     "webpack": "^5.38.1"
   },
   "devDependencies": {
-    "jest": "^27.0.4"
-  }
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "jest": "^27.0.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack-cli": "^4.7.0"
+  },
+  "keywords": []
 }
