@@ -14,15 +14,38 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.listen(3000);
 
-app.get('/', ( (req, res) => {
-  console.log('GET request on /'.yellow)
-  })
-)
+app.get('/', ((req, res) => {
+  console.log('GET request on /'.yellow);
+}));
+
+// /////////////////////////////////////////////////////////////////////////////
+// ///////////////////////      PRODUCT                  ///////////////////////
+// ///////////////////////               ROUTES          ///////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+
+app.get('/products/', (async (req, res) => {
+  console.log('GET request on /products'.yellow);
+  const options = {
+    method: 'GET',
+    url: `${API_URL}/products/`,
+    headers: {
+      Authorization: GITHUB_TOKEN,
+    },
+
+  };
+  const results = await axios(options).catch((err) => {
+    res.status(500);
+    res.send(err.response.data);
+  });
+  if (results) {
+    res.status(200);
+    res.send(results.data);
+  }
+}));
 
 app.get('/products/:productId', (async (req, res) => {
-  // console.log(req.params.productId);
-  console.log('GET request on /products'.yellow);
-  const productId = req.params.productId;
+  console.log('GET request on /products/:productId'.yellow);
+  const { productId } = req.params;
   const options = {
     method: 'GET',
     url: `${API_URL}/products/${productId}`,
@@ -32,16 +55,20 @@ app.get('/products/:productId', (async (req, res) => {
 
   };
   const results = await axios(options).catch((err) => {
-    res.sendStatus(500);
-    console.log(err.response.data);
+    res.status(500);
+    res.send(err.response.data);
   });
   if (results) {
+    res.status(200);
     res.send(results.data);
   }
-})
+}));
 
-);
-//        reviews
+// /////////////////////////////////////////////////////////////////////////////
+// ///////////////////////      REVIEWS                  ///////////////////////
+// ///////////////////////               ROUTES          ///////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+
 app.get('/reviews/', ( async (req, res) => {
   console.log('GET request on /reviews/'.yellow);
   const options = {
@@ -55,14 +82,29 @@ app.get('/reviews/', ( async (req, res) => {
   res.send(results);
 }));
 
-//      /qa/questions
-app.get('/q&a', ( (req, res) => {
+// /////////////////////////////////////////////////////////////////////////////
+// ///////////////////////      Q AND A                  ///////////////////////
+// ///////////////////////               ROUTES          ///////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 
-})
-)
-//   /cart
-app.get('/cart', ( (req, res) => {
+app.get('/qa', ((req, res) => {
 
-})
-)
-// post interactios
+}));
+
+// /////////////////////////////////////////////////////////////////////////////
+// ///////////////////////      CART                     ///////////////////////
+// ///////////////////////               ROUTES          ///////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+
+app.get('/cart', ((req, res) => {
+
+}));
+
+// /////////////////////////////////////////////////////////////////////////////
+// ///////////////////////  INTERACTIONS                 ///////////////////////
+// ///////////////////////               ROUTES          ///////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+
+app.post('/interactions', ((req, res) => {
+
+}));
