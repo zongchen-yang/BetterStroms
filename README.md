@@ -1,6 +1,6 @@
 # fec
 
-## run npm install
+run npm install
 
 ## For client dev:
 npm run react-dev
