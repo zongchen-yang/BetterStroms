@@ -1,5 +1,8 @@
 # fec
 
+## setup
+rename config.js.copy to config.js
+add your github token where it says to
 run npm install
 
 ## For client dev:

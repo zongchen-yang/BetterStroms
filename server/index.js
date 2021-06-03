@@ -3,7 +3,7 @@ const path = require('path');
 const colors = require('colors');
 const axios = require('axios');
 
-const { GITHUB_TOKEN } = require('../config.js');
+const GITHUB_TOKEN = require('../config.js');
 
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea';
 
@@ -20,7 +20,7 @@ app.get('/', ((req, res) => {
 
 // /////////////////////////////////////////////////////////////////////////////
 // ///////////////////////      PRODUCT                  ///////////////////////
-// ///////////////////////               ROUTES          ///////////////////////
+// ///////////////////////                   ROUTES      ///////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
 app.get('/products/', (async (req, res) => {
@@ -28,10 +28,7 @@ app.get('/products/', (async (req, res) => {
   const options = {
     method: 'GET',
     url: `${API_URL}/products/`,
-    headers: {
-      Authorization: GITHUB_TOKEN,
-    },
-
+    headers: GITHUB_TOKEN,
   };
   const results = await axios(options).catch((err) => {
     res.status(500);
@@ -49,10 +46,7 @@ app.get('/products/:productId', (async (req, res) => {
   const options = {
     method: 'GET',
     url: `${API_URL}/products/${productId}`,
-    headers: {
-      Authorization: GITHUB_TOKEN,
-    },
-
+    headers: GITHUB_TOKEN,
   };
   const results = await axios(options).catch((err) => {
     res.status(500);
@@ -66,7 +60,7 @@ app.get('/products/:productId', (async (req, res) => {
 
 // /////////////////////////////////////////////////////////////////////////////
 // ///////////////////////      REVIEWS                  ///////////////////////
-// ///////////////////////               ROUTES          ///////////////////////
+// ///////////////////////                   ROUTES      ///////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
 app.get('/reviews/', ( async (req, res) => {
@@ -74,9 +68,7 @@ app.get('/reviews/', ( async (req, res) => {
   const options = {
     method: 'GET',
     url: `${API_URL}/reviews/`,
-    headers: {
-      Authorization: GITHUB_TOKEN,
-    },
+    headers: GITHUB_TOKEN,
   };
   const results = await axios(options).catch((err) => console.log(err.response.data));
   res.send(results);
@@ -84,7 +76,7 @@ app.get('/reviews/', ( async (req, res) => {
 
 // /////////////////////////////////////////////////////////////////////////////
 // ///////////////////////      Q AND A                  ///////////////////////
-// ///////////////////////               ROUTES          ///////////////////////
+// ///////////////////////                   ROUTES      ///////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
 app.get('/qa', ((req, res) => {
@@ -93,7 +85,7 @@ app.get('/qa', ((req, res) => {
 
 // /////////////////////////////////////////////////////////////////////////////
 // ///////////////////////      CART                     ///////////////////////
-// ///////////////////////               ROUTES          ///////////////////////
+// ///////////////////////                    ROUTES     ///////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
 app.get('/cart', ((req, res) => {
@@ -102,7 +94,7 @@ app.get('/cart', ((req, res) => {
 
 // /////////////////////////////////////////////////////////////////////////////
 // ///////////////////////  INTERACTIONS                 ///////////////////////
-// ///////////////////////               ROUTES          ///////////////////////
+// ///////////////////////                   ROUTES      ///////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
 app.post('/interactions', ((req, res) => {

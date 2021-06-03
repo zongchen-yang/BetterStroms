@@ -1,0 +1,7 @@
+//  github api token goes here
+
+const githubToken = {
+  Authorization: 'GITHUB_TOKEN',
+};
+
+module.exports = githubToken;
