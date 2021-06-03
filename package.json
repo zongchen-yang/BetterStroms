@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "./client/dist/bundle.js",
   "scripts": {
-    "test": "nodemon server/index.js"
+    "test": "nodemon server/index.js",
+    "react-dev": "npx webpack -d --watch"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,25 @@
   "bugs": {
     "url": "https://github.com/teamofonealex/fec/issues"
   },
-  "homepage": "https://github.com/teamofonealex/fec#readme"
+  "homepage": "https://github.com/teamofonealex/fec#readme",
+  "dependencies": {
+    "@testing-library/react": "^11.2.7",
+    "axios": "^0.21.1",
+    "colors": "^1.4.0",
+    "express": "^4.17.1",
+    "jest": "^27.0.3",
+    "react-bootstrap": "^1.6.0",
+    "react-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  }
 }
