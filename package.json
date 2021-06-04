@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/teamofonealex/fec#readme",
   "dependencies": {
+    "@testing-library/react": "^11.2.7",
     "axios": "^0.21.1",
     "colors": "^1.4.0",
     "express": "^4.17.1",
