@@ -1,0 +1,1 @@
+//adding related component which imports from related items
