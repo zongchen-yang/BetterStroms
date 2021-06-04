@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/teamofonealex/fec#readme",
   "dependencies": {
+    "@popperjs/core": "^2.9.2",
     "axios": "^0.21.1",
     "colors": "^1.4.0",
     "express": "^4.17.1",
