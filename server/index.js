@@ -8,31 +8,29 @@ const GITHUB_TOKEN = require('../config.js');
 
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea';
 
-let app = express();
+const app = express();
 
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.listen(3000);
 
-app.route(':path').all(( async (req, res) => {
+app.get('/*', (async (req, res) => {
   console.log('GET request on /'.yellow);
-  console.log(req.route)
   const options = {
     method: req.route.stack[0].method,
-    url: `${API_URL}${req.params.path}`,
+    url: `${API_URL}/${req.params[0]}`,
     params: req.route.stack[0].params,
     headers: GITHUB_TOKEN,
-   };
+  };
 
-   const results = await axios(options).catch((err) => {
-     res.status(500);
-     res.send(err.response.data);
-   });
-   if (results) {
-     res.status(200);
-     res.send(results.data);
-   }
+  const results = await axios(options).catch((err) => {
+    res.status(500);
+    res.send(err.response.data);
+  });
+  if (results) {
+    res.send(results.data);
+  }
 }));
 
 // /////////////////////////////////////////////////////////////////////////////
