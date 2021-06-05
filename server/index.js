@@ -25,8 +25,8 @@ app.all('/*', (async (req, res) => {
     method: req.method,
     url: `${API_URL}${req.url}`,
     headers: GITHUB_TOKEN,
+    data: req.body,
   };
-  options.data = req.body;
 
   const results = await axios(options).catch((err) => {
     res.status(500);
