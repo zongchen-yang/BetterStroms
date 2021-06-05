@@ -10,6 +10,7 @@ const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea';
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.listen(3000);
@@ -18,37 +19,14 @@ app.get('/favicon.ico', () => {
 
 });
 
-app.get('/*', (async (req, res) => {
-  console.log(`GET request on /${req.params[0]}`.yellow);
+app.all('/*', (async (req, res) => {
+  console.log(`${req.method} request on ${req.url}`.yellow);
   const options = {
     method: req.method,
-    url: `${API_URL}/${req.params[0]}`,
-    params: {
-      0: req.params[0],
-    },
+    url: `${API_URL}${req.url}`,
     headers: GITHUB_TOKEN,
   };
-  options.params = req.query;
-  console.log('outbound url:', options.url);
-  console.log('outbound params:', options.params);
-  const results = await axios(options).catch((err) => {
-    res.status(500);
-    res.send(err.response.data);
-  });
-  if (results) {
-    res.send(results.data);
-  }
-}));
-
-app.post('/*', (async (req, res) => {
-  console.log(`POST request on /${req.params[0]}`.yellow);
-  console.log(req.params);
-  const options = {
-    method: req.route.stack[0].method,
-    url: `${API_URL}/${req.params[0]}`,
-    params: req.route.stack[0].params,
-    headers: GITHUB_TOKEN,
-  };
+  options.data = req.body;
 
   const results = await axios(options).catch((err) => {
     res.status(500);
