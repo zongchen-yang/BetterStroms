@@ -9,4 +9,7 @@ run npm install
 npm run react-dev
 
 ## Start server w/ nodemon:
+npm run server-dev
+
+## to test
 npm run test
