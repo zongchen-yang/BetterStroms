@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import Product from './product/Product'
+import Carousel from './product/Carousel';
+import Options from './product/Options';
+import Description from './product/Description';
 
 const Overview = function() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [products, setProducts] = useState([]);
-  const [description, setDescription] = useState([]);
-  const [styles, setStyles] = useState([]);
+  //const [description, setDescription] = useState([]);
+  //const [styles, setStyles] = useState([]);
 
   useEffect(() => {
     async function fetchProduct() {
       console.log('called fetch 1');
       const response = await fetch('/products');
-      const json = await response.json();
-      setProducts(json);
+      let productArray = await response.json();
 
+      let results = productArray.map(async (product) => {
+        console.log('called fetch products by ID');
+        const response2 = await fetch(`/products/${product.id}`);
+        const json2 = await response2.json();
+        product.features = json2.features;
+
+        console.log('called fetch styles');
+        const response3 = await fetch(`/products/${product.id}/styles`);
+        const json3 = await response3.json();
+        product.styles = json3.results;
+        return product;
+      });
+      const resolvedProducts = await Promise.all(results);
+      setProducts(resolvedProducts);
       setError(false);
-      console.log('called fetch 2');
-      const response2 = await fetch(`/products/${json[0].id}`);
-      const json2 = await response2.json();
-      setDescription(json2);
-
-      console.log('called fetch 3');
-      const response3 = await fetch(`/products/${json[0].id}/styles`);
-      const json3 = await response3.json();
-      setStyles(json3);
       setIsLoaded(true);
     }
     fetchProduct();
@@ -44,12 +50,12 @@ const Overview = function() {
     );
   } else {
     console.log(products);
-    console.log(description);
-    console.log(styles);
     return (
       <div>
-        <Product styles={styles} />
-        <ul>
+        <Carousel products={products} />
+        <Options product={products[0]} styles={products[0].styles}/>
+        <Description slogan={products[0].slogan} text={products[0].description}/>
+        {/* <ul>
           {products.map((prod) => (
             <li key={prod.id}>{prod.name}<br></br>
               {prod.slogan}<br></br>
@@ -76,7 +82,7 @@ const Overview = function() {
               </ul>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     );
   }
