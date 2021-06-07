@@ -1,3 +1,8 @@
-include React from 'react';
+import React from 'react';
 
-//alex
+const Overview = function() {
+  return (
+    <div>Overview</div>
+  );
+};
+export default Overview;

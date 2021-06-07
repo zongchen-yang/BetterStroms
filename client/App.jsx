@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Overview from './components/overview/Overview';
 
 const App = function() {
 //   const [productId, setProduct] = useState(null);
@@ -9,7 +10,7 @@ const App = function() {
   // });
 
   return (
-    <div>Hello from App</div>
+    <Overview />
   );
 };
 
