@@ -2,26 +2,30 @@ const express = require('express');
 const path = require('path');
 const colors = require('colors');
 const axios = require('axios');
-// adding morgan
 
-const GITHUB_TOKEN = require('../config.js');
+const GITHUB_TOKEN = require('../config');
 
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea';
 
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.listen(3000);
 
-app.get('/*', (async (req, res) => {
-  console.log('GET request on /'.yellow);
+app.get('/favicon.ico', () => {
+
+});
+
+app.all('/*', (async (req, res) => {
+  console.log(`${req.method} request on ${req.url}`.yellow);
   const options = {
-    method: req.route.stack[0].method,
-    url: `${API_URL}/${req.params[0]}`,
-    params: req.route.stack[0].params,
+    method: req.method,
+    url: `${API_URL}${req.url}`,
     headers: GITHUB_TOKEN,
+    data: req.body,
   };
 
   const results = await axios(options).catch((err) => {
