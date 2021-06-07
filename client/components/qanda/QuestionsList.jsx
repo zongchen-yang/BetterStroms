@@ -1,8 +1,11 @@
 import React from 'react';
+import Question from './Question';
 
 const QuestionsList = (props) => (
   <div>
-    this is the spot for the list of questions
+    {props.questions.map((question) => (
+      <Question question={[question]} key={question.question_id} />
+    ))}
   </div>
 );
 
