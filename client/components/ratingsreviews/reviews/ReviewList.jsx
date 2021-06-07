@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-const ReviewList = () {
+const ReviewList = (props) => (
+  <div>
+    hello, product is:
+    {props.product.id}
+  </div>
+);
 
-}
-
-export default ReviewList
+export default ReviewList;
