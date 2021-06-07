@@ -16,7 +16,57 @@
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\n\nvar App = function App() {\n  //   const [productId, setProduct] = useState(null);\n  // useEffect(()=> {\n  //   setProduct(productId = params.id)\n  //   fetch()\n  // });\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"Hello from App\");\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://fec/./client/App.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _components_qanda_QAndA__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/qanda/QAndA */ \"./client/components/qanda/QAndA.jsx\");\n\n\n\nvar App = function App() {\n  //   const [productId, setProduct] = useState(null);\n  // useEffect(()=> {\n  //   setProduct(productId = params.id)\n  //   fetch()\n  // });\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"Hello from App\");\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://fec/./client/App.jsx?");
+
+/***/ }),
+
+/***/ "./client/components/qanda/AddQuestion.jsx":
+/*!*************************************************!*\
+  !*** ./client/components/qanda/AddQuestion.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\n\nvar AddQuestion = function AddQuestion(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"this is the modal that pops up when the add question button is clicked\");\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddQuestion);\n\n//# sourceURL=webpack://fec/./client/components/qanda/AddQuestion.jsx?");
+
+/***/ }),
+
+/***/ "./client/components/qanda/NewAnswer.jsx":
+/*!***********************************************!*\
+  !*** ./client/components/qanda/NewAnswer.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\n\nvar AddAnswer = function AddAnswer(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"this is the modal that pops up when the add answer button is clicked\");\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddAnswer);\n\n//# sourceURL=webpack://fec/./client/components/qanda/NewAnswer.jsx?");
+
+/***/ }),
+
+/***/ "./client/components/qanda/QAndA.jsx":
+/*!*******************************************!*\
+  !*** ./client/components/qanda/QAndA.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _AddQuestion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddQuestion */ \"./client/components/qanda/AddQuestion.jsx\");\n/* harmony import */ var _NewAnswer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewAnswer */ \"./client/components/qanda/NewAnswer.jsx\");\n/* harmony import */ var _QuestionsList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QuestionsList */ \"./client/components/qanda/QuestionsList.jsx\");\n/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Search */ \"./client/components/qanda/Search.jsx\");\n// This will be the strucute of my whole module.\n\n\n\n\n\n\nvar QandA = function QandA(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"Hello from QandA\", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AddQuestion__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_NewAnswer__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QuestionsList__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Search__WEBPACK_IMPORTED_MODULE_4__.default, null));\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QandA);\n\n//# sourceURL=webpack://fec/./client/components/qanda/QAndA.jsx?");
+
+/***/ }),
+
+/***/ "./client/components/qanda/QuestionsList.jsx":
+/*!***************************************************!*\
+  !*** ./client/components/qanda/QuestionsList.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\n\nvar QuestionsList = function QuestionsList(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"this is the spot for the list of questions\");\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionsList);\n\n//# sourceURL=webpack://fec/./client/components/qanda/QuestionsList.jsx?");
+
+/***/ }),
+
+/***/ "./client/components/qanda/Search.jsx":
+/*!********************************************!*\
+  !*** ./client/components/qanda/Search.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\n\nvar Search = function Search(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"this is where the search bar will go\");\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);\n\n//# sourceURL=webpack://fec/./client/components/qanda/Search.jsx?");
 
 /***/ }),
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import QandA from './components/qanda/QAndA';
 
 const App = function() {
 //   const [productId, setProduct] = useState(null);
