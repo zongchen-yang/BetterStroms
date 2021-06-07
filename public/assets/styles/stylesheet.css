@@ -1,0 +1,8 @@
+.review {
+  position: static;
+  left: 0;
+  border-style: solid;
+  border-color: aquamarine;
+  right: 10px;
+  width: 50%;
+}

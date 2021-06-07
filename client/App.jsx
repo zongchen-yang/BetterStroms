@@ -13,9 +13,9 @@ const App = function () {
     fetch('http://localhost:3000/products/20104')
       .then((response) => response.json())
       .then((data) => setProduct(data))
-      .then(console.log('logging state product id:', { product }))
+      //.then(console.log('logging state product id:', { product }))
       .catch((error) => console.log(error));
-    console.log('hello from use effect');
+    //console.log('hello from use effect');
   }, ['stop']);
 
   return (
