@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Product() {
+function Product({ styles }) {
   return (
     <div>
-      Product
+      <img src={styles.results[0].photos[0].url}></img>
     </div>
   )
 }

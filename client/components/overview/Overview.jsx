@@ -48,6 +48,7 @@ const Overview = function() {
     console.log(styles);
     return (
       <div>
+        <Product styles={styles} />
         <ul>
           {products.map((prod) => (
             <li key={prod.id}>{prod.name}<br></br>
@@ -61,8 +62,15 @@ const Overview = function() {
                   <li key={index}>
                     {feature.feature}
                     : {feature.value}
-
-
+                  </li>
+                ))}
+              </ul>
+              <ul>
+                Styles
+                {styles.results.map((style, index) => (
+                  <li key={index}>
+                    {style.name}
+                    : {style.original_price}
                   </li>
                 ))}
               </ul>
