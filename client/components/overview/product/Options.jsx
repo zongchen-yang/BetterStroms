@@ -2,6 +2,7 @@ import React from 'react';
 import QuantSelector from './QuantSelector';
 
 function Options({ product, style, styleCH, sizeCH, selectedSku }) {
+  console.log('sku in options:', selectedSku);
   const styles = product.styles;
   return (
     <div id="options-container">
@@ -23,6 +24,7 @@ function Options({ product, style, styleCH, sizeCH, selectedSku }) {
       <form>
         <label htmlFor="size-select">Size:</label>
         <select onChange={(e) => sizeCH(e)} name="size" id="size-select">
+          <option value="">Select Size</option>
           {/* Object.keys returns an array = ['sku1', sku2', ...] */}
           {Object.keys(style.skus).map((skuIndex) => {
             const sku = parseInt(skuIndex, 10);
@@ -35,7 +37,7 @@ function Options({ product, style, styleCH, sizeCH, selectedSku }) {
             );
           })}
         </select>
-        <QuantSelector sku={style.skus[selectedSku]} />
+        <QuantSelector sku={selectedSku} />
       </form>
     </div>
   );

@@ -11,7 +11,7 @@ const Overview = function() {
   const [index, setIndex] = useState(0);
   const [styleIndex, setStyleIndex] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [skuState, setSkuState] = useState(0);
+  const [skuState, setSkuState] = useState({ quantity: 0, size: 'empty' });
 
   useEffect(() => {
     async function fetchProduct() {
@@ -35,14 +35,13 @@ const Overview = function() {
       setProducts(resolvedProducts);
       setError(false);
       setIsLoaded(true);
-      const defaultStyleSku = Object.keys(resolvedProducts[index].styles[styleIndex].skus)[0];
-      setSkuState(defaultStyleSku);
     }
     fetchProduct();
   }, []);
 
   function sizeCH(event) {
-    console.log(skuState);
+    console.log(event.target)
+    console.log('sku value in click handler:', event.target.value);
     const currentSku = event.target.value;
     setSkuState(currentSku);
   }
@@ -89,12 +88,13 @@ const Overview = function() {
     console.log(products);
     const product = products[index];
     const style = product.styles[styleIndex];
+    const selectedSku = style.skus[skuState] || skuState;
     return (
       <div>
         <div id="overviewContainer">
           <PhotoCarousel style={style} clickHandler={photoCarouselClickHandler} />
           <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
-          <Options product={product} selectedSku={skuState} style={style} styleCH={styleCH} sizeCH={sizeCH} />
+          <Options product={product} selectedSku={selectedSku} style={style} styleCH={styleCH} sizeCH={sizeCH} />
         </div>
         <Description slogan={product.slogan} text={product.description} />
       </div>
