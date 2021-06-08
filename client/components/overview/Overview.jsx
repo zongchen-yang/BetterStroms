@@ -57,8 +57,6 @@ const Overview = function() {
   }
 
   function styleCH(i) {
-    //  styles should be passed into carousel and photo carousel
-    //styleIndex;
     setStyleIndex(i);
   }
 

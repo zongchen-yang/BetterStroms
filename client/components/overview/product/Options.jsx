@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import QuantSelector from './QuantSelector';
 
 function Options({ product, styles, style, clickHandler }) {
+  const defaultStyleSku = Object.keys(style.skus)[0];
+  const [skuState, setSkuState] = useState(defaultStyleSku);
+  function sizeCH(event) {
+    console.log(skuState);
+    const currentSku = event.target.value;
+    setSkuState(currentSku);
+    console.log(style.name, style.skus[currentSku]);
+  }
+
   return (
     <div id="options-container">
       <h3>{product.category}</h3>
@@ -18,23 +28,23 @@ function Options({ product, styles, style, clickHandler }) {
           </tr>
         </tbody>
       </table>
-      <label htmlFor="quantity-select">Quantity:</label>
-      <select name="quantity" id="quantity-select">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-      <label htmlFor="size-select">Size:</label>
-      <select name="size" id="size-select">
-        {/* Object.keys returns an array = ['sku1', sku2', ...] */}
-        {Object.keys(style.skus).map((skuIndex) => {
-          const sku = parseInt(skuIndex, 10);
-          const currentSku = style.skus[sku];
-          return (
-            <option key={sku} value={currentSku.size}>{currentSku.size}</option>
-          );
-        })}
-      </select>
+      <form>
+        <label htmlFor="size-select">Size:</label>
+        <select onChange={(e) => sizeCH(e)} name="size" id="size-select">
+          {/* Object.keys returns an array = ['sku1', sku2', ...] */}
+          {Object.keys(style.skus).map((skuIndex) => {
+            const sku = parseInt(skuIndex, 10);
+            const currentSku = style.skus[sku];
+            if (currentSku === undefined) {
+              return null;
+            }
+            return (
+              <option key={sku} value={sku}>{currentSku.size}</option>
+            );
+          })}
+        </select>
+        <QuantSelector sku={style.skus[skuState]} />
+      </form>
     </div>
   );
 }
