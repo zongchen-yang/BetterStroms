@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddQuestion from './AddQuestion';
-import NewAnswer from './NewAnswer';
+import AddAnswer from './AddAnswer';
 import QuestionsList from './QuestionsList';
 import Search from './Search';
 
@@ -18,7 +18,7 @@ const QAndA = (props) => {
 
   async function getQuestions() {
     if (id) {
-      const results = await axios.get(`http://localhost:3000/qa/questions?product_id=${id}`);
+      const results = await axios.get(`/qa/questions?product_id=${id}&count=100`);
       setQuestionId(results.data.results);
     }
   }
@@ -37,10 +37,10 @@ const QAndA = (props) => {
 
   const updateQuestionsHelpfulness = (questionId) => {
     if (!questionHelpful) {
-      axios.put(`http://localhost:3000/qa/questions/${questionId}/helpful`)
+      axios.put(`/qa/questions/${questionId}/helpful`)
         .then(() => console.log('put request successful for question'))
         .catch((error) => console.log(error));
-      setQuestionHelpful(true);
+      // setQuestionHelpful(true);
     }
     // else {
     //   alert('you already said this was helpful');
@@ -49,10 +49,10 @@ const QAndA = (props) => {
 
   const updateAnswersHelpfulness = (answerId) => {
     if(!answerHelpful) {
-      axios.put(`http://localhost:3000/qa/answers/${answerId}/helpful`)
+      axios.put(`/qa/answers/${answerId}/helpful`)
         .then(() => console.log('put request successful for answer'))
         .catch((error) => console.log(error));
-      setAnswerHelpful(true);
+      // setAnswerHelpful(true);
     }
   };
 
@@ -62,6 +62,22 @@ const QAndA = (props) => {
 
   const reportAnswer = () => {
 
+  };
+
+  const postNewQuestion = (body, name, email) => {
+    // axios.post()
+  };
+
+  const postNewAnswer = (questionId, body, name, email, photos) => {
+    // const requestBody = { body, name, email, photos };
+    axios.post(`/qa/questions/${questionId}/answers`, {
+      body,
+      name,
+      email,
+      photos,
+    })
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
   };
   useEffect(() => { getQuestions(); }, [id]);
   return (
@@ -75,6 +91,7 @@ const QAndA = (props) => {
               questions={searchedArray}
               updateQuestionsHelpfulness={updateQuestionsHelpfulness}
               updateAnswersHelpfulness={updateAnswersHelpfulness}
+              postNewAnswer={postNewAnswer}
             />
           )
           : (
@@ -82,6 +99,7 @@ const QAndA = (props) => {
               questions={questionsArray}
               updateQuestionsHelpfulness={updateQuestionsHelpfulness}
               updateAnswersHelpfulness={updateAnswersHelpfulness}
+              postNewAnswer={postNewAnswer}
             />
           )
         }
@@ -91,19 +109,3 @@ const QAndA = (props) => {
 };
 
 export default QAndA;
-{/* {questionsArray.map((question) => (
-  <QuestionsList question={question} key={question.question_id} />
-))} */}
-// <AddQuestion />
-// <NewAnswer />
-
-// .then((data) => { setQuestionId(data.data.results); console.log(questionsArray);})
-// .catch((error) => console.log(error));
-// console.log(results)
-// conosle.log(results.data.results)
-// console.log(questionsArray);
-
-// fetch(`http://localhost:3000/qa/questions?product_id=${id}`)
-//   .then((res) => res.json())
-//   .then((data) => console.log(data))
-//   .catch((err) => console.log(err));

@@ -6,10 +6,6 @@ const App = () => {
   const [product, setProduct] = useState('');
 
   useEffect(() => {
-    // setProduct(product = sampleData.id);
-
-    // console.log('logging state product id: ', { product });
-
     fetch('http://localhost:3000/products/20104')
       .then((response) => response.json())
       .then((data) => setProduct(data))
