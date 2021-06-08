@@ -10,6 +10,7 @@ const Overview = function() {
   const [products, setProducts] = useState([]);
   const [index, setIndex] = useState(0);
   const [styleIndex, setStyleIndex] = useState(0);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   useEffect(() => {
     async function fetchProduct() {
@@ -51,12 +52,18 @@ const Overview = function() {
         setIndex(index - 1);
       }
     }
+    setPhotoIndex(0);
+    setStyleIndex(0);
   }
 
   function styleClickHandler(i) {
     //  styles should be passed into carousel and photo carousel
     //styleIndex;
     setStyleIndex(i);
+  }
+
+  function photoCarouselClickHandler(i) {
+    setPhotoIndex(i);
   }
 
   if (error) {
@@ -73,40 +80,16 @@ const Overview = function() {
     );
   } else {
     console.log(products);
+    const product = products[index];
+    const style = product.styles[styleIndex];
     return (
       <div>
-        <PhotoCarousel style={products[index].styles[styleIndex]}/>
-        <Carousel style={products[index].styles[styleIndex]} clickHandler={productClickHandler} />
-        <Options product={products[index]} styles={products[index].styles} clickHandler={styleClickHandler}/>
-        <Description slogan={products[index].slogan} text={products[index].description} />
-        {/* <ul>
-          {products.map((prod) => (
-            <li key={prod.id}>{prod.name}<br></br>
-              {prod.slogan}<br></br>
-              {prod.category}<br></br>
-              {prod.default_price}<br></br>
-              {prod.description}<br></br>
-              <ul>
-                Features
-                {description.features.map((feature, index) => (
-                  <li key={index}>
-                    {feature.feature}
-                    : {feature.value}
-                  </li>
-                ))}
-              </ul>
-              <ul>
-                Styles
-                {styles.results.map((style, index) => (
-                  <li key={index}>
-                    {style.name}
-                    : {style.original_price}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul> */}
+        <div id="overviewContainer">
+          <PhotoCarousel style={style} clickHandler={photoCarouselClickHandler}/>
+          <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
+          <Options product={product} styles={product.styles} clickHandler={styleClickHandler} />
+        </div>
+        <Description slogan={product.slogan} text={product.description} />
       </div>
     );
   }

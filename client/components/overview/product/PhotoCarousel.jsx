@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PhotoCarousel({ style }) {
+function PhotoCarousel({ style, clickHandler}) {
   let i = 0;
   if (style.photos === undefined) {
     return null;
@@ -8,9 +8,9 @@ function PhotoCarousel({ style }) {
   return (
     <div>
       <ul>
-        {style.photos.map((picObj) => (
-          <li key={i++}>
-            <img alt="hi" width="75" height="150" src={picObj.thumbnail_url} />
+        {style.photos.map((picObj, index) => (
+          <li key={i++} index={index}>
+            <img onClick={() => clickHandler(index)} alt="hi" width="50" height="100" src={picObj.thumbnail_url} />
           </li>
         ))}
       </ul>
