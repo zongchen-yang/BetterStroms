@@ -14,12 +14,16 @@ const Question = (props) => {
     <div>
       <div>QUESTION body: {question_body}</div>
       <div>id: {question_id}</div>
-      <div>helpful: {question_helpfulness}</div>
+      <div onClick={() => props.updateQuestionsHelpfulness(question_id)}>helpful: {question_helpfulness}</div>
       <div>user: {asker_name}</div>
       {/* {console.log(answers)} */}
       {Object.keys(answers).map((answerId) => (
         <div>
-          <Answer answer={answers[answerId]} key={answers[answerId].id} />
+          <Answer
+            answer={answers[answerId]}
+            key={answers[answerId].id}
+            updateAnswersHelpfulness={props.updateAnswersHelpfulness}
+          />
         </div>
       )).slice(0, totalAnswerCount)}
       <button type="button" onClick={loadMoreAnswers}>Load More Answers</button>

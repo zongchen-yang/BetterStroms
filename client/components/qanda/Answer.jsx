@@ -7,7 +7,7 @@ const Answer = (props) => {
     <div> An Answer </div>
     <div>User: {answerer_name}</div>
     <div>Body: {body}</div>
-    <div>Helpful? {helpfulness}</div>
+    <div onClick={() => props.updateAnswersHelpfulness(id)}>Helpful? {helpfulness}</div>
     {photos.map((url, idx) => (
       <img src={url} key={id + idx} width="75" height="75" alt="" />
     ))}

@@ -9,7 +9,7 @@ const Search = (props) => {
   };
 
   return (
-    <div>
+    <div className="search-bar">
       <input onChange={onInputChange} />
       <button type="button" onClick={() => props.search(inputText)}>Search</button>
     </div>
