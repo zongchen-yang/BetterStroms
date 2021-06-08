@@ -12,7 +12,8 @@ const QAndA = (props) => {
   const { product } = props;
   const { id } = product;
   let [searchedArray, setSearchedArray] = useState(questionsArray);
-  console.log('this is the product id', id);
+  // console.log('this is the product id', id);
+
   async function getQuestions() {
     if (id) {
       const results = await axios.get(`http://localhost:3000/qa/questions?product_id=${id}`);
@@ -28,11 +29,11 @@ const QAndA = (props) => {
       setSearchedArray(questionsArray.filter((question) => (
         question.question_body.toLowerCase().includes(value)
       )));
-      console.log('this is the value: ', value);
-      console.log('this is the new array: ', searchedArray);
+      // console.log('this is the value: ', value);
+      // console.log('this is the new array: ', searchedArray);
       setSearched(true);
     }
-    console.log('POKE');
+    // console.log('POKE');
   };
 
   // console.log(questionsArray);

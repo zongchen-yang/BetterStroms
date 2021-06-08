@@ -12,13 +12,13 @@ const QuestionsList = (props) => {
 
   return (
     <div>
-      {console.log('this is the questions array: ', props.questions)}
+      {/* {console.log('this is the questions array: ', props.questions)} */}
       <div>
         {props.questions.map((question) => (
           <Question question={[question]} key={question.question_id} />
         )).slice(0, totalQuestionCount)}
       </div>
-      <button onClick={addMoreQuestions}>Add More Questions</button>
+      <button type="button" onClick={addMoreQuestions}>Add More Questions</button>
     </div>
   );
 };

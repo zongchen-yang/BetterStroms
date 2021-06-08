@@ -7,7 +7,7 @@ const Question = (props) => {
 
   const loadMoreAnswers = () => {
     upTotalAnswerCount(totalAnswerCount += 1);
-    console.log(totalAnswerCount);
+    // console.log(totalAnswerCount);
   };
 
   return (
@@ -16,13 +16,13 @@ const Question = (props) => {
       <div>id: {question_id}</div>
       <div>helpful: {question_helpfulness}</div>
       <div>user: {asker_name}</div>
-      {console.log(answers)}
+      {/* {console.log(answers)} */}
       {Object.keys(answers).map((answerId) => (
         <div>
           <Answer answer={answers[answerId]} key={answers[answerId].id} />
         </div>
       )).slice(0, totalAnswerCount)}
-      <button onClick={loadMoreAnswers}>Load More Answers</button>
+      <button type="button" onClick={loadMoreAnswers}>Load More Answers</button>
     </div>
   );
 };

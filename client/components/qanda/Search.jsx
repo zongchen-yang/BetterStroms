@@ -5,16 +5,15 @@ const Search = (props) => {
 
   const onInputChange = (event) => {
     changeInputText(event.target.value);
-    console.log(inputText)
+    // console.log(inputText)
   };
 
   return (
     <div>
       <input onChange={onInputChange} />
-      <button onClick={() => props.search(inputText)}>Search</button>
+      <button type="button" onClick={() => props.search(inputText)}>Search</button>
     </div>
-
-  )
+  );
 };
 
 export default Search;
