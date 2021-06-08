@@ -6,7 +6,7 @@ function Options({ product, styles, style, clickHandler }) {
       <h3>{product.category}</h3>
       <h1>{product.name}</h1>
       <p>Price: {product.default_price} </p>
-      <strong>Style</strong> {">"} Selected Style
+      <strong>Style</strong> {">"} {style.name}
       <table>
         <tbody>
           <tr>
@@ -28,7 +28,7 @@ function Options({ product, styles, style, clickHandler }) {
       <select name="size" id="size-select">
         {/* Object.keys returns an array = ['sku1', sku2', ...] */}
         {Object.keys(style.skus).map((skuIndex) => {
-          const sku = parseInt(skuIndex);
+          const sku = parseInt(skuIndex, 10);
           const currentSku = style.skus[sku];
           return (
             <option key={sku} value={currentSku.size}>{currentSku.size}</option>
