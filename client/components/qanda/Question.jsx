@@ -3,8 +3,15 @@ import Answer from './Answer';
 
 const Question = (props) => {
   const {question_id, question_body, question_helpfulness, asker_name, answers} = props.question[0];
+  let [totalAnswerCount, upTotalAnswerCount] = useState(2)
   // console.log('props', props.question[0]);
   // console.log('body: ', props.question[0].question_body);
+
+  const loadMoreAnswers = () => {
+    upTotalAnswerCount(totalAnswerCount += 1);
+    console.log(totalAnswerCount);
+  };
+
   return (
     <div>
       <div>body: {question_body}</div>
@@ -16,7 +23,8 @@ const Question = (props) => {
         <div>
           <Answer answer={answers[answerId]} key={answers[answerId].id} />
         </div>
-      ))}
+      )).slice(0, totalAnswerCount)}
+      <button onClick={loadMoreAnswers}>Load More Answers</button>
     </div>
   );
 };
