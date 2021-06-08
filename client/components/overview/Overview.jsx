@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Carousel from './product/Carousel';
 import Options from './product/Options';
 import Description from './product/Description';
+import PhotoCarousel from './product/PhotoCarousel';
 
 const Overview = function() {
   const [error, setError] = useState(null);
@@ -18,14 +19,14 @@ const Overview = function() {
 
       let results = productArray.map(async (product) => {
         console.log('called fetch products by ID');
-        const response2 = await fetch(`/products/${product.id}`);
-        const json2 = await response2.json();
-        product.features = json2.features;
+        let idQueryReponse = await fetch(`/products/${product.id}`);
+        idQueryReponse = await idQueryReponse.json();
+        product.features = idQueryReponse.features;
 
         console.log('called fetch styles');
-        const response3 = await fetch(`/products/${product.id}/styles`);
-        const json3 = await response3.json();
-        product.styles = json3.results;
+        let stylesQueryResponse = await fetch(`/products/${product.id}/styles`);
+        stylesQueryResponse = await stylesQueryResponse.json();
+        product.styles = stylesQueryResponse.results;
         return product;
       });
       const resolvedProducts = await Promise.all(results);
