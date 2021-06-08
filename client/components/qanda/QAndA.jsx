@@ -8,9 +8,10 @@ import Search from './Search';
 
 const QAndA = (props) => {
   const [questionsArray, setQuestionId] = useState([]);
-  // useEffect(() => {
+  const [searched, setSearched] = useState(false);
   const { product } = props;
   const { id } = product;
+  let [searchedArray, setSearchedArray] = useState(questionsArray);
   console.log('this is the product id', id);
   async function getQuestions() {
     if (id) {
@@ -18,24 +19,43 @@ const QAndA = (props) => {
       setQuestionId(results.data.results);
     }
   }
-  console.log(questionsArray);
-  // });
+
+  const onSearchClick = (value) => {
+    if (value === '') {
+      setSearchedArray(questionsArray);
+      setSearched(false);
+    } else {
+      setSearchedArray(questionsArray.filter((question) => (
+        question.question_body.toLowerCase().includes(value)
+      )));
+      console.log('this is the value: ', value);
+      console.log('this is the new array: ', searchedArray);
+      setSearched(true);
+    }
+    console.log('POKE');
+  };
+
+  // console.log(questionsArray);
   useEffect(() => { getQuestions(); }, [id]);
   return (
+
     <div>
       Hello from QandA
-      <Search />
+      <Search search={onSearchClick} />
       <div>
-        <QuestionsList questions={questionsArray} />
+        {searched
+          ? <QuestionsList questions={searchedArray} />
+          : <QuestionsList questions={questionsArray} />
+        }
       </div>
-      {/* {questionsArray.map((question) => (
-        <QuestionsList question={question} key={question.question_id} />
-      ))} */}
     </div>
   );
 };
 
 export default QAndA;
+{/* {questionsArray.map((question) => (
+  <QuestionsList question={question} key={question.question_id} />
+))} */}
 // <AddQuestion />
 // <NewAnswer />
 

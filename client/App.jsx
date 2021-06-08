@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QAndA from './components/qanda/QAndA';
 import sampleData from '../sampleData';
 
-const App = function() {
+const App = () => {
   const [product, setProduct] = useState('');
 
   useEffect(() => {

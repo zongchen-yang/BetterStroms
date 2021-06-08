@@ -1,9 +1,20 @@
-import React from 'react';
+import React,{ useState, useEffect} from 'react';
 
-const Search = (props) => (
-  <div>
-    this is where the search bar will go
-  </div>
-);
+const Search = (props) => {
+  let [inputText, changeInputText] = useState('');
+
+  const onInputChange = (event) => {
+    changeInputText(event.target.value);
+    console.log(inputText)
+  };
+
+  return (
+    <div>
+      <input onChange={onInputChange} />
+      <button onClick={() => props.search(inputText)}>Search</button>
+    </div>
+
+  )
+};
 
 export default Search;

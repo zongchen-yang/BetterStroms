@@ -3,9 +3,7 @@ import Answer from './Answer';
 
 const Question = (props) => {
   const {question_id, question_body, question_helpfulness, asker_name, answers} = props.question[0];
-  let [totalAnswerCount, upTotalAnswerCount] = useState(2)
-  // console.log('props', props.question[0]);
-  // console.log('body: ', props.question[0].question_body);
+  let [totalAnswerCount, upTotalAnswerCount] = useState(2);
 
   const loadMoreAnswers = () => {
     upTotalAnswerCount(totalAnswerCount += 1);
@@ -14,7 +12,7 @@ const Question = (props) => {
 
   return (
     <div>
-      <div>body: {question_body}</div>
+      <div>QUESTION body: {question_body}</div>
       <div>id: {question_id}</div>
       <div>helpful: {question_helpfulness}</div>
       <div>user: {asker_name}</div>
@@ -30,3 +28,6 @@ const Question = (props) => {
 };
 
 export default Question;
+
+// console.log('props', props.question[0]);
+// console.log('body: ', props.question[0].question_body);

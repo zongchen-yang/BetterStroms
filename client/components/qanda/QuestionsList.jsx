@@ -12,6 +12,7 @@ const QuestionsList = (props) => {
 
   return (
     <div>
+      {console.log('this is the questions array: ', props.questions)}
       <div>
         {props.questions.map((question) => (
           <Question question={[question]} key={question.question_id} />
@@ -19,8 +20,7 @@ const QuestionsList = (props) => {
       </div>
       <button onClick={addMoreQuestions}>Add More Questions</button>
     </div>
-  )
-}
-
+  );
+};
 
 export default QuestionsList;
