@@ -56,16 +56,25 @@ const QAndA = (props) => {
     }
   };
 
-  const reportQuestion = () => {
-
+  const reportQuestion = (questionId) => {
+    axios.put(`/qa/questions/${questionId}/report`)
+      .then(() => console.log('question reported'))
+      .catch((error) => console.log(error));
   };
 
-  const reportAnswer = () => {
-
+  const reportAnswer = (answerId) => {
+    axios.put(`/qa/answers/${answerId}/report`)
+      .then(() => console.log('answer reported'))
+      .catch((error) => console.log(error));
   };
 
   const postNewQuestion = (body, name, email) => {
-    // axios.post()
+    axios.post(`/qa/questions`, {
+      body,
+      name,
+      email,
+      product_id: id,
+    });
   };
 
   const postNewAnswer = (questionId, body, name, email, photos) => {
@@ -92,6 +101,8 @@ const QAndA = (props) => {
               updateQuestionsHelpfulness={updateQuestionsHelpfulness}
               updateAnswersHelpfulness={updateAnswersHelpfulness}
               postNewAnswer={postNewAnswer}
+              reportQuestion={reportQuestion}
+              reportAnswer={reportAnswer}
             />
           )
           : (
@@ -100,6 +111,8 @@ const QAndA = (props) => {
               updateQuestionsHelpfulness={updateQuestionsHelpfulness}
               updateAnswersHelpfulness={updateAnswersHelpfulness}
               postNewAnswer={postNewAnswer}
+              reportQuestion={reportQuestion}
+              reportAnswer={reportAnswer}
             />
           )
         }

@@ -23,9 +23,10 @@ const QuestionsList = (props) => {
               updateQuestionsHelpfulness={props.updateQuestionsHelpfulness}
               updateAnswersHelpfulness={props.updateAnswersHelpfulness}
               postNewAnswer={props.postNewAnswer}
+              reportQuestion={props.reportQuestion}
+              reportAnswer={props.reportAnswer}
             />
           )).slice(0, totalQuestionCount)}
-          {console.log(props.postNewAnswer)}
         </div>
       );
     }
@@ -33,18 +34,7 @@ const QuestionsList = (props) => {
 
   return (
     <div>
-      {/* {console.log('this is the questions array: ', props.questions)} */}
       {renderView()}
-      {/* <div>
-        {props.questions.map((question) => (
-          <Question
-            question={[question]}
-            key={question.question_id}
-            updateQuestionsHelpfulness={props.updateQuestionsHelpfulness}
-            updateAnswersHelpfulness={props.updateAnswersHelpfulness}
-          />
-        )).slice(0, totalQuestionCount)}
-      </div> */}
       <button type="button" onClick={addMoreQuestions}>More Answered Questions</button>
     </div>
   );

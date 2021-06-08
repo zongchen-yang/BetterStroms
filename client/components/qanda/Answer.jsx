@@ -11,6 +11,7 @@ const Answer = (props) => {
     {photos.map((url, idx) => (
       <img src={url} key={id + idx} width="75" height="75" alt="" />
     ))}
+    <div onClick={() => props.reportAnswer(id)}>Report</div>
   </div>
 
   )

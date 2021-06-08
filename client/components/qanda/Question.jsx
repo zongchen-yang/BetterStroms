@@ -34,10 +34,12 @@ const Question = (props) => {
                 answer={answers[answerId]}
                 key={answers[answerId].id}
                 updateAnswersHelpfulness={props.updateAnswersHelpfulness}
+                reportAnswer={props.reportAnswer}
               />
             </div>
           )).slice(0, totalAnswerCount)}
           <button type="button" onClick={loadMoreAnswers}>Load More Answers</button>
+          <div onClick={() => props.reportQuestion(question_id)}>Report</div>
         </div>
       );
     }
