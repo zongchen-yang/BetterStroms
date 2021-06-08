@@ -56,7 +56,7 @@ const Overview = function() {
     setStyleIndex(0);
   }
 
-  function styleClickHandler(i) {
+  function styleCH(i) {
     //  styles should be passed into carousel and photo carousel
     //styleIndex;
     setStyleIndex(i);
@@ -85,9 +85,9 @@ const Overview = function() {
     return (
       <div>
         <div id="overviewContainer">
-          <PhotoCarousel style={style} clickHandler={photoCarouselClickHandler}/>
+          <PhotoCarousel style={style} clickHandler={photoCarouselClickHandler} />
           <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
-          <Options product={product} styles={product.styles} clickHandler={styleClickHandler} />
+          <Options product={product} styles={product.styles} style={style} clickHandler={styleCH} />
         </div>
         <Description slogan={product.slogan} text={product.description} />
       </div>
