@@ -8,8 +8,6 @@ const Overview = function() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [products, setProducts] = useState([]);
-  //const [description, setDescription] = useState([]);
-  //const [styles, setStyles] = useState([]);
 
   useEffect(() => {
     async function fetchProduct() {
@@ -51,8 +49,10 @@ const Overview = function() {
     );
   } else {
     console.log(products);
+    const currentStyle = 0;
     return (
       <div>
+        <PhotoCarousel style={products[0].styles[currentStyle]}/>
         <Carousel products={products} />
         <Options product={products[0]} styles={products[0].styles}/>
         <Description slogan={products[0].slogan} text={products[0].description}/>
