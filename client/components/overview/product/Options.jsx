@@ -1,6 +1,9 @@
 import React from 'react';
 
-function Options({ product, styles }) {
+function Options({ product, styles, clickHandler }) {
+  // if (styles.photo === undefined) {
+  //   return null;
+  // }
   return (
     <div>
       <h3>{product.category}</h3>
@@ -10,13 +13,11 @@ function Options({ product, styles }) {
       <table>
         <tbody>
           <tr>
-            {styles.map((style, index) => {
-              return (
-                <td key={index}>
-                  <img height="50" width="50" src={style.photos[0].thumbnail_url} />
-                </td>
-              )
-            })}
+            {styles.map((style, index) => (
+              <td key={index} index={index}>
+                <img onClick={() => clickHandler(index)} alt="hi" height="150" width="75" src={style.photos[0].thumbnail_url} />
+              </td>
+            ))}
           </tr>
         </tbody>
       </table>

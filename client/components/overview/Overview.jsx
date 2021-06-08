@@ -8,14 +8,16 @@ const Overview = function() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [products, setProducts] = useState([]);
+  const [index, setIndex] = useState(0);
+  const [styleIndex, setStyleIndex] = useState(0);
 
   useEffect(() => {
     async function fetchProduct() {
       console.log('called fetch 1');
       const response = await fetch('/products');
-      let productArray = await response.json();
+      const productArray = await response.json();
 
-      let results = productArray.map(async (product) => {
+      const results = productArray.map(async (product) => {
         console.log('called fetch products by ID');
         let idQueryReponse = await fetch(`/products/${product.id}`);
         idQueryReponse = await idQueryReponse.json();
@@ -35,6 +37,28 @@ const Overview = function() {
     fetchProduct();
   }, []);
 
+  function productClickHandler(direction) {
+    if (direction === 'right') {
+      if (index === products.length - 1) {
+        setIndex(0);
+      } else {
+        setIndex(index + 1);
+      }
+    } else {
+      if (index === 0) {
+        setIndex(products.length - 1);
+      } else {
+        setIndex(index - 1);
+      }
+    }
+  }
+
+  function styleClickHandler(i) {
+    //  styles should be passed into carousel and photo carousel
+    //styleIndex;
+    setStyleIndex(i);
+  }
+
   if (error) {
     return (
       <div>
@@ -49,13 +73,12 @@ const Overview = function() {
     );
   } else {
     console.log(products);
-    const currentStyle = 0;
     return (
       <div>
-        <PhotoCarousel style={products[0].styles[currentStyle]}/>
-        <Carousel products={products} />
-        <Options product={products[0]} styles={products[0].styles}/>
-        <Description slogan={products[0].slogan} text={products[0].description}/>
+        <PhotoCarousel style={products[index].styles[styleIndex]}/>
+        <Carousel style={products[index].styles[styleIndex]} clickHandler={productClickHandler} />
+        <Options product={products[index]} styles={products[index].styles} clickHandler={styleClickHandler}/>
+        <Description slogan={products[index].slogan} text={products[index].description} />
         {/* <ul>
           {products.map((prod) => (
             <li key={prod.id}>{prod.name}<br></br>
