@@ -2,18 +2,14 @@ import React, { useState } from 'react';
 
 function Carousel({ products }) {
   let [index, setIndex] = useState(0);
-  function goLeft(e) {
-    e.preventDefault();
-    console.log('clicked left')
+  function goLeft() {
     if (index === 0) {
       setIndex(products.length - 1);
     } else {
       setIndex(index - 1);
     }
   }
-  function goRight(e) {
-    e.preventDefault();
-    console.log('clicked right')
+  function goRight() {
     if (index === products.length - 1) {
       setIndex(0);
     } else {
@@ -22,9 +18,9 @@ function Carousel({ products }) {
   }
   return (
     <div>
-      <button onClick={(e) => goLeft(e)}>left</button>
+      <button onClick={goLeft}>left</button>
       <img alt="hi" height="300" width="200" src={products[index].styles[0].photos[0].url} />
-      <button onClick={(e) => goRight(e)}>right</button>
+      <button onClick={goRight}>right</button>
     </div>
   )
 }
