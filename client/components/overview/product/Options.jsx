@@ -1,16 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import QuantSelector from './QuantSelector';
 
-function Options({ product, styles, style, clickHandler }) {
-  const defaultStyleSku = Object.keys(style.skus)[0];
-  const [skuState, setSkuState] = useState(defaultStyleSku);
-  function sizeCH(event) {
-    console.log(skuState);
-    const currentSku = event.target.value;
-    setSkuState(currentSku);
-    console.log(style.name, style.skus[currentSku]);
-  }
-
+function Options({ product, style, styleCH, sizeCH, selectedSku }) {
+  const styles = product.styles;
   return (
     <div id="options-container">
       <h3>{product.category}</h3>
@@ -22,7 +14,7 @@ function Options({ product, styles, style, clickHandler }) {
           <tr>
             {styles.map((style, index) => (
               <td key={index} index={index}>
-                <img onClick={() => clickHandler(index)} alt="hi" height="150" width="75" src={style.photos[0].thumbnail_url} />
+                <img onClick={() => styleCH(index)} alt="hi" height="150" width="75" src={style.photos[0].thumbnail_url} />
               </td>
             ))}
           </tr>
@@ -43,7 +35,7 @@ function Options({ product, styles, style, clickHandler }) {
             );
           })}
         </select>
-        <QuantSelector sku={style.skus[skuState]} />
+        <QuantSelector sku={style.skus[selectedSku]} />
       </form>
     </div>
   );

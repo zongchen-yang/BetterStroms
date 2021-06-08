@@ -11,6 +11,7 @@ const Overview = function() {
   const [index, setIndex] = useState(0);
   const [styleIndex, setStyleIndex] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [skuState, setSkuState] = useState(0);
 
   useEffect(() => {
     async function fetchProduct() {
@@ -34,9 +35,17 @@ const Overview = function() {
       setProducts(resolvedProducts);
       setError(false);
       setIsLoaded(true);
+      const defaultStyleSku = Object.keys(resolvedProducts[index].styles[styleIndex].skus)[0];
+      setSkuState(defaultStyleSku);
     }
     fetchProduct();
   }, []);
+
+  function sizeCH(event) {
+    console.log(skuState);
+    const currentSku = event.target.value;
+    setSkuState(currentSku);
+  }
 
   function productClickHandler(direction) {
     if (direction === 'right') {
@@ -85,7 +94,7 @@ const Overview = function() {
         <div id="overviewContainer">
           <PhotoCarousel style={style} clickHandler={photoCarouselClickHandler} />
           <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
-          <Options product={product} styles={product.styles} style={style} clickHandler={styleCH} />
+          <Options product={product} selectedSku={skuState} style={style} styleCH={styleCH} sizeCH={sizeCH} />
         </div>
         <Description slogan={product.slogan} text={product.description} />
       </div>

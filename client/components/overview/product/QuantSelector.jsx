@@ -1,7 +1,9 @@
 import React from 'react';
 
 function QuantSelector({ sku } ) {
-  console.log(sku.quantity);
+  if (sku === undefined) {
+    return null;
+  }
   let quant = sku.quantity;
   let optionArray = [];
   if (quant > 5) {
