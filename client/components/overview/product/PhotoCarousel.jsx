@@ -13,7 +13,8 @@ function PhotoCarousel({ style, clickHandler}) {
             <div
               onClick={() => clickHandler(index)}
               onKeyPress={() => clickHandler(index)}
-              role="presentation">
+              role="presentation"
+            >
               <img alt="hi" width="50" height="100" src={picObj.thumbnail_url} />
             </div>
           </li>
