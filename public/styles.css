@@ -1,5 +1,5 @@
 .item {
-  border: 1px solid black;
+  border: 1px solid grey;
   margin: 10px;
   float: left;
   width: 20%;
@@ -11,26 +11,30 @@
 .image {
   flex: 0 0 auto;
   width: 100%;
-  height: auto;
+  max-height: 200px;
 }
 
 .icon {
   position: absolute;
   top: 10px;
   right: 10px;
+  color:grey;
 }
 
 .icon:hover {
   color: white;
 }
 
+h3,
 .list {
   position: center;
-  max-height: 350px;
+  max-height: 500px;
   display: flex;
   overflow: auto;
   margin: 20px;
   text-align: left;
+  margin-left: 300px;
+  margin-right: 300px;
 }
 
 .compare {
@@ -39,15 +43,22 @@
   top: 20%;
   right: 30%;
   width: 600px;
-  height: 200px;
+  height: 500px;
   background: white;
-  z-index: 1
+  z-index: 1;
 }
 
-.name1, .name2{
-  margin: 10px;
-  float: left;
-  width: 40%;
+.compareName {
   display: flex;
-  position: relative;
+  width: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.compareFeature {
+  display: flex;
+}
+
+.feature {
+  flex: 1;
 }

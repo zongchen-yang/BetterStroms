@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 const RelatedItem = ({ product, id }) => {
   const [item, setItem] = useState({});
   const [showCompare, setShowCompare] = useState(false);
+  const [image, setImage] = useState();
 
   const getItem = () => {
     if (id) {
@@ -16,13 +17,21 @@ const RelatedItem = ({ product, id }) => {
     }
   };
 
+  const getImage = () => {
+    fetch(`/products/${id}/styles`)
+      .then((res) => res.json())
+      .then((result) => setImage(result.results[0].photos[0].url))
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
     getItem();
+    getImage();
   }, [id]);
-  // get from styles to get images
+
   return (
     <div className="item" >
-      <img className="image" src="https://source.unsplash.com/1600x900/?corgi"></img>
+      <img className="image" src={image}></img>
       <i className="icon far fa-star fa-1x" onClick={() => setShowCompare(true)} />
       <div className="category">{item.category}</div>
       <div className="name">{item.name}</div>

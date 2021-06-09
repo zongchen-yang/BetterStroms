@@ -7,7 +7,6 @@ const fetch = require('node-fetch');
 const App = () => {
   const [product, setProduct] = useState({});
 
-
   useEffect(() => {
     fetch('http://localhost:3000/products/20104')
       .then((res) => res.json())

@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from 'react';
 
 const Compare = ({ product, related }) => {
-  const [features, setFeature] = useState([]);
+  const [features, setFeature] = useState({});
 
   useEffect(() => {
-    //for (var i = 0 ) don't add if existing
-    setFeature([...product.features]);
+    const obj = {};
+    for (let i = 0; i < product.features.length; i++) {
+      obj[product.features[i].feature] = {};
+      obj[product.features[i].feature].product = product.features[i].value;
+    }
+    for (let i = 0; i < related.features.length; i++) {
+      let feature = related.features[i].feature;
+      let value = related.features[i].value;
+      obj[feature].related = value;
+    }
+    setFeature(obj);
   }, [product, related]);
 
-  console.log(product);
-  console.log(related);
   console.log(features);
-
   return (
     <div className="compare">
-      <div className="name1">{product.name}</div>
-      <div className="name2">{related.name}</div>
-      <div className="feature">
-        {features.map((each) => (product.features.feature === each.feature ? <div className="value">{product.features.value}</div> : null))}
+      <h5>COMPARING</h5>
+      <div className="compareName">
+        <div className="compareName">{product.name}</div>
+        <div className="compareName">{related.name}</div>
       </div>
-      <div className="feature">
-        {features.map((each) => <div className="vertical">{each.feature}</div>)}
-      </div>
-      <div className="feature">
-        {features.map((each) => (related.features.indexOf(each) > -1 ? <div className="value">{related.features.value}</div> : null))}
-      </div>
+      {Object.keys(features).map((key) => (
+        <div className="compareFeature">
+          <div className="feature">{features[key].product}</div>
+          <div className="feature">{key}</div>
+          <div className="feature">{features[key].related}</div>
+        </div>
+      ))}
     </div>
   );
 };
