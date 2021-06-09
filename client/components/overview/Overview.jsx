@@ -48,12 +48,10 @@ const Overview = function() {
       } else {
         setIndex(index + 1);
       }
+    } else if (index === 0) {
+      setIndex(products.length - 1);
     } else {
-      if (index === 0) {
-        setIndex(products.length - 1);
-      } else {
-        setIndex(index - 1);
-      }
+      setIndex(index - 1);
     }
     setPhotoIndex(0);
     setStyleIndex(0);
