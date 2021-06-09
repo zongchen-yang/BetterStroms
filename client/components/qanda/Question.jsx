@@ -6,15 +6,24 @@ const Question = (props) => {
   const {question_id, question_body, question_helpfulness, asker_name, answers} = props.question;
   let [totalAnswerCount, upTotalAnswerCount] = useState(2);
   const [view, setView] = useState('questions');
+  let [helpfulCount, setHelpfulCount] = useState(question_helpfulness);
+  const [isHelpful, setIsHelpful] = useState(false);
 
   const loadMoreAnswers = () => {
     upTotalAnswerCount(totalAnswerCount += 2);
-    // console.log(totalAnswerCount);
   };
 
   const updateViewAddAnswer = () => {
     setView('addAnswer');
   };
+
+  const updateHelpfulCount = () => {
+    if (!isHelpful) {
+      setIsHelpful(true);
+      setHelpfulCount(helpfulCount += 1);
+      props.updateQuestionsHelpfulness(question_id)
+    }
+  }
 
   const renderView = () => {
     if (view === 'questions') {
@@ -22,8 +31,8 @@ const Question = (props) => {
         <div>
           <div>QUESTION body: {question_body}</div>
           <div>id: {question_id}</div>
-          <div onClick={() => props.updateQuestionsHelpfulness(question_id)}>
-            helpful: {question_helpfulness}
+          <div onClick={() => updateHelpfulCount()}>
+            helpful: {helpfulCount}
           </div>
           <div onClick={() => updateViewAddAnswer()}>Add Answer</div>
           <div>user: {asker_name}</div>
@@ -38,7 +47,7 @@ const Question = (props) => {
             </div>
           )).slice(0, totalAnswerCount)}
           <button type="button" onClick={loadMoreAnswers}>Load More Answers</button>
-          <div onClick={() => props.reportQuestion(question_id)}>Report</div>
+          <div onDoubleClick={() => props.reportQuestion(question_id)}>Report</div>
         </div>
       );
     }
