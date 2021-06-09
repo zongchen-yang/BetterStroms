@@ -48,7 +48,7 @@ const AddAnswer = (props) => {
   }
 
   return (
-    <div>
+    <div className="add-answer-modal">
       <div>
         Name
         <input onChange={handleNameChange} />
@@ -68,6 +68,7 @@ const AddAnswer = (props) => {
         <input onChange={handlePhotoChange3} />
       </div>
       <button type="button" onClick={() => handleAddAnswer()}>Add Answer</button>
+      <button type="button" onClick={() => props.closeAddAnswerModal()}>CLOSE</button>
     </div>
   );
 };

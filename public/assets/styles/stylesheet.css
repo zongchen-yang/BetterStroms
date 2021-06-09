@@ -1,0 +1,10 @@
+.add-answer-modal {
+  position: fixed;
+  border: 1px solid black;
+  top: 20%;
+  right: 30%;
+  width: 600px;
+  height: 300px;
+  background: white;
+  z-index: 1;
+}

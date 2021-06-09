@@ -3,6 +3,19 @@ import Question from './Question';
 import AddAnswer from './AddAnswer';
 
 const QuestionsList = (props) => {
+  const {
+    questions,
+    updateQuestionsHelpfulness,
+    updateAnswersHelpfulness,
+    postNewAnswer,
+    reportQuestion,
+    reportAnswer,
+    openAddAnswerModal,
+    closeAddAnswerModal,
+    openAddQuestionModal,
+    closeAddQuestionModal,
+    showAddAnswerModal,
+  } = props;
   let [totalQuestionCount, upTotalCount] = useState(2);
   const [view, setView] = useState('questions');
   // const [currentQuestionCount, upCurrentCount] = useState(0);
@@ -12,32 +25,32 @@ const QuestionsList = (props) => {
     // console.log(totalQuestionCount);
   };
 
-  const renderView = () => {
-    if (view === 'questions') {
-      return (
-        <div>
-          {props.questions.map((question) => (
-            <div key={question.question_id}>
-              <Question
-                question={question}
-                key={question.question_id}
-                updateQuestionsHelpfulness={props.updateQuestionsHelpfulness}
-                updateAnswersHelpfulness={props.updateAnswersHelpfulness}
-                postNewAnswer={props.postNewAnswer}
-                reportQuestion={props.reportQuestion}
-                reportAnswer={props.reportAnswer}
-              />
-            </div>
-          )).slice(0, totalQuestionCount)}
+  const renderView = () => (
+    <div>
+      {questions.map((question) => (
+        <div key={question.question_id}>
+          <Question
+            question={question}
+            key={question.question_id}
+            updateQuestionsHelpfulness={updateQuestionsHelpfulness}
+            updateAnswersHelpfulness={updateAnswersHelpfulness}
+            postNewAnswer={postNewAnswer}
+            reportQuestion={reportQuestion}
+            reportAnswer={reportAnswer}
+            openAddAnswerModal={openAddAnswerModal}
+            closeAddAnswerModal={closeAddAnswerModal}
+            showAddAnswerModal={showAddAnswerModal}
+          />
         </div>
-      );
-    }
-  };
+      )).slice(0, totalQuestionCount)}
+    </div>
+  );
 
   return (
     <div>
       {renderView()}
       <button type="button" onClick={addMoreQuestions}>More Answered Questions</button>
+      <button type="button" onClick={openAddQuestionModal}>Add a Question +</button>
     </div>
   );
 };

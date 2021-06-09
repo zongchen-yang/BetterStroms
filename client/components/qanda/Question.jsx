@@ -3,7 +3,18 @@ import Answer from './Answer';
 import AddAnswer from './AddAnswer';
 
 const Question = (props) => {
-  const {question_id, question_body, question_helpfulness, asker_name, answers} = props.question;
+  const {
+    question,
+    updateQuestionsHelpfulness,
+    updateAnswersHelpfulness,
+    postNewAnswer,
+    reportQuestion,
+    reportAnswer,
+    openAddAnswerModal,
+    closeAddAnswerModal,
+    showAddAnswerModal
+  } = props;
+  const {question_id, question_body, question_helpfulness, asker_name, answers} = question;
   let [totalAnswerCount, upTotalAnswerCount] = useState(2);
   const [view, setView] = useState('questions');
   let [helpfulCount, setHelpfulCount] = useState(question_helpfulness);
@@ -13,15 +24,11 @@ const Question = (props) => {
     upTotalAnswerCount(totalAnswerCount += 2);
   };
 
-  const updateViewAddAnswer = () => {
-    setView('addAnswer');
-  };
-
   const updateHelpfulCount = () => {
     if (!isHelpful) {
       setIsHelpful(true);
       setHelpfulCount(helpfulCount += 1);
-      props.updateQuestionsHelpfulness(question_id)
+      updateQuestionsHelpfulness(question_id);
     }
   }
 
@@ -29,31 +36,43 @@ const Question = (props) => {
     if (view === 'questions') {
       return (
         <div>
-          <div>QUESTION body: {question_body}</div>
-          <div>id: {question_id}</div>
+          <div>
+            QUESTION body: {question_body}
+          </div>
+          <div>
+            id: {question_id}
+          </div>
           <div onClick={() => updateHelpfulCount()}>
             helpful: {helpfulCount}
           </div>
-          <div onClick={() => updateViewAddAnswer()}>Add Answer</div>
-          <div>user: {asker_name}</div>
+          <div onClick={() => openAddAnswerModal()}>
+            Add Answer
+          </div>
+          <div>
+            user: {asker_name}
+          </div>
           {/* {console.log(answers)} */}
           {Object.keys(answers).map((answerId) => (
             <div key={answers[answerId].id}>
               <Answer
                 answer={answers[answerId]}
-                updateAnswersHelpfulness={props.updateAnswersHelpfulness}
-                reportAnswer={props.reportAnswer}
+                updateAnswersHelpfulness={updateAnswersHelpfulness}
+                reportAnswer={reportAnswer}
               />
             </div>
           )).slice(0, totalAnswerCount)}
           <button type="button" onClick={loadMoreAnswers}>Load More Answers</button>
-          <div onDoubleClick={() => props.reportQuestion(question_id)}>Report</div>
+          <div onDoubleClick={() => reportQuestion(question_id)}>Report</div>
+          {showAddAnswerModal
+            ? (
+              <AddAnswer
+                questionId={question_id}
+                postNewAnswer={postNewAnswer}
+                closeAddAnswerModal={closeAddAnswerModal}
+              />
+            )
+            : null}
         </div>
-      );
-    }
-    if (view === 'addAnswer') {
-      return (
-        <AddAnswer questionId={question_id} postNewAnswer={props.postNewAnswer} />
       );
     }
   };
