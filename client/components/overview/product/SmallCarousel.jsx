@@ -21,7 +21,6 @@ function SmallCarousel({ style, clickHandler}) {
     }
     setStartIndex(nextStartIndex);
   }
-  // [0 .... 9] [10 ... 19] length = 10, -1 ... 8 === +10 === 9 ... 18
   function goDown() {
     // if (numberOfPhotos <= 7) {
     //   return;

@@ -8,6 +8,8 @@ function Options({ inputObj }) {
   const { styles } = product;
   return (
     <div id="options-container">
+      <span>Stars</span>
+      <a href="">Read All # Reviews</a>
       <h3>{product.category}</h3>
       <h1>{product.name}</h1>
       <p>

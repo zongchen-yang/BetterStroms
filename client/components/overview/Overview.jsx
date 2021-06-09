@@ -95,7 +95,7 @@ function Overview() {
     // console.log(products);
     const product = products[index];
     const style = product.styles[styleIndex];
-    const selectedSku = style.skus[skuState] || skuState;
+    const selectedSku = style.skus[skuState] || skuState;;
     const optionsInput = {
       product,
       selectedSku,
@@ -112,7 +112,7 @@ function Overview() {
           <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
           <Options inputObj={optionsInput} />
         </div>
-        <Description slogan={product.slogan} text={product.description} />
+        <Description slogan={product.slogan} text={product.description} feat={product.features} />
       </div>
     );
   }
