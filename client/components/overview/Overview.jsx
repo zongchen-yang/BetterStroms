@@ -55,10 +55,12 @@ const Overview = function() {
     }
     setPhotoIndex(0);
     setStyleIndex(0);
+    setSkuState({ quantity: 0, size: 'empty' });
   }
 
   function styleCH(i) {
     setStyleIndex(i);
+    setSkuState({ quantity: 0, size: 'empty' });
   }
 
   function photoCarouselClickHandler(i) {
