@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const AddAnswer = (props) => {
+  const {questionId, postNewAnswer, closeAddAnswerModal} = props;
   const [nameInput, setNameInput] = useState('');
   const [bodyInput, setBodyinput] = useState('');
   const [emailInput, setEmailInput] = useState('');
@@ -8,6 +9,8 @@ const AddAnswer = (props) => {
   const [photoUrl2, setPhoto2] = useState('');
   const [photoUrl3, setPhoto3] = useState('');
   const [photosArray, setPhotosArray] = useState([]);
+
+  console.log('this is the current question id', questionId)
 
   const handleNameChange = (event) => {
     setNameInput(event.target.value);
@@ -34,7 +37,7 @@ const AddAnswer = (props) => {
   };
 
   const handleAddAnswer = () => {
-    let newArray = [];
+    const newArray = [];
     if (photoUrl1 !== '') {
       newArray.push(photoUrl1);
     }
@@ -44,8 +47,9 @@ const AddAnswer = (props) => {
     if (photoUrl3 !== '') {
       newArray.push(photoUrl3);
     }
-    props.postNewAnswer(props.questionId, bodyInput, nameInput, emailInput, newArray);
-  }
+    postNewAnswer(questionId, bodyInput, nameInput, emailInput, newArray);
+    closeAddAnswerModal();
+  };
 
   return (
     <div className="add-answer-modal">
@@ -55,7 +59,7 @@ const AddAnswer = (props) => {
       </div>
       <div>
         Body
-        <input onChange={handleBodyChange} />
+        <textarea onChange={handleBodyChange} />
       </div>
       <div>
         Email
@@ -68,7 +72,7 @@ const AddAnswer = (props) => {
         <input onChange={handlePhotoChange3} />
       </div>
       <button type="button" onClick={() => handleAddAnswer()}>Add Answer</button>
-      <button type="button" onClick={() => props.closeAddAnswerModal()}>CLOSE</button>
+      <button type="button" onClick={() => closeAddAnswerModal()}>CLOSE</button>
     </div>
   );
 };

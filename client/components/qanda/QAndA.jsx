@@ -7,13 +7,14 @@ import QuestionsList from './QuestionsList';
 import Search from './Search';
 
 const QAndA = (props) => {
-  const [questionsArray, setQuestionId] = useState([]);
+  const [questionsArray, setQuestionArray] = useState([]);
   const [searched, setSearched] = useState(false);
   const [searchedArray, setSearchedArray] = useState(questionsArray);
   const [questionHelpful, setQuestionHelpful] = useState(false);
   const [answerHelpful, setAnswerHelpful] = useState(false);
   const [showAddAnswerModal, setAddAnswerModal] = useState(false);
   const [showAddQuestionModal, setAddQuestionModal] = useState(false);
+  const [questionId, setQuestionId] = useState(0);
   // let [rerender, setRerender] = useState(0);
 
   const { product } = props;
@@ -22,7 +23,7 @@ const QAndA = (props) => {
   async function getQuestions() {
     if (id) {
       const results = await axios.get(`/qa/questions?product_id=${id}&count=100`);
-      setQuestionId(results.data.results);
+      setQuestionArray(results.data.results);
     }
   }
 
@@ -91,7 +92,6 @@ const QAndA = (props) => {
 
   const openAddAnswerModal = () => {
     setAddAnswerModal(true);
-    console.log('i was clicked');
   };
 
   const closeAddAnswerModal = () => {
@@ -107,6 +107,10 @@ const QAndA = (props) => {
   };
   useEffect(() => { getQuestions(); }, [id]);
 
+  const getQuestionId = (currentQuestionId) => {
+    setQuestionId(currentQuestionId);
+  };
+
   return (
     <div className="QandA-module">
       Questions and Answers
@@ -118,14 +122,12 @@ const QAndA = (props) => {
               questions={searchedArray}
               updateQuestionsHelpfulness={updateQuestionsHelpfulness}
               updateAnswersHelpfulness={updateAnswersHelpfulness}
-              postNewAnswer={postNewAnswer}
               reportQuestion={reportQuestion}
               reportAnswer={reportAnswer}
               openAddAnswerModal={openAddAnswerModal}
-              closeAddAnswerModal={closeAddAnswerModal}
               openAddQuestionModal={openAddQuestionModal}
               closeAddQuestionModal={closeAddQuestionModal}
-              showAddAnswerModal={showAddAnswerModal}
+              getQuestionId={getQuestionId}
             />
           )
           : (
@@ -133,18 +135,24 @@ const QAndA = (props) => {
               questions={questionsArray}
               updateQuestionsHelpfulness={updateQuestionsHelpfulness}
               updateAnswersHelpfulness={updateAnswersHelpfulness}
-              postNewAnswer={postNewAnswer}
               reportQuestion={reportQuestion}
               reportAnswer={reportAnswer}
               openAddAnswerModal={openAddAnswerModal}
-              closeAddAnswerModal={closeAddAnswerModal}
               openAddQuestionModal={openAddQuestionModal}
               closeAddQuestionModal={closeAddQuestionModal}
-              showAddAnswerModal={showAddAnswerModal}
+              getQuestionId={getQuestionId}
             />
           )}
       </div>
-      {/* {showAddAnswerModal ? <AddAnswer closeAddAnswerModal={closeAddAnswerModal} /> : null} */}
+      {showAddAnswerModal
+        ? (
+          <AddAnswer
+            questionId={questionId}
+            postNewAnswer={postNewAnswer}
+            closeAddAnswerModal={closeAddAnswerModal}
+          />
+        )
+        : null}
     </div>
   );
 };

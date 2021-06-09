@@ -33,7 +33,6 @@ app.all('/*', (async (req, res) => {
     res.send(err.response.data);
   });
   if (results) {
-    console.log(req.body)
     res.send(results.data);
   }
 }));

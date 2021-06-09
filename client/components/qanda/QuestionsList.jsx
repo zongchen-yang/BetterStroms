@@ -15,6 +15,7 @@ const QuestionsList = (props) => {
     openAddQuestionModal,
     closeAddQuestionModal,
     showAddAnswerModal,
+    getQuestionId,
   } = props;
   let [totalQuestionCount, upTotalCount] = useState(2);
   const [view, setView] = useState('questions');
@@ -34,12 +35,10 @@ const QuestionsList = (props) => {
             key={question.question_id}
             updateQuestionsHelpfulness={updateQuestionsHelpfulness}
             updateAnswersHelpfulness={updateAnswersHelpfulness}
-            postNewAnswer={postNewAnswer}
             reportQuestion={reportQuestion}
             reportAnswer={reportAnswer}
             openAddAnswerModal={openAddAnswerModal}
-            closeAddAnswerModal={closeAddAnswerModal}
-            showAddAnswerModal={showAddAnswerModal}
+            getQuestionId={getQuestionId}
           />
         </div>
       )).slice(0, totalQuestionCount)}

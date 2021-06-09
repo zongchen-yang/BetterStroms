@@ -7,12 +7,10 @@ const Question = (props) => {
     question,
     updateQuestionsHelpfulness,
     updateAnswersHelpfulness,
-    postNewAnswer,
     reportQuestion,
     reportAnswer,
     openAddAnswerModal,
-    closeAddAnswerModal,
-    showAddAnswerModal
+    getQuestionId,
   } = props;
   const {question_id, question_body, question_helpfulness, asker_name, answers} = question;
   let [totalAnswerCount, upTotalAnswerCount] = useState(2);
@@ -45,7 +43,10 @@ const Question = (props) => {
           <div onClick={() => updateHelpfulCount()}>
             helpful: {helpfulCount}
           </div>
-          <div onClick={() => openAddAnswerModal()}>
+          <div onClick={() => {
+            getQuestionId(question_id);
+            openAddAnswerModal();
+          }}>
             Add Answer
           </div>
           <div>
@@ -63,15 +64,6 @@ const Question = (props) => {
           )).slice(0, totalAnswerCount)}
           <button type="button" onClick={loadMoreAnswers}>Load More Answers</button>
           <div onDoubleClick={() => reportQuestion(question_id)}>Report</div>
-          {showAddAnswerModal
-            ? (
-              <AddAnswer
-                questionId={question_id}
-                postNewAnswer={postNewAnswer}
-                closeAddAnswerModal={closeAddAnswerModal}
-              />
-            )
-            : null}
         </div>
       );
     }
@@ -85,23 +77,3 @@ const Question = (props) => {
 };
 
 export default Question;
-
-// <div>
-//   <div>QUESTION body: {question_body}</div>
-//   <div>id: {question_id}</div>
-//   <div onClick={() => props.updateQuestionsHelpfulness(question_id)}>helpful: {question_helpfulness}</div>
-//   <div>user: {asker_name}</div>
-//   {/* {console.log(answers)} */}
-//   {Object.keys(answers).map((answerId) => (
-//     <div>
-//       <Answer
-//         answer={answers[answerId]}
-//         key={answers[answerId].id}
-//         updateAnswersHelpfulness={props.updateAnswersHelpfulness}
-//       />
-//     </div>
-//   )).slice(0, totalAnswerCount)}
-//   <button type="button" onClick={loadMoreAnswers}>Load More Answers</button>
-// </div>
-// console.log('props', props.question[0]);
-// console.log('body: ', props.question[0].question_body);
