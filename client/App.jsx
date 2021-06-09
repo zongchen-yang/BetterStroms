@@ -32,7 +32,7 @@ const App = () => {
     <div>
       <div>Hello from App</div>
       <div>
-        {console.log('this is when done rendering', productList)}
+        {/* {console.log('this is when done rendering', productList)} */}
         <QAndA product={product} />
       </div>
     </div>
