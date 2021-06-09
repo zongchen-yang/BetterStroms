@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Related from './components/related/Related/RelatedList';
+import Inventory from './components/related/Inventory/InventoryList';
 
-const App = function() {
-//   const [productId, setProduct] = useState(null);
+const fetch = require('node-fetch');
 
-  // useEffect(()=> {
-  //   setProduct(productId = params.id)
-  //   fetch()
-  // });
+const App = () => {
+  const [product, setProduct] = useState({});
+
+
+  useEffect(() => {
+    fetch('http://localhost:3000/products/20104')
+      .then((res) => res.json())
+      .then((data) => setProduct(data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
-    <div>Hello from App</div>
+    <div>
+      <p>Hello from App</p>
+      <Related product={product} />
+      <Inventory product={product} />
+    </div>
   );
 };
 

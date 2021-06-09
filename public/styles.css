@@ -1,0 +1,53 @@
+.item {
+  border: 1px solid black;
+  margin: 10px;
+  float: left;
+  width: 20%;
+  flex: none;
+  position: relative;
+  text-align: left;
+}
+
+.image {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+}
+
+.icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.icon:hover {
+  color: white;
+}
+
+.list {
+  position: center;
+  max-height: 350px;
+  display: flex;
+  overflow: auto;
+  margin: 20px;
+  text-align: left;
+}
+
+.compare {
+  position: fixed;
+  border: 1px solid black;
+  top: 20%;
+  right: 30%;
+  width: 600px;
+  height: 200px;
+  background: white;
+  z-index: 1
+}
+
+.name1, .name2{
+  margin: 10px;
+  float: left;
+  width: 40%;
+  display: flex;
+  position: relative;
+}
