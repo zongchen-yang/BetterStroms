@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Carousel from './product/Carousel';
 import Options from './product/Options';
 import Description from './product/Description';
-import PhotoCarousel from './product/PhotoCarousel';
+import SmallCarousel from './product/SmallCarousel';
 
 function Overview() {
   const [error, setError] = useState(null);
@@ -15,17 +15,20 @@ function Overview() {
 
   useEffect(() => {
     async function fetchProduct() {
-      const response = await fetch('/products');
+      const response = await fetch('/products?count=20');
       const productArray = await response.json();
+      console.log(productArray);
 
       const results = productArray.map(async (product) => {
         let idQueryReponse = await fetch(`/products/${product.id}`);
         idQueryReponse = await idQueryReponse.json();
         product.features = idQueryReponse.features;
+        console.log(idQueryReponse);
 
         let stylesQueryResponse = await fetch(`/products/${product.id}/styles`);
         stylesQueryResponse = await stylesQueryResponse.json();
         product.styles = stylesQueryResponse.results;
+        console.log(stylesQueryResponse);
         return product;
       });
       const resolvedProducts = await Promise.all(results);
@@ -67,11 +70,12 @@ function Overview() {
   }
 
   function styleCH(i) {
+    setPhotoIndex(0);
     setStyleIndex(i);
     setSkuState({ quantity: 0, size: 'empty' });
   }
 
-  function photoCarouselClickHandler(i) {
+  function smallCarouselClickHandler(i) {
     setPhotoIndex(i);
   }
 
@@ -104,7 +108,7 @@ function Overview() {
     return (
       <div>
         <div id="overviewContainer">
-          <PhotoCarousel style={style} clickHandler={photoCarouselClickHandler} />
+          <SmallCarousel style={style} clickHandler={smallCarouselClickHandler} />
           <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
           <Options inputObj={optionsInput} />
         </div>
@@ -112,6 +116,6 @@ function Overview() {
       </div>
     );
   }
-};
+}
 
 export default Overview;

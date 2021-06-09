@@ -27,7 +27,7 @@ function Options({ inputObj }) {
                   onKeyPress={() => styleCH(index)}
                   role="presentation"
                 >
-                  <img alt="hi" height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
+                  <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
                 </div>
               </td>
             ))}
