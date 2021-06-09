@@ -4,7 +4,7 @@ import Options from './product/Options';
 import Description from './product/Description';
 import PhotoCarousel from './product/PhotoCarousel';
 
-const Overview = function() {
+function Overview() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [products, setProducts] = useState([]);

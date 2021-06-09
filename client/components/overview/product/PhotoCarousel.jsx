@@ -10,7 +10,12 @@ function PhotoCarousel({ style, clickHandler}) {
       <ul>
         {style.photos.map((picObj, index) => (
           <li key={i++} index={index}>
-            <img onClick={() => clickHandler(index)} alt="hi" width="50" height="100" src={picObj.thumbnail_url} />
+            <div
+              onClick={() => clickHandler(index)}
+              onKeyPress={() => clickHandler(index)}
+              role="presentation">
+              <img alt="hi" width="50" height="100" src={picObj.thumbnail_url} />
+            </div>
           </li>
         ))}
       </ul>
