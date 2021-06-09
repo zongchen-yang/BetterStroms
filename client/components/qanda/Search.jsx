@@ -10,8 +10,18 @@ const Search = (props) => {
 
   return (
     <div className="search-bar">
-      <input onChange={onInputChange} />
-      <button type="button" onClick={() => props.search(inputText)}>Search</button>
+      <input
+        placeholder="search"
+        onChange={(e) => props.search(e.target.value)}
+        // onChange={(e) => {
+        //   if (e.target.value.length > 2) {
+        //     props.search(e.target.value);
+        //   }
+        // }}
+      />
+      {/* <button type="button" onClick={() => props.search('')}>
+        Refresh
+      </button> */}
     </div>
   );
 };

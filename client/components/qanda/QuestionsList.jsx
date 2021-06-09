@@ -4,7 +4,7 @@ import AddAnswer from './AddAnswer';
 
 const QuestionsList = (props) => {
   let [totalQuestionCount, upTotalCount] = useState(2);
-  const [view, setView] = useState('questions')
+  const [view, setView] = useState('questions');
   // const [currentQuestionCount, upCurrentCount] = useState(0);
 
   const addMoreQuestions = () => {
@@ -17,15 +17,17 @@ const QuestionsList = (props) => {
       return (
         <div>
           {props.questions.map((question) => (
-            <Question
-              question={[question]}
-              key={question.question_id}
-              updateQuestionsHelpfulness={props.updateQuestionsHelpfulness}
-              updateAnswersHelpfulness={props.updateAnswersHelpfulness}
-              postNewAnswer={props.postNewAnswer}
-              reportQuestion={props.reportQuestion}
-              reportAnswer={props.reportAnswer}
-            />
+            <div key={question.question_id}>
+              <Question
+                question={question}
+                key={question.question_id}
+                updateQuestionsHelpfulness={props.updateQuestionsHelpfulness}
+                updateAnswersHelpfulness={props.updateAnswersHelpfulness}
+                postNewAnswer={props.postNewAnswer}
+                reportQuestion={props.reportQuestion}
+                reportAnswer={props.reportAnswer}
+              />
+            </div>
           )).slice(0, totalQuestionCount)}
         </div>
       );
