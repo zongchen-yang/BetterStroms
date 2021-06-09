@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function Carousel({ style, photoIndex, clickHandler }) {
   return (
     <div>
-      <button onClick={() => clickHandler('left')}>left</button>
+      <button type="button" onClick={() => clickHandler('left')}>left</button>
       <img alt="hi" height="300" width="200" src={style.photos[photoIndex].url} />
-      <button onClick={() => clickHandler('right')}>right</button>
+      <button type="button" onClick={() => clickHandler('right')}>right</button>
     </div>
   );
 }

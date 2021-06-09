@@ -36,6 +36,14 @@ function Overview() {
     fetchProduct();
   }, []);
 
+  function cartCH(event) {
+
+  }
+
+  function favoriteCH(event) {
+
+  }
+
   function sizeCH(event) {
     const currentSku = event.target.value;
     setSkuState(currentSku);
@@ -90,6 +98,8 @@ function Overview() {
       style,
       styleCH,
       sizeCH,
+      cartCH,
+      favoriteCH,
     };
     return (
       <div>
