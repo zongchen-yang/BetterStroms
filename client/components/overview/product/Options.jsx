@@ -1,9 +1,11 @@
 import React from 'react';
 import QuantSelector from './QuantSelector';
 
-function Options({ product, style, styleCH, sizeCH, selectedSku }) {
-  console.log('sku in options:', selectedSku);
-  const styles = product.styles;
+function Options({ inputObj }) {
+  const {
+    product, style, styleCH, sizeCH, selectedSku
+  } = inputObj;
+  const { styles } = product;
   return (
     <div id="options-container">
       <h3>{product.category}</h3>
@@ -38,6 +40,8 @@ function Options({ product, style, styleCH, sizeCH, selectedSku }) {
           })}
         </select>
         <QuantSelector sku={selectedSku} />
+        <button>Add to Cart</button>
+        <button>Favorite</button>
       </form>
     </div>
   );

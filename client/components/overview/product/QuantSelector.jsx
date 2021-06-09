@@ -1,7 +1,6 @@
 import React from 'react';
 
 function QuantSelector({ sku }) {
-  console.log('sku in QS:', sku.quantity)
   let quant = sku.quantity;
   let optionArray = [];
   if (quant > 15) {

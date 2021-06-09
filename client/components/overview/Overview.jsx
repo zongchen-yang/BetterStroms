@@ -15,17 +15,14 @@ const Overview = function() {
 
   useEffect(() => {
     async function fetchProduct() {
-      console.log('called fetch 1');
       const response = await fetch('/products');
       const productArray = await response.json();
 
       const results = productArray.map(async (product) => {
-        console.log('called fetch products by ID');
         let idQueryReponse = await fetch(`/products/${product.id}`);
         idQueryReponse = await idQueryReponse.json();
         product.features = idQueryReponse.features;
 
-        console.log('called fetch styles');
         let stylesQueryResponse = await fetch(`/products/${product.id}/styles`);
         stylesQueryResponse = await stylesQueryResponse.json();
         product.styles = stylesQueryResponse.results;
@@ -40,8 +37,6 @@ const Overview = function() {
   }, []);
 
   function sizeCH(event) {
-    console.log(event.target)
-    console.log('sku value in click handler:', event.target.value);
     const currentSku = event.target.value;
     setSkuState(currentSku);
   }
@@ -85,16 +80,23 @@ const Overview = function() {
       <div>Loading...</div>
     );
   } else {
-    console.log(products);
+    // console.log(products);
     const product = products[index];
     const style = product.styles[styleIndex];
     const selectedSku = style.skus[skuState] || skuState;
+    const optionsInput = {
+      product,
+      selectedSku,
+      style,
+      styleCH,
+      sizeCH,
+    };
     return (
       <div>
         <div id="overviewContainer">
           <PhotoCarousel style={style} clickHandler={photoCarouselClickHandler} />
           <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
-          <Options product={product} selectedSku={selectedSku} style={style} styleCH={styleCH} sizeCH={sizeCH} />
+          <Options inputObj={optionsInput} />
         </div>
         <Description slogan={product.slogan} text={product.description} />
       </div>
