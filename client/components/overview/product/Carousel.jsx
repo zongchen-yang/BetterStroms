@@ -1,6 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Carousel({ style, photoIndex, clickHandler }) {
+  console.log('style', style)
+  console.log('photoIndex', photoIndex);
   return (
     <div>
       <button type="button" onClick={() => clickHandler('left')}>left</button>
@@ -11,3 +14,11 @@ function Carousel({ style, photoIndex, clickHandler }) {
 }
 
 export default Carousel;
+
+// Carousel.propTypes = {
+//   style: PropTypes.shape({
+//     photos: PropTypes.object.isRequired,
+//   }).isRequired,
+//   photoIndex: PropTypes.number.isRequired,
+//   clickHandler: PropTypes.function.isRequired,
+// };
