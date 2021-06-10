@@ -95,7 +95,7 @@ function Overview({products, selected, ch}) {
     <div>
       <div id="overviewContainer">
         <SmallCarousel style={style} clickHandler={smallCarouselClickHandler} />
-        <Carousel product={product} photoIndex={photoIndex} clickHandler={productClickHandler} />
+        <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
       </div>
       <Description product={product} />
