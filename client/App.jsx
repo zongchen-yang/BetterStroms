@@ -133,13 +133,10 @@ function App() {
     }
     initialize();
   }, []);
-  console.log(stateProductList);
-  console.log(selectedProduct);
-  console.log(selecetedStyle);
-  console.log(reviews);
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
+  console.log(stateProductList);
   return (
     <div>
       <div>Hello from App</div>
