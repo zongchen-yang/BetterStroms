@@ -25,6 +25,10 @@
     "axios": "^0.21.1",
     "colors": "^1.4.0",
     "express": "^4.17.1",
+<<<<<<< HEAD
+=======
+    "prop-types": "^15.7.2",
+>>>>>>> 12b6463d478f14621dbe68ffab170cbd80d8c3ed
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "webpack": "^5.38.1"
