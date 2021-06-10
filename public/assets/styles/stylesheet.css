@@ -1,12 +1,19 @@
+.reviewListBox {
+  float: right;
+  border-color: black;
+  border-style: groove;
+  width: 60%
+}
+
 .review {
   position: static;
   left: 0;
   border-style: solid;
   border-color: aquamarine;
-  width: 30%;
+  width: 90%;
   overflow-wrap: break-word;
-  height: 250px;
-  font-size: 60%;
+  height: auto;
+  font-size: 90%;
 }
 
 .reviewPhotoThumbnail {
@@ -20,4 +27,27 @@
 
 .checkMark {
   size: 10px;
+}
+
+.reviewBreakdownBox {
+  float: left;
+  border-color: black;
+  border-style: solid;
+  position: static;
+  width: 30%;
+}
+
+#reviewTotal {
+  float: left;
+  width: 90%;
+  background-color: grey;
+}
+
+#starDistribution {
+  height: 30px;
+  background-color: #04AA6D;
+}
+
+.declareStars {
+  float: left
 }

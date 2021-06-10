@@ -4,7 +4,7 @@ import ReviewItem from './ReviewItem';
 const ReviewItems = (props) => {
   // eslint-disable-next-line prefer-const
   let [currentList, increaseCurrentList] = useState(2);
-  let [reviews, setReviews] = useState(props.reviews);
+  const [reviews, setReviews] = useState(props.reviews);
 
   const seeMoreHandler = () => {
     increaseCurrentList(currentList += 2);
@@ -23,9 +23,9 @@ const ReviewItems = (props) => {
 
   const sortByRelevance = (arr) => {
     const temp = arr || reviews;
-    for (var r = 0; r < temp.length; r++) {
-      const currentDate = new Date
-      const oldness = currentDate.toString().slice(11, 15) - temp[r].date.toString().slice(11, 5)
+    for (let r = 0; r < temp.length; r++) {
+      const currentDate = new Date();
+      const oldness = currentDate.toString().slice(11, 15) - temp[r].date.toString().slice(11, 5);
       const relevance = temp[r].helpfulness - (2 * oldness);
       temp[r].relevance = relevance;
     }
@@ -102,16 +102,18 @@ const ReviewItems = (props) => {
 
   return (
     <div>
-      <label htmlFor="sortOptions">Sort By</label>
-      <select name="sortOptions" id="sortOptions" onChange={(e) => sortHandler(e)}>
-        <option value="Relevant">Relevant</option>
-        <option value="Helpful">Helpful</option>
-        <option value="Newest">Newest</option>
-      </select>
-      {(reviews && reviews.length > 2) ? <button type="button" onClick={seeMoreHandler}>See More</button> : null}
-      {reviews.length ? reviews.map((review) => (
-        <ReviewItem review={review} />
-      )).slice(0, currentList) : null}
+      <ul className="reviewListBox">
+        <label htmlFor="sortOptions">Sort By</label>
+        <select name="sortOptions" id="sortOptions" onChange={(e) => sortHandler(e)}>
+          <option value="Relevant">Relevant</option>
+          <option value="Helpful">Helpful</option>
+          <option value="Newest">Newest</option>
+        </select>
+        {(reviews && reviews.length > 2) ? <button type="button" onClick={seeMoreHandler}>See More</button> : null}
+        {reviews.length ? reviews.map((review) => (
+          <ReviewItem review={review} />
+        )).slice(0, currentList) : null}
+      </ul>
     </div>
   );
 };
