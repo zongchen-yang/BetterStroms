@@ -181,49 +181,16 @@ function App() {
     <div>
       <div>Hello from App</div>
       <div>
-        {/* {console.log('this is when done rendering', stylesList)} */}
-        {/* <QAndA product={product} /> */}
+      <ReviewList
+        product={product}
+        reviews={reviews}
+        overallRating={overallRating}
+        reviewMeta={reviewMeta}
+      />
       </div>
     </div>
   );
 };
 
-// import React, { useState, useEffect } from 'react';
-// import ReviewList from './components/ratingsreviews/reviews/ReviewList';
-// import sampleData from './sampleData';
 
-// const App = function () {
-//   const [product, setProduct] = useState({});
-//   const [reviews, setReviews] = useState({});
-//   // useEffect(()=> {
-//   //   setProduct(productId = params.id)
-//   //   fetch()
-//   // })
-//   useEffect(() => {
-//     fetch('http://localhost:3000/products/20104')
-//       .then((response) => response.json())
-//       .then((data) => setProduct(data))
-//       // .then(console.log('logging state product id:', { product }))
-//       .catch((error) => console.log(error));
-//     // console.log('hello from use effect');
-//   }, ['stop']);
-
-//   async function fetchReviews() {
-//     const response = await fetch(`/reviews?product_id=20104`);
-//     const json = await response.json();
-//     console.log(json);
-//     await setReviews(json);
-//   }
-//   // });
-//   useEffect(() => { fetchReviews(); }, ['stop']);
-
-//   return (
-//     <div>
-//       <div>Hello from App</div>
-//       <ReviewList reviews={reviews} />
-//     </div>
-//   );
-// };
-
-// export default App;
 export default App;
