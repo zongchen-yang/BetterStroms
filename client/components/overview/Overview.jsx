@@ -57,7 +57,6 @@ function Overview({products, selected, ch}) {
     setSelectedSku(selectedStyle.skus[skuInt]);
 
     // setSelectedSku({ quantity: 0, size: 'empty' });
-
   }
 
   function styleCH(i) {

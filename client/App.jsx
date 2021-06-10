@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Overview from './components/overview/Overview';
 
 function App() {
-  const [selectedProduct, setSelectedProduct] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState([]);
   // const [selecetedStyle, setSelectedStyle] = useState(0);
   const [favorites, setFavorites] = useState([]);
   const [stateProductList, setStateProductList] = useState([]);
@@ -40,8 +40,10 @@ function App() {
   async function getProductList() {
     let response = await fetch('/products');
     response = await response.json();
+    let i = 0;
     response.forEach((product) => {
       const thisProduct = {
+        index: i,
         id: product.id,
         category: product.category,
         default_price: product.default_price,
@@ -56,6 +58,7 @@ function App() {
         reviews: [],
       };
       productList.push(thisProduct);
+      i += 1;
     });
   }
 
@@ -90,7 +93,21 @@ function App() {
     });
   }
 
-  function productCH(direction) {
+  function productCH(event, direction) {
+    const { index } = selectedProduct;
+    let nextIndex = index;
+    if (direction === 'right') {
+      nextIndex += 1;
+    } else {
+      nextIndex -= 1;
+    }
+    if (nextIndex < 0) {
+      nextIndex += stateProductList.length;
+    }
+    if (nextIndex >= stateProductList.length) {
+      nextIndex = 0;
+    }
+    setSelectedProduct(stateProductList[nextIndex]);
     // if (direction === 'right') {
     //   if (index === products.length - 1) {
     //     setIndex(0);
