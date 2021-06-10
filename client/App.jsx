@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import QAndA from './components/qanda/QAndA';
+import Overview from './components/overview/Overview';
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState('');
@@ -89,6 +89,25 @@ function App() {
     });
   }
 
+  function productCH(direction) {
+    if (direction === 'right') {
+      if (index === products.length - 1) {
+        setIndex(0);
+      } else {
+        setIndex(index + 1);
+      }
+    } else if (index === 0) {
+      setIndex(products.length - 1);
+    } else {
+      setIndex(index - 1);
+    }
+    setPhotoIndex(0);
+    setStyleIndex(0);
+    setSkuState({ quantity: 0, size: 'empty' });
+
+    setSelectedProduct(???)
+  }
+
   useEffect(() => {
     async function initialize() {
       await getProductList();
@@ -120,8 +139,7 @@ function App() {
     <div>
       <div>Hello from App</div>
       <div>
-        {/* {console.log('this is when done rendering', stylesList)} */}
-        {/* <QAndA product={product} /> */}
+        <Overview products={stateProductList} selected={selectedProduct} ch={productCH} />
       </div>
     </div>
   );
