@@ -1,11 +1,10 @@
 import React from 'react';
 
 function QuantSelector({ sku }) {
-  console.log(sku);
-  let quant = sku.quantity;
+  let displayedQuantity = sku.quantity;
   const optionArray = [];
-  if (quant > 15) {
-    quant = 15;
+  if (displayedQuantity > 15) {
+    displayedQuantity = 15;
   }
   if (sku.size === 'empty') {
     return (
@@ -19,7 +18,7 @@ function QuantSelector({ sku }) {
       </div>
     );
   }
-  for (let i = 1; i <= quant; i += 1) {
+  for (let i = 1; i <= displayedQuantity; i += 1) {
     optionArray.push(<option key={i} value={i}>{i}</option>);
   }
   return (
