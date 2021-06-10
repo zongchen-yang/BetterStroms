@@ -4,39 +4,43 @@ import Options from './product/Options';
 import Description from './product/Description';
 import SmallCarousel from './product/SmallCarousel';
 
-function Overview() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [products, setProducts] = useState([]);
+function Overview({products, selected, ch}) {
+  // const [error, setError] = useState(null);
+  // const [isLoaded, setIsLoaded] = useState(false);
+  // const [products, setProducts] = useState([]);
   const [index, setIndex] = useState(0);
+  const [selecetedStyle, setSelectedStyle] = useState(0);
   const [styleIndex, setStyleIndex] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [skuState, setSkuState] = useState({ quantity: 0, size: 'empty' });
+  const [selectedSku, setselectedSku] = useState(null);
+  const selectedProduct = selected;
+  const productClickHandler = ch;
 
   useEffect(() => {
-    async function fetchProduct() {
-      const response = await fetch('/products?count=20');
-      const productArray = await response.json();
-      console.log(productArray);
+    setSelectedStyle(selectedProduct[0])
+    // async function fetchProduct() {
+    //   const response = await fetch('/products?count=20');
+    //   const productArray = await response.json();
+    //   console.log(productArray);
 
-      const results = productArray.map(async (product) => {
-        let idQueryReponse = await fetch(`/products/${product.id}`);
-        idQueryReponse = await idQueryReponse.json();
-        product.features = idQueryReponse.features;
-        console.log(idQueryReponse);
+    //   const results = productArray.map(async (product) => {
+    //     let idQueryReponse = await fetch(`/products/${product.id}`);
+    //     idQueryReponse = await idQueryReponse.json();
+    //     product.features = idQueryReponse.features;
+    //     console.log(idQueryReponse);
 
-        let stylesQueryResponse = await fetch(`/products/${product.id}/styles`);
-        stylesQueryResponse = await stylesQueryResponse.json();
-        product.styles = stylesQueryResponse.results;
-        console.log(stylesQueryResponse);
-        return product;
-      });
-      const resolvedProducts = await Promise.all(results);
-      setProducts(resolvedProducts);
-      setError(false);
-      setIsLoaded(true);
-    }
-    fetchProduct();
+    //     let stylesQueryResponse = await fetch(`/products/${product.id}/styles`);
+    //     stylesQueryResponse = await stylesQueryResponse.json();
+    //     product.styles = stylesQueryResponse.results;
+    //     console.log(stylesQueryResponse);
+    //     return product;
+    //   });
+    //   const resolvedProducts = await Promise.all(results);
+    //   setProducts(resolvedProducts);
+    //   setError(false);
+    //   setIsLoaded(true);
+    // }
+    // fetchProduct();
   }, []);
 
   function cartCH(event) {
@@ -48,54 +52,38 @@ function Overview() {
   }
 
   function sizeCH(event) {
-    const currentSku = event.target.value;
-    setSkuState(currentSku);
-  }
-
-  function productClickHandler(direction) {
-    if (direction === 'right') {
-      if (index === products.length - 1) {
-        setIndex(0);
-      } else {
-        setIndex(index + 1);
+    const selectedSize = event.target.value;
+    let currentSku;
+    selectedStyle.skus.forEach( (sku) => {
+      if (sku.size === selectedSize) {
+        currentSku = sku;
       }
-    } else if (index === 0) {
-      setIndex(products.length - 1);
+    })
+    if (currentSku) {
+      selectedSku(sku);
     } else {
-      setIndex(index - 1);
+      selectedSku({ quantity: 0, size: 'empty' });
     }
-    setPhotoIndex(0);
-    setStyleIndex(0);
-    setSkuState({ quantity: 0, size: 'empty' });
   }
 
   function styleCH(i) {
     setPhotoIndex(0);
     setStyleIndex(i);
-    setSkuState({ quantity: 0, size: 'empty' });
+    selectedSku({ quantity: 0, size: 'empty' });
   }
 
   function smallCarouselClickHandler(i) {
     setPhotoIndex(i);
   }
 
-  if (error) {
-    return (
-      <div>
-        Error:
-        {error.message}
-      </div>
-    );
-  // eslint-disable-next-line no-else-return
-  } else if (!isLoaded) {
+  if (!isLoaded) {
     return (
       <div>Loading...</div>
     );
-  } else {
+  }
     // console.log(products);
-    const product = products[index];
-    const style = product.styles[styleIndex];
-    const selectedSku = style.skus[skuState] || skuState;;
+    const product = selectedProduct;
+    const style = selectedStyle;
     const optionsInput = {
       product,
       selectedSku,

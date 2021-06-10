@@ -3,10 +3,11 @@ import Overview from './components/overview/Overview';
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState('');
-  const [selecetedStyle, setSelectedStyle] = useState(0);
+  // const [selecetedStyle, setSelectedStyle] = useState(0);
   const [favorites, setFavorites] = useState([]);
   const [stateProductList, setStateProductList] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   let productList = [];
 
@@ -90,22 +91,22 @@ function App() {
   }
 
   function productCH(direction) {
-    if (direction === 'right') {
-      if (index === products.length - 1) {
-        setIndex(0);
-      } else {
-        setIndex(index + 1);
-      }
-    } else if (index === 0) {
-      setIndex(products.length - 1);
-    } else {
-      setIndex(index - 1);
-    }
-    setPhotoIndex(0);
-    setStyleIndex(0);
-    setSkuState({ quantity: 0, size: 'empty' });
+    // if (direction === 'right') {
+    //   if (index === products.length - 1) {
+    //     setIndex(0);
+    //   } else {
+    //     setIndex(index + 1);
+    //   }
+    // } else if (index === 0) {
+    //   setIndex(products.length - 1);
+    // } else {
+    //   setIndex(index - 1);
+    // }
+    // setPhotoIndex(0);
+    // setStyleIndex(0);
+    // setSkuState({ quantity: 0, size: 'empty' });
 
-    setSelectedProduct(???)
+    // setSelectedProduct(???)
   }
 
   useEffect(() => {
@@ -126,8 +127,9 @@ function App() {
       productList.forEach((product) => calculateRating(product));
       setStateProductList(productList);
       setSelectedProduct(productList[0]);
-      setSelectedStyle(productList[0].styleList[0]);
+      // setSelectedStyle(productList[0].styleList[0]);
       setReviews(productList[0].reviews);
+      setIsLoaded(true);
     }
     initialize();
   }, []);
@@ -135,6 +137,9 @@ function App() {
   console.log(selectedProduct);
   console.log(selecetedStyle);
   console.log(reviews);
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       <div>Hello from App</div>
