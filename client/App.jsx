@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import QAndA from './components/qanda/QAndA';
-import sampleData from '../sampleData';
+//import QAndA from './components/qanda/QAndA';
 
 function App() {
-  const [product, setProduct] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState('');
   const [selecetedStyle, setSelectedStyle] = useState(0);
   const [favorites, setFavorites] = useState([]);
   const [stateProductList, setStateProductList] = useState([]);
@@ -13,36 +11,36 @@ function App() {
   let productList = [];
 
   async function getProduct(id, index) {
-    let product = productList[index];
+    const product = productList[index];
     let results = await fetch(`/products/${id}`);
     results = await results.json();
     product.features = results.features;
-  };
+  }
 
-  async function getStyles(id, index)  {
+  async function getStyles(id, index) {
     let response = await fetch(`/products/${id}/styles`);
     response = await response.json();
-    let product = productList[index];
-    response.results.forEach((style) => (
-    product.styleThumbnail.push(style[0].thumbnail_url)
-    let style = {
-      id: style.style_id,
-      name: style.name,
-      default_price: product.default_price,
-      original_price: style.original_price,
-      sale_price: style.sale_price,
-      photos: style.photos,
-      skus: style.skus,
-    }
-    product.styleList.push(style);
-    ))
+    const product = productList[index];
+    response.results.forEach((style) => {
+      const thisStyle = {
+        id: style.style_id,
+        name: style.name,
+        default_price: product.default_price,
+        original_price: style.original_price,
+        sale_price: style.sale_price,
+        photos: style.photos,
+        skus: style.skus,
+      };
+      product.styleThumbnail.push(style.photos[0].thumbnail_url);
+      product.styleList.push(thisStyle);
+    });
   }
 
   async function getProductList() {
     let response = await fetch('/products');
     response = await response.json();
-    response.forEach((product) => (
-      let thisProduct = {
+    response.forEach((product) => {
+      const thisProduct = {
         id: product.id,
         category: product.category,
         default_price: product.default_price,
@@ -54,10 +52,11 @@ function App() {
         features: [],
         styleThumbnail: [],
         styleList: [],
-    }
-    productList.push(thisProduct);
-    ));
-  };
+        reviews: [],
+      };
+      productList.push(thisProduct);
+    });
+  }
 
   function calculateRating(product) {
     if (product.reviews.length) {
@@ -71,43 +70,58 @@ function App() {
   };
 
   async function getReviews(id, index) {
-  let product = productList[index];
-  let response = await fetch(`/reviews?product_id=${id}`);
-  response = await response.json();
-  product.totalNumReviews = response.results.length;
-  response.results.forEach((review) => (
-    let review = {
-      id: review.review_id,
-      body: review.body,
-      photos: review.photos,
-      summary: review.summary,
-      rating: review.rating,
-      recommend: review.recommend,
-      response: review.reponse,
-      reviewer_name: review.reviewer_name,
-    }
-    productList[index].reviews.push(review);
-  ))
+    const product = productList[index];
+    let response = await fetch(`/reviews?product_id=${id}`);
+    response = await response.json();
+    product.totalNumReviews = response.results.length;
+    response.results.forEach((review) => {
+      const thisReview = {
+        id: review.review_id,
+        body: review.body,
+        photos: review.photos,
+        summary: review.summary,
+        rating: review.rating,
+        recommend: review.recommend,
+        response: review.reponse,
+        reviewer_name: review.reviewer_name,
+      };
+      productList[index].reviews.push(thisReview);
+    });
   }
 
-
   useEffect(() => {
-    getProductList()
-    productList.forEach((product, index) => getProduct(product.id, index));
-    productList.forEach((product, index) => getStyle(product.id, index));
-    productList.forEach((product, index) => getReviews(product.id, index));
-    productList.forEach((product, index) => calculateRating(product));
-    setStateProductList(productList)
-    setProduct(productList[0]);
-    setSelectedStyle(productList[0].styleList[0])
+    async function initialize() {
+      await getProductList();
+      for (let i = 0; i < productList.length; i++) {
+        let product = productList[i];
+        await getProduct(product.id, i)
+      }
+      for (let i = 0; i < productList.length; i++) {
+        let product = productList[i];
+        await getStyles(product.id, i)
+      }
+      for (let i = 0; i < productList.length; i++) {
+        let product = productList[i];
+        await getReviews(product.id, i)
+      }
+      productList.forEach((product) => calculateRating(product));
+      setStateProductList(productList);
+      setSelectedProduct(productList[0]);
+      setSelectedStyle(productList[0].styleList[0]);
+      setReviews(productList[0].reviews);
+    }
+    initialize();
   }, []);
-
+  console.log(stateProductList);
+  console.log(selectedProduct);
+  console.log(selecetedStyle);
+  console.log(reviews);
   return (
     <div>
       <div>Hello from App</div>
       <div>
         {/* {console.log('this is when done rendering', stylesList)} */}
-        <QAndA product={product} />
+        {/* <QAndA product={product} /> */}
       </div>
     </div>
   );
