@@ -1,11 +1,13 @@
 import React from 'react';
 import QuantSelector from './QuantSelector';
 
-function Options({ inputObj }) {
+//         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
+
+function Options({ product, sku, style, chs }) {
   const {
-    product, style, styleCH, sizeCH, selectedSku, cartCH, favoriteCH
-  } = inputObj;
-  const { styles } = product;
+    styleCH, sizeCH, cartCH, favoriteCH
+  } = chs;
+  const { styleList } = product;
   return (
     <div id="options-container">
       <span>Stars</span>
@@ -22,8 +24,8 @@ function Options({ inputObj }) {
       <table>
         <tbody>
           <tr>
-            {styles.map((aStyle, index) => (
-              <td key={aStyle.style_id} index={index}>
+            {styleList.map((aStyle, index) => (
+              <td key={aStyle.id} index={index}>
                 <div
                   onClick={() => styleCH(index)}
                   onKeyPress={() => styleCH(index)}
@@ -42,19 +44,19 @@ function Options({ inputObj }) {
           <select onChange={(e) => sizeCH(e)} name="size" id="size-select">
             <option value="">Select Size</option>
             {/* Object.keys returns an array = ['sku1', sku2', ...] */}
-            {Object.keys(style.skus).map((skuIndex) => {
-              const sku = parseInt(skuIndex, 10);
-              const currentSku = style.skus[sku];
-              if (currentSku === undefined) {
+            {Object.keys(style.skus).map((currentSkuString) => {
+              const currentSkuInt = parseInt(currentSkuString, 10);
+              const currentSkuObj = style.skus[currentSkuInt];
+              if (currentSkuObj === undefined) {
                 return null;
               }
               return (
-                <option key={sku} value={sku}>{currentSku.size}</option>
+                <option key={currentSkuInt} value={currentSkuInt}>{currentSkuObj.size}</option>
               );
             })}
           </select>
         </label>
-        <QuantSelector sku={selectedSku} />
+        <QuantSelector sku={sku} />
         <button type="button" onClick={cartCH}>Add to Cart</button>
         <button type="button" onClick={favoriteCH}>Favorite</button>
       </form>
