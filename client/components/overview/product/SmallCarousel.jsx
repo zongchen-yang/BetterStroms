@@ -12,8 +12,6 @@ function SmallCarousel({ style, clickHandler}) {
     max = numberOfPhotos;
   }
   let i = 0;
-  console.log('smallcarousel, styles.photos.length', style.photos.length);
-  console.log('max is', max);
   function goUp() {
     // if (numberOfPhotos <= 7) {
     //   return;

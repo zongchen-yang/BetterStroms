@@ -93,59 +93,30 @@ function App() {
     });
   }
 
-  function productCH(direction) {
-    const { index } = selectedProduct;
-    let nextIndex = index;
-    if (direction === 'right') {
-      nextIndex += 1;
-    } else {
-      nextIndex -= 1;
-    }
-    if (nextIndex < 0) {
-      nextIndex += stateProductList.length;
-    }
-    if (nextIndex >= stateProductList.length) {
-      nextIndex = 0;
-    }
-    setSelectedProduct(stateProductList[nextIndex]);
-    // if (direction === 'right') {
-    //   if (index === products.length - 1) {
-    //     setIndex(0);
-    //   } else {
-    //     setIndex(index + 1);
-    //   }
-    // } else if (index === 0) {
-    //   setIndex(products.length - 1);
-    // } else {
-    //   setIndex(index - 1);
-    // }
-    // setPhotoIndex(0);
-    // setStyleIndex(0);
-    // setSkuState({ quantity: 0, size: 'empty' });
-
-    // setSelectedProduct(???)
-  }
-
   useEffect(() => {
     async function initialize() {
       await getProductList();
-      for (let i = 0; i < productList.length; i++) {
-        let product = productList[i];
-        await getProduct(product.id, i)
-      }
-      for (let i = 0; i < productList.length; i++) {
-        let product = productList[i];
-        await getStyles(product.id, i)
-      }
-      for (let i = 0; i < productList.length; i++) {
-        let product = productList[i];
-        await getReviews(product.id, i)
-      }
-      productList.forEach((product) => calculateRating(product));
+      const product = productList[4];
+      await getProduct(product.id, 4);
+      await getStyles(product.id, 4);
+      await getReviews(product.id, 4);
+      // for (let i = 0; i < productList.length; i++) {
+      //   let product = productList[i];
+      //   await getProduct(product.id, i)
+      // }
+      // for (let i = 0; i < productList.length; i++) {
+      //   let product = productList[i];
+      //   await getStyles(product.id, i)
+      // }
+      // for (let i = 0; i < productList.length; i++) {
+      //   let product = productList[i];
+      //   await getReviews(product.id, i)
+      // }
+      calculateRating(productList[4]);
       setStateProductList(productList);
-      setSelectedProduct(productList[0]);
+      setSelectedProduct(productList[4]);
       // setSelectedStyle(productList[0].styleList[0]);
-      setReviews(productList[0].reviews);
+      setReviews(productList[4].reviews);
       setIsLoaded(true);
     }
     initialize();
@@ -158,7 +129,7 @@ function App() {
     <div>
       <div>Hello from App</div>
       <div>
-        <Overview products={stateProductList} selected={selectedProduct} ch={productCH} />
+        <Overview product={selectedProduct} />
       </div>
     </div>
   );

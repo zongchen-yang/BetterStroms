@@ -4,25 +4,20 @@ import Options from './product/Options';
 import Description from './product/Description';
 import SmallCarousel from './product/SmallCarousel';
 
-function Overview({products, selected, ch}) {
-  // const [error, setError] = useState(null);
+function Overview({ product }) {
   const [isLoaded, setIsLoaded] = useState(false);
-  // const [products, setProducts] = useState([]);
-  // const [index, setIndex] = useState(0);
   const [selectedStyle, setSelectedStyle] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [selectedSku, setSelectedSku] = useState({ quantity: 0, size: 'empty' });
-  const selectedProduct = selected;
-  const productClickHandler = ch;
 
   useEffect(() => {
-    setSelectedStyle(selectedProduct.styleList[0]);
+    setSelectedStyle(product.styleList[0]);
     setIsLoaded(true);
   }, []);
 
   useEffect(() => {
-    setSelectedStyle(selectedProduct.styleList[0]);
-  }, [selectedProduct]);
+    setSelectedStyle(product.styleList[0]);
+  }, [product]);
 
   function cartCH(event) {
 
@@ -30,6 +25,23 @@ function Overview({products, selected, ch}) {
 
   function favoriteCH(event) {
 
+  }
+
+  function mainImageCH(direction) {
+    // const { index } = product;
+    let nextIndex = photoIndex;
+    if (direction === 'right') {
+      nextIndex += 1;
+    } else {
+      nextIndex -= 1;
+    }
+    if (nextIndex < 0) {
+      nextIndex += selectedStyle.photos.length;
+    }
+    if (nextIndex >= selectedStyle.photos.length) {
+      nextIndex = 0;
+    }
+    setPhotoIndex(nextIndex);
   }
 
   function sizeCH(event) {
@@ -41,7 +53,7 @@ function Overview({products, selected, ch}) {
 
   function styleCH(i) {
     setPhotoIndex(0);
-    setSelectedStyle(selectedProduct.styleList[i]);
+    setSelectedStyle(product.styleList[i]);
     setSelectedSku({ quantity: 0, size: 'empty' });
   }
 
@@ -49,7 +61,6 @@ function Overview({products, selected, ch}) {
     setPhotoIndex(i);
   }
 
-  const product = selectedProduct;
   const style = selectedStyle;
   const clickHandlers = {
     styleCH,
@@ -64,7 +75,7 @@ function Overview({products, selected, ch}) {
     <div>
       <div id="overviewContainer">
         <SmallCarousel style={style} clickHandler={smallCarouselClickHandler} />
-        <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
+        <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
       </div>
       <Description product={product} />
