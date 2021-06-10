@@ -10,8 +10,8 @@ function Options({ product, sku, style, chs }) {
   const { styleList } = product;
   return (
     <div id="options-container">
-      <span>Stars</span>
-      <a href="">Read All # Reviews</a>
+      <span>Stars {product.starRating}</span>
+      <button>Read All {product.totalNumReviews} Reviews</button>
       <h3>{product.category}</h3>
       <h1>{product.name}</h1>
       <p>
