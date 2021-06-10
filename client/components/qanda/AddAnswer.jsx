@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const AddAnswer = (props) => {
   const {questionId, postNewAnswer, closeAddAnswerModal} = props;
   const [nameInput, setNameInput] = useState('');
-  const [bodyInput, setBodyinput] = useState('');
+  const [bodyInput, setBodyInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [photoUrl1, setPhoto1] = useState('');
   const [photoUrl2, setPhoto2] = useState('');
@@ -17,7 +17,7 @@ const AddAnswer = (props) => {
   };
 
   const handleBodyChange = (event) => {
-    setBodyinput(event.target.value);
+    setBodyInput(event.target.value);
   };
 
   const handleEmailChange = (event) => {

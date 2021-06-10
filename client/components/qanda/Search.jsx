@@ -11,7 +11,8 @@ const Search = (props) => {
   return (
     <div className="search-bar">
       <input
-        placeholder="search"
+       className="search-bar-actual"
+        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
         onChange={(e) => props.search(e.target.value)}
         // onChange={(e) => {
         //   if (e.target.value.length > 2) {

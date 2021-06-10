@@ -114,7 +114,9 @@ const QAndA = (props) => {
 
   return (
     <div className="QandA-module">
-      Questions and Answers
+      <h3 className="QandA-title">
+        Questions and Answers
+      </h3>
       <Search search={onSearchClick} />
       <div className="questions-list">
         {searched
@@ -127,7 +129,6 @@ const QAndA = (props) => {
               reportAnswer={reportAnswer}
               openAddAnswerModal={openAddAnswerModal}
               openAddQuestionModal={openAddQuestionModal}
-              closeAddQuestionModal={closeAddQuestionModal}
               getQuestionId={getQuestionId}
             />
           )
@@ -140,7 +141,6 @@ const QAndA = (props) => {
               reportAnswer={reportAnswer}
               openAddAnswerModal={openAddAnswerModal}
               openAddQuestionModal={openAddQuestionModal}
-              closeAddQuestionModal={closeAddQuestionModal}
               getQuestionId={getQuestionId}
             />
           )}
@@ -151,6 +151,14 @@ const QAndA = (props) => {
             questionId={questionId}
             postNewAnswer={postNewAnswer}
             closeAddAnswerModal={closeAddAnswerModal}
+          />
+        )
+        : null}
+      {showAddQuestionModal
+        ? (
+          <AddQuestion
+            postNewQuestion={postNewQuestion}
+            closeAddQuestionModal={closeAddQuestionModal}
           />
         )
         : null}

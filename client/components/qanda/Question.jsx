@@ -34,24 +34,36 @@ const Question = (props) => {
     if (view === 'questions') {
       return (
         <div className="question">
-          <div>
-            QUESTION body: {question_body}
-          </div>
-          <div>
-            id: {question_id}
-          </div>
-          <div onClick={() => updateHelpfulCount()}>
-            helpful: {helpfulCount}
-          </div>
-          <div onClick={() => {
-            getQuestionId(question_id);
-            openAddAnswerModal();
-          }}>
+          <span className="question-body">
+            Q: {question_body}
+          </span>
+          <span
+            className="question-flavor-text underline"
+            onClick={() => {
+              getQuestionId(question_id);
+              openAddAnswerModal();
+            }}>
             Add Answer
-          </div>
-          <div>
-            user: {asker_name}
-          </div>
+          </span>
+          <span className="question-flavor-text">|</span>
+          <span className="question-flavor-text">
+            &#40;
+            {helpfulCount}
+            &#41;
+          </span>
+          <span
+            className="helpful-yes question-flavor-text underline"
+            role="button"
+            onClick={() => updateHelpfulCount()}>
+            Yes
+          </span>
+          <span
+            className="question-flavor-text">
+            Helpful?
+          </span>
+          {/* <div>
+            by {asker_name}
+          </div> */}
           {/* {console.log(answers)} */}
           {Object.keys(answers).map((answerId) => (
             <div key={answers[answerId].id}>

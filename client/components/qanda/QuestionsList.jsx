@@ -48,8 +48,8 @@ const QuestionsList = (props) => {
   return (
     <div>
       {renderView()}
-      <button type="button" onClick={addMoreQuestions}>More Answered Questions</button>
-      <button type="button" onClick={openAddQuestionModal}>Add a Question +</button>
+      <button type="button" onClick={addMoreQuestions}>MORE ANSWERED QUESTIONS</button>
+      <button type="button" onClick={openAddQuestionModal}>ADD A QUESTION +</button>
     </div>
   );
 };
