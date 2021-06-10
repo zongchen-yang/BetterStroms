@@ -5,12 +5,15 @@ function SmallCarousel({ style, clickHandler}) {
   if (style.photos === undefined) {
     return null;
   }
+
   let max = 7;
   const numberOfPhotos = style.photos.length
   if (numberOfPhotos < max) {
     max = numberOfPhotos;
   }
   let i = 0;
+  console.log('smallcarousel, styles.photos.length', style.photos.length);
+  console.log('max is', max);
   function goUp() {
     // if (numberOfPhotos <= 7) {
     //   return;

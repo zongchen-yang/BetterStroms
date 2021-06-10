@@ -10,7 +10,6 @@ function Overview({products, selected, ch}) {
   // const [products, setProducts] = useState([]);
   // const [index, setIndex] = useState(0);
   const [selectedStyle, setSelectedStyle] = useState(0);
-  const [styleIndex, setStyleIndex] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [selectedSku, setSelectedSku] = useState({ quantity: 0, size: 'empty' });
   const selectedProduct = selected;
