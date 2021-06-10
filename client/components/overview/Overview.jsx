@@ -53,18 +53,11 @@ function Overview({products, selected, ch}) {
   }
 
   function sizeCH(event) {
-    const selectedSize = event.target.value;
-    let currentSku;
-    selectedStyle.skus.forEach( (sku) => {
-      if (sku.size === selectedSize) {
-        currentSku = sku;
-      }
-    });
-    if (currentSku) {
-      setSelectedSku(currentSku);
-    } else {
-      setSelectedSku({ quantity: 0, size: 'empty' });
-    }
+    const skuInt = event.target.value;
+    setSelectedSku(selectedStyle.skus[skuInt]);
+
+    // setSelectedSku({ quantity: 0, size: 'empty' });
+
   }
 
   function styleCH(i) {

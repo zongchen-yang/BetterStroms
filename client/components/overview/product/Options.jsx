@@ -45,13 +45,13 @@ function Options({ product, sku, style, chs }) {
             <option value="">Select Size</option>
             {/* Object.keys returns an array = ['sku1', sku2', ...] */}
             {Object.keys(style.skus).map((currentSkuString) => {
-              const currentSkuInt = parseInt(currentSkuString, 10);
-              const currentSkuObj = style.skus[currentSkuInt];
-              if (currentSkuObj === undefined) {
+              const skuInt = parseInt(currentSkuString, 10);
+              const skuObj = style.skus[skuInt];
+              if (skuObj === undefined) {
                 return null;
               }
               return (
-                <option key={currentSkuInt} value={currentSkuInt}>{currentSkuObj.size}</option>
+                <option key={skuInt} value={skuInt}>{skuObj.size}</option>
               );
             })}
           </select>
