@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function SmallCarousel({ style, clickHandler}) {
   const [startIndex, setStartIndex] = useState(0);
   if (style.photos === undefined) {
     return null;
   }
+
   let max = 7;
   const numberOfPhotos = style.photos.length
   if (numberOfPhotos < max) {
