@@ -33,7 +33,7 @@ const Question = (props) => {
   const renderView = () => {
     if (view === 'questions') {
       return (
-        <div>
+        <div className="question">
           <div>
             QUESTION body: {question_body}
           </div>

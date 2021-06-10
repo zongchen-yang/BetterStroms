@@ -16,7 +16,7 @@ const Answer = (props) => {
   }
 
   return(
-  <div>
+  <div className="answer">
     <div> An Answer </div>
     <div>
       User: {answerer_name}

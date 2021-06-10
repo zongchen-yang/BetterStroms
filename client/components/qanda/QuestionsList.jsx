@@ -27,7 +27,7 @@ const QuestionsList = (props) => {
   };
 
   const renderView = () => (
-    <div>
+    <div className="questions-list">
       {questions.map((question) => (
         <div key={question.question_id}>
           <Question
