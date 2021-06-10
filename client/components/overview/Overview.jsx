@@ -17,7 +17,7 @@ function Overview({products, selected, ch}) {
   const productClickHandler = ch;
 
   useEffect(() => {
-    setSelectedStyle(selectedProduct);
+    setSelectedStyle(selectedProduct.styleList[0]);
     setIsLoaded(true);
     // async function fetchProduct() {
     //   const response = await fetch('/products?count=20');
