@@ -8,16 +8,16 @@ function Overview({products, selected, ch}) {
   // const [error, setError] = useState(null);
   // const [isLoaded, setIsLoaded] = useState(false);
   // const [products, setProducts] = useState([]);
-  const [index, setIndex] = useState(0);
-  const [selecetedStyle, setSelectedStyle] = useState(0);
+  // const [index, setIndex] = useState(0);
+  const [selectedStyle, setSelectedStyle] = useState(0);
   const [styleIndex, setStyleIndex] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [selectedSku, setselectedSku] = useState(null);
+  const [selectedSku, setSelectedSku] = useState(null);
   const selectedProduct = selected;
   const productClickHandler = ch;
 
   useEffect(() => {
-    setSelectedStyle(selectedProduct[0])
+    setSelectedStyle(selectedProduct[0]);
     // async function fetchProduct() {
     //   const response = await fetch('/products?count=20');
     //   const productArray = await response.json();
@@ -60,16 +60,16 @@ function Overview({products, selected, ch}) {
       }
     })
     if (currentSku) {
-      selectedSku(sku);
+      setSelectedSku(sku);
     } else {
-      selectedSku({ quantity: 0, size: 'empty' });
+      setSelectedSku({ quantity: 0, size: 'empty' });
     }
   }
 
   function styleCH(i) {
     setPhotoIndex(0);
     setStyleIndex(i);
-    selectedSku({ quantity: 0, size: 'empty' });
+    setSelectedSku({ quantity: 0, size: 'empty' });
   }
 
   function smallCarouselClickHandler(i) {
@@ -81,29 +81,28 @@ function Overview({products, selected, ch}) {
       <div>Loading...</div>
     );
   }
-    // console.log(products);
-    const product = selectedProduct;
-    const style = selectedStyle;
-    const optionsInput = {
-      product,
-      selectedSku,
-      style,
-      styleCH,
-      sizeCH,
-      cartCH,
-      favoriteCH,
-    };
-    return (
-      <div>
-        <div id="overviewContainer">
-          <SmallCarousel style={style} clickHandler={smallCarouselClickHandler} />
-          <Carousel style={style} photoIndex={photoIndex} clickHandler={productClickHandler} />
-          <Options inputObj={optionsInput} />
-        </div>
-        <Description slogan={product.slogan} text={product.description} feat={product.features} />
+  // console.log(products);
+  const product = selectedProduct;
+  const style = selectedStyle;
+  const optionsInput = {
+    product,
+    selectedSku,
+    style,
+    styleCH,
+    sizeCH,
+    cartCH,
+    favoriteCH,
+  };
+  return (
+    <div>
+      <div id="overviewContainer">
+        <SmallCarousel style={style} clickHandler={smallCarouselClickHandler} />
+        <Carousel product={product} photoIndex={photoIndex} clickHandler={productClickHandler} />
+        <Options inputObj={optionsInput} />
       </div>
-    );
-  }
+      <Description slogan={product.slogan} text={product.description} feat={product.features} />
+    </div>
+  );
 }
 
 export default Overview;
