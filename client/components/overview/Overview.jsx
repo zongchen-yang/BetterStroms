@@ -58,9 +58,9 @@ function Overview({products, selected, ch}) {
       if (sku.size === selectedSize) {
         currentSku = sku;
       }
-    })
+    });
     if (currentSku) {
-      setSelectedSku(sku);
+      setSelectedSku(currentSku);
     } else {
       setSelectedSku({ quantity: 0, size: 'empty' });
     }
@@ -76,11 +76,6 @@ function Overview({products, selected, ch}) {
     setPhotoIndex(i);
   }
 
-  if (!isLoaded) {
-    return (
-      <div>Loading...</div>
-    );
-  }
   // console.log(products);
   const product = selectedProduct;
   const style = selectedStyle;
@@ -88,6 +83,9 @@ function Overview({products, selected, ch}) {
     product,
     selectedSku,
     style,
+
+  };
+  const clickHandlers = {
     styleCH,
     sizeCH,
     cartCH,
@@ -98,9 +96,9 @@ function Overview({products, selected, ch}) {
       <div id="overviewContainer">
         <SmallCarousel style={style} clickHandler={smallCarouselClickHandler} />
         <Carousel product={product} photoIndex={photoIndex} clickHandler={productClickHandler} />
-        <Options inputObj={optionsInput} />
+        <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
       </div>
-      <Description slogan={product.slogan} text={product.description} feat={product.features} />
+      <Description product={product} />
     </div>
   );
 }
