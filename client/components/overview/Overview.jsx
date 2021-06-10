@@ -68,7 +68,7 @@ function Overview({products, selected, ch}) {
 
   function styleCH(i) {
     setPhotoIndex(0);
-    setStyleIndex(i);
+    setSelectedStyle(selectedProduct[i]);
     setSelectedSku({ quantity: 0, size: 'empty' });
   }
 
