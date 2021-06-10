@@ -79,12 +79,6 @@ function Overview({products, selected, ch}) {
   // console.log(products);
   const product = selectedProduct;
   const style = selectedStyle;
-  const optionsInput = {
-    product,
-    selectedSku,
-    style,
-
-  };
   const clickHandlers = {
     styleCH,
     sizeCH,
