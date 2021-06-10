@@ -105,11 +105,12 @@ const QAndA = (props) => {
   const closeAddQuestionModal = () => {
     setAddQuestionModal(false);
   };
-  useEffect(() => { getQuestions(); }, [id]);
 
   const getQuestionId = (currentQuestionId) => {
     setQuestionId(currentQuestionId);
   };
+
+  useEffect(() => { getQuestions(); }, [id]);
 
   return (
     <div className="QandA-module">
