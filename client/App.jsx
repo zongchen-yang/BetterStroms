@@ -123,15 +123,14 @@ function App() {
   return (
     <div>
       <div>Hello from App</div>
-
       <div>
         {/* {console.log('this is when done rendering', stylesList)} */}
         {/* <QAndA product={product} /> */}
       </div>
-      <Related product={product} />
-      <Inventory product={product} />
+      <Related product={selectedProduct} />
+      <Inventory product={selectedProduct} />
     </div>
   );
-};
+}
 
 export default App;

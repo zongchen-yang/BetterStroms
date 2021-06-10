@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import RelatedItem from './RelatedItem';
+import Compare from './Compare';
 
 const fetch = require('node-fetch');
 
@@ -7,6 +8,7 @@ const RelatedList = ({ product }) => {
   const [related, setRelated] = useState([]);
   const [items, setItems] = useState([]);
   const [showCompare, setShowCompare] = useState(false);
+  const [selectedItem, setSelectedItem] = useState();
 
   const getRelated = () => {
     if (product.id) {
@@ -50,18 +52,20 @@ const RelatedList = ({ product }) => {
     getItems();
   }, [related]);
 
-  const onClickHandler = (item) => {
-    setShowCompare(!showCompare);
-
-  }
+  const showCompareCH = (item) => {
+    setShowCompare(true);
+    setSelectedItem(item);
+  };
 
   return (
     <div>
       <h3 className="title">RELATED PRODUCTS</h3>
       <div className="list">
-        { items.map((each) => <RelatedItem item={each} setShowCompare={setShowCompare} />)}
+        { items.map((each) => <RelatedItem item={each} showCompareCH={showCompareCH} />)}
       </div>
-      {showCompare ? <Compare product={product} related={items} /> : null}
+      {selectedItem && showCompare
+        ? <Compare product={product} related={selectedItem} setShowCompare={setShowCompare} />
+        : null}
     </div>
   );
 };

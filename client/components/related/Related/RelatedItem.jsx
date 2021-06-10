@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Compare from './Compare';
 
-const fetch = require('node-fetch');
-
-const RelatedItem = ({ item, setShowCompare }) => (
+const RelatedItem = ({ item, showCompareCH }) => (
   <div className="item">
     <img className="image" src={item.image}></img>
-    <i className="icon far fa-star fa-1x" onClick={() => setShowCompare(true)} />
+    <i className="icon far fa-star fa-1x" onClick={() => showCompareCH(item)} />
     <div className="category">{item.category}</div>
     <div className="name">{item.name}</div>
     <div className="price">${item.default_price}</div>
