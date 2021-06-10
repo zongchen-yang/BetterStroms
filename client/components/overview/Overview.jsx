@@ -6,7 +6,7 @@ import SmallCarousel from './product/SmallCarousel';
 
 function Overview({products, selected, ch}) {
   // const [error, setError] = useState(null);
-  // const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   // const [products, setProducts] = useState([]);
   // const [index, setIndex] = useState(0);
   const [selectedStyle, setSelectedStyle] = useState(0);
@@ -17,7 +17,8 @@ function Overview({products, selected, ch}) {
   const productClickHandler = ch;
 
   useEffect(() => {
-    setSelectedStyle(selectedProduct[0]);
+    setSelectedStyle(selectedProduct);
+    setIsLoaded(true);
     // async function fetchProduct() {
     //   const response = await fetch('/products?count=20');
     //   const productArray = await response.json();
@@ -85,6 +86,9 @@ function Overview({products, selected, ch}) {
     cartCH,
     favoriteCH,
   };
+  if (!isLoaded) {
+    return <div>Loading overview...</div>;
+  }
   return (
     <div>
       <div id="overviewContainer">

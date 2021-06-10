@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Carousel({ style, photoIndex, clickHandler }) {
+  console.log(style);
   return (
     <div>
       <button type="button" onClick={() => clickHandler('left')}>left</button>
