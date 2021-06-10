@@ -3,6 +3,21 @@
   left: 0;
   border-style: solid;
   border-color: aquamarine;
-  right: 10px;
-  width: 50%;
+  width: 30%;
+  overflow-wrap: break-word;
+  height: 250px;
+  font-size: 60%;
+}
+
+.reviewPhotoThumbnail {
+  max-inline-size: 10%;
+}
+
+.reviewPhotoFullsize {
+  position: absolute;
+
+}
+
+.checkMark {
+  size: 10px;
 }
