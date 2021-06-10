@@ -19,7 +19,7 @@ const Compare = ({ product, related }) => {
 
   console.log(features);
   return (
-    <div className="compare">
+    <div className="compare" id="compare">
       <h5>COMPARING</h5>
       <div className="compareName">
         <div className="compareName">{product.name}</div>
@@ -27,9 +27,9 @@ const Compare = ({ product, related }) => {
       </div>
       {Object.keys(features).map((key) => (
         <div className="compareFeature">
-          <div className="feature">{features[key].product}</div>
+          {features[key].product === true ? <i className="fas fa-check" /> : <div className="feature">{features[key].product}</div>}
           <div className="feature">{key}</div>
-          <div className="feature">{features[key].related}</div>
+          {features[key].related === true ? <i className="fas fa-check" /> : <div className="feature">{features[key].related}</div>}
         </div>
       ))}
     </div>
