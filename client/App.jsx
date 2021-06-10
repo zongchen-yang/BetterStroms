@@ -93,7 +93,7 @@ function App() {
     });
   }
 
-  function productCH(event, direction) {
+  function productCH(direction) {
     const { index } = selectedProduct;
     let nextIndex = index;
     if (direction === 'right') {

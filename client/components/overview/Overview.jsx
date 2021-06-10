@@ -19,30 +19,11 @@ function Overview({products, selected, ch}) {
   useEffect(() => {
     setSelectedStyle(selectedProduct.styleList[0]);
     setIsLoaded(true);
-    // async function fetchProduct() {
-    //   const response = await fetch('/products?count=20');
-    //   const productArray = await response.json();
-    //   console.log(productArray);
-
-    //   const results = productArray.map(async (product) => {
-    //     let idQueryReponse = await fetch(`/products/${product.id}`);
-    //     idQueryReponse = await idQueryReponse.json();
-    //     product.features = idQueryReponse.features;
-    //     console.log(idQueryReponse);
-
-    //     let stylesQueryResponse = await fetch(`/products/${product.id}/styles`);
-    //     stylesQueryResponse = await stylesQueryResponse.json();
-    //     product.styles = stylesQueryResponse.results;
-    //     console.log(stylesQueryResponse);
-    //     return product;
-    //   });
-    //   const resolvedProducts = await Promise.all(results);
-    //   setProducts(resolvedProducts);
-    //   setError(false);
-    //   setIsLoaded(true);
-    // }
-    // fetchProduct();
   }, []);
+
+  useEffect(() => {
+    setSelectedStyle(selectedProduct.styleList[0]);
+  }, [selectedProduct]);
 
   function cartCH(event) {
 
@@ -69,7 +50,6 @@ function Overview({products, selected, ch}) {
     setPhotoIndex(i);
   }
 
-  // console.log(products);
   const product = selectedProduct;
   const style = selectedStyle;
   const clickHandlers = {
@@ -94,3 +74,27 @@ function Overview({products, selected, ch}) {
 }
 
 export default Overview;
+
+// async function fetchProduct() {
+//   const response = await fetch('/products?count=20');
+//   const productArray = await response.json();
+//   console.log(productArray);
+
+//   const results = productArray.map(async (product) => {
+//     let idQueryReponse = await fetch(`/products/${product.id}`);
+//     idQueryReponse = await idQueryReponse.json();
+//     product.features = idQueryReponse.features;
+//     console.log(idQueryReponse);
+
+//     let stylesQueryResponse = await fetch(`/products/${product.id}/styles`);
+//     stylesQueryResponse = await stylesQueryResponse.json();
+//     product.styles = stylesQueryResponse.results;
+//     console.log(stylesQueryResponse);
+//     return product;
+//   });
+//   const resolvedProducts = await Promise.all(results);
+//   setProducts(resolvedProducts);
+//   setError(false);
+//   setIsLoaded(true);
+// }
+// fetchProduct();
