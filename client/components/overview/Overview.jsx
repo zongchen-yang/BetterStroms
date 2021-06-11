@@ -4,7 +4,7 @@ import Options from './product/Options';
 import Description from './product/Description';
 import SmallCarousel from './product/SmallCarousel';
 
-function Overview({ product }) {
+function Overview({ product, favoriteCH, cartCH }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -19,13 +19,7 @@ function Overview({ product }) {
     setSelectedStyle(product.styleList[0]);
   }, [product]);
 
-  function cartCH(event) {
 
-  }
-
-  function favoriteCH(event) {
-
-  }
 
   function mainImageCH(direction) {
     // const { index } = product;

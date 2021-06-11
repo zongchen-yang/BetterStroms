@@ -3,7 +3,6 @@ import Overview from './components/overview/Overview';
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState([]);
-  // const [selecetedStyle, setSelectedStyle] = useState(0);
   const [favorites, setFavorites] = useState([]);
   const [stateProductList, setStateProductList] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -32,6 +31,7 @@ function App() {
         photos: style.photos,
         skus: style.skus,
         lastViewedIndex: 0,
+        isFavorite: false,
       };
       product.styleThumbnail.push(style.photos[0].thumbnail_url);
       product.styleList.push(thisStyle);
@@ -94,6 +94,32 @@ function App() {
     });
   }
 
+  function favoriteCH(style) {
+    if (style.isFavorite) {
+      // remove from favorites
+      style.isFavorite = false;
+      const temp = [...favorites];
+      let removedIndex = 0;
+      temp.forEach((item, itemIndex) => {
+        if (item.id === style.id) {
+          removedIndex = itemIndex;
+        }
+      });
+      temp.splice(removedIndex, 1);
+      setFavorites(temp);
+    } else {
+      const temp = [...favorites];
+      style.isFavorite = true;
+      temp.push(style);
+      setFavorites(temp);
+      // add to favorites
+    }
+  }
+
+  function cartCH() {
+
+  }
+
   useEffect(() => {
     async function initialize() {
       await getProductList();
@@ -101,22 +127,9 @@ function App() {
       await getProduct(product.id, 4);
       await getStyles(product.id, 4);
       await getReviews(product.id, 4);
-      // for (let i = 0; i < productList.length; i++) {
-      //   let product = productList[i];
-      //   await getProduct(product.id, i)
-      // }
-      // for (let i = 0; i < productList.length; i++) {
-      //   let product = productList[i];
-      //   await getStyles(product.id, i)
-      // }
-      // for (let i = 0; i < productList.length; i++) {
-      //   let product = productList[i];
-      //   await getReviews(product.id, i)
-      // }
       calculateRating(productList[4]);
       setStateProductList(productList);
       setSelectedProduct(productList[4]);
-      // setSelectedStyle(productList[0].styleList[0]);
       setReviews(productList[4].reviews);
       setIsLoaded(true);
     }
@@ -127,7 +140,7 @@ function App() {
   }
   console.log(stateProductList);
   return (
-    <Overview product={selectedProduct} />
+    <Overview product={selectedProduct} favoriteCH={favoriteCH} cartCH={cartCH} />
   );
 };
 

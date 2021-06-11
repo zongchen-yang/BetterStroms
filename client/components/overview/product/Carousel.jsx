@@ -6,7 +6,6 @@ function Carousel({ style, photoIndex, clickHandler }) {
   const [expanded, setExpanded] = useState(0);
   let mainImage;
   let imageSource;
-  let count = 1;
   if (!style.photos[photoIndex]) {
     imageSource = style.photos[0].url;
   } else {

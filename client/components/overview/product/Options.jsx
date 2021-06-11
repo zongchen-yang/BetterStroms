@@ -4,14 +4,26 @@ import QuantSelector from './QuantSelector';
 //         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
 
 function Options({ product, sku, style, chs }) {
+  let favoriteButton;
   const {
     styleCH, sizeCH, cartCH, favoriteCH
   } = chs;
   const { styleList } = product;
+  if (style.isFavorite) {
+    favoriteButton = <button type="button" onClick={() => favoriteCH(style)}>Heart</button>;
+  } else {
+    favoriteButton = <button type="button" onClick={() => favoriteCH(style)}>Star</button>;
+  }
   return (
     <div id="options-container">
       <span>Stars {product.starRating}</span>
-      <button>Read All {product.totalNumReviews} Reviews</button>
+      <button type="button">
+        Read All
+        {' '}
+        {product.totalNumReviews}
+        {' '}
+        Reviews
+      </button>
       <h3>{product.category}</h3>
       <h1>{product.name}</h1>
       <p>
@@ -54,7 +66,7 @@ function Options({ product, sku, style, chs }) {
         </label>
         <QuantSelector sku={sku} />
         <button type="button" onClick={cartCH}>Add to Cart</button>
-        <button type="button" onClick={favoriteCH}>Favorite</button>
+        {favoriteButton}
       </form>
     </div>
   );
