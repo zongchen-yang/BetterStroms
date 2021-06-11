@@ -7,6 +7,7 @@ function Description({ product }) {
         <h3>{product.slogan}</h3>
         <p>{product.description}</p>
       </div>
+      <div className="veritcalLine" />
       <ul>
         {product.features.map((item, index) => (
           <li key={index}>
