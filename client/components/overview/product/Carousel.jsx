@@ -16,10 +16,10 @@ function Carousel({ style, photoIndex, clickHandler }) {
   function expandImage() {
     if (expanded < 2) {
       setExpanded(2);
-      setTimeout(() => { setExpanded(3); }, 1500);
+      setTimeout(() => { setExpanded(3); }, 450);
     } else {
       setExpanded(1);
-      setTimeout(() => { setExpanded(0); }, 1500);
+      setTimeout(() => { setExpanded(0); }, 450);
     }
   }
   const imgStyle = {

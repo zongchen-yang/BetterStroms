@@ -31,6 +31,7 @@ function App() {
         sale_price: style.sale_price,
         photos: style.photos,
         skus: style.skus,
+        lastViewedIndex: 0,
       };
       product.styleThumbnail.push(style.photos[0].thumbnail_url);
       product.styleList.push(thisStyle);

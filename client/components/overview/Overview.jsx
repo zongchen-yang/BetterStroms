@@ -52,13 +52,14 @@ function Overview({ product }) {
   }
 
   function styleCH(i) {
-    setPhotoIndex(0);
+    setPhotoIndex(product.styleList[i].lastViewedIndex);
     setSelectedStyle(product.styleList[i]);
     setSelectedSku({ quantity: 0, size: 'empty' });
   }
 
   function smallCarouselClickHandler(i) {
     setPhotoIndex(i);
+    selectedStyle.lastViewedIndex = i;
   }
 
   const style = selectedStyle;
