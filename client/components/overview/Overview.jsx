@@ -39,10 +39,12 @@ function Overview({ product, favoriteCH, cartCH }) {
   }
 
   function sizeCH(event) {
-    const skuInt = event.target.value;
+    const skuInt = event.target.value
+    if (skuInt === 'disabled') {
+      setSelectedSku({ quantity: 0, size: 'empty' });
+      return null;
+    }
     setSelectedSku(selectedStyle.skus[skuInt]);
-
-    // setSelectedSku({ quantity: 0, size: 'empty' });
   }
 
   function styleCH(i) {
