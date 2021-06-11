@@ -11,13 +11,46 @@
   max-height: 540px;
 }
 
+.expanding {
+  animation-name: stretch;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  animation-direction:normal;
+  animation-delay: 0ms;
+  animation-fill-mode:forwards;
+}
+
+.deexpanding {
+  animation-name: stretch;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  animation-direction: reverse;
+  animation-delay: 0ms;
+  animation-fill-mode:backwards;
+}
+
+.expanded {
+  transform: matrix(1.5, 0, 0, 1, 180, 0);
+}
+
 #mainImageContainer {
   display: flex;
   width: 800px;
   height: 540px;
   justify-content: space-between;
   background-color: black;
-}
+ }
+
+ @keyframes stretch {
+   0% {
+    transform: matrix(1, 0, 0, 1, 0, 0)
+   }
+   100% {
+    transform: matrix(1.5, 0, 0, 1, 180, 0)
+   }
+ }
 
 #smallCarouselContainer {
   display: flex;
