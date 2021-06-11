@@ -8,6 +8,7 @@ function Options({ product, sku, style, chs }) {
   let inStock = true;
   let totalQuantity = 0;
   let sizeSelect;
+  let cartButton;
   if (style.skus) {
     Object.keys(style.skus).forEach((key) => { totalQuantity += style.skus[key].quantity; });
   }
@@ -25,6 +26,7 @@ function Options({ product, sku, style, chs }) {
   }
 
   if (inStock) {
+    cartButton = <button type="button" onClick={cartCH}>Add to Cart</button>;
     sizeSelect = (
       <select onChange={(e) => sizeCH(e)} name="size" id="size-select">
         <option value="disabled">Select Size</option>
@@ -42,6 +44,7 @@ function Options({ product, sku, style, chs }) {
       </select>
     );
   } else {
+    cartButton = <button hidden type="button" onClick={cartCH}>Add to Cart</button>;
     sizeSelect = (
       <select name="size" id="size-select">
         <option value="disabled" disabled>OUT OF STOCK</option>
@@ -86,7 +89,7 @@ function Options({ product, sku, style, chs }) {
           {sizeSelect}
         </label>
         <QuantSelector sku={sku} />
-        <button type="button" onClick={cartCH}>Add to Cart</button>
+        {cartButton}
         {favoriteButton}
       </form>
     </div>
