@@ -36,7 +36,12 @@ const RelatedList = ({ product }) => {
         item.image = image.results[0].photos[0].url || null;
         let rating = await fetch(`/reviews/meta/?product_id=${eachId}`);
         rating = await rating.json();
-        item.rating = calculateRating(rating);
+        rating = calculateRating(rating);
+        item.rating = {
+          whole: Math.floor(rating),
+          part: `${((rating - Math.floor(rating)) * 100).toFixed(0)}%`,
+        };
+        console.log(item.rating);
         return item;
       });
       const resolved = await Promise.all(result);
