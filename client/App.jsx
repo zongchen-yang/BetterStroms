@@ -7,15 +7,12 @@ import Overview from './components/overview/Overview';
 const fetch = require('node-fetch');
 
 function App() {
-  const [id, setId] = useState(20102);
+  const [id, setId] = useState(20103);
   const [selectedProduct, setSelectedProduct] = useState();
   // const [selecetedStyle, setSelectedStyle] = useState();
   const [favorites, setFavorites] = useState([]);
-  // const [stateProductList, setStateProductList] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  // let productList = [];
 
   async function getProduct() {
     let product = await fetch(`/products/${id}`);
@@ -42,8 +39,6 @@ function App() {
       selectedProduct.styleThumbnail.push(style.photos[0].thumbnail_url);
       selectedProduct.styleList.push(thisStyle);
     });
-    // const resolved = await Promise.all(stylesTemp);
-    // setSelectedStyle(set your default style);
   }
 
   const getReviews = async () => {
@@ -67,41 +62,19 @@ function App() {
     setReviews(resolved);
   };
 
-  // async function getProductList() {
-  //   let response = await fetch('/products');
-  //   response = await response.json();
-  //   let i = 0;
-  //   response.forEach((product) => {
-  //     const thisProduct = {
-  //       index: i,
-  //       id: product.id,
-  //       category: product.category,
-  //       default_price: product.default_price,
-  //       description: product.description,
-  //       name: product.name,
-  //       slogan: product.slogan,
-  //       starRating: null,
-  //       totalNumReviews: null,
-  //       features: [],
-  //       styleThumbnail: [],
-  //       styleList: [],
-  //       reviews: [],
-  //     };
-  //     productList.push(thisProduct);
-  //     i += 1;
-  //   });
-  // }
+  const calculateRating = (obj) => {
+    const total = Object.keys(obj.ratings).reduce((accumRating, curr) =>
+    accumRating + parseInt(curr) * parseInt(obj.ratings[curr]), 0);
+    const amount = Object.values(obj.ratings).reduce((accum, curr) => accum + parseInt(curr), 0);
+    return (total / amount) || 0;
+  };
 
-  // function calculateRating(product) {
-  //   if (product.reviews.length) {
-  //     let total = 0;
-  //     for (let i = 0; i < product.reviews.length; i++) {
-  //       total += product.reviews[i].rating;
-  //     }
-  //     total /= product.reviews.length;
-  //     product.starRating = total;
-  //   }
-  // }
+  const getRatings = async () => {
+    let rating = await fetch(`/reviews/meta?product_id=${id}`);
+    rating = await rating.json();
+    rating = calculateRating(rating);
+    selectedProduct.rating = rating;
+  };
 
   useEffect(() => {
     getProduct();
@@ -111,31 +84,9 @@ function App() {
     if (selectedProduct) {
       getStyles();
       getReviews();
+      getRatings();
       setIsLoaded(true);
     }
-    // async function initialize(cb) {
-      // await getProductList();
-      // await getProduct();
-      // for (let i = 0; i < productList.length; i++) {
-      //   let product = productList[i];
-      //   await getProduct(product.id, i)
-      // }
-      // for (let i = 0; i < productList.length; i++) {
-      //   let product = productList[i];
-      //   await getStyles(product.id, i)
-      // }
-      // for (let i = 0; i < productList.length; i++) {
-      //   let product = productList[i];
-      //   await getReviews(product.id, i)
-      // }
-      // calculateRating();
-      // setStateProductList(productList);
-      // setSelectedProduct(productList[4]);
-      // setSelectedStyle(productList[0].styleList[0]);
-      // setReviews(productList[4].reviews);
-      // cb(true);
-    // }
-    // initialize(setIsLoaded);
   }, [selectedProduct]);
 
   if (!isLoaded) {
