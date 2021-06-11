@@ -21,11 +21,11 @@
 #smallCarouselContainer {
   display: flex;
   flex-direction: column;
+  z-index: 1;
+  margin-right: -125px;
 }
 
 .smallCarouselImages {
-  height: auto;
-  width: auto;
-  max-width: 100px;
-  max-height: 75px;
+  height: 50px;
+  width: 70px;
 }
