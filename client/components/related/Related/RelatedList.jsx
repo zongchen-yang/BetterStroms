@@ -39,9 +39,8 @@ const RelatedList = ({ product }) => {
         rating = calculateRating(rating);
         item.rating = {
           whole: Math.floor(rating),
-          part: `${((rating - Math.floor(rating)) * 100).toFixed(0)}%`,
+          part: `${Math.round(((rating - Math.floor(rating)) * 4)) * 25}%`,
         };
-        console.log(item.rating);
         return item;
       });
       const resolved = await Promise.all(result);
