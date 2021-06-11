@@ -12,10 +12,10 @@ const Question = (props) => {
     openAddAnswerModal,
     getQuestionId,
     answerCount,
-    loadMoreAnswers,
+    // loadMoreAnswers,
   } = props;
-  const {question_id, question_body, question_helpfulness, asker_name, answers} = question;
-  let [totalAnswerCount, upTotalAnswerCount] = useState(answerCount);
+  const { question_id, question_body, question_helpfulness, asker_name, answers } = question;
+  let [totalAnswerCount, upTotalAnswerCount] = useState(2);
   const [view, setView] = useState('questions');
   let [helpfulCount, setHelpfulCount] = useState(question_helpfulness);
   const [isHelpful, setIsHelpful] = useState(false);
@@ -31,6 +31,10 @@ const Question = (props) => {
       setHelpfulCount(helpfulCount += 1);
       updateQuestionsHelpfulness(question_id);
     }
+  };
+
+  const loadMoreAnswers = () => {
+    upTotalAnswerCount(Object.keys(answersList).length);
   };
 
   const renderView = () => {
@@ -68,24 +72,38 @@ const Question = (props) => {
             by {asker_name}
           </div> */}
           {/* {console.log(answers)} */}
-          {Object.keys(answersList).map((answerId) => (
-            <div key={answersList[answerId].id}>
-              <Answer
-                answer={answersList[answerId]}
-                updateAnswersHelpfulness={updateAnswersHelpfulness}
-                reportAnswer={reportAnswer}
-              />
-            </div>
-          )).slice(0, totalAnswerCount)}
+          <div className="answers-list">
+            {Object.keys(answersList).map((answerId) => (
+              <div key={answersList[answerId].id}>
+                <Answer
+                  answer={answersList[answerId]}
+                  updateAnswersHelpfulness={updateAnswersHelpfulness}
+                  reportAnswer={reportAnswer}
+                />
+              </div>
+            )).slice(0, totalAnswerCount)}
+            {/* {console.log('total answer ount:', totalAnswerCount)} */}
+            {Object.keys(answersList).length > totalAnswerCount
+              ? (
+                <div
+                  className="add-more-answers bold"
+                  type="button"
+                  onClick={loadMoreAnswers}>
+                  Load More Answers
+                </div>
+              )
+              : null
+            }
+          </div>
           {/* <button type="button" onClick={loadMoreAnswers}>Load More Answers</button> */}
         </div>
       );
     }
   };
 
-  useEffect(() => {
-    upTotalAnswerCount(totalAnswerCount += 1);
-  }, [answerCount]);
+  // useEffect(() => {
+  //   upTotalAnswerCount(totalAnswerCount += 1);
+  // }, [answerCount]);
   useEffect(() => {
     setAnswersList(answers);
   }, [answers]);

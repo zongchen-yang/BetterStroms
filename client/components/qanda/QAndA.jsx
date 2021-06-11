@@ -15,10 +15,11 @@ const QAndA = (props) => {
   const [showAddAnswerModal, setAddAnswerModal] = useState(false);
   const [showAddQuestionModal, setAddQuestionModal] = useState(false);
   const [questionId, setQuestionId] = useState(0);
-  let [rerender, setRerender] = useState(0);
+  // const [answersArray, setAnswersArray] = useState([])
+  // let [rerender, setRerender] = useState(0);
 
   const { product } = props;
-  const { id } = product;
+  const { id, name } = product;
 
   async function getQuestions() {
     if (id) {
@@ -26,6 +27,15 @@ const QAndA = (props) => {
       setQuestionArray(results.data.results);
     }
   }
+
+  // const getAnswers = async () => {
+  //   if (id) {
+  //     const results = await axios.get(`/qa/questions/${id}/answers?count=100`);
+  //     console.log('these are the answer results: ', results.data);
+  //   }
+  // };
+
+  // console.log('this is product: ', product)
 
   const onSearchClick = (value) => {
     if (value === '') {
@@ -58,14 +68,14 @@ const QAndA = (props) => {
   const reportQuestion = (questionId) => {
     axios.put(`/qa/questions/${questionId}/report`)
       .then(() => console.log('question reported'))
-      .then(getQuestions())
+      // .then(getQuestions())
       .catch((error) => console.log(error));
   };
 
   const reportAnswer = (answerId) => {
     axios.put(`/qa/answers/${answerId}/report`)
       .then(() => console.log('answer reported'))
-      .then(getQuestions())
+      // .then(getQuestions())
       .catch((error) => console.log(error));
   };
 
@@ -114,14 +124,19 @@ const QAndA = (props) => {
     setQuestionId(currentQuestionId);
   };
 
+  const closeModals = () => {
+    closeAddAnswerModal();
+    closeAddQuestionModal();
+  }
+
   useEffect(() => { getQuestions(); }, [id]);
 
   return (
     <>
       <div
-        onClick={showAddQuestionModal ? closeAddQuestionModal : () => {}}
+        onClick={showAddQuestionModal || showAddAnswerModal ? closeModals : () => {}}
         className={
-          showAddAnswerModal | showAddQuestionModal
+          showAddAnswerModal || showAddQuestionModal
           ? "QandA-module question-unfocused"
           : "QandA-module"}>
         <h3 className="QandA-title">
@@ -171,6 +186,7 @@ const QAndA = (props) => {
             <AddQuestion
               postNewQuestion={postNewQuestion}
               closeAddQuestionModal={closeAddQuestionModal}
+              name={name}
             />
           )
           : null}

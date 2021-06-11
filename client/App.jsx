@@ -126,7 +126,7 @@ function App() {
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
-  console.log(stateProductList);
+  // console.log(stateProductList);
   return (
     <div>
       <div>Hello from App</div>

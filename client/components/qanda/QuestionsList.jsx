@@ -7,25 +7,21 @@ const QuestionsList = (props) => {
     questions,
     updateQuestionsHelpfulness,
     updateAnswersHelpfulness,
-    postNewAnswer,
     reportQuestion,
     reportAnswer,
     openAddAnswerModal,
-    closeAddAnswerModal,
     openAddQuestionModal,
-    closeAddQuestionModal,
-    showAddAnswerModal,
     getQuestionId,
   } = props;
-  let [totalQuestionCount, upTotalCount] = useState(2);
+  let [totalQuestionCount, upTotalCount] = useState(4);
   const [view, setView] = useState('questions');
-  let [answerCount, setAnswerCount] = useState(0);
+  let [answerCount, setAnswerCount] = useState(2);
   const [questionsList, setQuestionsList] = useState([]);
   // const [currentQuestionCount, upCurrentCount] = useState(0);
 
-  const loadMoreAnswers = () => {
-    setAnswerCount(answerCount += 1);
-  };
+  // const loadMoreAnswers = () => {
+  //   setAnswerCount(answerCount += 1);
+  // };
 
   const addMoreQuestions = () => {
     upTotalCount(totalQuestionCount += 2);
@@ -46,7 +42,7 @@ const QuestionsList = (props) => {
             openAddAnswerModal={openAddAnswerModal}
             getQuestionId={getQuestionId}
             answerCount={answerCount}
-            loadMoreAnswers={loadMoreAnswers}
+            // loadMoreAnswers={loadMoreAnswers}
           />
         </div>
       )).slice(0, totalQuestionCount)}
@@ -60,12 +56,12 @@ const QuestionsList = (props) => {
   return (
     <div>
       {renderQuestions()}
-      <div
+      {/* <div
         className="add-more-answers bold"
         type="button"
         onClick={loadMoreAnswers}>
         Load More Answers
-      </div>
+      </div> */}
       <div>
       <button type="button" onClick={addMoreQuestions}>MORE ANSWERED QUESTIONS</button>
       <button type="button" onClick={openAddQuestionModal}>ADD A QUESTION +</button>
