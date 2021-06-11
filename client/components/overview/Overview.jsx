@@ -72,7 +72,7 @@ function Overview({ product }) {
     return <div>Loading overview...</div>;
   }
   return (
-    <div>
+    <div id="overview">
       <div id="overviewContainer">
         <SmallCarousel style={style} clickHandler={smallCarouselClickHandler} />
         <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />

@@ -1,0 +1,30 @@
+#overviewContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+#mainImage {
+  height: auto;
+  width: auto;
+  max-width: 90%;
+  max-height: 540px;
+}
+
+#mainImageContainer {
+  display: flex;
+  width: 800px;
+  height: 540px;
+  justify-content: space-between;
+}
+
+#smallCarouselContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.smallCarouselImages {
+  height: auto;
+  width: auto;
+  max-width: 100px;
+  max-height: 75px;
+}

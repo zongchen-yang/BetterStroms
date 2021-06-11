@@ -9,9 +9,9 @@ function Carousel({ style, photoIndex, clickHandler }) {
     imageSource = style.photos[photoIndex].url;
   }
   return (
-    <div>
+    <div id="mainImageContainer">
       <button type="button" onClick={(e) => clickHandler('left')}>left</button>
-      <img alt="hi" height="300" width="200" src={imageSource} />
+      <img id="mainImage" alt="hi" src={imageSource} />
       <button type="button" onClick={(e) => clickHandler('right')}>right</button>
     </div>
   );

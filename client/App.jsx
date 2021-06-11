@@ -126,12 +126,7 @@ function App() {
   }
   console.log(stateProductList);
   return (
-    <div>
-      <div>Hello from App</div>
-      <div>
-        <Overview product={selectedProduct} />
-      </div>
-    </div>
+    <Overview product={selectedProduct} />
   );
 };
 

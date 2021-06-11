@@ -37,22 +37,20 @@ function SmallCarousel({ style, clickHandler}) {
 
   // }, []);
   const renderedPhotos = style.photos.map((picObj, index) => (
-    <li key={i++} index={index}>
-      <div
-        onClick={() => clickHandler(index)}
-        onKeyPress={() => clickHandler(index)}
-        role="presentation"
-      >
-        <img alt={style.name} width="50" height="100" src={picObj.thumbnail_url} />
-      </div>
-    </li>
+    <span
+      key={i++}
+      index={index}
+      onClick={() => clickHandler(index)}
+      onKeyPress={() => clickHandler(index)}
+      role="presentation"
+    >
+      <img className="smallCarouselImages" alt={style.name} src={picObj.thumbnail_url} />
+    </span>
   ));
   return (
-    <div>
+    <div id="smallCarouselContainer">
       <button onClick={goUp} type="button">up</button>
-      <ul>
-        {renderedPhotos.concat(renderedPhotos).slice(startIndex, (startIndex + max))}
-      </ul>
+      {renderedPhotos.concat(renderedPhotos).slice(startIndex, (startIndex + max))}
       <button onClick={goDown} type="button">down</button>
     </div>
   );
