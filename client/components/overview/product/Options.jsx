@@ -21,23 +21,19 @@ function Options({ product, sku, style, chs }) {
       <strong>Style</strong>
       {'>'}
       {style.name}
-      <table>
-        <tbody>
-          <tr>
-            {styleList.map((aStyle, index) => (
-              <td key={aStyle.id} index={index}>
-                <div
-                  onClick={() => styleCH(index)}
-                  onKeyPress={() => styleCH(index)}
-                  role="presentation"
-                >
-                  <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
-                </div>
-              </td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+      <div id="stylesContainer">
+        {styleList.map((aStyle, index) => (
+          <div
+            key={aStyle.id}
+            index={index}
+            onClick={() => styleCH(index)}
+            onKeyPress={() => styleCH(index)}
+            role="presentation"
+          >
+            <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
+          </div>
+        ))}
+      </div>
       <form>
         <label htmlFor="size-select">
           Size:

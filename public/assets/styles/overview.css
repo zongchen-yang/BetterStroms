@@ -43,3 +43,11 @@
   border-left: 1px solid black;
   height: auto;
 }
+
+#stylesContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+#stylesContainer div {
+  flex-basis: 23%;
+}
