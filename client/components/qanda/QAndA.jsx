@@ -15,7 +15,7 @@ const QAndA = (props) => {
   const [showAddAnswerModal, setAddAnswerModal] = useState(false);
   const [showAddQuestionModal, setAddQuestionModal] = useState(false);
   const [questionId, setQuestionId] = useState(0);
-  // let [rerender, setRerender] = useState(0);
+  let [rerender, setRerender] = useState(0);
 
   const { product } = props;
   const { id } = product;
@@ -58,12 +58,14 @@ const QAndA = (props) => {
   const reportQuestion = (questionId) => {
     axios.put(`/qa/questions/${questionId}/report`)
       .then(() => console.log('question reported'))
+      .then(getQuestions())
       .catch((error) => console.log(error));
   };
 
   const reportAnswer = (answerId) => {
     axios.put(`/qa/answers/${answerId}/report`)
       .then(() => console.log('answer reported'))
+      .then(getQuestions())
       .catch((error) => console.log(error));
   };
 
@@ -75,6 +77,7 @@ const QAndA = (props) => {
       product_id: id,
     })
       .then((response) => console.log(response))
+      .then(getQuestions())
       .catch((error) => console.log(error));
   };
 
@@ -87,6 +90,7 @@ const QAndA = (props) => {
       photos,
     })
       .then((response) => console.log(response))
+      .then(getQuestions())
       .catch((error) => console.log(error));
   };
 
@@ -113,56 +117,65 @@ const QAndA = (props) => {
   useEffect(() => { getQuestions(); }, [id]);
 
   return (
-    <div className="QandA-module">
-      <h3 className="QandA-title">
-        Questions and Answers
-      </h3>
-      <Search search={onSearchClick} />
-      <div className="questions-list">
-        {searched
+    <>
+      <div
+        onClick={showAddQuestionModal ? closeAddQuestionModal : () => {}}
+        className={
+          showAddAnswerModal | showAddQuestionModal
+          ? "QandA-module question-unfocused"
+          : "QandA-module"}>
+        <h3 className="QandA-title">
+          Questions and Answers
+        </h3>
+        <Search search={onSearchClick} />
+        <div className="questions-list">
+          {searched
+            ? (
+              <QuestionsList
+                questions={searchedArray}
+                updateQuestionsHelpfulness={updateQuestionsHelpfulness}
+                updateAnswersHelpfulness={updateAnswersHelpfulness}
+                reportQuestion={reportQuestion}
+                reportAnswer={reportAnswer}
+                openAddAnswerModal={openAddAnswerModal}
+                openAddQuestionModal={openAddQuestionModal}
+                getQuestionId={getQuestionId}
+              />
+            )
+            : (
+              <QuestionsList
+                questions={questionsArray}
+                updateQuestionsHelpfulness={updateQuestionsHelpfulness}
+                updateAnswersHelpfulness={updateAnswersHelpfulness}
+                reportQuestion={reportQuestion}
+                reportAnswer={reportAnswer}
+                openAddAnswerModal={openAddAnswerModal}
+                openAddQuestionModal={openAddQuestionModal}
+                getQuestionId={getQuestionId}
+              />
+            )}
+        </div>
+      </div>
+      <div>
+        {showAddAnswerModal
           ? (
-            <QuestionsList
-              questions={searchedArray}
-              updateQuestionsHelpfulness={updateQuestionsHelpfulness}
-              updateAnswersHelpfulness={updateAnswersHelpfulness}
-              reportQuestion={reportQuestion}
-              reportAnswer={reportAnswer}
-              openAddAnswerModal={openAddAnswerModal}
-              openAddQuestionModal={openAddQuestionModal}
-              getQuestionId={getQuestionId}
+            <AddAnswer
+              questionId={questionId}
+              postNewAnswer={postNewAnswer}
+              closeAddAnswerModal={closeAddAnswerModal}
             />
           )
-          : (
-            <QuestionsList
-              questions={questionsArray}
-              updateQuestionsHelpfulness={updateQuestionsHelpfulness}
-              updateAnswersHelpfulness={updateAnswersHelpfulness}
-              reportQuestion={reportQuestion}
-              reportAnswer={reportAnswer}
-              openAddAnswerModal={openAddAnswerModal}
-              openAddQuestionModal={openAddQuestionModal}
-              getQuestionId={getQuestionId}
+          : null}
+        {showAddQuestionModal
+          ? (
+            <AddQuestion
+              postNewQuestion={postNewQuestion}
+              closeAddQuestionModal={closeAddQuestionModal}
             />
-          )}
+          )
+          : null}
       </div>
-      {showAddAnswerModal
-        ? (
-          <AddAnswer
-            questionId={questionId}
-            postNewAnswer={postNewAnswer}
-            closeAddAnswerModal={closeAddAnswerModal}
-          />
-        )
-        : null}
-      {showAddQuestionModal
-        ? (
-          <AddQuestion
-            postNewQuestion={postNewQuestion}
-            closeAddQuestionModal={closeAddQuestionModal}
-          />
-        )
-        : null}
-    </div>
+    </>
   );
 };
 

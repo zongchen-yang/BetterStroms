@@ -22,13 +22,15 @@ const Answer = (props) => {
 
   return(
   <div className="answer">
-    {console.log('this is the converted date for the answer', convertDate(answer.date))}
+    {/* {console.log('this is the converted date for the answer', convertDate(answer.date))} */}
     <div>
-      A: {body}
+      <strong>A:</strong> {body}
     </div>
     <div>
       <span className="answer-flavor-text">
         by {answerer_name}
+        ,
+        {convertDate(answer.date)}
       </span>
       <span className="answer-flavor-text">|</span>
       <span className="answer-flavor-text">
@@ -42,11 +44,17 @@ const Answer = (props) => {
       <span className="answer-flavor-text">
         &#40;{helpfulCount}&#41;
       </span>
+      <span className="answer-flavor-text">|</span>
+      <span
+        className="answer-flavor-text underline"
+        onClick={() => reportAnswer(id)}>
+        Report
+      </span>
     </div>
     {photos.map((url, idx) => (
       <img src={url} key={id + idx} width="75" height="75" alt="" />
     ))}
-    <div onDoubleClick={() => reportAnswer(id)}>Report</div>
+    {/* <div onDoubleClick={() => reportAnswer(id)}>Report</div> */}
   </div>
 
   )
