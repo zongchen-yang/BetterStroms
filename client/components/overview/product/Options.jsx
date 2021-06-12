@@ -1,5 +1,6 @@
 import React from 'react';
 import QuantSelector from './QuantSelector';
+// import Select from 'react-select';
 
 //         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
 
@@ -14,11 +15,26 @@ function Options({ product, sku, style, chs }) {
   let sizeSelect;
   let cartButton;
 
+
   function optionsCartHandler() {
+    // const event = new MouseEvent('mousedown', {
+    //   view: window,
+    //   bubbles: true,
+    // });
+    // const sizeElement = document.getElementById('size-select');
+    // sizeElement.addEventListener('mousedown', () => console.log('event triggered') );
+
+    // sizeElement.dispatchEvent(event);
     if (sku.size === 'empty') {
-      document.getElementById('size-select').focus();
-      document.getElementById('size-select').click();
-      // defaultMenuIsOpen={true}
+    //   // document.getElementById('size-select').focus();
+    //   // document.getElementById('size-select').click();
+    //   // defaultMenuIsOpen={true}
+    //   const event = new MouseEvent('mousedown', {
+    //     view: window,
+    //     bubbles: true,
+    //   });
+    //   const sizeSelect = document.getElementById('size-select');
+    //   sizeSelect.dispatchEvent(event);
     } else {
       sizeCH();
     }
@@ -36,7 +52,10 @@ function Options({ product, sku, style, chs }) {
   } else {
     favoriteButton = <button type="button" onClick={() => favoriteCH(style)}>Star</button>;
   }
-
+  function tempFunction(event) {
+    console.log(event)
+    // onMouseDown={(e) => tempFunction(e)}
+  }
   if (inStock) {
     cartButton = <button type="button" onClick={optionsCartHandler}>Add to Cart</button>;
     sizeSelect = (
