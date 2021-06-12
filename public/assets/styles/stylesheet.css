@@ -1,3 +1,165 @@
+.QandA-module {
+  font-family: sans-serif;
+}
+
+.question-unfocused {
+  opacity: 25%;
+}
+
+.add-answer-modal {
+  font-family: sans-serif;
+  position: fixed;
+  border: 1px solid black;
+  top: 20%;
+  right: 30%;
+  width: 600px;
+  height: 500px;
+  background: white;
+  z-index: 1;
+}
+
+.add-question-modal {
+  font-family: sans-serif;
+  position: fixed;
+  border: 1px solid black;
+  top: 20%;
+  right: 30%;
+  width: 600px;
+  height: 500px;
+  background: white;
+  z-index: 1;
+}
+
+.question-search-bar-actual {
+  border-radius: 0px;
+  width: 97%;
+  height: 25px;
+  margin: 10px;
+}
+
+.modal-input-box {
+  border-radius: 0px;
+  height: 20px;
+  margin: 5px;
+}
+
+.QandA-title {
+  margin: 10px;
+}
+
+
+.answers-list {
+  width: 100%;
+  max-height: 23em;
+  overflow-y: scroll;
+  background:
+  linear-gradient(white 30%, rgba(255, 255, 255, 0)),
+  linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+  radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+  radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background:
+  linear-gradient(white 30%, rgba(255, 255, 255, 0)),
+  linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+  radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+  radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  background-attachment: local, local, scroll, scroll;
+}
+.questions-list {
+  width: 100%;
+  max-height: 42em;
+  overflow-y: scroll;
+  background:
+  linear-gradient(white 30%, rgba(255, 255, 255, 0)),
+  linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+  radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+  radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background:
+  linear-gradient(white 30%, rgba(255, 255, 255, 0)),
+  linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+  radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+  radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 100% 40px, 100% 40px, 100% 30px, 100% 30px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.question {
+  /* border: 1px solid rgb(226, 226, 226); */
+  margin: 10px;
+}
+
+.question-body {
+  margin: 5px 5px 5px 5px;
+  font-size: 1em;
+  /* float: left; */
+}
+
+.question-flavor-text {
+  float: right;
+  font-size: .8em;
+  margin: 5px;
+  color: gray;
+}
+
+.answer-flavor-text {
+  font-size: .8em;
+  margin: 5px;
+  color: gray;
+}
+
+.answer {
+  /* border: 2px solid purple; */
+  margin: 10px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.underline:hover {
+  color: black;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.add-more-answers {
+  margin: 10px;
+  width: 20em;
+  font-size: .95em;
+}
+
+.button-questions {
+  border-radius: 0px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 1.1em;
+  background-color: plum;
+}
+
+.button-questions:hover {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
+
+.answers-title {
+  float: left;
+  margin: 5px;
+}
+
+.modal-input {
+  margin-top: 5px;
+}
+
+.input-flavor {
+  font-size: .8em;
+  color: gray;
 .reviewListBox {
   float: right;
   border-color: black;

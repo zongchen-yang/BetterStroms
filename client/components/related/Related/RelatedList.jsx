@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import RelatedItem from './RelatedItem';
 import Compare from './Compare';
 
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 
 const RelatedList = ({ product }) => {
   const [related, setRelated] = useState([]);

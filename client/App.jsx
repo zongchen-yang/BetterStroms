@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Related from './components/related/Related/RelatedList';
 import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
 import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
+// import QAndA from './components/qanda/QAndA';
 
+<<<<<<< HEAD
+// const fetch = require('node-fetch');
+
+=======
+>>>>>>> a2bbcc9b578824dfbdbdf7c749dd7f33a6742757
 function App() {
   const [id, setId] = useState(20103);
   const [selectedProduct, setSelectedProduct] = useState();
@@ -114,3 +121,13 @@ function App() {
 }
 
 export default App;
+
+// useEffect(() => {
+//   fetch(`http://localhost:3000/products/${id}`)
+//     .then((response) => response.json())
+//     .then((data) => setProduct(data))
+//     // .then(console.log('logging state product id:', product))
+//     .catch((error) => console.log(error));
+//   // console.log('hello from use effect');
+//   // getProductList();
+// }, []);
