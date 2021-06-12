@@ -4,21 +4,33 @@ import QuantSelector from './QuantSelector';
 //         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
 
 function Options({ product, sku, style, chs }) {
+  const {
+    styleCH, sizeCH, cartCH, favoriteCH
+  } = chs;
+  const { styleList } = product;
   let favoriteButton;
   let inStock = true;
   let totalQuantity = 0;
   let sizeSelect;
   let cartButton;
+
+  function optionsCartHandler() {
+    if (sku.size === 'empty') {
+      document.getElementById('size-select').focus();
+      document.getElementById('size-select').click();
+      // defaultMenuIsOpen={true}
+    } else {
+      sizeCH();
+    }
+  }
+
   if (style.skus) {
     Object.keys(style.skus).forEach((key) => { totalQuantity += style.skus[key].quantity; });
   }
   if (totalQuantity === 0) {
     inStock = false;
   }
-  const {
-    styleCH, sizeCH, cartCH, favoriteCH
-  } = chs;
-  const { styleList } = product;
+
   if (style.isFavorite) {
     favoriteButton = <button type="button" onClick={() => favoriteCH(style)}>Heart</button>;
   } else {
@@ -26,7 +38,7 @@ function Options({ product, sku, style, chs }) {
   }
 
   if (inStock) {
-    cartButton = <button type="button" onClick={cartCH}>Add to Cart</button>;
+    cartButton = <button type="button" onClick={optionsCartHandler}>Add to Cart</button>;
     sizeSelect = (
       <select onChange={(e) => sizeCH(e)} name="size" id="size-select">
         <option value="disabled">Select Size</option>
@@ -51,6 +63,7 @@ function Options({ product, sku, style, chs }) {
       </select>
     );
   }
+
   return (
     <div id="options-container">
       <span>Stars {product.starRating}</span>

@@ -19,8 +19,6 @@ function Overview({ product, favoriteCH, cartCH }) {
     setSelectedStyle(product.styleList[0]);
   }, [product]);
 
-
-
   function mainImageCH(direction) {
     // const { index } = product;
     let nextIndex = photoIndex;
