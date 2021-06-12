@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-// const fetch = require('node-fetch');
-
 const InventoryItem = ({ id }) => {
   const [item, setItem] = useState({});
 

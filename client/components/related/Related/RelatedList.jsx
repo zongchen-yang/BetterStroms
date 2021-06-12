@@ -2,14 +2,13 @@ import React, { useState, useEffect, useCallback } from 'react';
 import RelatedItem from './RelatedItem';
 import Compare from './Compare';
 
-// const fetch = require('node-fetch');
-
 const RelatedList = ({ product }) => {
   const [related, setRelated] = useState([]);
   const [items, setItems] = useState([]);
   const [showCompare, setShowCompare] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
-  const [window, setWindow] = useState({});
+  const [window, setWindow] = useState([]);
+  const [pageReady, setPageReady] = useState(false);
 
   const getRelated = () => {
     if (product.id) {
@@ -27,9 +26,17 @@ const RelatedList = ({ product }) => {
     return (total / amount) || 0;
   };
 
+  const getWindow = (resolved) => {
+    if (resolved.length > 3) {
+      setWindow(resolved.slice(0, 3));
+    } else {
+      setWindow(resolved);
+    }
+  };
+
   const getItems = async () => {
     if (related) {
-      const result = related.map(async (eachId) => {
+      const result = related.map(async (eachId, index) => {
         let item = await fetch(`/products/${eachId}`);
         item = await item.json();
         let image = await fetch(`/products/${eachId}/styles`);
@@ -42,42 +49,45 @@ const RelatedList = ({ product }) => {
           whole: Math.floor(rating),
           part: `${Math.round(((rating - Math.floor(rating)) * 4)) * 25}%`,
         };
+        item.index = index;
         return item;
       });
       const resolved = await Promise.all(result);
       setItems(resolved);
+      getWindow(resolved);
     }
   };
 
-  // const getWindow = () => {
-  //   if (item.length === 0) {
-
-  //   } else if ()
-  //   resolved.length > 3 ? setWindow({start: 0, end: 3})
-  //   : setWindow({start: 0, end: resolved.length});
-  // };
-
   useEffect(() => {
     getRelated();
-    // getWindow();
   }, [product.id]);
 
-  useEffect(() => {
-    getItems();
+  useEffect(async () => {
+    await getItems();
+    setPageReady(true);
   }, [related]);
 
   const showCompareCH = (item) => {
-    setShowCompare(true);
     setSelectedItem(item);
+    setShowCompare(true);
+    console.log('clicked!');
   };
+
+  const rightCH = () => {
+
+  };
+
+  if (!pageReady) {
+    return <p>loading...</p>;
+  }
 
   return (
     <div>
       <h3 className="title">RELATED PRODUCTS</h3>
       <div className="list">
-      <button type="button">left</button>
-        { items.map((each) => <RelatedItem item={each} showCompareCH={showCompareCH} />)}
-      <button type="button">right</button>
+        { window && window[0] && window[0].index !== 0 ? <button type="button">left</button> : null}
+        { window.map((each) => <RelatedItem item={each} showCompareCH={showCompareCH} />)}
+        { window && window[2] && window[2].index !== items.length - 1 ? <button type="button">right</button> : null}
       </div>
       {selectedItem && showCompare
         ? <Compare product={product} related={selectedItem} setShowCompare={setShowCompare} />

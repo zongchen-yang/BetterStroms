@@ -1,3 +1,7 @@
+button:hover {
+  cursor: pointer;
+}
+
 .QandA-module {
   font-family: sans-serif;
 }
@@ -329,8 +333,7 @@
   position: fixed;
   border: 1px solid black;
   top: 20%;
-  right: 30%;
-  /* width: 600px; */
+  right: 50%;
   clear: both;
   background: white;
   z-index: 1;

@@ -91,7 +91,6 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  console.log(reviewMeta);
   return (
     <div>
       <div>Hello from App</div>
