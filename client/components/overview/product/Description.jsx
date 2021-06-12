@@ -1,13 +1,13 @@
 import React from 'react';
 
-function Description({ slogan, text, feat }) {
+function Description({ product }) {
   return (
     <div>
-      <h3>{slogan}</h3>
-      <p>{text}</p>
+      <h3>{product.slogan}</h3>
+      <p>{product.description}</p>
       <ul>
-        {feat.map((item, index) => (
-          <div key={index}>
+        {product.features.map((item, index) => (
+          <li key={index}>
             {item.feature} : {item.value}
           </li>
         ))}
