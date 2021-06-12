@@ -9,6 +9,7 @@ const RelatedList = ({ product }) => {
   const [items, setItems] = useState([]);
   const [showCompare, setShowCompare] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
+  const [window, setWindow] = useState({});
 
   const getRelated = () => {
     if (product.id) {
@@ -45,6 +46,11 @@ const RelatedList = ({ product }) => {
       });
       const resolved = await Promise.all(result);
       setItems(resolved);
+      // if (resolved.length === 0) {
+
+      // }
+      // resolved.length > 3 ? setWindow({start: 0, end: 3})
+      // : setWindow({start: 0, end: resolved.length});
     }
   };
 
@@ -65,7 +71,9 @@ const RelatedList = ({ product }) => {
     <div>
       <h3 className="title">RELATED PRODUCTS</h3>
       <div className="list">
+      <button type="">left</button>
         { items.map((each) => <RelatedItem item={each} showCompareCH={showCompareCH} />)}
+      <button>right</button>
       </div>
       {selectedItem && showCompare
         ? <Compare product={product} related={selectedItem} setShowCompare={setShowCompare} />
