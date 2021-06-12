@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import ReviewItems from './ReviewItems';
 import ReviewsBreakdown from './ReviewsBreakdown';
 
-const ReviewList = ({ reviews, product, overallRating, reviewMeta, totalNumberOfRatings }) => {
+const ReviewList = ({ reviews, product, overallRating, reviewMeta }) => {
   const [reviewFilter, setReviewFilter] = useState([]);
   const [filtersUsedString, setFiltersUsedString] = useState('');
   const { id } = product;
+  const totalNumberOfRatings = product.totalNumReviews;
 
   const displayFiltersUsed = () => {
     if (reviewFilter.length === 0) {

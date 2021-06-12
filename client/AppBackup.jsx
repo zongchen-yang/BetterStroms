@@ -9,10 +9,7 @@ function App() {
   const [stateProductList, setStateProductList] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [reviewMeta, setReviewMeta] = useState([]);
-  //const [overallRating, setRating] = useState(0);
-  const [totalNumberOfRatings, setTotalRatings] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  //const id = 20104;
 
   //overallRating = selectedProduct.starRating;
   let productList = [];
@@ -171,7 +168,7 @@ function App() {
         reviews={reviews}
         overallRating={overallRating}
         reviewMeta={reviewMeta}
-        totalNumberOfRatings={totalNumberOfRatings}
+        // totalNumberOfRatings={totalNumberOfRatings}
       />
       </div>
     </div>

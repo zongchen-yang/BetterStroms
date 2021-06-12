@@ -45,7 +45,7 @@ function SmallCarousel({ style, clickHandler}) {
       >
         <img alt={style.name} width="50" height="100" src={picObj.thumbnail_url} />
       </div>
-    </li>
+    </div>
   ));
   return (
     <div>
