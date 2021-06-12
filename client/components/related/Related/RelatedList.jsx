@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import RelatedItem from './RelatedItem';
 import Compare from './Compare';
 
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 
 const RelatedList = ({ product }) => {
   const [related, setRelated] = useState([]);
@@ -46,16 +46,20 @@ const RelatedList = ({ product }) => {
       });
       const resolved = await Promise.all(result);
       setItems(resolved);
-      // if (resolved.length === 0) {
-
-      // }
-      // resolved.length > 3 ? setWindow({start: 0, end: 3})
-      // : setWindow({start: 0, end: resolved.length});
     }
   };
 
+  // const getWindow = () => {
+  //   if (item.length === 0) {
+
+  //   } else if ()
+  //   resolved.length > 3 ? setWindow({start: 0, end: 3})
+  //   : setWindow({start: 0, end: resolved.length});
+  // };
+
   useEffect(() => {
     getRelated();
+    // getWindow();
   }, [product.id]);
 
   useEffect(() => {
@@ -71,9 +75,9 @@ const RelatedList = ({ product }) => {
     <div>
       <h3 className="title">RELATED PRODUCTS</h3>
       <div className="list">
-      <button type="">left</button>
+      <button type="button">left</button>
         { items.map((each) => <RelatedItem item={each} showCompareCH={showCompareCH} />)}
-      <button>right</button>
+      <button type="button">right</button>
       </div>
       {selectedItem && showCompare
         ? <Compare product={product} related={selectedItem} setShowCompare={setShowCompare} />

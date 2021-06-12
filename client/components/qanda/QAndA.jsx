@@ -29,8 +29,8 @@ const QAndA = (props) => {
   }
 
   const addHighlightedText = (body, input) => {
-    const frontIndex = body.indexOf(input)
-    const backIndex = body.indexOf(input) + input.length
+    const frontIndex = body.indexOf(input);
+    const backIndex = body.indexOf(input) + input.length;
     if (body.includes(input)) {
       const newBody = `${body.slice(0, frontIndex)}<mark>${input}</mark>${body.slice(backIndex)}`;
       return newBody;
@@ -95,7 +95,7 @@ const QAndA = (props) => {
       product_id: id,
     })
       .then((response) => console.log(response))
-      .then(getQuestions())
+      .then(() => getQuestions())
       .catch((error) => console.log(error));
   };
 
@@ -108,7 +108,7 @@ const QAndA = (props) => {
       photos,
     })
       .then((response) => console.log(response))
-      .then(getQuestions())
+      .then(() => getQuestions())
       .catch((error) => console.log(error));
   };
 
@@ -172,8 +172,8 @@ const QAndA = (props) => {
             postNewAnswer={postNewAnswer}
             closeAddAnswerModal={closeAddAnswerModal}
             />
-            )
-            : null}
+          )
+          : null}
         {showAddQuestionModal
           ? (
             <AddQuestion
@@ -181,8 +181,8 @@ const QAndA = (props) => {
             closeAddQuestionModal={closeAddQuestionModal}
             name={name}
             />
-            )
-            : null}
+          )
+          : null}
       </div>
     </>
   );

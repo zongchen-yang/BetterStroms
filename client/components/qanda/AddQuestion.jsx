@@ -84,8 +84,20 @@ const AddQuestion = (props) => {
         </div>
         <div className="modal-input input-flavor">For authentication reasons, you will not be emailed</div>
       </div>
-      <button type="button" onClick={() => handleAddQuestion()}>Submit Question</button>
-      <button type="button" onClick={() => closeAddQuestionModal()}>CLOSE</button>
+      <button
+        className="button-questions"
+        type="button"
+        onClick={() => handleAddQuestion()}
+      >
+        Submit Question
+      </button>
+      <button
+        className="button-questions"
+        type="button"
+        onClick={() => closeAddQuestionModal()}
+      >
+        CLOSE
+      </button>
       {showError
         ? <div>You must enter the following: Question, Nickname, Valid Email</div>
         : null}

@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Related from './components/related/Related/RelatedList';
 import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
 import Overview from './components/overview/Overview';
 // import QAndA from './components/qanda/QAndA';
-import axios from 'axios';
 
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 
 function App() {
   const [id, setId] = useState(20103);
   const [selectedProduct, setSelectedProduct] = useState();
-  // const [selecetedStyle, setSelectedStyle] = useState();
   const [favorites, setFavorites] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [reviewMeta, setReviewMeta] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   async function getProduct() {
     let product = await fetch(`/products/${id}`);
     product = await product.json();
-    product.starRating = 0;
-    product.styleThumbnail = [];
-    product.styleList = [];
-    setSelectedProduct(product);
+    const thisProduct = {
+      id: product.id,
+      category: product.category,
+      default_price: product.default_price,
+      description: product.description,
+      name: product.name,
+      slogan: product.slogan,
+      features: product.features,
+      starRating: null,
+      totalNumReviews: null,
+      styleThumbnail: [],
+      styleList: [],
+    };
+    setSelectedProduct(thisProduct);
   }
 
   async function getStyles() {
@@ -47,21 +57,7 @@ function App() {
     let response = await fetch(`/reviews?product_id=${id}`);
     response = await response.json();
     selectedProduct.totalNumReviews = response.results.length;
-    const reviewsTemp = response.results.map(async (review) => {
-      const thisReview = {
-        id: review.review_id,
-        body: review.body,
-        photos: review.photos,
-        summary: review.summary,
-        rating: review.rating,
-        recommend: review.recommend,
-        response: review.reponse,
-        reviewer_name: review.reviewer_name,
-      };
-      return thisReview;
-    });
-    const resolved = await Promise.all(reviewsTemp);
-    setReviews(resolved);
+    setReviews(response.results);
   };
 
   const calculateRating = (obj) => {
@@ -74,19 +70,20 @@ function App() {
   const getRatings = async () => {
     let rating = await fetch(`/reviews/meta?product_id=${id}`);
     rating = await rating.json();
+    setReviewMeta(rating);
     rating = calculateRating(rating);
-    selectedProduct.rating = rating;
+    selectedProduct.starRating = rating;
   };
 
   useEffect(() => {
     getProduct();
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (selectedProduct) {
-      getStyles();
       getReviews();
       getRatings();
+      await getStyles();
       setIsLoaded(true);
     }
   }, [selectedProduct]);
@@ -95,17 +92,17 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  console.log(selectedProduct);
+  console.log(reviewMeta);
   return (
     <div>
       <div>Hello from App</div>
       <div>
-        {/* <Overview product={selectedProduct} /> */}
+        <Overview product={selectedProduct} />
         {/* {console.log('this is when done rendering', stylesList)} */}
-        <QAndA product={selectedProduct} />
       </div>
       <Related product={selectedProduct} />
       <Inventory product={selectedProduct} />
+      <QAndA product={selectedProduct} />
     </div>
   );
 }

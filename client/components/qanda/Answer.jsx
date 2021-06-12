@@ -23,7 +23,7 @@ const Answer = (props) => {
   };
 
   const updateSeller = () => {
-    if(answerer_name === 'Seller') {
+    if (answerer_name === 'Seller') {
       setIsSeller(true);
     }
   };

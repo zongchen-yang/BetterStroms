@@ -135,8 +135,20 @@ const AddAnswer = (props) => {
           <input className="modal-input-box" onChange={handlePhotoChange3} />
         </div>
       </div>
-      <button type="button" onClick={() => handleAddAnswer()}>Add Answer</button>
-      <button type="button" onClick={() => closeAddAnswerModal()}>CLOSE</button>
+      <button
+        className="button-questions"
+        type="button"
+        onClick={() => handleAddAnswer()}
+      >
+        Submit Answer
+      </button>
+      <button
+        className="button-questions"
+        type="button"
+        onClick={() => closeAddAnswerModal()}
+      >
+        CLOSE
+      </button>
       {showError
         ? <div>You must enter the following: Question, Nickname, Valid Email</div>
         : null}

@@ -65,7 +65,8 @@ const Question = (props) => {
             Yes
           </span>
           <span
-            className="question-flavor-text">
+            className="question-flavor-text"
+          >
             Helpful?
           </span>
           {/* <div>

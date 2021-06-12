@@ -56,15 +56,21 @@ const QuestionsList = (props) => {
   return (
     <div>
       {renderQuestions()}
-      {/* <div
-        className="add-more-answers bold"
-        type="button"
-        onClick={loadMoreAnswers}>
-        Load More Answers
-      </div> */}
       <div>
-      <button type="button" onClick={addMoreQuestions}>MORE ANSWERED QUESTIONS</button>
-      <button type="button" onClick={openAddQuestionModal}>ADD A QUESTION +</button>
+        <button
+          className="button-questions"
+          type="button"
+          onClick={addMoreQuestions}
+        >
+          MORE ANSWERED QUESTIONS
+        </button>
+        <button
+          className="button-questions"
+          type="button"
+          onClick={openAddQuestionModal}
+        >
+          ADD A QUESTION +
+        </button>
       </div>
     </div>
   );
