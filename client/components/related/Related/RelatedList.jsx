@@ -68,17 +68,14 @@ const RelatedList = ({ product }) => {
   }, [related]);
 
   const showCompareCH = (item) => {
-    setShowCompare(true);
     setSelectedItem(item);
+    setShowCompare(true);
+    console.log('clicked!');
   };
 
   const rightCH = () => {
 
   };
-
-  console.log(related);
-  console.log(window);
-  console.log(items);
 
   if (!pageReady) {
     return <p>loading...</p>;

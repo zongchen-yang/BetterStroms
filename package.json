@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "config.js",
   "scripts": {
-    "test": "jest ./public/bundle.js",
+    "test": "jest",
     "start": "node ./server/index.js",
     "react-dev": "npx webpack",
     "server-dev": "nodemon ./server/index.js"
@@ -25,10 +25,10 @@
     "axios": "^0.21.1",
     "colors": "^1.4.0",
     "express": "^4.17.1",
+    "webpack": "^5.38.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "webpack": "^5.38.1"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",

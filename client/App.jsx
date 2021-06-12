@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Related from './components/related/Related/RelatedList';
 import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
+import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
 
 function App() {
@@ -50,9 +51,9 @@ function App() {
   }
 
   const getReviews = async () => {
-    let response = await fetch(`/reviews?product_id=${id}`);
+    let response = await fetch(`/reviews?product_id=${id}&sort=relevant&count=1000`);
     response = await response.json();
-    selectedProduct.totalNumReviews = response.results.length;
+    //selectedProduct.totalNumReviews = response.results.length;
     setReviews(response.results);
   };
 
@@ -60,11 +61,13 @@ function App() {
     const total = Object.keys(obj.ratings).reduce((accumRating, curr) =>
     accumRating + parseInt(curr) * parseInt(obj.ratings[curr]), 0);
     const amount = Object.values(obj.ratings).reduce((accum, curr) => accum + parseInt(curr), 0);
+    selectedProduct.totalNumReviews = amount;
     return (total / amount) || 0;
   };
 
   const getRatings = async () => {
     let rating = await fetch(`/reviews/meta?product_id=${id}`);
+
     rating = await rating.json();
     setReviewMeta(rating);
     rating = calculateRating(rating);
@@ -75,11 +78,11 @@ function App() {
     getProduct();
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (selectedProduct) {
-      getStyles();
       getReviews();
       getRatings();
+      await getStyles();
       setIsLoaded(true);
     }
   }, [selectedProduct]);
@@ -92,12 +95,32 @@ function App() {
     <div>
       <div>Hello from App</div>
       <div>
-        {/* <Overview product={selectedProduct} /> */}
+        {selectedProduct.styleList
+          ? <Overview product={selectedProduct} />
+          : null}
       </div>
       <Related product={selectedProduct} />
       <Inventory product={selectedProduct} />
+      <QAndA product={selectedProduct} />
+      <ReviewList
+        product={selectedProduct}
+        reviews={reviews}
+        overallRating={selectedProduct.starRating}
+        reviewMeta={reviewMeta}
+        // totalNumberOfRatings={selectedProduct.totalNumReviews}
+      />
     </div>
   );
 }
 
 export default App;
+
+// useEffect(() => {
+//   fetch(`http://localhost:3000/products/${id}`)
+//     .then((response) => response.json())
+//     .then((data) => setProduct(data))
+//     // .then(console.log('logging state product id:', product))
+//     .catch((error) => console.log(error));
+//   // console.log('hello from use effect');
+//   // getProductList();
+// }, []);
