@@ -1,0 +1,86 @@
+#overviewContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#mainImage {
+  height: auto;
+  width: auto;
+  max-width: 90%;
+  max-height: 540px;
+}
+
+.expanding {
+  animation-name: stretch;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  animation-direction:normal;
+  animation-delay: 0ms;
+  animation-fill-mode:forwards;
+}
+
+.deexpanding {
+  animation-name: stretch;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  animation-direction: reverse;
+  animation-delay: 0ms;
+  animation-fill-mode:backwards;
+}
+
+.expanded {
+  transform: matrix(1.5, 0, 0, 1, 180, 0);
+}
+
+#mainImageContainer {
+  display: flex;
+  width: 800px;
+  height: 540px;
+  justify-content: space-between;
+  background-color: black;
+ }
+
+ @keyframes stretch {
+   0% {
+    transform: matrix(1, 0, 0, 1, 0, 0)
+   }
+   100% {
+    transform: matrix(1.5, 0, 0, 1, 180, 0)
+   }
+ }
+
+#smallCarouselContainer {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  margin-right: -125px;
+}
+
+.smallCarouselImages {
+  height: 50px;
+  width: 70px;
+}
+
+#descriptionContainer {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.veritcalLine {
+  border-left: 1px solid black;
+  height: auto;
+}
+
+#stylesContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+#stylesContainer div {
+  flex-basis: 23%;
+}
