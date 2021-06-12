@@ -152,55 +152,55 @@ const QAndA = (props) => {
         </h3>
         <Search search={onSearch} />
         <div className="questions-list-component">
-          {searched
-            ? (
-              <QuestionsList
-                questions={searchedArray}
-                updateQuestionsHelpfulness={updateQuestionsHelpfulness}
-                updateAnswersHelpfulness={updateAnswersHelpfulness}
-                reportQuestion={reportQuestion}
-                reportAnswer={reportAnswer}
-                openAddAnswerModal={openAddAnswerModal}
-                openAddQuestionModal={openAddQuestionModal}
-                getQuestionId={getQuestionId}
-              />
-            )
-            : (
-              <QuestionsList
-                questions={questionsArray}
-                updateQuestionsHelpfulness={updateQuestionsHelpfulness}
-                updateAnswersHelpfulness={updateAnswersHelpfulness}
-                reportQuestion={reportQuestion}
-                reportAnswer={reportAnswer}
-                openAddAnswerModal={openAddAnswerModal}
-                openAddQuestionModal={openAddQuestionModal}
-                getQuestionId={getQuestionId}
-              />
-            )}
+          <QuestionsList
+            questions={searched ? searchedArray : questionsArray}
+            updateQuestionsHelpfulness={updateQuestionsHelpfulness}
+            updateAnswersHelpfulness={updateAnswersHelpfulness}
+            reportQuestion={reportQuestion}
+            reportAnswer={reportAnswer}
+            openAddAnswerModal={openAddAnswerModal}
+            openAddQuestionModal={openAddQuestionModal}
+            getQuestionId={getQuestionId}
+          />
         </div>
       </div>
       <div>
         {showAddAnswerModal
           ? (
             <AddAnswer
-              questionId={questionId}
-              postNewAnswer={postNewAnswer}
-              closeAddAnswerModal={closeAddAnswerModal}
+            questionId={questionId}
+            postNewAnswer={postNewAnswer}
+            closeAddAnswerModal={closeAddAnswerModal}
             />
-          )
-          : null}
+            )
+            : null}
         {showAddQuestionModal
           ? (
             <AddQuestion
-              postNewQuestion={postNewQuestion}
-              closeAddQuestionModal={closeAddQuestionModal}
-              name={name}
+            postNewQuestion={postNewQuestion}
+            closeAddQuestionModal={closeAddQuestionModal}
+            name={name}
             />
-          )
-          : null}
+            )
+            : null}
       </div>
     </>
   );
 };
 
 export default QAndA;
+
+{/* )
+  : (
+    <QuestionsList
+    questions={questionsArray}
+    updateQuestionsHelpfulness={updateQuestionsHelpfulness}
+    updateAnswersHelpfulness={updateAnswersHelpfulness}
+    reportQuestion={reportQuestion}
+    reportAnswer={reportAnswer}
+    openAddAnswerModal={openAddAnswerModal}
+    openAddQuestionModal={openAddQuestionModal}
+    getQuestionId={getQuestionId}
+    />
+  )} */}
+// ? ( */

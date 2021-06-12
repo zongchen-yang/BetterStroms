@@ -131,6 +131,7 @@ function App() {
     <div>
       <div>Hello from App</div>
       <div>
+        {/* <Overview product={selectedProduct} /> */}
         {/* {console.log('this is when done rendering', stylesList)} */}
         <QAndA product={selectedProduct} />
       </div>

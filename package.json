@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "config.js",
   "scripts": {
-    "test": "jest ./public/bundle.js",
+    "test": "jest",
     "start": "node ./server/index.js",
     "react-dev": "npx webpack",
     "server-dev": "nodemon ./server/index.js"
