@@ -73,7 +73,7 @@ function App() {
       total /= product.reviews.length;
       product.starRating = total;
     }
-  };
+  }
 
   async function getReviews(id, index) {
     const product = productList[index];

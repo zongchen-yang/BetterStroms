@@ -28,19 +28,27 @@ const QAndA = (props) => {
     }
   }
 
-  // const getAnswers = async () => {
-  //   if (id) {
-  //     const results = await axios.get(`/qa/questions/${id}/answers?count=100`);
-  //     console.log('these are the answer results: ', results.data);
-  //   }
-  // };
+  const addHighlightedText = (body, input) => {
+    const frontIndex = body.indexOf(input)
+    const backIndex = body.indexOf(input) + input.length
+    if (body.includes(input)) {
+      const newBody = `${body.slice(0, frontIndex)}<mark>${input}</mark>${body.slice(backIndex)}`;
+      return newBody;
+    }
+  };
 
-  // console.log('this is product: ', product)
-
-  const onSearchClick = (value) => {
+  const onSearch = (value) => {
     if (value === '') {
       setSearchedArray(questionsArray);
       setSearched(false);
+    // } else {
+    //   let newArray = questionsArray.filter((question) => (
+    //     question.question_body.toLowerCase().includes(value.toLowerCase())
+    //   ));
+    //   for (const question of newArray) {
+    //     question.question_body = addHighlightedText(question.question_body, value.toLowerCase())
+    //   }
+    //   setSearchedArray([...newArray]);
     } else {
       setSearchedArray(questionsArray.filter((question) => (
         question.question_body.toLowerCase().includes(value.toLowerCase())
@@ -142,8 +150,8 @@ const QAndA = (props) => {
         <h3 className="QandA-title">
           Questions and Answers
         </h3>
-        <Search search={onSearchClick} />
-        <div className="questions-list">
+        <Search search={onSearch} />
+        <div className="questions-list-component">
           {searched
             ? (
               <QuestionsList
