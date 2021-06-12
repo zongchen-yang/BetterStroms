@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Related from './components/related/Related/RelatedList';
 import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
 import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
-// import QAndA from './components/qanda/QAndA';
 
-<<<<<<< HEAD
-// const fetch = require('node-fetch');
-
-=======
->>>>>>> a2bbcc9b578824dfbdbdf7c749dd7f33a6742757
 function App() {
   const [id, setId] = useState(20103);
   const [selectedProduct, setSelectedProduct] = useState();
@@ -98,7 +91,6 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  console.log(reviewMeta);
   return (
     <div>
       <div>Hello from App</div>
@@ -109,6 +101,7 @@ function App() {
       </div>
       <Related product={selectedProduct} />
       <Inventory product={selectedProduct} />
+      <QAndA product={selectedProduct} />
       <ReviewList
         product={selectedProduct}
         reviews={reviews}
