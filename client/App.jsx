@@ -9,18 +9,28 @@ const fetch = require('node-fetch');
 function App() {
   const [id, setId] = useState(20103);
   const [selectedProduct, setSelectedProduct] = useState();
-  // const [selecetedStyle, setSelectedStyle] = useState();
   const [favorites, setFavorites] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [reviewMeta, setReviewMeta] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   async function getProduct() {
     let product = await fetch(`/products/${id}`);
     product = await product.json();
-    product.starRating = 0;
-    product.styleThumbnail = [];
-    product.styleList = [];
-    setSelectedProduct(product);
+    const thisProduct = {
+      id: product.id,
+      category: product.category,
+      default_price: product.default_price,
+      description: product.description,
+      name: product.name,
+      slogan: product.slogan,
+      features: product.features,
+      starRating: null,
+      totalNumReviews: null,
+      styleThumbnail: [],
+      styleList: [],
+    };
+    setSelectedProduct(thisProduct);
   }
 
   async function getStyles() {
@@ -45,21 +55,7 @@ function App() {
     let response = await fetch(`/reviews?product_id=${id}`);
     response = await response.json();
     selectedProduct.totalNumReviews = response.results.length;
-    const reviewsTemp = response.results.map(async (review) => {
-      const thisReview = {
-        id: review.review_id,
-        body: review.body,
-        photos: review.photos,
-        summary: review.summary,
-        rating: review.rating,
-        recommend: review.recommend,
-        response: review.reponse,
-        reviewer_name: review.reviewer_name,
-      };
-      return thisReview;
-    });
-    const resolved = await Promise.all(reviewsTemp);
-    setReviews(resolved);
+    setReviews(response.results);
   };
 
   const calculateRating = (obj) => {
@@ -72,8 +68,9 @@ function App() {
   const getRatings = async () => {
     let rating = await fetch(`/reviews/meta?product_id=${id}`);
     rating = await rating.json();
+    setReviewMeta(rating);
     rating = calculateRating(rating);
-    selectedProduct.rating = rating;
+    selectedProduct.starRating = rating;
   };
 
   useEffect(() => {
@@ -93,7 +90,7 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  console.log(selectedProduct);
+  console.log(reviewMeta);
   return (
     <div>
       <div>Hello from App</div>
