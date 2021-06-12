@@ -36,7 +36,7 @@ function SmallCarousel({ style, clickHandler}) {
 
   // }, []);
   const renderedPhotos = style.photos.map((picObj, index) => (
-    <li key={i++} index={index}>
+    <div key={i++} index={index}>
       <div
         onClick={() => clickHandler(index)}
         onKeyPress={() => clickHandler(index)}

@@ -7,7 +7,7 @@ function Description({ slogan, text, feat }) {
       <p>{text}</p>
       <ul>
         {feat.map((item, index) => (
-          <li key={index}>
+          <div key={index}>
             {item.feature} : {item.value}
           </li>
         ))}

@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ReviewItem from './ReviewItem';
+import ReviewForm from './ReviewForm';
 
 const ReviewItems = (props) => {
   // eslint-disable-next-line prefer-const
+  const { reviewMeta } = props;
   let [currentList, increaseCurrentList] = useState(2);
-  const [reviews, setReviews] = useState(props.reviews);
+  let [showReviewForm, toggleShowReviewForm] = useState(false);
+  let [reviews, setReviews] = useState(props.reviews);
+  let [reviewFilter, setReviewFilter] = useState(props.reviewFilter);
+
 
   const seeMoreHandler = () => {
     increaseCurrentList(currentList += 2);
@@ -100,6 +105,28 @@ const ReviewItems = (props) => {
     sorter(temp);
   };
 
+  const filterReviews = () => {
+    if (reviewFilter.length) {
+      let temp = [];
+      for (var f = 0; f < reviews.length; f++) {
+        if (reviewFilter.indexOf(reviews[f].rating) > -1) {
+          temp.push(reviews[f]);
+        }
+      }
+      setReviews([...temp]);
+    } else {
+      setReviews([...props.reviews]);
+    };
+  };
+
+  useEffect(() => {
+    filterReviews();
+  }, [reviewFilter]);
+
+  const showReviewFormHandler = () => {
+    toggleShowReviewForm(!showReviewForm);
+  };
+
   return (
     <div>
       <ul className="reviewListBox">
@@ -109,10 +136,12 @@ const ReviewItems = (props) => {
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>
         </select>
-        {(reviews && reviews.length > 2) ? <button type="button" onClick={seeMoreHandler}>See More</button> : null}
         {reviews.length ? reviews.map((review) => (
           <ReviewItem review={review} />
         )).slice(0, currentList) : null}
+        {(reviews && reviews.length > 2) ? <button type="button" onClick={seeMoreHandler}>See More</button> : null}
+        <button type="button" onClick={showReviewFormHandler}>Write a Review</button>
+        {showReviewForm ? <ReviewForm showReviewFormHandler={showReviewFormHandler} reviewMeta={reviewMeta} /> : null}
       </ul>
     </div>
   );

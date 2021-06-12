@@ -2,7 +2,9 @@
   float: right;
   border-color: black;
   border-style: groove;
-  width: 60%
+  width: 50%;
+  max-height: 45em;
+  overflow-y: scroll;
 }
 
 .review {
@@ -34,20 +36,161 @@
   border-color: black;
   border-style: solid;
   position: static;
-  width: 30%;
+  width: 40%;
+  clear: both;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
+
+#clearButton {
+  left: 30%;
+  position: relative;
+}
+
+.reviewBreakdownItem {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+
+/* .reviewBreakdownItem :hover {
+  background-color: burlywood;
+} */
+
 
 #reviewTotal {
   float: left;
-  width: 90%;
+  width: 70%;
   background-color: grey;
+  position: relative;
+}
+
+#reviewTotal :hover {
+  background-color: burlywood;
 }
 
 #starDistribution {
-  height: 30px;
+  height: 15px;
   background-color: #04AA6D;
 }
 
+#starDistribution :hover {
+  background-color: burlywood;
+}
+
 .declareStars {
-  float: left
+  float: left;
+  width: 28%;
+  position: relative;
+}
+
+.recommended {
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+
+.subcomponent-breakdown-container {
+  float: left;
+  position: relative;
+  width: 100%;
+  clear: both;
+  left: 4%
+}
+
+.componentTypeHolder {
+  text-align: center;
+  float: left;
+  position: relative;
+  width: 100%;
+}
+
+.componentTitle {
+  text-align: center;
+  font-size: small;
+  font-weight: bold;
+  float: left;
+  position: relative;
+  width: 100%;
+}
+
+.componentBreakdownHolder {
+  position: relative;
+  width: 100%;
+  float: left;
+  padding-bottom: 2%;
+}
+
+.tooSmall {
+  float: left;
+  width: 33.33%;
+  font-size: smaller;
+  text-align: center;
+}
+
+.perfectFit {
+  float: left;
+  width: 33.33%;
+  font-size: smaller;
+  text-align: center;
+}
+
+.tooBig {
+  float: left;
+  width: 33.33%;
+  font-size: smaller;
+  text-align: center;
+}
+
+.breakdownPercentageHolder {
+  width: 90%;
+  background-color: grey;
+  float: left;
+  position: relative;
+}
+
+.breakdownPercentage {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+
+.add-review-box {
+  position: fixed;
+  border: 1px solid black;
+  top: 20%;
+  right: 30%;
+  width: 600px;
+  clear: both;
+  background: white;
+  z-index: 1;
+}
+
+.reviewFormStarContainer {
+  width: 100%;
+  float: left;
+}
+
+.reviewStar {
+  position: relative;
+  float: left;
+}
+
+/* .fas fa-star {
+  float: left;
+} */
+
+.formReviewRatingDescription {
+  float: left;
+  position: relative;
+}
+
+.review-characteristic-label {
+  padding-top: 3%;
+  text-align: center;
+  width: 100%;
+}
+
+.radio-selection {
+  padding-inline-end: 2%;
 }
