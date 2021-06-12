@@ -4,8 +4,6 @@ import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
 import Overview from './components/overview/Overview';
 
-const fetch = require('node-fetch');
-
 function App() {
   const [id, setId] = useState(20103);
   const [selectedProduct, setSelectedProduct] = useState();
@@ -90,7 +88,6 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  console.log(reviewMeta);
   return (
     <div>
       <div>Hello from App</div>
