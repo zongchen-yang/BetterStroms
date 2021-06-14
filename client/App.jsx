@@ -125,7 +125,7 @@ function App() {
         });
     }
     initialize();
-  }, []);
+  }, [id]);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
