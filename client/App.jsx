@@ -111,11 +111,10 @@ function App() {
 
   useEffect(() => {
     async function initialize() {
-      let fetchProduct, fetchStyles, fetchReviews, fetchRatings;
-      fetchProduct = await getProduct();
-      fetchStyles = getStyles(fetchProduct);
-      fetchReviews = getReviews(fetchProduct);
-      fetchRatings = getRatings(fetchProduct);
+      const fetchProduct = await getProduct();
+      const fetchStyles = getStyles(fetchProduct);
+      const fetchReviews = getReviews(fetchProduct);
+      const fetchRatings = getRatings(fetchProduct);
       Promise.all([fetchStyles, fetchReviews, fetchRatings])
         .then(([fetchedStyles, fetchedReviews, fetchedRatings]) => {
           fetchProduct.styleList = fetchedStyles;
