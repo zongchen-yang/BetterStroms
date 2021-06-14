@@ -135,7 +135,7 @@ const QAndA = (props) => {
   const closeModals = () => {
     closeAddAnswerModal();
     closeAddQuestionModal();
-  }
+  };
 
   useEffect(() => { getQuestions(); }, [id]);
 
