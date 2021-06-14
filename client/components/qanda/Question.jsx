@@ -12,7 +12,6 @@ const Question = (props) => {
     openAddAnswerModal,
     getQuestionId,
     answerCount,
-    // loadMoreAnswers,
   } = props;
   const { question_id, question_body, question_helpfulness, asker_name, answers } = question;
   let [totalAnswerCount, upTotalAnswerCount] = useState(2);
