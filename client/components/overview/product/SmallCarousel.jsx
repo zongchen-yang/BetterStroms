@@ -33,9 +33,6 @@ function SmallCarousel({ style, clickHandler}) {
     setStartIndex(nextStartIndex);
   }
 
-  // useEffect(() => {
-
-  // }, []);
   const renderedPhotos = style.photos.map((picObj, index) => (
     <span
       key={i++}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Related from './components/related/Related/RelatedList';
 import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
+import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
 
 function App() {
@@ -28,13 +29,13 @@ function App() {
       styleThumbnail: [],
       styleList: [],
     };
-    return product
+    return thisProduct;
   }
 
-  async function getStyles(fetchProduct) {
+  async function getStyles() {
     let response = await fetch(`/products/${id}/styles`);
     response = await response.json();
-    let styles = [];
+    const styles = [];
     response.results.forEach(async (style) => {
       const thisStyle = {
         id: style.style_id,
@@ -44,7 +45,6 @@ function App() {
         photos: style.photos,
         skus: style.skus,
       };
-      //styles.styleThumbnail.push(style.photos[0].thumbnail_url);
       styles.push(thisStyle);
     });
     return styles;
@@ -57,18 +57,20 @@ function App() {
     return response.results;
   };
 
-  const calculateRating = (obj) => {
+  const calculateRating = (obj, fetchProduct) => {
     const total = Object.keys(obj.ratings).reduce((accumRating, curr) =>
     accumRating + parseInt(curr) * parseInt(obj.ratings[curr]), 0);
     const amount = Object.values(obj.ratings).reduce((accum, curr) => accum + parseInt(curr), 0);
+    fetchProduct.totalNumReviews = amount;
     return (total / amount) || 0;
   };
 
   const getRatings = async (fetchProduct) => {
     let rating = await fetch(`/reviews/meta?product_id=${id}`);
+
     rating = await rating.json();
     setReviewMeta(rating);
-    rating = calculateRating(rating);
+    rating = calculateRating(rating, fetchProduct);
     fetchProduct.starRating = rating;
   };
 
@@ -105,15 +107,13 @@ function App() {
       fetchStyles = getStyles(fetchProduct);
       fetchReviews = getReviews(fetchProduct);
       fetchRatings = getRatings(fetchProduct);
-      console.log('calling promise.all')
       Promise.all([fetchStyles, fetchReviews, fetchRatings])
-        .then( ([fetchedStyles, fetchedReviews, fetchedRatings]) => {
+        .then(([fetchedStyles, fetchedReviews, fetchedRatings]) => {
           fetchProduct.styleList = fetchedStyles;
-          console.log(fetchProduct)
           setSelectedProduct(fetchProduct);
           setReviews(fetchedReviews);
           setIsLoaded(true);
-        })
+        });
     }
     initialize();
   }, []);
@@ -122,12 +122,19 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  console.log(reviewMeta);
   return (
     <div>
       <Overview product={selectedProduct} favoriteCH={favoriteCH} cartCH={cartCH} />
       <Related product={selectedProduct} />
       <Inventory product={selectedProduct} />
+      <QAndA product={selectedProduct} />
+      <ReviewList
+        product={selectedProduct}
+        reviews={reviews}
+        overallRating={selectedProduct.starRating}
+        reviewMeta={reviewMeta}
+        // totalNumberOfRatings={selectedProduct.totalNumReviews}
+      />
     </div>
   );
 }

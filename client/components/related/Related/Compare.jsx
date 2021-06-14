@@ -40,7 +40,7 @@ const Compare = ({ product, related, setShowCompare }) => {
       document.removeEventListener("mousedown", handleClick);
     };
   }, []);
-
+  console.log('got here');
   return (
     <div className="compare" id="compare" ref={node}>
       <h5>COMPARING</h5>
