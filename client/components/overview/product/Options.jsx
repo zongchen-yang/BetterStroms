@@ -16,6 +16,7 @@ function Options({ product, sku, style, chs }) {
   let sizeSelect;
   let cartButton;
   let sizeSelectWarning;
+  let price;
 
   function optionsCartHandler() {
     // const event = new MouseEvent('mousedown', {
@@ -99,7 +100,16 @@ function Options({ product, sku, style, chs }) {
     );
   }
 
-  // useEffect(() => {}, [sizeSelectWarning]);
+  if (style.sale_price) {
+    price = (
+      <span>
+        <span id="display-sale-price">{style.sale_price} </span>
+        <span id="display-old-price">{style.original_price}</span>
+      </span>
+    );
+  } else {
+    price = <span>{style.original_price}</span>;
+  }
 
   return (
     <div id="options-container">
@@ -115,8 +125,12 @@ function Options({ product, sku, style, chs }) {
       <h1>{product.name}</h1>
       <p>
         Price:
-        {product.default_price}
+        <span>{price}</span>
       </p>
+      <button type="button">FB</button>
+      <button type="button">TTR</button>
+      <button type="button">PIN</button>
+      <br />
       <strong>Style</strong>
       {'>'}
       {style.name}

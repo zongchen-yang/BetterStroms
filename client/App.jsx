@@ -6,7 +6,7 @@ import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
 
 function App() {
-  const [id, setId] = useState(20104);
+  const [id, setId] = useState(20100);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useState([]);
   const [reviews, setReviews] = useState([]);
