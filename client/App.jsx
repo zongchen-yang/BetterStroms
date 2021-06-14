@@ -4,7 +4,7 @@ import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
 import Overview from './components/overview/Overview';
 
-const fetch = require('node-fetch');
+const fetch = require('node-fetch')
 
 function App() {
   const [id, setId] = useState(20103);
@@ -30,32 +30,33 @@ function App() {
       styleThumbnail: [],
       styleList: [],
     };
-    setSelectedProduct(thisProduct);
+    return product
   }
 
-  async function getStyles() {
+  async function getStyles(fetchProduct) {
     let response = await fetch(`/products/${id}/styles`);
     response = await response.json();
+    let styles = [];
     response.results.forEach(async (style) => {
       const thisStyle = {
         id: style.style_id,
         name: style.name,
-        default_price: selectedProduct.default_price,
         original_price: style.original_price,
         sale_price: style.sale_price,
         photos: style.photos,
         skus: style.skus,
       };
-      selectedProduct.styleThumbnail.push(style.photos[0].thumbnail_url);
-      selectedProduct.styleList.push(thisStyle);
+      //styles.styleThumbnail.push(style.photos[0].thumbnail_url);
+      styles.push(thisStyle);
     });
+    return styles;
   }
 
-  const getReviews = async () => {
+  const getReviews = async (fetchProduct) => {
     let response = await fetch(`/reviews?product_id=${id}`);
     response = await response.json();
-    selectedProduct.totalNumReviews = response.results.length;
-    setReviews(response.results);
+    fetchProduct.totalNumReviews = response.results.length;
+    return response.results;
   };
 
   const calculateRating = (obj) => {
@@ -65,12 +66,12 @@ function App() {
     return (total / amount) || 0;
   };
 
-  const getRatings = async () => {
+  const getRatings = async (fetchProduct) => {
     let rating = await fetch(`/reviews/meta?product_id=${id}`);
     rating = await rating.json();
     setReviewMeta(rating);
     rating = calculateRating(rating);
-    selectedProduct.starRating = rating;
+    fetchProduct.starRating = rating;
   };
 
   function favoriteCH(style) {
@@ -100,17 +101,24 @@ function App() {
   }
 
   useEffect(() => {
-    getProduct();
-  }, []);
-
-  useEffect(() => {
-    if (selectedProduct) {
-      getStyles();
-      getReviews();
-      getRatings();
-      setIsLoaded(true);
+    async function initialize() {
+      let fetchProduct, fetchStyles, fetchReviews, fetchRatings;
+      fetchProduct = await getProduct();
+      fetchStyles = getStyles(fetchProduct);
+      fetchReviews = getReviews(fetchProduct);
+      fetchRatings = getRatings(fetchProduct);
+      console.log('calling promise.all')
+      Promise.all([fetchStyles, fetchReviews, fetchRatings])
+        .then( ([fetchedStyles, fetchedReviews, fetchedRatings]) => {
+          fetchProduct.styleList = fetchedStyles;
+          console.log(fetchProduct)
+          setSelectedProduct(fetchProduct);
+          setReviews(fetchedReviews);
+          setIsLoaded(true);
+        })
     }
-  }, [selectedProduct]);
+    initialize();
+  }, []);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -119,10 +127,6 @@ function App() {
   console.log(reviewMeta);
   return (
     <div>
-      <div>Hello from App</div>
-      <div>
-        {/* <Overview product={selectedProduct} /> */}
-      </div>
       <Overview product={selectedProduct} favoriteCH={favoriteCH} cartCH={cartCH} />
       <Related product={selectedProduct} />
       <Inventory product={selectedProduct} />

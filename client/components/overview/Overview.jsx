@@ -11,6 +11,9 @@ function Overview({ product, favoriteCH, cartCH }) {
   const [selectedSku, setSelectedSku] = useState({ quantity: 0, size: 'empty' });
 
   useEffect(() => {
+    console.log('useeffect in overview')
+    console.log(product);
+    console.log(product.styleList[0])
     setSelectedStyle(product.styleList[0]);
     setIsLoaded(true);
   }, []);
