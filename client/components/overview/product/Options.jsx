@@ -40,18 +40,7 @@ function Options({ product, sku, style, chs }) {
     } else {
       const quantSelector = document.getElementById('quantity-select');
       const quantValue = quantSelector.value;
-      console.log('product id', product.id);
-      console.log('product name', product.name);
-      console.log('style', style.name);
-      console.log('styleid:', style.id);
-      console.log('quantity:', quantValue);
-      console.log('size', sku.size);
-      console.log('price', product.default_price);
-      console.log('on sale', style.sale_price);
-      console.log('style price', style.original_price)
-      console.log(style);
-      console.log(sku);
-      cartCH(product, style, quantValue, sku.size);
+      cartCH(style, quantValue, sku);
     }
   }
 

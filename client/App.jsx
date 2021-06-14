@@ -6,7 +6,7 @@ import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
 
 function App() {
-  const [id, setId] = useState(20103);
+  const [id, setId] = useState(20104);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -96,8 +96,17 @@ function App() {
     }
   }
 
-  function cartCH() {
-
+  function cartCH(style, quantity, sku) {
+    console.log('product id', selectedProduct.id);
+    console.log('product name', selectedProduct.name);
+    console.log('style', style.name);
+    console.log('styleid:', style.id);
+    console.log('quantity:', quantity);
+    console.log('size', sku.size);
+    console.log('sku', sku.value);
+    console.log('price', selectedProduct.default_price);
+    console.log('on sale', style.sale_price);
+    console.log('style price', style.original_price);
   }
 
   useEffect(() => {
