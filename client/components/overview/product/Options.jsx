@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import QuantSelector from './QuantSelector';
-// import Select from 'react-select';
+import Select from 'react-select';
 
 //         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
 
@@ -17,6 +17,7 @@ function Options({ product, sku, style, chs }) {
   let cartButton;
   let sizeSelectWarning;
   let price;
+  let selectOptions;
 
   function optionsCartHandler() {
     // const event = new MouseEvent('mousedown', {
@@ -45,15 +46,22 @@ function Options({ product, sku, style, chs }) {
     }
   }
 
-  function sizeSelectedCH(event) {
-    if (event.target.value !== 'disabled') {
+  // function sizeSelectedCH(event) {
+  //   if (event.target.value !== 'disabled') {
+  //     setSizeNotSelected(false);
+  //     sizeCH(event.target.value);
+  //   } else {
+  //     setSizeNotSelected(true);
+  //   }
+  // }
+  function sizeSelectedCH(selectedOption) {
+    if (selectedOption.value !== 'disabled') {
       setSizeNotSelected(false);
-      sizeCH(event.target.value);
+      sizeCH(selectedOption.value);
     } else {
       setSizeNotSelected(true);
     }
   }
-
   if (sizeNotSelected) {
     sizeSelectWarning = <span id="size-select-warning">Please select a size:</span>;
   } else {
@@ -75,29 +83,44 @@ function Options({ product, sku, style, chs }) {
 
   if (inStock) {
     cartButton = <button type="button" onClick={optionsCartHandler}>Add to Cart</button>;
-    sizeSelect = (
-      <select onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
-        <option value="disabled">Select Size</option>
-        {/* Object.keys returns an array = ['sku1', sku2', ...] */}
-        {Object.keys(style.skus).map((currentSkuString) => {
-          const skuInt = parseInt(currentSkuString, 10);
-          const skuObj = style.skus[skuInt];
-          if (skuObj === undefined) {
-            return null;
-          }
-          return (
-            <option key={skuInt} value={skuInt}>{skuObj.size}</option>
-          );
-        })}
-      </select>
-    );
+    selectOptions = [
+      {value: 'disabled', label: 'Select Size'}
+    ];
+    Object.keys(style.skus).map((currentSkuString) => {
+      const skuInt = parseInt(currentSkuString, 10);
+      const skuObj = style.skus[skuInt];
+      if (skuObj === undefined) {
+        return null;
+      }
+      const result = {value: skuInt, label: skuObj.size};
+      selectOptions.push(result);
+    });
+    // sizeSelect = (
+    //   <select onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
+    //     <option value="disabled">Select Size</option>
+    //     {/* Object.keys returns an array = ['sku1', sku2', ...] */}
+    //     {Object.keys(style.skus).map((currentSkuString) => {
+    //       const skuInt = parseInt(currentSkuString, 10);
+    //       const skuObj = style.skus[skuInt];
+    //       if (skuObj === undefined) {
+    //         return null;
+    //       }
+    //       return (
+    //         <option key={skuInt} value={skuInt}>{skuObj.size}</option>
+    //       );
+    //     })}
+    //   </select>
+    // );
   } else {
     cartButton = <button hidden type="button" onClick={cartCH}>Add to Cart</button>;
-    sizeSelect = (
-      <select name="size" id="size-select">
-        <option value="disabled" disabled>OUT OF STOCK</option>
-      </select>
-    );
+    selectOptions = [
+      {value: 'disabled', label: 'OUT OF STOCK'}
+    ];
+    // sizeSelect = (
+    //   <select name="size" id="size-select">
+    //     <option value="disabled" disabled>OUT OF STOCK</option>
+    //   </select>
+    // );
   }
 
   if (style.sale_price) {
@@ -151,7 +174,8 @@ function Options({ product, sku, style, chs }) {
         {sizeSelectWarning}
         <label htmlFor="size-select">
           Size:
-          {sizeSelect}
+          {/* {sizeSelect} */}
+          {sizeNotSelected ? <Select menuIsOpen={true} options={selectOptions} onChange={sizeSelectedCH} /> : <Select options={selectOptions} onChange={sizeSelectedCH} /> }
         </label>
         <QuantSelector sku={sku} />
         {cartButton}

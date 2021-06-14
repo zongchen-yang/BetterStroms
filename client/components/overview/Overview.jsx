@@ -13,14 +13,9 @@ function Overview({ product, favoriteCH, cartCH }) {
   useEffect(() => {
     setSelectedStyle(product.styleList[0]);
     setIsLoaded(true);
-  }, []);
-
-  useEffect(() => {
-    setSelectedStyle(product.styleList[0]);
   }, [product]);
 
   function mainImageCH(direction) {
-    // const { index } = product;
     let nextIndex = photoIndex;
     if (direction === 'right') {
       nextIndex += 1;
