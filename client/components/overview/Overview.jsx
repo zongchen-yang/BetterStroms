@@ -4,7 +4,7 @@ import Options from './product/Options';
 import Description from './product/Description';
 import SmallCarousel from './product/SmallCarousel';
 
-function Overview({ product }) {
+function Overview({ product, favoriteCH, cartCH }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -18,14 +18,6 @@ function Overview({ product }) {
   useEffect(() => {
     setSelectedStyle(product.styleList[0]);
   }, [product]);
-
-  function cartCH(event) {
-
-  }
-
-  function favoriteCH(event) {
-
-  }
 
   function mainImageCH(direction) {
     // const { index } = product;
@@ -45,20 +37,23 @@ function Overview({ product }) {
   }
 
   function sizeCH(event) {
-    const skuInt = event.target.value;
+    const skuInt = event.target.value
+    if (skuInt === 'disabled') {
+      setSelectedSku({ quantity: 0, size: 'empty' });
+      return null;
+    }
     setSelectedSku(selectedStyle.skus[skuInt]);
-
-    // setSelectedSku({ quantity: 0, size: 'empty' });
   }
 
   function styleCH(i) {
-    setPhotoIndex(0);
+    setPhotoIndex(product.styleList[i].lastViewedIndex);
     setSelectedStyle(product.styleList[i]);
     setSelectedSku({ quantity: 0, size: 'empty' });
   }
 
   function smallCarouselClickHandler(i) {
     setPhotoIndex(i);
+    selectedStyle.lastViewedIndex = i;
   }
 
   const style = selectedStyle;
@@ -72,7 +67,7 @@ function Overview({ product }) {
     return <div>Loading overview...</div>;
   }
   return (
-    <div>
+    <div id="overview">
       <div id="overviewContainer">
         <SmallCarousel style={style} clickHandler={smallCarouselClickHandler} />
         <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
