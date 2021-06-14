@@ -114,13 +114,13 @@ function Options({ product, sku, style, chs }) {
   return (
     <div id="options-container">
       <span>Stars {product.starRating}</span>
-      <button type="button">
+      <a href="#clearButton">
         Read All
         {' '}
         {product.totalNumReviews}
         {' '}
         Reviews
-      </button>
+      </a>
       <h3>{product.category}</h3>
       <h1>{product.name}</h1>
       <p>
