@@ -8,7 +8,7 @@ function Overview({ product, favoriteCH, cartCH }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [selectedSku, setSelectedSku] = useState({ quantity: 0, size: 'empty' });
+  const [selectedSku, setSelectedSku] = useState({ quantity: 0, size: 'empty', value: 0 });
 
   useEffect(() => {
     setSelectedStyle(product.styleList[0]);
@@ -36,19 +36,20 @@ function Overview({ product, favoriteCH, cartCH }) {
     setPhotoIndex(nextIndex);
   }
 
-  function sizeCH(event) {
-    const skuInt = event.target.value
+  function sizeCH(value) {
+    const skuInt = value;
     if (skuInt === 'disabled') {
-      setSelectedSku({ quantity: 0, size: 'empty' });
+      setSelectedSku({ quantity: 0, size: 'empty', value: 0 });
       return null;
     }
+    selectedStyle.skus[skuInt].value = skuInt;
     setSelectedSku(selectedStyle.skus[skuInt]);
   }
 
   function styleCH(i) {
     setPhotoIndex(product.styleList[i].lastViewedIndex);
     setSelectedStyle(product.styleList[i]);
-    setSelectedSku({ quantity: 0, size: 'empty' });
+    setSelectedSku({ quantity: 0, size: 'empty', value: 0 });
   }
 
   function smallCarouselClickHandler(i) {

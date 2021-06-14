@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import QuantSelector from './QuantSelector';
 // import Select from 'react-select';
 
 //         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
 
 function Options({ product, sku, style, chs }) {
+  const [sizeNotSelected, setSizeNotSelected] = useState(false);
   const {
     styleCH, sizeCH, cartCH, favoriteCH
   } = chs;
@@ -14,7 +15,7 @@ function Options({ product, sku, style, chs }) {
   let totalQuantity = 0;
   let sizeSelect;
   let cartButton;
-
+  let sizeSelectWarning;
 
   function optionsCartHandler() {
     // const event = new MouseEvent('mousedown', {
@@ -26,6 +27,7 @@ function Options({ product, sku, style, chs }) {
 
     // sizeElement.dispatchEvent(event);
     if (sku.size === 'empty') {
+      setSizeNotSelected(true);
     //   // document.getElementById('size-select').focus();
     //   // document.getElementById('size-select').click();
     //   // defaultMenuIsOpen={true}
@@ -36,8 +38,36 @@ function Options({ product, sku, style, chs }) {
     //   const sizeSelect = document.getElementById('size-select');
     //   sizeSelect.dispatchEvent(event);
     } else {
-      sizeCH();
+      const quantSelector = document.getElementById('quantity-select');
+      const quantValue = quantSelector.value;
+      console.log('product id', product.id);
+      console.log('product name', product.name);
+      console.log('style', style.name);
+      console.log('styleid:', style.id);
+      console.log('quantity:', quantValue);
+      console.log('size', sku.size);
+      console.log('price', product.default_price);
+      console.log('on sale', style.sale_price);
+      console.log('style price', style.original_price)
+      console.log(style);
+      console.log(sku);
+      cartCH(product, style, quantValue, sku.size);
     }
+  }
+
+  function sizeSelectedCH(event) {
+    if (event.target.value !== 'disabled') {
+      setSizeNotSelected(false);
+      sizeCH(event.target.value);
+    } else {
+      setSizeNotSelected(true);
+    }
+  }
+
+  if (sizeNotSelected) {
+    sizeSelectWarning = <span id="size-select-warning">Please select a size:</span>;
+  } else {
+    sizeSelectWarning = <span id="size-select-warning" />;
   }
 
   if (style.skus) {
@@ -52,14 +82,11 @@ function Options({ product, sku, style, chs }) {
   } else {
     favoriteButton = <button type="button" onClick={() => favoriteCH(style)}>Star</button>;
   }
-  function tempFunction(event) {
-    console.log(event)
-    // onMouseDown={(e) => tempFunction(e)}
-  }
+
   if (inStock) {
     cartButton = <button type="button" onClick={optionsCartHandler}>Add to Cart</button>;
     sizeSelect = (
-      <select onChange={(e) => sizeCH(e)} name="size" id="size-select">
+      <select onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
         <option value="disabled">Select Size</option>
         {/* Object.keys returns an array = ['sku1', sku2', ...] */}
         {Object.keys(style.skus).map((currentSkuString) => {
@@ -82,6 +109,8 @@ function Options({ product, sku, style, chs }) {
       </select>
     );
   }
+
+  // useEffect(() => {}, [sizeSelectWarning]);
 
   return (
     <div id="options-container">
@@ -116,6 +145,7 @@ function Options({ product, sku, style, chs }) {
         ))}
       </div>
       <form>
+        {sizeSelectWarning}
         <label htmlFor="size-select">
           Size:
           {sizeSelect}
