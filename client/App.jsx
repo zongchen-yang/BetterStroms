@@ -44,6 +44,7 @@ function App() {
         sale_price: style.sale_price,
         photos: style.photos,
         skus: style.skus,
+        lastViewedIndex: 0,
       };
       styles.push(thisStyle);
     });
