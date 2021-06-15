@@ -66,6 +66,7 @@ function App() {
   };
 
   const deleteFavoriteCH = (item) => {
+    // item.styles[]isFavorite = false;
     const copy = favorites.slice();
     const toDelete = copy.indexOf(item);
     console.log(toDelete);
