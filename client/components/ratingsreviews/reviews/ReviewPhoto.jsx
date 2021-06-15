@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const ReviewPhoto = (props) => {
   const [showModal, changeShowModal] = useState(false);
-  const { photo } = props;
+  const { photo, key } = props;
 
   const photoClickHandler = (e) => {
     changeShowModal(!showModal);
@@ -11,7 +11,8 @@ const ReviewPhoto = (props) => {
 
   return (
     <>
-      <img src={photo.url} alt="alt text" className="reviewPhotoThumbnail" onClick={(e) => photoClickHandler(e)} />
+      <img src={photo.url} alt="alt text" className="reviewPhotoThumbnail"
+      id={key} onClick={(e) => photoClickHandler(e)} />
       {showModal && (
       <img className="reviewPhotoFullsize" src={photo.url} onClick={photoClickHandler} alt="no image" />
       )}

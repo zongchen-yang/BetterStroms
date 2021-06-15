@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReviewPhoto from './ReviewPhoto';
+import RenderStars from './RenderStars';
 
 const ReviewItem = (props) => {
   const { review } = props;
+  const { key } = props;
 
   const [reviewDate, setDate] = useState('');
   const [reviewHelpfulness, setHelpfulness] = useState(0);
@@ -57,16 +59,16 @@ const ReviewItem = (props) => {
 
   return (
     <div>
-      <ul className="review">
+      <ul className="review" key={key} >
         <h6 className="rating">
           Rating:
-          {review.rating}
+          <RenderStars rating={review.rating} />
         </h6>
         <div>{reviewDate}</div>
         <h3>{review.summary}</h3>
         <p>{review.body}</p>
-        {review.photos.length ? review.photos.map((photo) => (
-          <ReviewPhoto photo={photo} />)).slice(0, 5) : null}
+        {review.photos.length ? review.photos.map((photo, index) => (
+          <ReviewPhoto photo={photo} key={index} />)).slice(0, 5) : null}
         {review.recommend ? (
           <div>
             I recommend this product

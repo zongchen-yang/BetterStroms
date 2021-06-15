@@ -40,7 +40,7 @@ const ReviewList = ({ reviews, product, overallRating, reviewMeta }) => {
   };
 
   return (
-    <div>
+    <div className="reviews-component-holder">
       <h5>Ratings and Reviews</h5>
       {reviews.length
         ? (
@@ -58,6 +58,7 @@ const ReviewList = ({ reviews, product, overallRating, reviewMeta }) => {
               reviews={reviews}
               reviewFilter={reviewFilter}
               reviewMeta={reviewMeta}
+              id={id}
             />
           </>
         )

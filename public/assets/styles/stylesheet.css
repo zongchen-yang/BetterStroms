@@ -160,13 +160,18 @@
 .input-flavor {
   font-size: .8em;
   color: gray;
+}
+
 .reviewListBox {
+  position: relative;
+  top: 5%;
   float: right;
   border-color: black;
   border-style: groove;
-  width: 50%;
+  width: 55%;
   max-height: 45em;
   overflow-y: scroll;
+  margin: 0%;
 }
 
 .review {
@@ -194,6 +199,8 @@
 }
 
 .reviewBreakdownBox {
+  position: relative;
+  top: 5%;
   float: left;
   border-color: black;
   border-style: solid;
@@ -318,11 +325,11 @@
 }
 
 .add-review-box {
+  font-family: sans-serif;
   position: fixed;
   border: 1px solid black;
   top: 20%;
   right: 30%;
-  width: 600px;
   clear: both;
   background: white;
   z-index: 1;
@@ -354,5 +361,35 @@
 }
 
 .radio-selection {
-  padding-inline-end: 2%;
+  display: inline-block;
+
+}
+
+.review-shownRating {
+  position: relative;
+  bottom: 0px;
+  left: 0;
+  display: flex;
+}
+
+.review-hiddenRating {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  display: flex;
+}
+
+.characterstic-radio-container {
+  position: relative;
+  width: 100%;
+}
+
+/* .review-characteristic-supercontainer {
+  float: left;
+  position: relative;
+  width: 100%;
+} */
+
+.body-input-length {
+  font-size: x-small;
 }
