@@ -1,3 +1,11 @@
+html {
+  scroll-behavior: smooth;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .QandA-module {
   font-family: sans-serif;
 }
