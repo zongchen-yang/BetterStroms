@@ -65,9 +65,22 @@ function App() {
     return (total / amount) || 0;
   };
 
+  const deleteFavoriteCH = (item) => {
+    const copy = favorites.slice();
+    const toDelete = copy.indexOf(item);
+    console.log(toDelete);
+    copy.splice(toDelete, 1);
+    setFavorites(copy);
+  };
+
+  const displayItemCH = (num) => {
+    setIsLoaded(false);
+    setId(num);
+    // getProduct();
+  };
+
   const getRatings = async () => {
     let rating = await fetch(`/reviews/meta?product_id=${id}`);
-
     rating = await rating.json();
     setReviewMeta(rating);
     rating = calculateRating(rating);
@@ -76,7 +89,7 @@ function App() {
 
   useEffect(() => {
     getProduct();
-  }, []);
+  }, [id]);
 
   useEffect(async () => {
     if (selectedProduct) {
@@ -95,12 +108,10 @@ function App() {
     <div>
       <div>Hello from App</div>
       <div>
-        {selectedProduct.styleList
-          ? <Overview product={selectedProduct} />
-          : null}
+        <Overview product={selectedProduct} />
       </div>
-      <Related product={selectedProduct} />
-      <Inventory product={selectedProduct} />
+      <Related product={selectedProduct} displayItemCH={displayItemCH} />
+      <Inventory favorites={favorites} deleteFavoriteCH={deleteFavoriteCH} setId={setId} />
       <QAndA product={selectedProduct} />
       <ReviewList
         product={selectedProduct}

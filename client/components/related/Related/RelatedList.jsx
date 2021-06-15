@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import RelatedItem from './RelatedItem';
 import Compare from './Compare';
 
-const RelatedList = ({ product }) => {
+const RelatedList = ({ product, displayItemCH }) => {
   const [related, setRelated] = useState([]);
   const [items, setItems] = useState([]);
   const [showCompare, setShowCompare] = useState(false);
@@ -70,11 +70,16 @@ const RelatedList = ({ product }) => {
   const showCompareCH = (item) => {
     setSelectedItem(item);
     setShowCompare(true);
-    console.log('clicked!');
   };
 
   const rightCH = () => {
+    const rightIndex = items.indexOf(window[2]);
+    setWindow(items.slice(rightIndex + 1, rightIndex + 4));
+  };
 
+  const leftCH = () => {
+    const leftIndex = items.indexOf(window[0]);
+    setWindow(items.slice(leftIndex - 3, leftIndex));
   };
 
   if (!pageReady) {
@@ -85,9 +90,16 @@ const RelatedList = ({ product }) => {
     <div>
       <h3 className="title">RELATED PRODUCTS</h3>
       <div className="list">
-        { window && window[0] && window[0].index !== 0 ? <button type="button">left</button> : null}
-        { window.map((each) => <RelatedItem item={each} showCompareCH={showCompareCH} />)}
-        { window && window[2] && window[2].index !== items.length - 1 ? <button type="button">right</button> : null}
+        {window && window[0] && window[0].index !== 0 ? <button type="button" onClick={leftCH}>left</button> : null}
+        {window.map((each, i) => (
+          <RelatedItem
+            key={i}
+            item={each}
+            showCompareCH={showCompareCH}
+            displayItemCH={displayItemCH}
+          />
+          ))}
+        {window && window[2] && window[2].index !== items.length - 1 ? <button type="button" onClick={rightCH}>right</button> : null}
       </div>
       {selectedItem && showCompare
         ? <Compare product={product} related={selectedItem} setShowCompare={setShowCompare} />
