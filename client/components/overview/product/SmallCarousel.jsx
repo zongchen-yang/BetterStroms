@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function SmallCarousel({ style, clickHandler}) {
   const [startIndex, setStartIndex] = useState(0);
+  const [upHidden, setUpHidden] = useState(false);
+  const [downHidden, setDownHidden] = useState(false);
+  let buttonUp;
+  let buttonDown;
   if (style.photos === undefined) {
     return null;
   }
@@ -44,11 +48,30 @@ function SmallCarousel({ style, clickHandler}) {
       <img className="smallCarouselImages" alt={style.name} src={picObj.thumbnail_url} />
     </span>
   ));
+
+  useEffect(() => {
+    if (startIndex === 0 || max < 7) {
+      setUpHidden(true);
+    } else {
+      setUpHidden(false);
+    }
+    if (startIndex === style.photos.length - 1 || max < 7) {
+      setDownHidden(true);
+    } else {
+      setDownHidden(false);
+    }
+  }, [startIndex]);
+
+  // if (startIndex === style.photos.length || max < 7) {
+  //   setDownHidden(false);
+  // } else
+  // }
+
   return (
     <div id="smallCarouselContainer">
-      <button onClick={goUp} type="button">up</button>
+      <button hidden={upHidden} onClick={goUp} type="button">up</button>;
       {renderedPhotos.concat(renderedPhotos).slice(startIndex, (startIndex + max))}
-      <button onClick={goDown} type="button">down</button>
+      <button hidden={downHidden} onClick={goDown} type="button">down</button>;
     </div>
   );
 }
