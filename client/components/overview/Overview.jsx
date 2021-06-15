@@ -31,14 +31,13 @@ function Overview({ product, favoriteCH, cartCH }) {
     setPhotoIndex(nextIndex);
   }
 
-  function sizeCH(value) {
-    const skuInt = value;
-    if (skuInt === 'disabled') {
+  function sizeCH(skuValue) {
+    if (skuValue === 'disabled') {
       setSelectedSku({ quantity: 0, size: 'empty', value: 0 });
       return null;
     }
-    selectedStyle.skus[skuInt].value = skuInt;
-    setSelectedSku(selectedStyle.skus[skuInt]);
+    selectedStyle.skus[skuValue].value = skuValue;
+    setSelectedSku(selectedStyle.skus[skuValue]);
   }
 
   function styleCH(i) {
@@ -75,27 +74,3 @@ function Overview({ product, favoriteCH, cartCH }) {
 }
 
 export default Overview;
-
-// async function fetchProduct() {
-//   const response = await fetch('/products?count=20');
-//   const productArray = await response.json();
-//   console.log(productArray);
-
-//   const results = productArray.map(async (product) => {
-//     let idQueryReponse = await fetch(`/products/${product.id}`);
-//     idQueryReponse = await idQueryReponse.json();
-//     product.features = idQueryReponse.features;
-//     console.log(idQueryReponse);
-
-//     let stylesQueryResponse = await fetch(`/products/${product.id}/styles`);
-//     stylesQueryResponse = await stylesQueryResponse.json();
-//     product.styles = stylesQueryResponse.results;
-//     console.log(stylesQueryResponse);
-//     return product;
-//   });
-//   const resolvedProducts = await Promise.all(results);
-//   setProducts(resolvedProducts);
-//   setError(false);
-//   setIsLoaded(true);
-// }
-// fetchProduct();

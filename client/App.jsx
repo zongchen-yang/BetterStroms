@@ -97,7 +97,7 @@ function App() {
     }
   }
 
-  function cartCH(sku) {
+  function cartCH(sku, quantity) {
     // console.log('product id', selectedProduct.id);
     // console.log('product name', selectedProduct.name);
     // console.log('style', style.name);
@@ -108,6 +108,7 @@ function App() {
     // console.log('price', selectedProduct.default_price);
     // console.log('on sale', style.sale_price);
     // console.log('style price', style.original_price);
+    console.log(`added ${quantity} of item with sku ${sku.value} to cart`)
   }
 
   useEffect(() => {
