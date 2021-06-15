@@ -65,13 +65,30 @@ function App() {
     return (total / amount) || 0;
   };
 
+  const deleteFavoriteCH = (item) => {
+    const copy = favorites.slice();
+    const toDelete = copy.indexOf(item);
+    console.log(toDelete);
+    copy.splice(toDelete, 1);
+    setFavorites(copy);
+  };
+
+  const displayItemCH = (num) => {
+    setIsLoaded(false);
+    setId(num);
+    // getProduct();
+  };
+
   const getRatings = async (fetchProduct) => {
     let rating = await fetch(`/reviews/meta?product_id=${id}`);
-
     rating = await rating.json();
     setReviewMeta(rating);
     rating = calculateRating(rating, fetchProduct);
-    fetchProduct.starRating = rating;
+    // setting starRating as an object with a whole number and a decimal number
+    fetchProduct.starRating = {
+      whole: Math.floor(rating),
+      part: `${Math.round(((rating - Math.floor(rating)) * 4)) * 25}%`,
+    };
   };
 
   function favoriteCH(style) {
@@ -116,7 +133,7 @@ function App() {
         });
     }
     initialize();
-  }, []);
+  }, [id]);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -125,8 +142,12 @@ function App() {
   return (
     <div>
       <Overview product={selectedProduct} favoriteCH={favoriteCH} cartCH={cartCH} />
-      <Related product={selectedProduct} />
-      <Inventory product={selectedProduct} />
+      <Related product={selectedProduct} displayItemCH={displayItemCH} />
+      <Inventory
+        favorites={favorites}
+        deleteFavoriteCH={deleteFavoriteCH}
+        displayItemCH={displayItemCH}
+      />
       <QAndA product={selectedProduct} />
       <ReviewList
         product={selectedProduct}

@@ -40,19 +40,19 @@ const Compare = ({ product, related, setShowCompare }) => {
       document.removeEventListener("mousedown", handleClick);
     };
   }, []);
-  console.log('got here');
+
   return (
     <div className="compare" id="compare" ref={node}>
-      <h5>COMPARING</h5>
+      <h4>COMPARING</h4>
       <div className="compareName">
-        <div className="compareName">{product.name}</div>
-        <div className="compareName">{related.name}</div>
+        <div className="compareNameLeft">{product.name}</div>
+        <div className="compareNameRight">{related.name}</div>
       </div>
-      {Object.keys(features).map((key) => (
-        <div className="compareFeature">
-          {features[key].product === true ? <i className="fas fa-check" /> : <div className="feature">{features[key].product}</div>}
-          <div className="feature">{key}</div>
-          {features[key].related === true ? <i className="fas fa-check" /> : <div className="feature">{features[key].related}</div>}
+      {Object.keys(features).map((key, i) => (
+        <div key={i} className="compareFeature">
+          {features[key].product === true ? <i className="fas fa-check" /> : <div className="feature side">{features[key].product}</div>}
+          <div className="feature middle">{key}</div>
+          {features[key].related === true ? <i className="fas fa-check" /> : <div className="feature side">{features[key].related}</div>}
         </div>
       ))}
     </div>
