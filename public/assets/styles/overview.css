@@ -84,3 +84,11 @@
 #stylesContainer div {
   flex-basis: 23%;
 }
+
+#display-sale-price {
+  color: red;
+}
+
+#display-old-price {
+  text-decoration: line-through;
+}

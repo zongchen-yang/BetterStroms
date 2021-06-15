@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Question';
 import AddAnswer from './AddAnswer';
+import ClickTracking from '../../pracHigherOrderFunc';
 
 const QuestionsList = (props) => {
   const {
@@ -22,7 +23,6 @@ const QuestionsList = (props) => {
   // const loadMoreAnswers = () => {
   //   setAnswerCount(answerCount += 1);
   // };
-
   const addMoreQuestions = () => {
     upTotalCount(totalQuestionCount += 2);
     // console.log(totalQuestionCount);
@@ -64,13 +64,15 @@ const QuestionsList = (props) => {
         >
           MORE ANSWERED QUESTIONS
         </button>
-        <button
-          className="button-questions"
-          type="button"
-          onClick={openAddQuestionModal}
-        >
-          ADD A QUESTION +
-        </button>
+        <ClickTracking element="Add A Question Button" module="QandA">
+          <button
+            className="button-questions"
+            type="button"
+            onClick={openAddQuestionModal}
+          >
+            ADD A QUESTION +
+          </button>
+        </ClickTracking>
       </div>
     </div>
   );

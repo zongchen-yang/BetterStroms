@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 function Carousel({ style, photoIndex, clickHandler }) {
   // 0 = initial, 1 = deexpand, 2 = expand
   const [expanded, setExpanded] = useState(0);
+  const [leftHidden, setLeftHidden] = useState(false);
+  const [rightHidden, setRightHidden] = useState(false);
   let mainImage;
   let imageSource;
   if (!style.photos[photoIndex]) {
@@ -34,13 +36,26 @@ function Carousel({ style, photoIndex, clickHandler }) {
     mainImage = <img id="mainImage" alt="hi" src={imageSource} />;
   }
 
+  useEffect(() => {
+    if (photoIndex === 0) {
+      setLeftHidden(true);
+    } else {
+      setLeftHidden(false);
+    };
+
+    if (photoIndex === style.photos.length - 1) {
+      setRightHidden(true);
+    } else {
+      setRightHidden(false);
+    }
+  }, [photoIndex]);
   return (
     <div>
       <button type="button" onClick={expandImage}>expand</button>
       <div id="mainImageContainer">
-        <button type="button" onClick={(e) => clickHandler('left')}>left</button>
+        <button hidden={leftHidden} type="button" onClick={(e) => clickHandler('left')}>left</button>
         {mainImage}
-        <button type="button" onClick={(e) => clickHandler('right')}>right</button>
+        <button hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>right</button>
       </div>
     </div>
   );
