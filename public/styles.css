@@ -40,9 +40,9 @@ h3,
 
 .compare {
   position: fixed;
-  border: 1px solid black;
+  border: 2px solid grey;
   top: 20%;
-  right: 30%;
+  right: 35%;
   width: 600px;
   height: 500px;
   background: white;
@@ -51,9 +51,7 @@ h3,
 
 .compareName {
   display: flex;
-  width: 100%;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin: 10%;
 }
 
 .compareFeature {
@@ -70,9 +68,36 @@ h3,
   left: 0;
   display: flex;
 }
+
 .hiddenRating {
   position: absolute;
   bottom: 3px;
   left: 0;
   display: flex;
+}
+
+.compareNameLeft {
+  font-weight: bold;
+  /* margin-right: 20%; */
+  text-align: left;
+  width: 50%;
+  font-size: large;
+}
+
+.compareNameRight {
+  font-weight: bold;
+  /* margin-left: 20%; */
+  text-align: right;
+  width: 50%;
+  font-size: large;
+}
+
+.feature {
+  text-align: center;
+  margin-bottom: 1%;
+  font-size: larger;
+}
+
+.middle {
+  font-weight: bold;
 }
