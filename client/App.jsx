@@ -29,39 +29,39 @@ function App() {
       styleThumbnail: [],
       styleList: [],
     };
-    setSelectedProduct(thisProduct);
+    return thisProduct;
   }
 
   async function getStyles() {
     let response = await fetch(`/products/${id}/styles`);
     response = await response.json();
+    const styles = [];
     response.results.forEach(async (style) => {
       const thisStyle = {
         id: style.style_id,
         name: style.name,
-        default_price: selectedProduct.default_price,
         original_price: style.original_price,
         sale_price: style.sale_price,
         photos: style.photos,
         skus: style.skus,
       };
-      selectedProduct.styleThumbnail.push(style.photos[0].thumbnail_url);
-      selectedProduct.styleList.push(thisStyle);
+      styles.push(thisStyle);
     });
+    return styles;
   }
 
-  const getReviews = async () => {
-    let response = await fetch(`/reviews?product_id=${id}&sort=relevant&count=1000`);
+  const getReviews = async (fetchProduct) => {
+    let response = await fetch(`/reviews?product_id=${id}`);
     response = await response.json();
-    //selectedProduct.totalNumReviews = response.results.length;
-    setReviews(response.results);
+    fetchProduct.totalNumReviews = response.results.length;
+    return response.results;
   };
 
-  const calculateRating = (obj) => {
+  const calculateRating = (obj, fetchProduct) => {
     const total = Object.keys(obj.ratings).reduce((accumRating, curr) =>
     accumRating + parseInt(curr) * parseInt(obj.ratings[curr]), 0);
     const amount = Object.values(obj.ratings).reduce((accum, curr) => accum + parseInt(curr), 0);
-    selectedProduct.totalNumReviews = amount;
+    fetchProduct.totalNumReviews = amount;
     return (total / amount) || 0;
   };
 
@@ -79,26 +79,61 @@ function App() {
     // getProduct();
   };
 
-  const getRatings = async () => {
+  const getRatings = async (fetchProduct) => {
     let rating = await fetch(`/reviews/meta?product_id=${id}`);
     rating = await rating.json();
     setReviewMeta(rating);
-    rating = calculateRating(rating);
-    selectedProduct.starRating = rating;
+    rating = calculateRating(rating, fetchProduct);
+    // setting starRating as an object with a whole number and a decimal number
+    fetchProduct.starRating = {
+      whole: Math.floor(rating),
+      part: `${Math.round(((rating - Math.floor(rating)) * 4)) * 25}%`,
+    };
   };
 
-  useEffect(() => {
-    getProduct();
-  }, [id]);
-
-  useEffect(async () => {
-    if (selectedProduct) {
-      getReviews();
-      getRatings();
-      await getStyles();
-      setIsLoaded(true);
+  function favoriteCH(style) {
+    if (style.isFavorite) {
+      // remove from favorites
+      style.isFavorite = false;
+      const temp = [...favorites];
+      let removedIndex = 0;
+      temp.forEach((item, itemIndex) => {
+        if (item.id === style.id) {
+          removedIndex = itemIndex;
+        }
+      });
+      temp.splice(removedIndex, 1);
+      setFavorites(temp);
+    } else {
+      const temp = [...favorites];
+      style.isFavorite = true;
+      temp.push(style);
+      setFavorites(temp);
+      // add to favorites
     }
-  }, [selectedProduct]);
+  }
+
+  function cartCH() {
+
+  }
+
+  useEffect(() => {
+    async function initialize() {
+      let fetchProduct, fetchStyles, fetchReviews, fetchRatings;
+      fetchProduct = await getProduct();
+      fetchStyles = getStyles(fetchProduct);
+      fetchReviews = getReviews(fetchProduct);
+      fetchRatings = getRatings(fetchProduct);
+      Promise.all([fetchStyles, fetchReviews, fetchRatings])
+        .then(([fetchedStyles, fetchedReviews, fetchedRatings]) => {
+          fetchProduct.styleList = fetchedStyles;
+          setSelectedProduct(fetchProduct);
+          setReviews(fetchedReviews);
+          setIsLoaded(true);
+        });
+    }
+    initialize();
+  }, [id]);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -106,12 +141,13 @@ function App() {
 
   return (
     <div>
-      <div>Hello from App</div>
-      <div>
-        <Overview product={selectedProduct} />
-      </div>
+      <Overview product={selectedProduct} favoriteCH={favoriteCH} cartCH={cartCH} />
       <Related product={selectedProduct} displayItemCH={displayItemCH} />
-      <Inventory favorites={favorites} deleteFavoriteCH={deleteFavoriteCH} setId={setId} />
+      <Inventory
+        favorites={favorites}
+        deleteFavoriteCH={deleteFavoriteCH}
+        displayItemCH={displayItemCH}
+      />
       <QAndA product={selectedProduct} />
       <ReviewList
         product={selectedProduct}
@@ -125,13 +161,3 @@ function App() {
 }
 
 export default App;
-
-// useEffect(() => {
-//   fetch(`http://localhost:3000/products/${id}`)
-//     .then((response) => response.json())
-//     .then((data) => setProduct(data))
-//     // .then(console.log('logging state product id:', product))
-//     .catch((error) => console.log(error));
-//   // console.log('hello from use effect');
-//   // getProductList();
-// }, []);

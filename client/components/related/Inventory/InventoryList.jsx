@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import InventoryItem from './InventoryItem';
 
-const InventoryList = ({ favorites, deleteFavoriteCH }) => {
+const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
   const [window, setWindow] = useState([]);
   const [pageReady, setPageReady] = useState(false);
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import QuantSelector from './QuantSelector';
+// import Select from 'react-select';
 
 //         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
 
@@ -8,10 +9,90 @@ function Options({ product, sku, style, chs }) {
     styleCH, sizeCH, cartCH, favoriteCH
   } = chs;
   const { styleList } = product;
+  let favoriteButton;
+  let inStock = true;
+  let totalQuantity = 0;
+  let sizeSelect;
+  let cartButton;
+
+
+  function optionsCartHandler() {
+    // const event = new MouseEvent('mousedown', {
+    //   view: window,
+    //   bubbles: true,
+    // });
+    // const sizeElement = document.getElementById('size-select');
+    // sizeElement.addEventListener('mousedown', () => console.log('event triggered') );
+
+    // sizeElement.dispatchEvent(event);
+    if (sku.size === 'empty') {
+    //   // document.getElementById('size-select').focus();
+    //   // document.getElementById('size-select').click();
+    //   // defaultMenuIsOpen={true}
+    //   const event = new MouseEvent('mousedown', {
+    //     view: window,
+    //     bubbles: true,
+    //   });
+    //   const sizeSelect = document.getElementById('size-select');
+    //   sizeSelect.dispatchEvent(event);
+    } else {
+      sizeCH();
+    }
+  }
+
+  if (style.skus) {
+    Object.keys(style.skus).forEach((key) => { totalQuantity += style.skus[key].quantity; });
+  }
+  if (totalQuantity === 0) {
+    inStock = false;
+  }
+
+  if (style.isFavorite) {
+    favoriteButton = <button type="button" onClick={() => favoriteCH(style)}>Heart</button>;
+  } else {
+    favoriteButton = <button type="button" onClick={() => favoriteCH(style)}>Star</button>;
+  }
+  function tempFunction(event) {
+    console.log(event)
+    // onMouseDown={(e) => tempFunction(e)}
+  }
+  if (inStock) {
+    cartButton = <button type="button" onClick={optionsCartHandler}>Add to Cart</button>;
+    sizeSelect = (
+      <select onChange={(e) => sizeCH(e)} name="size" id="size-select">
+        <option value="disabled">Select Size</option>
+        {/* Object.keys returns an array = ['sku1', sku2', ...] */}
+        {Object.keys(style.skus).map((currentSkuString) => {
+          const skuInt = parseInt(currentSkuString, 10);
+          const skuObj = style.skus[skuInt];
+          if (skuObj === undefined) {
+            return null;
+          }
+          return (
+            <option key={skuInt} value={skuInt}>{skuObj.size}</option>
+          );
+        })}
+      </select>
+    );
+  } else {
+    cartButton = <button hidden type="button" onClick={cartCH}>Add to Cart</button>;
+    sizeSelect = (
+      <select name="size" id="size-select">
+        <option value="disabled" disabled>OUT OF STOCK</option>
+      </select>
+    );
+  }
+
   return (
     <div id="options-container">
       <span>Stars {product.starRating}</span>
-      <button>Read All {product.totalNumReviews} Reviews</button>
+      <button type="button">
+        Read All
+        {' '}
+        {product.totalNumReviews}
+        {' '}
+        Reviews
+      </button>
       <h3>{product.category}</h3>
       <h1>{product.name}</h1>
       <p>
@@ -21,44 +102,27 @@ function Options({ product, sku, style, chs }) {
       <strong>Style</strong>
       {'>'}
       {style.name}
-      <table>
-        <tbody>
-          <tr>
-            {styleList.map((aStyle, index) => (
-              <td key={aStyle.id} index={index}>
-                <div
-                  onClick={() => styleCH(index)}
-                  onKeyPress={() => styleCH(index)}
-                  role="presentation"
-                >
-                  <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
-                </div>
-              </td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+      <div id="stylesContainer">
+        {styleList.map((aStyle, index) => (
+          <div
+            key={aStyle.id}
+            index={index}
+            onClick={() => styleCH(index)}
+            onKeyPress={() => styleCH(index)}
+            role="presentation"
+          >
+            <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
+          </div>
+        ))}
+      </div>
       <form>
         <label htmlFor="size-select">
           Size:
-          <select onChange={(e) => sizeCH(e)} name="size" id="size-select">
-            <option value="">Select Size</option>
-            {/* Object.keys returns an array = ['sku1', sku2', ...] */}
-            {Object.keys(style.skus).map((currentSkuString) => {
-              const skuInt = parseInt(currentSkuString, 10);
-              const skuObj = style.skus[skuInt];
-              if (skuObj === undefined) {
-                return null;
-              }
-              return (
-                <option key={skuInt} value={skuInt}>{skuObj.size}</option>
-              );
-            })}
-          </select>
+          {sizeSelect}
         </label>
         <QuantSelector sku={sku} />
-        <button type="button" onClick={cartCH}>Add to Cart</button>
-        <button type="button" onClick={favoriteCH}>Favorite</button>
+        {cartButton}
+        {favoriteButton}
       </form>
     </div>
   );

@@ -11,7 +11,7 @@ function QuantSelector({ sku }) {
       <div>
         <label htmlFor="quantity-select">
           Quantity:
-          <select name="quantity" id="quantity-select">
+          <select name="quantity" id="quantity-select" disabled>
             <option value="null">-</option>
           </select>
         </label>
