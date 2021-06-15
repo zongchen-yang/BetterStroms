@@ -97,18 +97,26 @@ function App() {
     }
   }
 
-  function cartCH(sku, quantity) {
-    // console.log('product id', selectedProduct.id);
-    // console.log('product name', selectedProduct.name);
-    // console.log('style', style.name);
-    // console.log('styleid:', style.id);
-    // console.log('quantity:', quantity);
-    // console.log('size', sku.size);
-    // console.log('sku', sku.value);
-    // console.log('price', selectedProduct.default_price);
-    // console.log('on sale', style.sale_price);
-    // console.log('style price', style.original_price);
-    console.log(`added ${quantity} of item with sku ${sku.value} to cart`)
+  async function cartCH(sku, quantity) {
+    console.log(`added ${quantity} of item with sku ${sku.value} to cart`);
+    let skuInt = parseInt(sku.value, 10);
+    const data = {
+      sku_id: skuInt,
+    };
+    const respArray = [];
+    for (let i = 0; i < quantity; i += 1) {
+      const response = fetch('/cart', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      respArray.push(response);
+    }
+    Promise.all(respArray)
+      .then((resArray) => console.log(resArray))
+      .catch((err) => console.log(err));
   }
 
   useEffect(() => {
