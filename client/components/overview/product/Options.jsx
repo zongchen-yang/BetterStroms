@@ -104,7 +104,7 @@ function Options({ product, sku, style, chs }) {
 
   return (
     <div id="options-container">
-      <span>Stars {product.starRating}</span>
+      <span>Stars {product.starRating.whole}</span>
       <a href="#clearButton">
         Read All
         {' '}
