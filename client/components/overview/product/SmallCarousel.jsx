@@ -69,7 +69,7 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
     } else {
       setUpHidden(false);
     }
-    if (startIndex === style.photos.length - 1 || max < 7) {
+    if (startIndex === style.photos.length - 7 || max < 7) {
       setDownHidden(true);
     } else {
       setDownHidden(false);
