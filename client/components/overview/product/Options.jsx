@@ -126,17 +126,24 @@ function Options({ product, sku, style, chs }) {
       {'>'}
       {style.name}
       <div id="stylesContainer">
-        {styleList.map((aStyle, index) => (
-          <div
-            key={aStyle.id}
-            index={index}
-            onClick={() => styleCH(index)}
-            onKeyPress={() => styleCH(index)}
-            role="presentation"
-          >
-            <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
-          </div>
-        ))}
+        {styleList.map((aStyle, index) => {
+          let hideCheckMark = true;
+          if (aStyle === style) {
+            hideCheckMark = false;
+          }
+          return (
+            <div
+              key={aStyle.id}
+              index={index}
+              onClick={() => styleCH(index)}
+              onKeyPress={() => styleCH(index)}
+              role="presentation"
+            >
+              <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
+              <img hidden={hideCheckMark} alt="selected" height="25" width="25" src="assets/checkmark.png" />
+            </div>
+          );
+        })}
       </div>
       <form>
         {sizeSelectWarning}
