@@ -149,12 +149,12 @@ button:hover {
   padding: 5px;
   margin: 5px;
   font-size: 1.1em;
-  background-color: plum;
+  background-color: #04AA6D;
 }
 
 .button-questions:hover {
   background-color: black;
-  color: white;
+  color: #04AA6D;
   border: 1px solid white;
 }
 

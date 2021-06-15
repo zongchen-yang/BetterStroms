@@ -76,14 +76,12 @@ const QAndA = (props) => {
   const reportQuestion = (questionId) => {
     axios.put(`/qa/questions/${questionId}/report`)
       .then(() => console.log('question reported'))
-      // .then(getQuestions())
       .catch((error) => console.log(error));
   };
 
   const reportAnswer = (answerId) => {
     axios.put(`/qa/answers/${answerId}/report`)
       .then(() => console.log('answer reported'))
-      // .then(getQuestions())
       .catch((error) => console.log(error));
   };
 
@@ -101,6 +99,7 @@ const QAndA = (props) => {
 
   const postNewAnswer = (questionId, body, name, email, photos) => {
     // const requestBody = { body, name, email, photos };
+    // axios.post(`/qa/questions/${questionId}/answers`, requestBody)
     axios.post(`/qa/questions/${questionId}/answers`, {
       body,
       name,
@@ -189,18 +188,3 @@ const QAndA = (props) => {
 };
 
 export default QAndA;
-
-{/* )
-  : (
-    <QuestionsList
-    questions={questionsArray}
-    updateQuestionsHelpfulness={updateQuestionsHelpfulness}
-    updateAnswersHelpfulness={updateAnswersHelpfulness}
-    reportQuestion={reportQuestion}
-    reportAnswer={reportAnswer}
-    openAddAnswerModal={openAddAnswerModal}
-    openAddQuestionModal={openAddQuestionModal}
-    getQuestionId={getQuestionId}
-    />
-  )} */}
-// ? ( */
