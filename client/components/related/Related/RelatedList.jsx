@@ -12,7 +12,7 @@ const RelatedList = ({ product, displayItemCH }) => {
 
   const getRelated = () => {
     if (product.id) {
-      fetch(`http://localhost:3000/products/${product.id}/related`)
+      fetch(`/products/${product.id}/related`)
         .then((res) => res.json())
         .then((data) => setRelated(data))
         .catch((error) => console.log(error));
