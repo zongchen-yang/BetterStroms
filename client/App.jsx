@@ -6,7 +6,7 @@ import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
 
 function App() {
-  const [id, setId] = useState(20103);
+  const [id, setId] = useState(20104);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -44,6 +44,7 @@ function App() {
         sale_price: style.sale_price,
         photos: style.photos,
         skus: style.skus,
+        lastViewedIndex: 0,
       };
       styles.push(thisStyle);
     });
@@ -114,17 +115,34 @@ function App() {
     }
   }
 
-  function cartCH() {
-
+  async function cartCH(sku, quantity) {
+    console.log(`added ${quantity} of item with sku ${sku.value} to cart`);
+    let skuInt = parseInt(sku.value, 10);
+    const data = {
+      sku_id: skuInt,
+    };
+    const respArray = [];
+    for (let i = 0; i < quantity; i += 1) {
+      const response = fetch('/cart', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      respArray.push(response);
+    }
+    Promise.all(respArray)
+      .then((resArray) => console.log(resArray))
+      .catch((err) => console.log(err));
   }
 
   useEffect(() => {
     async function initialize() {
-      let fetchProduct, fetchStyles, fetchReviews, fetchRatings;
-      fetchProduct = await getProduct();
-      fetchStyles = getStyles(fetchProduct);
-      fetchReviews = getReviews(fetchProduct);
-      fetchRatings = getRatings(fetchProduct);
+      const fetchProduct = await getProduct();
+      const fetchStyles = getStyles(fetchProduct);
+      const fetchReviews = getReviews(fetchProduct);
+      const fetchRatings = getRatings(fetchProduct);
       Promise.all([fetchStyles, fetchReviews, fetchRatings])
         .then(([fetchedStyles, fetchedReviews, fetchedRatings]) => {
           fetchProduct.styleList = fetchedStyles;
@@ -156,7 +174,7 @@ function App() {
         overallRating={selectedProduct.starRating}
         reviewMeta={reviewMeta}
         // totalNumberOfRatings={selectedProduct.totalNumReviews}
-      />
+      /> */}
     </div>
   );
 }
