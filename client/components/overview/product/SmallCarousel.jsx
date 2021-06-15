@@ -59,6 +59,12 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
   }
 
   useEffect(() => {
+    if (largePhotoIndex - startIndex < 0) {
+      setStartIndex(startIndex - 1);
+    }
+    if (largePhotoIndex - startIndex > 6) {
+      setStartIndex(startIndex + 1);
+    }
     makeRenderedPhotos();
     setChangedPhoto(!changedPhoto);
   }, [largePhotoIndex]);
