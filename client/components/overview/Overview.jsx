@@ -46,7 +46,7 @@ function Overview({ product, favoriteCH, cartCH }) {
     setSelectedSku({ quantity: 0, size: 'empty', value: 0 });
   }
 
-  function smallCarouselClickHandler(i) {
+  function smallCarouselCH(i) {
     setPhotoIndex(i);
     selectedStyle.lastViewedIndex = i;
   }
@@ -64,7 +64,7 @@ function Overview({ product, favoriteCH, cartCH }) {
   return (
     <div id="overview">
       <div id="overviewContainer">
-        <SmallCarousel style={style} clickHandler={smallCarouselClickHandler} />
+        <SmallCarousel style={style} clickHandler={smallCarouselCH} largePhotoIndex={photoIndex} />
         <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
       </div>

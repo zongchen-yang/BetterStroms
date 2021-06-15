@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-function SmallCarousel({ style, clickHandler}) {
+function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
   const [startIndex, setStartIndex] = useState(0);
   const [upHidden, setUpHidden] = useState(false);
   const [downHidden, setDownHidden] = useState(false);
-  let buttonUp;
-  let buttonDown;
+  const [changedPhoto, setChangedPhoto] = useState(false);
+  let renderedPhotos;
+
   if (style.photos === undefined) {
     return null;
   }
@@ -36,18 +37,31 @@ function SmallCarousel({ style, clickHandler}) {
     }
     setStartIndex(nextStartIndex);
   }
+  function makeRenderedPhotos() {
+    renderedPhotos = style.photos.map((picObj, index) => {
+      let highlighted = '';
+      if (index === largePhotoIndex) {
+        highlighted = 'small-carousel-highlight';
+      }
+      return (
+        <span
+          key={i++}
+          className={highlighted}
+          index={index}
+          onClick={() => clickHandler(index)}
+          onKeyPress={() => clickHandler(index)}
+          role="presentation"
+        >
+          <img className="smallCarouselImages" alt={style.name} src={picObj.thumbnail_url} />
+        </span>
+      );
+    });
+  }
 
-  const renderedPhotos = style.photos.map((picObj, index) => (
-    <span
-      key={i++}
-      index={index}
-      onClick={() => clickHandler(index)}
-      onKeyPress={() => clickHandler(index)}
-      role="presentation"
-    >
-      <img className="smallCarouselImages" alt={style.name} src={picObj.thumbnail_url} />
-    </span>
-  ));
+  useEffect(() => {
+    makeRenderedPhotos();
+    setChangedPhoto(!changedPhoto);
+  }, [largePhotoIndex]);
 
   useEffect(() => {
     if (startIndex === 0 || max < 7) {
@@ -62,15 +76,13 @@ function SmallCarousel({ style, clickHandler}) {
     }
   }, [startIndex]);
 
-  // if (startIndex === style.photos.length || max < 7) {
-  //   setDownHidden(false);
-  // } else
-  // }
+  makeRenderedPhotos();
 
   return (
     <div id="smallCarouselContainer">
       <button hidden={upHidden} onClick={goUp} type="button">up</button>;
-      {renderedPhotos.concat(renderedPhotos).slice(startIndex, (startIndex + max))}
+      {renderedPhotos.slice(startIndex, (startIndex + max))}
+      {/* {renderedPhotos.concat(renderedPhotos).slice(startIndex, (startIndex + max))} */}
       <button hidden={downHidden} onClick={goDown} type="button">down</button>;
     </div>
   );
