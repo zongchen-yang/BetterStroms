@@ -173,7 +173,7 @@ function App() {
         overallRating={selectedProduct.starRating}
         reviewMeta={reviewMeta}
         // totalNumberOfRatings={selectedProduct.totalNumReviews}
-      /> */}
+      />
     </div>
   );
 }
