@@ -92,3 +92,7 @@
 #display-old-price {
   text-decoration: line-through;
 }
+
+.small-carousel-highlight {
+  border-bottom: 2px solid yellow;
+}

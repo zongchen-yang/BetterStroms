@@ -143,7 +143,7 @@ function App() {
   return (
     <div>
       <Overview product={selectedProduct} favoriteCH={favoriteCH} cartCH={cartCH} />
-      <Related product={selectedProduct} />
+      {/* <Related product={selectedProduct} />
       <Inventory product={selectedProduct} />
       <QAndA product={selectedProduct} />
       <ReviewList
@@ -152,7 +152,7 @@ function App() {
         overallRating={selectedProduct.starRating}
         reviewMeta={reviewMeta}
         // totalNumberOfRatings={selectedProduct.totalNumReviews}
-      />
+      /> */}
     </div>
   );
 }
