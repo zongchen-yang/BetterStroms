@@ -44,7 +44,6 @@ const ReviewForm = ({
   };
 
   const handleStarSelection = (val) => {
-    console.log('clicked:', val);
     const stars = starRating;
     for (let i = 0; i < val; i++) {
       stars.push(<i className="fas fa-star" />);
@@ -135,7 +134,6 @@ const ReviewForm = ({
   };
 
   const handlePhotoSubmit = (e) => {
-    console.log(newReviewPhoto);
     const temp = photoList;
     temp.push(newReviewPhoto);
     setPhotoList(temp);
