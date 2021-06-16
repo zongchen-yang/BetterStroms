@@ -84,49 +84,12 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
 
   makeRenderedPhotos();
 
-<<<<<<< HEAD
-  const renderedPhotos = style.photos.map((picObj, index) => (
-    <span
-      key={i++}
-      index={index}
-      onClick={() => clickHandler(index)}
-      onKeyPress={() => clickHandler(index)}
-      role="presentation"
-    >
-      <img className="smallCarouselImages" alt={style.name} src={picObj.thumbnail_url} />
-    </span>
-  ));
-
-  useEffect(() => {
-    if (startIndex === 0 || max < 7) {
-      setUpHidden(true);
-    } else {
-      setUpHidden(false);
-    }
-    if (startIndex === style.photos.length - 1 || max < 7) {
-      setDownHidden(true);
-    } else {
-      setDownHidden(false);
-    }
-  }, [startIndex]);
-
-  // if (startIndex === style.photos.length || max < 7) {
-  //   setDownHidden(false);
-  // } else
-  // }
-
   return (
     <div id="smallCarouselContainer">
-      <button hidden={upHidden} onClick={goUp} type="button">up</button>;
-      {renderedPhotos.concat(renderedPhotos).slice(startIndex, (startIndex + max))}
-=======
-  return (
-    <div id="smallCarouselContainer">
-      <button hidden={upHidden} onClick={goUp} type="button">up</button>;
+      <button hidden={upHidden} onClick={goUp} type="button">up</button>
       {renderedPhotos.slice(startIndex, (startIndex + max))}
       {/* {renderedPhotos.concat(renderedPhotos).slice(startIndex, (startIndex + max))} */}
->>>>>>> 5f0a8af3a284a7caabc4591b0461f88569b53836
-      <button hidden={downHidden} onClick={goDown} type="button">down</button>;
+      <button hidden={downHidden} onClick={goDown} type="button">down</button>
     </div>
   );
 }
