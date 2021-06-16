@@ -86,11 +86,13 @@ const RelatedList = ({ product, displayItemCH }) => {
     return <p>loading...</p>;
   }
 
+  const fourth = items.indexOf(window[2]) > -1 ? (items.indexOf(window[2]) + 1) : undefined;
+
   return (
-    <div>
+    <div className="relatedList">
       <h3 className="title">RELATED PRODUCTS</h3>
       <div className="list">
-        {window && window[0] && window[0].index !== 0 ? <button type="button" onClick={leftCH}>left</button> : null}
+        {window && window[0] && window[0].index !== 0 ? <i className="fas fa-chevron-left fa-2x" type="button" onClick={leftCH} /> : null}
         {window.map((each, i) => (
           <RelatedItem
             key={i}
@@ -98,8 +100,17 @@ const RelatedList = ({ product, displayItemCH }) => {
             showCompareCH={showCompareCH}
             displayItemCH={displayItemCH}
           />
-          ))}
-        {window && window[2] && window[2].index !== items.length - 1 ? <button type="button" onClick={rightCH}>right</button> : null}
+        ))}
+        {items[fourth]
+          ? (
+            <RelatedItem
+              item={items[fourth]}
+              showCompareCH={showCompareCH}
+              displayItemCH={displayItemCH}
+              className={{ className: 'fourth' }}
+            />
+          ) : null}
+        {window && window[2] && window[2].index !== items.length - 1 ? <i className="fas fa-chevron-right fa-2x" type="button" onClick={rightCH} /> : null}
       </div>
       {selectedItem && showCompare
         ? <Compare product={product} related={selectedItem} setShowCompare={setShowCompare} />

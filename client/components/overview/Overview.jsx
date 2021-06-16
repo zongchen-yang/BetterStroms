@@ -5,7 +5,7 @@ import Options from './product/Options';
 import Description from './product/Description';
 import SmallCarousel from './product/SmallCarousel';
 
-function Overview({ product, favoriteCH, cartCH }) {
+function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -58,6 +58,7 @@ function Overview({ product, favoriteCH, cartCH }) {
     sizeCH,
     cartCH,
     favoriteCH,
+    deleteFavoriteCH,
   };
   if (!isLoaded) {
     return <div>Loading overview...</div>;
@@ -67,7 +68,12 @@ function Overview({ product, favoriteCH, cartCH }) {
       <div id="overviewContainer">
         <SmallCarousel style={style} clickHandler={smallCarouselCH} largePhotoIndex={photoIndex} />
         <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
-        <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
+        <Options
+          product={product}
+          sku={selectedSku}
+          style={style}
+          chs={clickHandlers}
+        />
       </div>
       <Description product={product} />
     </div>
