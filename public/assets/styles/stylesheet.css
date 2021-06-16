@@ -7,7 +7,7 @@ button:hover {
 }
 
 #QandA-module {
-  width: 90%;
+  width: 80%;
   margin: auto;
 }
 
@@ -166,17 +166,17 @@ button:hover {
 }
 
 .button-questions {
+  display: inline-block;
   border-radius: 0px;
-  padding: 5px;
+  padding: 15px;
   margin: 5px;
-  padding: 10px;
-  background-color: #04AA6D;
+  background-color: white;
 }
 
 .button-questions:hover {
   background-color: black;
   color: #04AA6D;
-  border: 1px solid white;
+  border: 1px solid #04AA6D;
 }
 
 .answers-title {

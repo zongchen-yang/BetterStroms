@@ -57,22 +57,26 @@ const QuestionsList = (props) => {
     <div>
       {renderQuestions()}
       <div>
-        <button
-          className="button-questions"
-          type="button"
-          onClick={addMoreQuestions}
-        >
-          MORE ANSWERED QUESTIONS
-        </button>
-        <ClickTracking element="Add A Question Button" module="QandA">
+        <span>
           <button
             className="button-questions"
             type="button"
-            onClick={openAddQuestionModal}
+            onClick={addMoreQuestions}
           >
-            ADD A QUESTION +
+            MORE ANSWERED QUESTIONS
           </button>
-        </ClickTracking>
+        </span>
+        <span>
+          <ClickTracking element="Add A Question Button" module="QandA">
+            <button
+              className="button-questions"
+              type="button"
+              onClick={openAddQuestionModal}
+            >
+              ADD A QUESTION +
+            </button>
+          </ClickTracking>
+        </span>
       </div>
     </div>
   );
