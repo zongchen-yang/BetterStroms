@@ -75,7 +75,7 @@ button:hover {
   radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
   radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
-  background-color: white;
+  /* background-color: white; */
   background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
   background-attachment: local, local, scroll, scroll;
 }
@@ -94,7 +94,7 @@ button:hover {
   radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
   radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
-  background-color: white;
+  /* background-color: white; */
   background-size: 100% 40px, 100% 40px, 100% 30px, 100% 30px;
   background-attachment: local, local, scroll, scroll;
 }
@@ -377,13 +377,12 @@ button:hover {
   top: 20%;
   right: 30%;
   clear: both;
-  background: white;
   z-index: 1;
 }
 
 .reviewFormStarContainer {
   width: 100%;
-  float: left;
+  display: flex;
 }
 
 .reviewStar {
@@ -396,8 +395,8 @@ button:hover {
 } */
 
 .formReviewRatingDescription {
-  float: left;
   position: relative;
+  float: left;
 }
 
 .review-characteristic-label {
@@ -440,7 +439,41 @@ button:hover {
   font-size: x-small;
 }
 
-/* #app {
-  color: white;
-  background: black;
+#review-form-submit {
+
+}
+
+#review-form-close {
+
+}
+
+#show-review-form {
+
+}
+
+#submit-photos {
+
+}
+
+#sortOptions {
+
+}
+
+#clearButton {
+
+}
+
+#reivews-component-holder {
+
+}
+
+#announcement {
+  background-color: purple;
+  text-align: center;
+  margin: 0%;
+}
+
+/* :root {
+  background-color: black;
+  color: whitesmoke;
 } */
