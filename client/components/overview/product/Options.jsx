@@ -131,9 +131,8 @@ function Options({ product, sku, style, chs }) {
         <button type="button">PIN</button>
       </div>
       <div id="options-style-text-des">
-        <strong>Style</strong>
-        {'>'}
-        {style.name}
+        <span className="bold-text">Style {'>'}</span>
+        <span id="options-style-text">{style.name}</span>
       </div>
       <div id="stylesContainer">
         {styleList.map((aStyle, index) => {
@@ -150,12 +149,14 @@ function Options({ product, sku, style, chs }) {
               role="presentation"
               className="specific-style-selector"
             >
-              <span>
-                <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
-              </span>
-              <span>
-                <img hidden={hideCheckMark} alt="selected" height="25" width="25" src="assets/checkmark.png" />
-              </span>
+              <div className="four-per-line">
+                <div className="style-image-selector-container">
+                  <img className="style-selector-image" alt={aStyle.name} src={aStyle.photos[0].thumbnail_url} />
+                </div>
+                <div className="style-selector-checkmark">
+                  <img hidden={hideCheckMark} alt="selected" height="25" width="25" src="assets/checkmark.png" />
+                </div>
+              </div>
             </div>
           );
         })}

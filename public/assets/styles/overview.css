@@ -117,9 +117,6 @@ button {
   display: flex;
   flex-wrap: wrap;
 }
-#stylesContainer div {
-  flex-basis: 23%;
-}
 
 #display-sale-price {
   color: red;
@@ -243,6 +240,34 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 }
 
 .specific-style-selector {
+  padding-left: 5px;
+  padding-right: 5px
+}
+
+.four-per-line {
+  flex-basis: 23%;
   display:flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  align-items:flex-end
+}
+
+.style-selector-image {
+  margin: auto;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border: 1px solid black;
+  border-radius: 50px;
+  vertical-align: middle;
+}
+
+.style-image-selector-container {
+  display: block;
+  margin: auto;
+  height: 100px;
+}
+
+.style-selector-checkmark {
+  position: absolute;
 }
