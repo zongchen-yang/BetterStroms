@@ -9,6 +9,16 @@
   text-align: left;
 }
 
+.itemWithFourth {
+  margin: 10px;
+  float: left;
+  width: 25%;
+  height: 380px;
+  flex: none;
+  position: relative;
+  text-align: left;
+}
+
 .image {
   flex: 0 0 auto;
   width: 100%;
@@ -31,7 +41,6 @@ h3,
   position: center;
   max-height: 500px;
   display: flex;
-  overflow: auto;
   margin: 20px;
   text-align: left;
   margin-left: 250px;
@@ -71,7 +80,7 @@ h3,
 
 .hiddenRating {
   position: absolute;
-  bottom: 3px;
+  bottom: 4px;
   left: 0;
   display: flex;
 }
@@ -100,4 +109,36 @@ h3,
 
 .middle {
   font-weight: bold;
+}
+
+.image:hover,
+.fa-chevron-left:hover,
+.fa-chevron-right:hover {
+  cursor: pointer;
+}
+
+.fourth {
+  position:absolute;
+  z-index:1;
+  right:0; bottom:0; left:0;
+  height:380px;
+  background-image: linear-gradient(to left, rgba(255,255,255,1),rgba(255,255,255,0) 120%);
+}
+
+.fa-chevron-right {
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  z-index: 2;
+}
+
+.fa-chevron-left {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  z-index: 2;
+}
+
+.relatedList {
+  position:relative;
 }

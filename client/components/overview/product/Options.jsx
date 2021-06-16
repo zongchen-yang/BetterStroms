@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import QuantSelector from './QuantSelector';
-
-
-//         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
+import Ovrating from './Ovrating';
 
 function Options({ product, sku, style, chs }) {
   const [sizeNotSelected, setSizeNotSelected] = useState(false);
   const [cartClicked, setCartClicked] = useState(false);
   const {
-    styleCH, sizeCH, cartCH, favoriteCH
+    styleCH, sizeCH, cartCH, favoriteCH, deleteFavoriteCH
   } = chs;
   const { styleList } = product;
   let favoriteButton;
@@ -60,9 +58,9 @@ function Options({ product, sku, style, chs }) {
   }
 
   if (style.isFavorite) {
-    favoriteButton = <button type="button" onClick={() => favoriteCH(style)}>Heart</button>;
+    favoriteButton = <button type="button" onClick={() => deleteFavoriteCH(product, style)}>Heart</button>;
   } else {
-    favoriteButton = <button type="button" onClick={() => favoriteCH(style)}>Star</button>;
+    favoriteButton = <button type="button" onClick={() => favoriteCH(product, style)}>Star</button>;
   }
 
   if (inStock) {
@@ -104,8 +102,8 @@ function Options({ product, sku, style, chs }) {
 
   return (
     <div id="options-container">
-      <span>Stars {product.starRating.whole}</span>
-      <a href="#clearButton">
+      <Ovrating rating={product.starRating} />
+      <a id="overview-reviews-link" href="#clearButton">
         Read All
         {' '}
         {product.totalNumReviews}

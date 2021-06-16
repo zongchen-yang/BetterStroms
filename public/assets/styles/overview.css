@@ -5,10 +5,10 @@
 }
 
 #mainImage {
-  height: auto;
-  width: auto;
-  max-width: 90%;
-  max-height: 540px;
+  width: 800px;
+  height: 540px;
+  object-fit: cover;
+  border: 1px solid black;
 }
 
 .expanding {
@@ -32,15 +32,21 @@
 }
 
 .expanded {
-  transform: matrix(1.5, 0, 0, 1, 180, 0);
+  transform: matrix(1.65, 0, 0, 1, 260, 0);
 }
 
-#mainImageContainer {
-  display: flex;
+.expanded:hover {
+  cursor: crosshair;
+}
+
+#main-image-container {
+
+  z-index: 1;
+  /* display: flex;
   width: 800px;
   height: 540px;
   justify-content: space-between;
-  background-color: black;
+  background-color: black;*/
  }
 
  @keyframes stretch {
@@ -48,7 +54,7 @@
     transform: matrix(1, 0, 0, 1, 0, 0)
    }
    100% {
-    transform: matrix(1.5, 0, 0, 1, 180, 0)
+    transform: matrix(1.65, 0, 0, 1, 260, 0)
    }
  }
 
@@ -95,4 +101,26 @@
 
 .small-carousel-highlight {
   border-bottom: 2px solid yellow;
+}
+
+#options-container {
+}
+
+.overview-rating {
+  position: absolute;
+  display:flex;
+  flex-direction: row;
+
+}
+
+.overview-hidden-rating {
+  position: absolute;
+}
+
+#ovrating-container {
+
+}
+
+#overview-reviews-link {
+  margin-left: 100px;
 }
