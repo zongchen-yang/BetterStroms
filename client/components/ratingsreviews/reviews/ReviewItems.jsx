@@ -4,12 +4,11 @@ import ReviewForm from './ReviewForm';
 
 const ReviewItems = (props) => {
   // eslint-disable-next-line prefer-const
-  const { reviewMeta } = props;
+  const { reviewMeta, id } = props;
   let [currentList, increaseCurrentList] = useState(2);
-  let [showReviewForm, toggleShowReviewForm] = useState(false);
-  let [reviews, setReviews] = useState(props.reviews);
-  let [reviewFilter, setReviewFilter] = useState(props.reviewFilter);
-
+  const [showReviewForm, toggleShowReviewForm] = useState(false);
+  const [reviews, setReviews] = useState(props.reviews);
+  const [reviewFilter, setReviewFilter] = useState(props.reviewFilter);
 
   const seeMoreHandler = () => {
     increaseCurrentList(currentList += 2);
@@ -78,37 +77,17 @@ const ReviewItems = (props) => {
     console.log('current state:', reviews);
   };
 
-  const sortByDate = () => {
-    const temp = reviews;
-    // for (let j = 0; j < temp.length; j++) {
-    //   const oldDate = temp[j].date.slice(0, 10);
-    //   const newDate = new Date(oldDate);
-    //   temp[j].newDate = newDate;
-    // }
-
-    const sorter = (arr) => {
-      let changes = 0;
-      for (let k = 0; k < arr.length; k++) {
-        if (arr[k + 1] && arr[k].newDate < arr[k + 1].newDate) {
-          const tempVal = arr[k];
-          arr[k] = arr[k + 1];
-          arr[k + 1] = tempVal;
-          changes += 1;
-        }
-      }
-      if (changes > 0) {
-        (sorter(arr));
-      } else {
-        setReviews([...arr]);
-      }
-    };
-    sorter(temp);
+  const sortByDate = async () => {
+    let response = await fetch(`/reviews?product_id=${id}&sort=newest&count=1000`);
+    response = await response.json();
+    // selectedProduct.totalNumReviews = response.results.length;
+    setReviews(response.results);
   };
 
   const filterReviews = () => {
     if (reviewFilter.length) {
-      let temp = [];
-      for (var f = 0; f < reviews.length; f++) {
+      const temp = [];
+      for (let f = 0; f < reviews.length; f++) {
         if (reviewFilter.indexOf(reviews[f].rating) > -1) {
           temp.push(reviews[f]);
         }
@@ -116,7 +95,7 @@ const ReviewItems = (props) => {
       setReviews([...temp]);
     } else {
       setReviews([...props.reviews]);
-    };
+    }
   };
 
   useEffect(() => {
@@ -124,6 +103,7 @@ const ReviewItems = (props) => {
   }, [reviewFilter]);
 
   const showReviewFormHandler = () => {
+    console.log('clicked');
     toggleShowReviewForm(!showReviewForm);
   };
 
@@ -136,12 +116,20 @@ const ReviewItems = (props) => {
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>
         </select>
-        {reviews.length ? reviews.map((review) => (
-          <ReviewItem review={review} />
+        {reviews.length ? reviews.map((review, index) => (
+          <ReviewItem review={review} key={index} />
         )).slice(0, currentList) : null}
         {(reviews && reviews.length > 2) ? <button type="button" onClick={seeMoreHandler}>See More</button> : null}
         <button type="button" onClick={showReviewFormHandler}>Write a Review</button>
-        {showReviewForm ? <ReviewForm showReviewFormHandler={showReviewFormHandler} reviewMeta={reviewMeta} /> : null}
+        {showReviewForm
+          ? (
+            <ReviewForm
+              showReviewFormHandler={showReviewFormHandler}
+              reviewMeta={reviewMeta}
+              id={id}
+              sortByDate={sortByDate}
+            />
+          ) : null}
       </ul>
     </div>
   );
