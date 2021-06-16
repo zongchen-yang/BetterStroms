@@ -153,8 +153,8 @@ function Options({ product, sku, style, chs }) {
                 <div className="style-image-selector-container">
                   <img className="style-selector-image" alt={aStyle.name} src={aStyle.photos[0].thumbnail_url} />
                 </div>
-                <div className="style-selector-checkmark">
-                  <img hidden={hideCheckMark} alt="selected" height="25" width="25" src="assets/checkmark.png" />
+                <div hidden={hideCheckMark} className="style-selector-checkmark">
+                  <img alt="selected" height="25" width="25" src="assets/checkmark.png" />
                 </div>
               </div>
             </div>

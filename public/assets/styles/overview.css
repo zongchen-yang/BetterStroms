@@ -248,26 +248,44 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   flex-basis: 23%;
   display:flex;
   flex-direction: column;
-  align-items:flex-end
+  align-items:flex-end;
 }
 
 .style-selector-image {
   margin: auto;
-  height: auto;
-  width: auto;
+  height: 100px;
+  width: 100px;
   max-width: 100%;
   max-height: 100%;
   border: 1px solid black;
-  border-radius: 50px;
+  border-radius: 100%;
   vertical-align: middle;
+  background: url(imgpath) no-repeat center;
+  background-size: cover;
 }
 
 .style-image-selector-container {
   display: block;
   margin: auto;
   height: 100px;
+  width: 100px;
+
 }
 
 .style-selector-checkmark {
   position: absolute;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: white;
+  padding-top: 2px;
+  padding-right: 2px;
+}
+
+.style-selector-checkmark img {
+  /* max-width: height%;
+  max-height: 100%; */
+  height: 15px;
+  width: 25px;
+  transform: scale(.75);
+  padding-top:5px;
 }
