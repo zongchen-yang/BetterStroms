@@ -4,6 +4,7 @@ import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
 import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
+import Announcement from './components/annoucements/Announcements';
 
 function App() {
   const [id, setId] = useState(20104);
@@ -12,6 +13,7 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
+  const [theme, setTheme] = useState(true);
 
   async function getProduct() {
     let product = await fetch(`/products/${id}`);
@@ -59,8 +61,7 @@ function App() {
   };
 
   const calculateRating = (obj, fetchProduct) => {
-    const total = Object.keys(obj.ratings).reduce((accumRating, curr) =>
-    accumRating + parseInt(curr) * parseInt(obj.ratings[curr]), 0);
+    const total = Object.keys(obj.ratings).reduce((accumRating, curr) => accumRating + parseInt(curr) * parseInt(obj.ratings[curr]), 0);
     const amount = Object.values(obj.ratings).reduce((accum, curr) => accum + parseInt(curr), 0);
     fetchProduct.totalNumReviews = amount;
     return (total / amount) || 0;
@@ -116,7 +117,7 @@ function App() {
 
   async function cartCH(sku, quantity) {
     console.log(`added ${quantity} of item with sku ${sku.value} to cart`);
-    let skuInt = parseInt(sku.value, 10);
+    const skuInt = parseInt(sku.value, 10);
     const data = {
       sku_id: skuInt,
     };
@@ -135,6 +136,20 @@ function App() {
       .then((resArray) => console.log(resArray))
       .catch((err) => console.log(err));
   }
+
+  const toggleColors = () => {
+    const root = document.documentElement;
+
+    if (theme) {
+      root.style.setProperty('background-color', 'black');
+      root.style.setProperty('color', 'whitesmoke');
+      setTheme(false);
+    } else {
+      root.style.setProperty('background-color', 'whitesmoke');
+      root.style.setProperty('color', 'black');
+      setTheme(true);
+    }
+  };
 
   useEffect(() => {
     async function initialize() {
@@ -159,6 +174,8 @@ function App() {
 
   return (
     <div>
+      <Announcement />
+      <button type="button" onClick={toggleColors}>toggle</button>
       <Overview product={selectedProduct} favoriteCH={favoriteCH} cartCH={cartCH} />
       <Related product={selectedProduct} displayItemCH={displayItemCH} />
       <Inventory
@@ -170,7 +187,7 @@ function App() {
       <ReviewList
         product={selectedProduct}
         reviews={reviews}
-        //overallRating={selectedProduct.starRating}
+        // overallRating={selectedProduct.starRating}
         reviewMeta={reviewMeta}
         // totalNumberOfRatings={selectedProduct.totalNumReviews}
       />
