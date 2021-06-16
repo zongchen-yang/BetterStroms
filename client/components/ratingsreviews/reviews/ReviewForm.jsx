@@ -44,28 +44,28 @@ const ReviewForm = ({
   };
 
   const handleStarSelection = (val) => {
-    const stars = starRating;
+    const terms = {1: 'Poor', 2: 'Fair', 3: 'Average', 4: 'Good', 5: 'Great'}
+    const stars = [];
     for (let i = 0; i < val; i++) {
-      stars.push(<i className="fas fa-star" />);
+      stars.push(<div><i className="fas fa-star" /></div>);
     }
     for (let j = 0; j < 5 - val; j++) {
-      stars.push(<i className="far fa-star" />);
+      stars.push(<div><i className="far fa-star" /></div>);
     }
-    if (val === 1) {
-      stars.push(<div className="formReviewRatingDescription">Poor</div>);
-    }
-    if (val === 2) {
-      stars.push(<div className="formReviewRatingDescription">Fair</div>);
-    }
-    if (val === 3) {
-      stars.push(<div className="formReviewRatingDescription">Average</div>);
-    }
-    if (val === 4) {
-      stars.push(<div className="formReviewRatingDescription">Good</div>);
-    }
-    if (val === 5) {
-      stars.push(<div className="formReviewRatingDescription">Great</div>);
-    }
+    stars.push(<div className="formReviewRatingDescription">{terms[val]}</div>);
+
+    // if (val === 2) {
+    //   stars.push(<div className="formReviewRatingDescription">Fair</div>);
+    // }
+    // if (val === 3) {
+    //   stars.push(<div className="formReviewRatingDescription">Average</div>);
+    // }
+    // if (val === 4) {
+    //   stars.push(<div className="formReviewRatingDescription">Good</div>);
+    // }
+    // if (val === 5) {
+    //   stars.push(<div className="formReviewRatingDescription">Great</div>);
+    // }
     setStarRating(stars);
     setRating(val);
     toggleRated(true);
@@ -202,7 +202,7 @@ const ReviewForm = ({
           Photos:
           <input type="text" value={newReviewPhoto} onChange={handlePhotoChange} />
         </label>
-        {photoList.length < 5 ? <input type="submit" value="Submit" /> : null }
+        {photoList.length < 5 ? <input id="submit-photos" type="submit" value="Submit" /> : null }
         {photoList.length > 0
           ? photoList.map((photo, index) =>
             (<ReviewFormPhotos photo={photo} key={index} />)) : null}
@@ -228,8 +228,8 @@ const ReviewForm = ({
           {alertMessage.map((message, index) => (<div className="alertMessage" id={index}>{message}</div>))}
         </div>
       ) : null }
-      <button type="button" onClick={() => submitHandler()}>SUBMIT</button>
-      <button type="button" onClick={() => showReviewFormHandler()}>CLOSE</button>
+      <button type="button" id="review-form-submit" onClick={() => submitHandler()}>SUBMIT</button>
+      <button type="button" id="review-form-close" onClick={() => showReviewFormHandler()}>CLOSE</button>
     </div>
   );
 };
