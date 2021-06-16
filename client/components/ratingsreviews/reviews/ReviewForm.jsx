@@ -1,10 +1,31 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import CharacteristicRadioButtons from './CharacteristicRadioButtons';
+import ReviewFormPhotos from './ReviewFormPhotos';
 
-const ReviewForm = ({ showReviewFormHandler, reviewMeta }) => {
-  const [rated, toggleRated] = useState(true);
-  const [starRating, setRating] = useState([]);
+const ReviewForm = ({
+  showReviewFormHandler, reviewMeta, id, sortByDate,
+}) => {
+  const [rated, toggleRated] = useState(false);
+  const [starRating, setStarRating] = useState([]);
+  const [rating, setRating] = useState(0);
   const [recommended, setRecommended] = useState(true);
+  const [radioValues, setRadioValues] = useState({});
+  const [nameInput, setNameInput] = useState('');
+  const [summaryInput, setSummaryInput] = useState('');
+  const [bodyInput, setBodyInput] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [newReviewPhoto, setNewReviewPhoto] = useState('');
+  const [photoList, setPhotoList] = useState([]);
+  const [alert, setAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState([]);
+  const newId = id.toString();
+
+  const characteristicRadioHandler = (e, dbId) => {
+    const temp = radioValues;
+    temp[dbId] = parseInt(e.target.id, 10);
+    setRadioValues(temp);
+  };
 
   const handleNameChange = (event) => {
     setNameInput(event.target.value);
@@ -14,12 +35,15 @@ const ReviewForm = ({ showReviewFormHandler, reviewMeta }) => {
     setBodyInput(event.target.value);
   };
 
+  const handleSummaryChange = (event) => {
+    setSummaryInput(event.target.value);
+  };
+
   const handleEmailChange = (event) => {
     setEmailInput(event.target.value);
   };
 
   const handleStarSelection = (val) => {
-    console.log('clicked:', val);
     const stars = starRating;
     for (let i = 0; i < val; i++) {
       stars.push(<i className="fas fa-star" />);
@@ -42,7 +66,8 @@ const ReviewForm = ({ showReviewFormHandler, reviewMeta }) => {
     if (val === 5) {
       stars.push(<div className="formReviewRatingDescription">Great</div>);
     }
-    setRating(stars);
+    setStarRating(stars);
+    setRating(val);
     toggleRated(true);
   };
 
@@ -52,6 +77,68 @@ const ReviewForm = ({ showReviewFormHandler, reviewMeta }) => {
     } else if (e.target.value === 'yes') {
       setRecommended(true);
     }
+  };
+
+  const sendForm = () => {
+    axios.post('/reviews', {
+      product_id: id,
+      rating,
+      summary: summaryInput,
+      body: bodyInput,
+      recommend: recommended,
+      name: nameInput,
+      email: emailInput,
+      photos: photoList,
+      characteristics: radioValues,
+    })
+      .then((response) => console.log(response))
+      .then(() => (sortByDate()))
+      .catch((error) => console.log(error));
+  };
+
+  const submitHandler = () => {
+    let needToAlert = false;
+    if (emailInput.indexOf('@') === -1) {
+      var temp = alertMessage;
+      temp.push('A Valid Email \n');
+      setAlertMessage(temp);
+      needToAlert = true;
+    }
+    if (bodyInput.length < 50 || bodyInput.length > 1000) {
+      var temp = alertMessage;
+      temp.push(' A body between 50 and 1000 characters \n');
+      setAlertMessage(temp);
+      needToAlert = true;
+    }
+    if (nameInput.length < 3 || nameInput.length > 60) {
+      var temp = alertMessage;
+      temp.push(' A valid username \n');
+      setAlertMessage(temp);
+      needToAlert = true;
+    }
+    if (Object.keys(radioValues).length !== Object.keys(reviewMeta.characteristics).length) {
+      var temp = alertMessage;
+      temp.push(' A rating selection for each characteristic ');
+      setAlertMessage(temp);
+      needToAlert = true;
+    }
+    if (needToAlert) {
+      setAlert(true);
+    } else {
+      sendForm();
+    }
+  };
+
+  const handlePhotoChange = (e) => {
+    setNewReviewPhoto(e.target.value);
+  };
+
+  const handlePhotoSubmit = (e) => {
+    const temp = photoList;
+    temp.push(newReviewPhoto);
+    setPhotoList(temp);
+    setNewReviewPhoto('');
+    e.preventDefault();
   };
 
   return (
@@ -89,19 +176,59 @@ const ReviewForm = ({ showReviewFormHandler, reviewMeta }) => {
           <label htmlFor="no">No</label>
         </div>
       </form>
-      <CharacteristicRadioButtons reviewMeta={reviewMeta} />
+      <CharacteristicRadioButtons
+        reviewMeta={reviewMeta}
+        characteristicRadioHandler={characteristicRadioHandler}
+      />
       <div>
-        Name
-        <input onChange={handleNameChange} />
+        Review Summary
+        <textarea placeholder="Example: Best Purchase Ever!" onChange={handleSummaryChange} />
       </div>
       <div>
         Body
-        <textarea onChange={handleBodyChange} />
+        <textarea placeholder="Why did you like the product or not?" onChange={handleBodyChange} />
+        {(bodyInput.length > 50)
+          ? <div className="body-input-length">minimum reached</div>
+          : (
+            <div className="body-input-length">
+              'Minimum characters left:
+              {50 - bodyInput.length}
+            </div>
+          )}
+      </div>
+
+      <form onSubmit={(e) => (handlePhotoSubmit(e))}>
+        <label>
+          Photos:
+          <input type="text" value={newReviewPhoto} onChange={handlePhotoChange} />
+        </label>
+        {photoList.length < 5 ? <input type="submit" value="Submit" /> : null }
+        {photoList.length > 0
+          ? photoList.map((photo, index) =>
+            (<ReviewFormPhotos photo={photo} key={index} />)) : null}
+      </form>
+
+      <div>
+        Nickname
+        <input placeholder="Example: jackson11!" onChange={handleNameChange} />
+        <div className="body-input-length">
+          “For privacy reasons, do not use your full name or email address”
+        </div>
       </div>
       <div>
         Email
-        <input onChange={handleEmailChange} />
+        <input placeholder="Example: jackson11@email.com" onChange={handleEmailChange} />
+        <div className="body-input-length">
+          “For authentication reasons, you will not be emailed”
+        </div>
       </div>
+      { alert ? (
+        <div>
+          You must enter the following:
+          {alertMessage.map((message, index) => (<div className="alertMessage" id={index}>{message}</div>))}
+        </div>
+      ) : null }
+      <button type="button" onClick={() => submitHandler()}>SUBMIT</button>
       <button type="button" onClick={() => showReviewFormHandler()}>CLOSE</button>
     </div>
   );

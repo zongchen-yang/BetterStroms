@@ -167,13 +167,13 @@ function App() {
         displayItemCH={displayItemCH}
       />
       <QAndA product={selectedProduct} />
-      {/* <ReviewList
+      <ReviewList
         product={selectedProduct}
         reviews={reviews}
-        overallRating={selectedProduct.starRating}
+        //overallRating={selectedProduct.starRating}
         reviewMeta={reviewMeta}
         // totalNumberOfRatings={selectedProduct.totalNumReviews}
-      /> */}
+      />
     </div>
   );
 }
