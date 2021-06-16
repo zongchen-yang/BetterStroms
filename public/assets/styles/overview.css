@@ -1,12 +1,42 @@
+button {
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 #overviewContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  max-height: 900px;
+  min-height: 550px;
+  width: 100%;
+  height: calc(100vh - 13rem - 3rem - 80px - 350px);
+}
+
+#options-master {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-height: 900px;
+  min-height: 550px;
+  width: 100%;
+  height: calc(100vh - 13rem - 3rem - 80px - 350px);
+}
+
+#options-container {
+  display: flex;
+  flex-direction: column;
 }
 
 #mainImage {
-  width: 800px;
-  height: 540px;
+  /* width: 800px;
+  height: 540px; */
   object-fit: cover;
   border: 1px solid black;
 }
@@ -103,9 +133,6 @@
   border-bottom: 2px solid yellow;
 }
 
-#options-container {
-}
-
 .overview-rating {
   position: absolute;
   display:flex;
@@ -123,4 +150,99 @@
 
 #overview-reviews-link {
   margin-left: 100px;
+}
+
+.carousel-shevrons {
+  z-index: 2;
+  background-color: transparent;
+  cursor: pointer;
+  width: 60px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  transition: background-color 0.4s ease;
+  border: none;
+  padding: none;
+}
+
+.carousel-shevrons path {
+  fill: none;
+  /* stroke: #737373; */
+  stroke: black;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+  line-height: 1.4;
+}
+
+#sc-up {
+  transform: rotate(180deg);
+}
+
+#c-left {
+  transform: rotate(180deg);
+}
+
+#c-right {
+  transform: rotate(0deg);
+}
+
+#overview-main {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  width: calc(100% - 550px)
+}
+
+#main-image-container {
+  display: block;
+  margin: auto;
+  height: 550px;
+  /* width: calc(50% - 60px); */
+}
+
+#main-image-container img {
+  margin: auto;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0;
+  vertical-align: middle;
+}
+
+/* <img
+class="HYpZP Cq95f"
+name="mobile-gallery-image"
+alt="CONVERSE Chuck Taylor<sup>®</sup> All Star<sup>®</sup>Lugged Boot, Main, color, BLACK/ WHITE/ BLACK"
+style="pointer-events: auto; transform: translate3d(0px, 0px, 0px) scale(1);"
+srcset="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc.jpeg?crop=pad&amp;pad_color=FFF&amp;format=jpeg&amp;trim=color&amp;trimcolor=FFF&amp;w=780&amp;h=838 1x,
+        https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc.jpeg?crop=pad&amp;pad_color=FFF&amp;format=jpeg&amp;trim=color&amp;trimcolor=FFF&amp;w=780&amp;h=838&amp;dpr=2 2x"
+src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc.jpeg?crop=pad&amp;pad_color=FFF&amp;format=jpeg&amp;trim=color&amp;trimcolor=FFF&amp;w=780&amp;h=838"
+> */
+
+/* transform: translate3d(0px, 0px, 0px) scale(1); z stays 0px */
+
+#options-price {
+  padding-top: 5px;
+  padding-bottom:5px;
+}
+
+#options-price span {
+  padding-left: 3px;
+}
+
+#overview-social-media {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+#size-select-warning-div {
+  min-height: 20px;
+}
+
+.specific-style-selector {
+  display:flex;
+  flex-direction: column-reverse;
 }

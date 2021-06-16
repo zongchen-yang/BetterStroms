@@ -77,15 +77,24 @@ function Carousel({ style, photoIndex, clickHandler }) {
     }
   }, [photoIndex]);
   const notZoomed = !zoomed;
-   return (
+  const shevron = (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
+      <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+    </svg>
+  );
+  return (
     <div>
       <button type="button" onClick={expandImage}>expand</button>
-      <button hidden={leftHidden} type="button" onClick={(e) => clickHandler('left')}>left</button>
+      <button id="c-left" className="carousel-shevrons" hidden={leftHidden} type="button" onClick={(e) => clickHandler('left')}>
+        {shevron}
+      </button>
       <div id="main-image-container">
         {mainImage}
         <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
-      </div>
-      <button hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>right</button>
+        </div>
+      <button id="c-right" className="carousel-shevrons"hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
+        {shevron}
+      </button>
     </div>
   );
 }

@@ -102,27 +102,39 @@ function Options({ product, sku, style, chs }) {
 
   return (
     <div id="options-container">
-      <Ovrating rating={product.starRating} />
-      <a id="overview-reviews-link" href="#clearButton">
-        Read All
-        {' '}
-        {product.totalNumReviews}
-        {' '}
-        Reviews
-      </a>
-      <h3>{product.category}</h3>
-      <h1>{product.name}</h1>
-      <p>
+      <div id="options-randr">
+        <Ovrating rating={product.starRating} />
+        <a id="overview-reviews-link" href="#clearButton">
+          Read All
+          {' '}
+          {product.totalNumReviews}
+          {' '}
+          Reviews
+        </a>
+      </div>
+      <div id="options-product-cat">
+        <h3>{product.category}</h3>
+      </div>
+      <div id="options-product-name">
+        <h1>{product.name}</h1>
+      </div>
+      <div id="options-price">
         Price:
-        <span>{price}</span>
-      </p>
-      <button type="button">FB</button>
-      <button type="button">TTR</button>
-      <button type="button">PIN</button>
-      <br />
-      <strong>Style</strong>
-      {'>'}
-      {style.name}
+        <span>
+          $
+          {price}
+        </span>
+      </div>
+      <div id="overview-social-media">
+        <button type="button">FB</button>
+        <button type="button">TTR</button>
+        <button type="button">PIN</button>
+      </div>
+      <div id="options-style-text-des">
+        <strong>Style</strong>
+        {'>'}
+        {style.name}
+      </div>
       <div id="stylesContainer">
         {styleList.map((aStyle, index) => {
           let hideCheckMark = true;
@@ -136,23 +148,34 @@ function Options({ product, sku, style, chs }) {
               onClick={() => styleCH(index)}
               onKeyPress={() => styleCH(index)}
               role="presentation"
+              className="specific-style-selector"
             >
-              <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
-              <img hidden={hideCheckMark} alt="selected" height="25" width="25" src="assets/checkmark.png" />
+              <span>
+                <img alt={aStyle.name} height="150" width="75" src={aStyle.photos[0].thumbnail_url} />
+              </span>
+              <span>
+                <img hidden={hideCheckMark} alt="selected" height="25" width="25" src="assets/checkmark.png" />
+              </span>
             </div>
           );
         })}
       </div>
-      <form>
+      <div id="size-select-warning-div">
         {sizeSelectWarning}
-        <label htmlFor="size-select">
-          Size:
-          {sizeSelect}
-        </label>
+      </div>
+      <div id="size-and-quant">
+        <span>
+          <label htmlFor="size-select">
+            Size:
+            {sizeSelect}
+          </label>
+        </span>
         <QuantSelector sku={sku} />
+      </div>
+      <div id="cart-and-favorite">
         {cartButton}
         {favoriteButton}
-      </form>
+      </div>
     </div>
   );
 }
