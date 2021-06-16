@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 const WithClickTrackingEventHandler = (props) => {
   const handleClickTracking = (originalOnClick, child, event) => {
@@ -11,14 +12,16 @@ const WithClickTrackingEventHandler = (props) => {
       // 'string'     //required: Time the interaction occured (timestamp)
     };
 
-    // axios.post(`/interactions`, requestBody);
+    axios.post(`/interactions`, requestBody)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
     // originalOnClick();
     originalOnClick(event);
-    console.log('this is the child', child);
-    console.log('this is the element', requestBody.element);
-    console.log('this is the module', requestBody.widget);
-    console.log('this is the timestamp', requestBody.time);
-    console.log('children', React.Children.toArray());
+    // console.log('this is the child', child);
+    // console.log('this is the element', requestBody.element);
+    // console.log('this is the module', requestBody.widget);
+    // console.log('this is the timestamp', requestBody.time);
+    // console.log('children', React.Children.toArray());
     console.log('TRACKING is working on this button', props.eventName);
   };
 
