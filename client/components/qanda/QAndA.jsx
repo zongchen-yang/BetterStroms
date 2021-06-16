@@ -141,6 +141,7 @@ const QAndA = (props) => {
   return (
     <>
       <div
+        id="QandA-module"
         onClick={showAddQuestionModal || showAddAnswerModal ? closeModals : () => {}}
         className={
           showAddAnswerModal || showAddQuestionModal
