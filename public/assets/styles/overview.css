@@ -105,3 +105,22 @@
 
 #options-container {
 }
+
+.overview-rating {
+  position: absolute;
+  display:flex;
+  flex-direction: row;
+
+}
+
+.overview-hidden-rating {
+  position: absolute;
+}
+
+#ovrating-container {
+
+}
+
+#overview-reviews-link {
+  margin-left: 100px;
+}
