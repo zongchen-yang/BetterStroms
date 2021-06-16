@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuantSelector from './QuantSelector';
-
-
-//         <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
+import Ovrating from './Ovrating';
 
 function Options({ product, sku, style, chs }) {
   const [sizeNotSelected, setSizeNotSelected] = useState(false);
@@ -104,8 +102,8 @@ function Options({ product, sku, style, chs }) {
 
   return (
     <div id="options-container">
-      <span>Stars {product.starRating.whole}</span>
-      <a href="#clearButton">
+      <Ovrating rating={product.starRating} />
+      <a id="overview-reviews-link" href="#clearButton">
         Read All
         {' '}
         {product.totalNumReviews}
