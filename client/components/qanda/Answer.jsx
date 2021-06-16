@@ -40,10 +40,10 @@ const Answer = (props) => {
   return (
     <div className="answer">
       {/* {console.log('this is the converted date for the answer', convertDate(answer.date))} */}
-      <div>
+      <div className="answer-body">
         <strong>A:</strong> {body}
       </div>
-      <div>
+      <div className="answer-flavor-text-container">
         {isSeller
           ? (
             <span className="answer-flavor-text">
@@ -83,7 +83,7 @@ const Answer = (props) => {
           )}
       </div>
       {photos.map((url, idx) => (
-        <img src={url} key={id + idx} width="75" height="75" alt="" />
+        <img className="answer-image" src={url} key={id + idx} width="75" height="75" alt="" />
       ))}
       {/* <div onDoubleClick={() => reportAnswer(id)}>Report</div> */}
     </div>

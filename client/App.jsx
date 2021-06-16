@@ -147,7 +147,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div id="app">
       <Overview
         product={selectedProduct}
         favoriteCH={favoriteCH}
