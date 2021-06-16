@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import InventoryItem from './InventoryItem';
 
 const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
-  const [window, setWindow] = useState([]);
+  const [window, setWindow] = useState();
   const [pageReady, setPageReady] = useState(false);
 
   const getWindow = (items) => {
@@ -34,13 +34,36 @@ const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
     return <p>loading...</p>;
   }
 
+  const windowLast = window[window.length - 1] || undefined;
+  const favoritesLast = favorites[favorites.length - 1] || undefined;
+  const fourth = favorites.indexOf(window[2]) + 1;
+
   return (
     <div>
       <h3 className="title">YOUR OUTFIT</h3>
       <div className="list">
-        {window && window[0] && window[0].index !== 0 ? <button type="button" onClick={leftCH}>left</button> : null}
-        {window.map((each, i) => <InventoryItem key={i} item={each} deleteCH={deleteFavoriteCH} />)}
-        {window && window[2] && window[2].index !== favorites.length - 1 ? <button type="button" onClick={rightCH}>right</button> : null}
+        {window && window[0] && (window[0].id !== favorites[0].id
+        || window[0].style.id !== favorites[0].style.id)
+          ? <button type="button" onClick={leftCH}>left</button> : null}
+        {window.map((each, i) => (
+          <InventoryItem
+            key={i}
+            item={each}
+            displayItemCH={displayItemCH}
+            deleteCH={deleteFavoriteCH}
+          />
+        ))}
+        {favorites.length > 3
+          ? (
+            <InventoryItem
+              item={favorites[fourth]}
+              displayItemCH={displayItemCH}
+              deleteCH={deleteFavoriteCH}
+            />
+          ) : null}
+        {window && windowLast && (windowLast.id !== favoritesLast.id
+        || windowLast.style.id !== favoritesLast.style.id)
+          ? <button type="button" onClick={rightCH}>right</button> : null}
       </div>
     </div>
   );

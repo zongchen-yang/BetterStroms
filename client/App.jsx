@@ -6,7 +6,7 @@ import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
 
 function App() {
-  const [id, setId] = useState(20104);
+  const [id, setId] = useState(20103);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -66,19 +66,9 @@ function App() {
     return (total / amount) || 0;
   };
 
-  const deleteFavoriteCH = (item) => {
-    // item.styles[]isFavorite = false;
-    const copy = favorites.slice();
-    const toDelete = copy.indexOf(item);
-    console.log(toDelete);
-    copy.splice(toDelete, 1);
-    setFavorites(copy);
-  };
-
   const displayItemCH = (num) => {
     setIsLoaded(false);
     setId(num);
-    // getProduct();
   };
 
   const getRatings = async (fetchProduct) => {
@@ -93,27 +83,25 @@ function App() {
     };
   };
 
-  function favoriteCH(style) {
-    if (style.isFavorite) {
-      // remove from favorites
-      style.isFavorite = false;
-      const temp = [...favorites];
-      let removedIndex = 0;
-      temp.forEach((item, itemIndex) => {
-        if (item.id === style.id) {
-          removedIndex = itemIndex;
-        }
-      });
-      temp.splice(removedIndex, 1);
-      setFavorites(temp);
-    } else {
-      const temp = [...favorites];
-      style.isFavorite = true;
-      temp.push(style);
-      setFavorites(temp);
-      // add to favorites
-    }
+  function favoriteCH(product, style) {
+    style.isFavorite = true;
+    const temp = Object.create(product);
+    temp.style = style;
+    setFavorites([...favorites, temp]);
   }
+
+  const deleteFavoriteCH = (item, style) => {
+    const theStyle = item.style || style;
+    theStyle.isFavorite = false;
+    const copy = favorites.slice();
+    for (let i = 0; i < copy.length; i++) {
+      if (copy[i].style.id === theStyle.id && copy[i].id === item.id) {
+        copy.splice(i, 1);
+        break;
+      }
+    }
+    setFavorites(copy);
+  };
 
   async function cartCH(sku, quantity) {
     console.log(`added ${quantity} of item with sku ${sku.value} to cart`);
@@ -160,7 +148,12 @@ function App() {
 
   return (
     <div>
-      <Overview product={selectedProduct} favoriteCH={favoriteCH} cartCH={cartCH} />
+      <Overview
+        product={selectedProduct}
+        favoriteCH={favoriteCH}
+        cartCH={cartCH}
+        deleteFavoriteCH={deleteFavoriteCH}
+      />
       <Related product={selectedProduct} displayItemCH={displayItemCH} />
       <Inventory
         favorites={favorites}
@@ -168,7 +161,7 @@ function App() {
         displayItemCH={displayItemCH}
       />
       <QAndA product={selectedProduct} />
-      <ReviewList
+      {/* <ReviewList
         product={selectedProduct}
         reviews={reviews}
         overallRating={selectedProduct.starRating}
