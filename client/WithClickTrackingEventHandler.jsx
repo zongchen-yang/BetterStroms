@@ -1,6 +1,6 @@
 import React from 'react';
 
-const withClickTrackingEventHandler = (props) => {
+const WithClickTrackingEventHandler = (props) => {
   const handleClickTracking = (originalOnClick, child, event) => {
     const requestBody = {
       element: props.element,
@@ -36,6 +36,6 @@ const withClickTrackingEventHandler = (props) => {
   );
 };
 
-export default withClickTrackingEventHandler;
+export default WithClickTrackingEventHandler;
 
 // module.exports = WithClickTrackingEventHandler;

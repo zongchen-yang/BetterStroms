@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Question';
 import AddAnswer from './AddAnswer';
-import ClickTracking from '../../pracHigherOrderFunc';
+import ClickTracking from '../../WithClickTrackingEventHandler';
 
 const QuestionsList = (props) => {
   const {
