@@ -86,9 +86,9 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
 
   return (
     <div id="smallCarouselContainer">
-      <button hidden={upHidden} onClick={goUp} type="button">up</button>;
+      <button hidden={upHidden} onClick={goUp} type="button">up</button>
       {renderedPhotos.slice(startIndex, (startIndex + max))}
-      <button hidden={downHidden} onClick={goDown} type="button">down</button>;
+      <button hidden={downHidden} onClick={goDown} type="button">down</button>
     </div>
   );
 }

@@ -6,6 +6,11 @@ button:hover {
   cursor: pointer;
 }
 
+#QandA-module {
+  width: 80%;
+  margin: auto;
+}
+
 .QandA-module {
   font-family: sans-serif;
 }
@@ -40,8 +45,8 @@ button:hover {
 
 .question-search-bar-actual {
   border-radius: 0px;
-  width: 97%;
-  height: 25px;
+  width: 100%;
+  height: 35px;
   margin: 10px;
 }
 
@@ -54,7 +59,6 @@ button:hover {
 .QandA-title {
   margin: 10px;
 }
-
 
 .answers-list {
   width: 100%;
@@ -113,6 +117,10 @@ button:hover {
   color: gray;
 }
 
+.answer-flavor-text-container {
+  margin: 5px 0px;
+}
+
 .answer-flavor-text {
   font-size: .8em;
   margin: 5px;
@@ -124,12 +132,22 @@ button:hover {
   margin: 10px;
 }
 
+.answer-body {
+  margin: 5px 0px;
+}
+
+.answer-image {
+  margin: 3px;
+  border: 1px solid gray;
+}
+
 .underline {
   text-decoration: underline;
 }
 
 .underline:hover {
   color: black;
+  cursor: pointer;
 }
 
 .bold {
@@ -138,22 +156,27 @@ button:hover {
 
 .add-more-answers {
   margin: 10px;
-  width: 20em;
+  width: 10em;
   font-size: .95em;
 }
 
+.add-more-answers:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .button-questions {
+  display: inline-block;
   border-radius: 0px;
-  padding: 5px;
+  padding: 15px;
   margin: 5px;
-  font-size: 1.1em;
-  background-color: plum;
+  background-color: white;
 }
 
 .button-questions:hover {
   background-color: black;
-  color: white;
-  border: 1px solid white;
+  color: #04AA6D;
+  border: 1px solid #04AA6D;
 }
 
 .answers-title {
