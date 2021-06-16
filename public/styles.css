@@ -139,6 +139,7 @@ h3,
   z-index: 2;
 }
 
-.relatedList {
+.relatedList,
+.inventoryList {
   position:relative;
 }
