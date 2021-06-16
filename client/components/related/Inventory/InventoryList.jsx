@@ -14,6 +14,7 @@ const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
   };
 
   useEffect(async () => {
+    setPageReady(false);
     if (favorites) {
       getWindow(favorites);
       setPageReady(true);
@@ -36,13 +37,13 @@ const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
 
   const windowLast = window[window.length - 1] || undefined;
   const favoritesLast = favorites[favorites.length - 1] || undefined;
-  const fourth = favorites.indexOf(window[2]) + 1;
+  const fourth = favorites.indexOf(window[2]) > -1 ? (favorites.indexOf(window[2]) + 1) : undefined;
 
   return (
     <div>
       <h3 className="title">YOUR OUTFIT</h3>
       <div className="list">
-        {window && window[0] && (window[0].id !== favorites[0].id
+        {window && window[0] && favorites && favorites[0] && (window[0].id !== favorites[0].id
         || window[0].style.id !== favorites[0].style.id)
           ? <button type="button" onClick={leftCH}>left</button> : null}
         {window.map((each, i) => (
@@ -53,15 +54,16 @@ const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
             deleteCH={deleteFavoriteCH}
           />
         ))}
-        {favorites.length > 3
+        {favorites[fourth]
           ? (
             <InventoryItem
               item={favorites[fourth]}
               displayItemCH={displayItemCH}
               deleteCH={deleteFavoriteCH}
+              className={{ className: 'fourth' }}
             />
           ) : null}
-        {window && windowLast && (windowLast.id !== favoritesLast.id
+        {window && windowLast && favorites && favorites[0] && (windowLast.id !== favoritesLast.id
         || windowLast.style.id !== favoritesLast.style.id)
           ? <button type="button" onClick={rightCH}>right</button> : null}
       </div>

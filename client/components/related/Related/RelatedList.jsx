@@ -86,8 +86,7 @@ const RelatedList = ({ product, displayItemCH }) => {
     return <p>loading...</p>;
   }
 
-  const fourth = items.indexOf(window[2]) + 1;
-  // const classForFourth = 'fourth';
+  const fourth = items.indexOf(window[2]) > -1 ? (items.indexOf(window[2]) + 1) : undefined;
 
   return (
     <div className="relatedList">
