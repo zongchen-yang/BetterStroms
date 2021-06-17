@@ -198,14 +198,12 @@ function App() {
         deleteFavoriteCH={deleteFavoriteCH}
         displayItemCH={displayItemCH}
       />
-      <QAndA product={selectedProduct} />
+      <QAndA product={selectedProduct} theme={theme} />
       <ReviewComponents
         product={selectedProduct}
         reviews={reviews}
-        // overallRating={selectedProduct.starRating}
         reviewMeta={reviewMeta}
         theme={theme}
-        // totalNumberOfRatings={selectedProduct.totalNumReviews}
       />
     </div>
   );
