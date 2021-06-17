@@ -35,10 +35,9 @@ button {
 }
 
 #mainImage {
-  /* width: 800px;
-  height: 540px; */
-  object-fit: cover;
-  border: 1px solid black;
+  /* width: 825px;
+  height: 550px;
+  object-fit: fill; */
 }
 
 .expanding {
@@ -70,13 +69,9 @@ button {
 }
 
 #main-image-container {
-
-  z-index: 1;
-  /* display: flex;
-  width: 800px;
-  height: 540px;
-  justify-content: space-between;
-  background-color: black;*/
+  /* width: 825px;
+  height: 1000px;
+  object-fit: fill; */
  }
 
  @keyframes stretch {
@@ -207,12 +202,13 @@ button {
 
 #main-image-container img {
   margin: auto;
-  height: auto;
-  width: auto;
+  height: 550px;
+  width: 825px;
   max-width: 100%;
   max-height: 100%;
   border: 0;
   vertical-align: middle;
+  object-fit: cover;
 }
 
 /* <img
@@ -271,8 +267,8 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   border: 1px solid black;
   border-radius: 100%;
   vertical-align: middle;
-  background: url(imgpath) no-repeat center;
-  background-size: cover;
+  /* background: url(imgpath) no-repeat center; */
+  /* background-size: cover; */
 }
 
 .style-image-selector-container {
