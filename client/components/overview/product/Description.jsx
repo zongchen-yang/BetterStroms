@@ -3,7 +3,7 @@ import React from 'react';
 function Description({ product }) {
   return (
     <div id="descriptionContainer">
-      <div id="descripion-text">
+      <div id="description-text">
         <span>{product.slogan}</span>
         <span>{product.description}</span>
       </div>

@@ -1,3 +1,22 @@
+.big-header {
+  font-weight: 1000;
+  font-size: 40px;
+}
+
+.small-header {
+  font-weight: 600;
+  letter-spacing: .10rem;
+}
+
+.thicker-font {
+  font-weight: 600;
+}
+
+.bolderize-font {
+  font-weight: 800;
+  font-size: 15px;
+}
+
 button {
   text-rendering: auto;
   letter-spacing: normal;
@@ -230,6 +249,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 #options-price {
   padding-top: 5px;
   padding-bottom:5px;
+  padding-left: 14px;
 }
 
 #options-price span {
@@ -239,6 +259,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 #overview-social-media {
   padding-top: 5px;
   padding-bottom: 10px;
+  padding-left: 14px;
 }
 
 #size-select-warning-div {
@@ -271,6 +292,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   border: 1px solid black;
   border-radius: 100%;
   vertical-align: middle;
+  object-fit: cover;
   /* background: url(imgpath) no-repeat center; */
   /* background-size: cover; */
 }
@@ -312,9 +334,93 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   z-index: 1;
 }
 
-/* #carousel-shevron-right {
-
+#carousel-shevron-right {
+  /* display:flex;
+  flex-direction: column; */
 }
-#carousel-shevron-left {
+/* #carousel-shevron-left {
 
 } */
+
+#expand-image-container {
+  /* position: absolute;
+  height:650px; */
+}
+
+#options-product-cat {
+  padding-top: 15px;
+  padding-left: 14px;
+}
+
+#options-randr {
+  padding-top: 30px;
+  padding-left: 14px;
+}
+
+#options-style-text {
+  padding-left: 7px;
+  font-size: 15px;
+}
+
+#options-style-text-des {
+  padding-left: 14px;
+}
+
+#options-product-name {
+  padding-left: 14px;
+}
+
+#overview-reviews-link {
+  color:rgb(71, 71, 71);
+}
+
+#size-and-quant {
+  display: flex;
+}
+
+.select-dropdowns {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid rgb(71, 71, 71);
+  border-radius: 0;
+  height: 40px;
+  width: 200px;
+  font-size: 18px;
+  text-align: center;
+  padding-left: 15px;
+  letter-spacing: .10rem;
+}
+
+.select-dropdowns:focus {
+  outline: none;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  /* font-size: 1rem; */
+  top: 6px;
+  right: 10px;
+  position: absolute;
+}
+
+#size-select-wrapper {
+  padding-left: 14px;
+  padding-right: 15px;
+}
+#quant-select-wrapper {
+
+}
+
+#cart-and-favorite {
+  padding-left: 14px;
+  padding-top: 10px;
+}
+
+#description-text{
+  display:flex;
+  flex-direction: column;
+}

@@ -9,12 +9,9 @@ function QuantSelector({ sku }) {
   if (sku.size === 'empty') {
     return (
       <span>
-        <label htmlFor="quantity-select">
-          Quantity:
-          <select name="quantity" id="quantity-select" disabled>
-            <option value="null">-</option>
-          </select>
-        </label>
+        <select className="select-dropdowns" name="quantity" id="quantity-select" disabled>
+          <option value="null">-</option>
+        </select>
       </span>
     );
   }
@@ -22,13 +19,12 @@ function QuantSelector({ sku }) {
     optionArray.push(<option key={i} value={i}>{i}</option>);
   }
   return (
-    <span>
-      <label htmlFor="quantity-select">
-        Quantity:
-        <select name="quantity" id="quantity-select">
+    <span className="quant-select-wrapper">
+      <div className="select-wrapper">
+        <select className="select-dropdowns" name="quantity" id="quantity-select">
           {optionArray}
         </select>
-      </label>
+      </div>
     </span>
   );
 }
