@@ -4,7 +4,7 @@ import CharacteristicRadioButtons from './CharacteristicRadioButtons';
 import ReviewFormPhotos from './ReviewFormPhotos';
 
 const ReviewForm = ({
-  showReviewFormHandler, reviewMeta, id, sortByDate,
+  showReviewFormHandler, reviewMeta, id, sortByDate, theme
 }) => {
   const [rated, toggleRated] = useState(false);
   const [starRating, setStarRating] = useState([]);
@@ -142,7 +142,7 @@ const ReviewForm = ({
   };
 
   return (
-    <div className="add-review-box">
+    <div className={theme ? 'add-review-box' : 'add-review-box dark'}>
       <div>Rating</div>
       <div className="reviewFormStarContainer">
         {rated ? starRating

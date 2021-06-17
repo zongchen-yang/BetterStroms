@@ -4,7 +4,7 @@ import ReviewForm from './ReviewForm';
 
 const ReviewItems = (props) => {
   // eslint-disable-next-line prefer-const
-  const { reviewMeta, id } = props;
+  const { reviewMeta, id, theme } = props;
   let [currentList, increaseCurrentList] = useState(2);
   const [showReviewForm, toggleShowReviewForm] = useState(false);
   const [reviews, setReviews] = useState(props.reviews);
@@ -120,9 +120,9 @@ const ReviewItems = (props) => {
           {reviews.length ? reviews.map((review, index) => (
             <ReviewItem review={review} key={index} />
           )).slice(0, currentList) : null}
-        
-        {(reviews && reviews.length > 2) ? <button type="button" onClick={seeMoreHandler}>See More</button> : null}
-        <button type="button" id="show-review-form" onClick={showReviewFormHandler}>Write a Review</button>
+
+        {(reviews && reviews.length > 2) ? <button type="button" id="see-more-reviews" onClick={seeMoreHandler}>See More</button> : null}
+        <button type="button" id="show-review-form" onClick={showReviewFormHandler}>Write Your Review</button>
         {showReviewForm
           ? (
             <ReviewForm
@@ -130,6 +130,7 @@ const ReviewItems = (props) => {
               reviewMeta={reviewMeta}
               id={id}
               sortByDate={sortByDate}
+              theme={theme}
             />
           ) : null}
       </ul>

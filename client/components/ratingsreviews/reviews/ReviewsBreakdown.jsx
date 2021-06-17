@@ -61,23 +61,24 @@ const ReviewsBreakdown = (props) => {
 
   return (
     <>
-      <h2>
-        Overall Rating:
-        {' '}
-        <RenderStars rating={overallRating} />
-        {' '}
-        of
-        {' '}
-        {totalNumberOfRatings}
-        {' '}
-        ratings.
-      </h2>
-      <div>{filtersUsedString}</div>
-
       {reviewMeta.ratings
         ? (
           <>
             <div className="reviewBreakdownBox">
+              <div id="header-filter-container">
+              <div id="breakdown-header">
+                Overall Rating:
+                {' '}
+                <RenderStars rating={overallRating} />
+                {' '}
+                of
+                {' '}
+                {totalNumberOfRatings}
+                {' '}
+                ratings.
+              </div>
+              <div>{filtersUsedString}</div>
+            </div>
               <button type="button" id="clearButton" onClick={clearFilters}>Clear Filters</button>
               <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(5)}>
                 <div className="declareStars" value="5">
@@ -139,7 +140,7 @@ const ReviewsBreakdown = (props) => {
                   <div id="starDistribution" style={{ width: percentageOf1s }} />
                 </div>
               </div>
-              <div className="recommended">
+              <div id="recommended">
                 {percentageRecommends || 0}
                 {' '}
                 of reviewers recommend this product.
