@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReviewItems from './ReviewItems';
 import ReviewsBreakdown from './ReviewsBreakdown';
 
-const ReviewList = ({ reviews, product, reviewMeta }) => {
+const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
   const [reviewFilter, setReviewFilter] = useState([]);
   const [filtersUsedString, setFiltersUsedString] = useState('');
   const { id } = product;
@@ -42,7 +42,7 @@ const ReviewList = ({ reviews, product, reviewMeta }) => {
 
   return (
     <div id="reviews-component-holder">
-      <h5>Ratings and Reviews</h5>
+      <div id="reviews-component-header">Ratings and Reviews</div>
       {reviews.length
         ? (
           <>
@@ -53,6 +53,7 @@ const ReviewList = ({ reviews, product, reviewMeta }) => {
               totalNumberOfRatings={totalNumberOfRatings}
               reviewFilterHelper={reviewFilterHelper}
               filtersUsedString={filtersUsedString}
+              theme={theme}
             />
             <ReviewItems
               key={reviewFilter}
@@ -60,6 +61,7 @@ const ReviewList = ({ reviews, product, reviewMeta }) => {
               reviewFilter={reviewFilter}
               reviewMeta={reviewMeta}
               id={id}
+              theme={theme}
             />
           </>
         )
