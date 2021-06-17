@@ -3,18 +3,21 @@ import React from 'react';
 function Description({ product }) {
   return (
     <div id="descriptionContainer">
-      <div>
-        <h3>{product.slogan}</h3>
-        <p>{product.description}</p>
+      <div id="descripion-text">
+        <span>{product.slogan}</span>
+        <span>{product.description}</span>
       </div>
-      <div className="veritcalLine" />
-      <ul>
-        {product.features.map((item, index) => (
-          <li key={index}>
-            {item.feature} : {item.value}
-          </li>
-        ))}
-      </ul>
+      <div id="descripton-right">
+        <div className="veritcalLine" />
+        <div id="feature-text-container">
+          {product.features.map((item, index) => (
+            <div key={index} className="description-feature-text">
+              <span>{item.feature}</span>
+              <span>{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
