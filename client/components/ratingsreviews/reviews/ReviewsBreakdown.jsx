@@ -67,19 +67,19 @@ const ReviewsBreakdown = (props) => {
           <>
             <div id={theme ? 'review-breakdown-box' : 'review-breakdown-box-dark'}>
               <div id="header-filter-container">
-              <div id="breakdown-header">
-                Overall Rating:
-                {' '}
-                <RenderStars rating={overallRating} />
-                {' '}
-                of
-                {' '}
-                {totalNumberOfRatings}
-                {' '}
-                ratings.
+                <div id="breakdown-header">
+                  Overall Rating:
+                  {' '}
+                  <RenderStars rating={overallRating} />
+                  {' '}
+                  of
+                  {' '}
+                  {totalNumberOfRatings}
+                  {' '}
+                  ratings.
+                 <div id="filters-used">{filtersUsedString}</div>
+                </div>
               </div>
-              <div>{filtersUsedString}</div>
-            </div>
               <button type="button" id="clearButton" onClick={clearFilters}>Clear Filters</button>
               <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(5)}>
                 <div className="declareStars" value="5">
