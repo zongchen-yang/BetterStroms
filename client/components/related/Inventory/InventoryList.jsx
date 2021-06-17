@@ -43,7 +43,7 @@ const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
     <div className="inventoryList">
       <h3 className="title">YOUR OUTFIT</h3>
       <div className="list">
-        {window.length ? null : <span>This is empty. Go like something!</span>}
+        {window.length ? null : <span>This is empty. Go pick something!</span>}
         {window && window[0] && favorites && favorites[0] && (window[0].id !== favorites[0].id
         || window[0].style.id !== favorites[0].style.id)
           ? <i className="fas fa-chevron-left fa-2x" type="button" onClick={leftCH} /> : null}
