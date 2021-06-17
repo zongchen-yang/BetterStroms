@@ -55,9 +55,9 @@ const ReviewItem = (props) => {
   // { params: { review_id: revId } }
 
   return (
-    <div>
+    <div className="review-items-container">
       <ul className="review">
-        <h6 className="rating">
+        <h6 className="review-rating">
           Rating:
           <RenderStars rating={review.rating} />
         </h6>
@@ -94,6 +94,7 @@ const ReviewItem = (props) => {
           {`     ${reviewHelpfulness}`}
         </div>
       </ul>
+      <hr />
     </div>
   );
 };

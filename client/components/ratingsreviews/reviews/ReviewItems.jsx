@@ -116,9 +116,11 @@ const ReviewItems = (props) => {
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>
         </select>
-        {reviews.length ? reviews.map((review, index) => (
-          <ReviewItem review={review} key={index} />
-        )).slice(0, currentList) : null}
+
+          {reviews.length ? reviews.map((review, index) => (
+            <ReviewItem review={review} key={index} />
+          )).slice(0, currentList) : null}
+        
         {(reviews && reviews.length > 2) ? <button type="button" onClick={seeMoreHandler}>See More</button> : null}
         <button type="button" id="show-review-form" onClick={showReviewFormHandler}>Write a Review</button>
         {showReviewForm

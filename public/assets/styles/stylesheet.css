@@ -185,12 +185,15 @@ button:hover {
 .review {
   position: static;
   left: 0;
-  border-style: solid;
-  border-color: aquamarine;
   width: 90%;
   overflow-wrap: break-word;
   height: auto;
   font-size: 90%;
+}
+
+.review-items-container {
+  width: 100%;
+  float: left;
 }
 
 .reviewPhotoThumbnail {
@@ -208,6 +211,7 @@ button:hover {
   text-align: left;
   width: 100%;
   font-weight: bolder;
+  font-size: 18px;
 }
 
 .review-body {
@@ -215,6 +219,11 @@ button:hover {
   float: left;
   text-align: left;
   width: 100%
+}
+
+.review-rating {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .checkMark {
@@ -355,6 +364,7 @@ button:hover {
   right: 30%;
   clear: both;
   z-index: 1;
+  background-color: white;
 }
 
 .reviewFormStarContainer {
@@ -440,8 +450,8 @@ button:hover {
 
 }
 
-#reivews-component-holder {
-
+#reviews-component-holder {
+  margin: 5%;
 }
 
 #announcement {

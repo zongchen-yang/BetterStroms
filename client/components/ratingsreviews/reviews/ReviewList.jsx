@@ -42,7 +42,7 @@ const ReviewList = ({ reviews, product, reviewMeta }) => {
 
   return (
     <div id="reviews-component-holder">
-      <h5>Ratings and Reviews</h5>
+      <h5 id="reviews-component-header" >Ratings and Reviews</h5>
       {reviews.length
         ? (
           <>
