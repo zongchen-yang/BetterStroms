@@ -17,6 +17,8 @@ button {
   min-height: 550px;
   width: 100%;
   height: max-content;
+  padding-bottom: 25px;
+  padding-top: 50px;
 }
 
 #options-master {
@@ -72,6 +74,8 @@ button {
   /* width: 825px;
   height: 1000px;
   object-fit: fill; */
+  border: 2px solid black;
+  border-radius: 10px;
  }
 
  @keyframes stretch {
@@ -194,16 +198,15 @@ button {
 #main-image-container {
   display: flex;
   margin: auto;
-  height: 550px;
-  width: 825px ;
-  justify-content:center;
-  /* width: calc(50% - 60px); */
+  height: 650px;
+  width: 800px;
+  justify-content: center;
 }
 
 #main-image-container img {
   margin: auto;
-  height: 550px;
-  width: 825px;
+  height: 1000px;
+  width: 1000px;
   max-width: 100%;
   max-height: 100%;
   border: 0;

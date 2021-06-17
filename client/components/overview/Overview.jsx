@@ -63,7 +63,6 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
   if (!isLoaded) {
     return <div>Loading overview...</div>;
   }
-  console.log(selectedStyle);
   return (
     <div id="overview">
       <div id="overviewContainer">
