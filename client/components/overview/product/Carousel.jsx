@@ -10,7 +10,7 @@ function Carousel({ style, photoIndex, clickHandler }) {
 
   let mainImage;
   let imageSource;
-  if (!style.photos[photoIndex]) {
+  if (!photoIndex) {
     imageSource = style.photos[0].url;
   } else {
     imageSource = style.photos[photoIndex].url;

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Carousel from './product/Carousel';
 import Options from './product/Options';
@@ -30,6 +29,7 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
       nextIndex = 0;
     }
     setPhotoIndex(nextIndex);
+    selectedStyle.lastViewedIndex = nextIndex;
   }
 
   function sizeCH(skuValue) {
@@ -63,10 +63,10 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
   if (!isLoaded) {
     return <div>Loading overview...</div>;
   }
+  console.log(selectedStyle);
   return (
     <div id="overview">
       <div id="overviewContainer">
-<<<<<<< HEAD
         <div id="overview-main">
           <SmallCarousel style={style} clickHandler={smallCarouselCH} largePhotoIndex={photoIndex} />
           <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
@@ -74,16 +74,6 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
         <div id="options-master">
           <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
         </div>
-=======
-        <SmallCarousel style={style} clickHandler={smallCarouselCH} largePhotoIndex={photoIndex} />
-        <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
-        <Options
-          product={product}
-          sku={selectedSku}
-          style={style}
-          chs={clickHandlers}
-        />
->>>>>>> main
       </div>
       <Description product={product} />
     </div>
