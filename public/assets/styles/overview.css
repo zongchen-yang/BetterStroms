@@ -16,7 +16,7 @@ button {
   max-height: 900px;
   min-height: 550px;
   width: 100%;
-  height: calc(100vh - 13rem - 3rem - 80px - 350px);
+  height: max-content;
 }
 
 #options-master {
@@ -25,8 +25,8 @@ button {
   justify-content: center;
   max-height: 900px;
   min-height: 550px;
-  width: 100%;
-  height: calc(100vh - 13rem - 3rem - 80px - 350px);
+  width: max-content;
+  height: max-content;
 }
 
 #options-container {
@@ -116,6 +116,7 @@ button {
 #stylesContainer {
   display: flex;
   flex-wrap: wrap;
+  width: 500px;
 }
 
 #display-sale-price {
@@ -186,16 +187,18 @@ button {
 
 #overview-main {
   display: flex;
-  flex-wrap: wrap;
   margin: 0;
   padding: 0;
-  width: calc(100% - 550px)
+  width: fit-content;
+  padding-right: 15px;
 }
 
 #main-image-container {
-  display: block;
+  display: flex;
   margin: auto;
   height: 550px;
+  width: 825px ;
+  justify-content:center;
   /* width: calc(50% - 60px); */
 }
 
@@ -240,12 +243,17 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 }
 
 .specific-style-selector {
+  display:flex;
   padding-left: 5px;
-  padding-right: 5px
+  padding-right: 5px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  flex-basis: 23%;
+  justify-content: center;
 }
 
 .four-per-line {
-  flex-basis: 23%;
+
   display:flex;
   flex-direction: column;
   align-items:flex-end;

@@ -113,10 +113,10 @@ function Options({ product, sku, style, chs }) {
         </a>
       </div>
       <div id="options-product-cat">
-        <h3>{product.category}</h3>
+        <span id="options-product-cat-text">{product.category}</span>
       </div>
       <div id="options-product-name">
-        <h1>{product.name}</h1>
+        <span id="options-product-name-text">{product.name}</span>
       </div>
       <div id="options-price">
         Price:
