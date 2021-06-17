@@ -89,7 +89,8 @@ button {
  }
 
 #smallCarouselContainer {
-  display: flex;
+  /* display:flex; */
+  display: none;
   flex-direction: column;
   z-index: 1;
   margin-right: -125px;
@@ -178,11 +179,13 @@ button {
 }
 
 #c-left {
-  transform: rotate(180deg);
+  position:absolute;
+  transform: rotate(180deg) scale(2);
 }
 
 #c-right {
-  transform: rotate(0deg);
+  position: absolute;
+  transform: rotate(0deg) scale(2);
 }
 
 #overview-main {
@@ -297,3 +300,21 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   transform: scale(.75);
   padding-top:5px;
 }
+
+#main-carousel {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.carousel-shevron-container {
+  min-width: 60px;
+  z-index: 1;
+}
+
+/* #carousel-shevron-right {
+
+}
+#carousel-shevron-left {
+
+} */

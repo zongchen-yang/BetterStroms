@@ -83,18 +83,24 @@ function Carousel({ style, photoIndex, clickHandler }) {
     </svg>
   );
   return (
-    <div>
-      <button type="button" onClick={expandImage}>expand</button>
-      <button id="c-left" className="carousel-shevrons" hidden={leftHidden} type="button" onClick={(e) => clickHandler('left')}>
-        {shevron}
-      </button>
+    <div id="main-carousel">
+      <div id="carousel-shevron-left" className="carousel-shevron-container">
+        <button id="c-left" className="carousel-shevrons" hidden={leftHidden} type="button" onClick={(e) => clickHandler('left')}>
+          {shevron}
+        </button>
+      </div>
       <div id="main-image-container">
         {mainImage}
         <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
-        </div>
-      <button id="c-right" className="carousel-shevrons"hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
-        {shevron}
-      </button>
+      </div>
+      <div id="carousel-shevron-right" className="carousel-shevron-container">
+        <button id="c-right" className="carousel-shevrons" hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
+          {shevron}
+        </button>
+      </div>
+      <div id="expand-image-container">
+        <button type="button" onClick={expandImage}>expand</button>
+      </div>
     </div>
   );
 }
