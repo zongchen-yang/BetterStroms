@@ -198,7 +198,7 @@ function App() {
         deleteFavoriteCH={deleteFavoriteCH}
         displayItemCH={displayItemCH}
       />
-      <QAndA product={selectedProduct} />
+      <QAndA product={selectedProduct} theme={theme} />
       <ReviewList
         product={selectedProduct}
         reviews={reviews}
