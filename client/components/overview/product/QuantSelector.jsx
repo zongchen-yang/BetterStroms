@@ -8,28 +8,28 @@ function QuantSelector({ sku }) {
   }
   if (sku.size === 'empty') {
     return (
-      <div>
+      <span>
         <label htmlFor="quantity-select">
           Quantity:
           <select name="quantity" id="quantity-select" disabled>
             <option value="null">-</option>
           </select>
         </label>
-      </div>
+      </span>
     );
   }
   for (let i = 1; i <= displayedQuantity; i += 1) {
     optionArray.push(<option key={i} value={i}>{i}</option>);
   }
   return (
-    <div>
+    <span>
       <label htmlFor="quantity-select">
         Quantity:
         <select name="quantity" id="quantity-select">
           {optionArray}
         </select>
       </label>
-    </div>
+    </span>
   );
 }
 export default QuantSelector;

@@ -83,12 +83,20 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
   }, [startIndex]);
 
   makeRenderedPhotos();
-
+  const downShevron = (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="9px" focusable="false">
+      <path id="_x3C_Group_x3E__4_" d="M8.002 8L1 1m7.002 7L15 1.004" />
+    </svg>
+  );
   return (
     <div id="smallCarouselContainer">
-      <button hidden={upHidden} onClick={goUp} type="button">up</button>;
+      <button id="sc-up" className="carousel-shevrons" hidden={upHidden} onClick={goUp} type="button">
+        {downShevron}
+      </button>
       {renderedPhotos.slice(startIndex, (startIndex + max))}
-      <button hidden={downHidden} onClick={goDown} type="button">down</button>;
+      <button className="carousel-shevrons" hidden={downHidden} onClick={goDown} type="button">
+        {downShevron}
+      </button>
     </div>
   );
 }

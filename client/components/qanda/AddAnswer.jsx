@@ -85,7 +85,7 @@ const AddAnswer = (props) => {
   return (
     <div className="add-answer-modal">
       <div className="modal-input">
-        Your Question *
+        Your Answer *
         <div className="modal-input">
           <textarea
             className="modal-input-box"

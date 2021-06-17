@@ -1,5 +1,0 @@
-//  github api token goes here
-const githubToken = {
-  Authorization: '',
-};
-module.exports = githubToken;
