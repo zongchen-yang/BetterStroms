@@ -45,7 +45,7 @@ function Options({ product, sku, style, chs }) {
   }
 
   if (sizeNotSelected && cartClicked) {
-    sizeSelectWarning = <span id="size-select-warning">Please select a size:</span>;
+    sizeSelectWarning = <span className="bolderize-font" id="size-select-warning">Please select a size:</span>;
   } else {
     sizeSelectWarning = <span id="size-select-warning" />;
   }
@@ -66,7 +66,7 @@ function Options({ product, sku, style, chs }) {
   if (inStock) {
     cartButton = <button type="button" onClick={optionsCartHandler}>Add to Cart</button>;
     sizeSelect = (
-      <select onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
+      <select className="select-dropdowns" onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
         <option value="disabled">Select Size</option>
         {/* Object.keys returns an array = ['sku1', sku2', ...] */}
         {Object.keys(style.skus).map((currentSkuString) => {
@@ -83,7 +83,7 @@ function Options({ product, sku, style, chs }) {
     );
   } else {
     sizeSelect = (
-      <select name="size" id="size-select">
+      <select className="select-dropdowns" name="size" id="size-select">
         <option value="disabled" disabled>OUT OF STOCK</option>
       </select>
     );
@@ -113,14 +113,13 @@ function Options({ product, sku, style, chs }) {
         </a>
       </div>
       <div id="options-product-cat">
-        <span id="options-product-cat-text">{product.category}</span>
+        <span className="small-header" id="options-product-cat-text">{product.category.toUpperCase()}</span>
       </div>
       <div id="options-product-name">
-        <span id="options-product-name-text">{product.name}</span>
+        <span className="big-header" id="options-product-name-text">{product.name}</span>
       </div>
       <div id="options-price">
-        Price:
-        <span>
+        <span className="thicker-font">
           $
           {price}
         </span>
@@ -131,8 +130,8 @@ function Options({ product, sku, style, chs }) {
         <button type="button">PIN</button>
       </div>
       <div id="options-style-text-des">
-        <span className="bold-text">Style {'>'}</span>
-        <span id="options-style-text">{style.name}</span>
+        <span className="bolderize-font">STYLE  {'>'}</span>
+        <span id="options-style-text">{style.name.toUpperCase()}</span>
       </div>
       <div id="stylesContainer">
         {styleList.map((aStyle, index) => {
@@ -165,11 +164,10 @@ function Options({ product, sku, style, chs }) {
         {sizeSelectWarning}
       </div>
       <div id="size-and-quant">
-        <span>
-          <label htmlFor="size-select">
-            Size:
+        <span id="size-select-wrapper">
+          <div className="select-wrapper">
             {sizeSelect}
-          </label>
+          </div>
         </span>
         <QuantSelector sku={sku} />
       </div>

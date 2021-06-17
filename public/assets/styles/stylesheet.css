@@ -1,7 +1,12 @@
 html {
   scroll-behavior: smooth;
   font-family: 'Raleway', sans-serif;
+<<<<<<< HEAD
+  color:rgb(70, 70, 70);
+  letter-spacing: .05rem;
+=======
   color: rgb(70, 70, 70)
+>>>>>>> main
 }
 
 button:hover {
