@@ -74,8 +74,9 @@ button {
   /* width: 825px;
   height: 1000px;
   object-fit: fill; */
-  border: 2px solid black;
+  border: 2px solid rgb(71, 71, 71);
   border-radius: 10px;
+  box-shadow: 10px 10px 10px rgb(71, 71, 71);
  }
 
  @keyframes stretch {
