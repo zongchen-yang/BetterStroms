@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import Carousel from './product/Carousel';
 import Options from './product/Options';
 import Description from './product/Description';
 import SmallCarousel from './product/SmallCarousel';
 
-function Overview({ product, favoriteCH, cartCH }) {
+function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -57,6 +58,7 @@ function Overview({ product, favoriteCH, cartCH }) {
     sizeCH,
     cartCH,
     favoriteCH,
+    deleteFavoriteCH,
   };
   if (!isLoaded) {
     return <div>Loading overview...</div>;
@@ -64,6 +66,7 @@ function Overview({ product, favoriteCH, cartCH }) {
   return (
     <div id="overview">
       <div id="overviewContainer">
+<<<<<<< HEAD
         <div id="overview-main">
           <SmallCarousel style={style} clickHandler={smallCarouselCH} largePhotoIndex={photoIndex} />
           <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
@@ -71,6 +74,16 @@ function Overview({ product, favoriteCH, cartCH }) {
         <div id="options-master">
           <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
         </div>
+=======
+        <SmallCarousel style={style} clickHandler={smallCarouselCH} largePhotoIndex={photoIndex} />
+        <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
+        <Options
+          product={product}
+          sku={selectedSku}
+          style={style}
+          chs={clickHandlers}
+        />
+>>>>>>> main
       </div>
       <Description product={product} />
     </div>

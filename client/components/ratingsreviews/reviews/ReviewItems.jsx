@@ -120,7 +120,7 @@ const ReviewItems = (props) => {
           <ReviewItem review={review} key={index} />
         )).slice(0, currentList) : null}
         {(reviews && reviews.length > 2) ? <button type="button" onClick={seeMoreHandler}>See More</button> : null}
-        <button type="button" onClick={showReviewFormHandler}>Write a Review</button>
+        <button type="button" id="show-review-form" onClick={showReviewFormHandler}>Write a Review</button>
         {showReviewForm
           ? (
             <ReviewForm
