@@ -11,6 +11,7 @@ const ReviewsBreakdown = (props) => {
   const { totalNumberOfRatings } = props;
   const { reviewFilterHelper } = props;
   const { filtersUsedString } = props;
+  const { theme } = props;
   const [percentageOf5s, setPercentageOf5s] = useState([]);
   const [percentageOf4s, setPercentageOf4s] = useState('0%');
   const [percentageOf3s, setPercentageOf3s] = useState('0%');
@@ -64,7 +65,7 @@ const ReviewsBreakdown = (props) => {
       {reviewMeta.ratings
         ? (
           <>
-            <div className="reviewBreakdownBox">
+            <div id={theme ? 'review-breakdown-box' : 'review-breakdown-box-dark'}>
               <div id="header-filter-container">
               <div id="breakdown-header">
                 Overall Rating:

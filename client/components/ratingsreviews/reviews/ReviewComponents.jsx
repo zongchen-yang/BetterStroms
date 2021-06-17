@@ -53,6 +53,7 @@ const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
               totalNumberOfRatings={totalNumberOfRatings}
               reviewFilterHelper={reviewFilterHelper}
               filtersUsedString={filtersUsedString}
+              theme={theme}
             />
             <ReviewItems
               key={reviewFilter}

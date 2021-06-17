@@ -142,7 +142,7 @@ const ReviewForm = ({
   };
 
   return (
-    <div className={theme ? 'add-review-box' : 'add-review-box dark'}>
+    <div className={theme ? 'add-review-box' : 'add-review-box-dark'}>
       <div>Rating</div>
       <div className="reviewFormStarContainer">
         {rated ? starRating

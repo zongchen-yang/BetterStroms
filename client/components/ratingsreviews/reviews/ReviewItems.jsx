@@ -109,7 +109,7 @@ const ReviewItems = (props) => {
 
   return (
     <div>
-      <ul className="reviewListBox">
+      <div id={theme ? 'review-list-box' : 'review-list-box-dark'}>
         <label htmlFor="sortOptions">Sort By</label>
         <select name="sortOptions" id="sortOptions" onChange={(e) => sortHandler(e)}>
           <option value="Relevant">Relevant</option>
@@ -133,7 +133,7 @@ const ReviewItems = (props) => {
               theme={theme}
             />
           ) : null}
-      </ul>
+      </div>
     </div>
   );
 };

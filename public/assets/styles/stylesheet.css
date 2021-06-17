@@ -193,11 +193,23 @@ button:hover {
   color: gray;
 }
 
-.reviewListBox {
+#review-list-box {
   position: relative;
   top: 5%;
   float: right;
   border-color: black;
+  border-style: groove;
+  width: 55%;
+  max-height: 45em;
+  overflow-y: scroll;
+  margin: 0%;
+}
+
+#review-list-box-dark {
+  position: relative;
+  top: 5%;
+  float: right;
+  border-color: white;
   border-style: groove;
   width: 55%;
   max-height: 45em;
@@ -255,11 +267,24 @@ button:hover {
   size: 10px;
 }
 
-.reviewBreakdownBox {
+#review-breakdown-box {
   position: relative;
   top: 5%;
   float: left;
   border-color: black;
+  border-style: solid;
+  position: static;
+  width: 40%;
+  clear: both;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#review-breakdown-box-dark {
+  position: relative;
+  top: 5%;
+  float: left;
+  border-color: white;
   border-style: solid;
   position: static;
   width: 40%;
@@ -392,8 +417,15 @@ button:hover {
   background-color: white;
 }
 
-.dark {
-  background-color: black;
+.add-review-box-dark {
+  font-family: sans-serif;
+  position: fixed;
+  border: 1px solid white;
+  top: 20%;
+  right: 30%;
+  clear: both;
+  z-index: 1;
+  background-color: black
 }
 
 .reviewFormStarContainer {
