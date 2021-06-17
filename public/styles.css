@@ -1,3 +1,7 @@
+#app {
+  font-family: 'Raleway', sans-serif;
+}
+
 .item {
   border: 1px solid grey;
   margin: 10px;
@@ -10,6 +14,7 @@
 }
 
 .itemWithFourth {
+  border: 1px solid grey;
   margin: 10px;
   float: left;
   width: 25%;
@@ -23,6 +28,7 @@
   flex: 0 0 auto;
   width: 100%;
   height: 300px;
+  object-fit: cover;
 }
 
 .icon {
@@ -36,31 +42,32 @@
   color: white;
 }
 
-h3,
+.title,
 .list {
   position: center;
-  max-height: 500px;
+  max-height: 800px;
   display: flex;
   margin: 20px;
   text-align: left;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 18%;
+  margin-right: 18%;
 }
 
 .compare {
   position: fixed;
   border: 2px solid grey;
   top: 20%;
-  right: 35%;
-  width: 600px;
-  height: 500px;
+  right: 30%;
+  width: 40%;
+  height: 50%;
   background: white;
   z-index: 1;
 }
 
 .compareName {
   display: flex;
-  margin: 10%;
+  margin: 3%;
+  font-size: 16px;
 }
 
 .compareFeature {
@@ -85,26 +92,17 @@ h3,
   display: flex;
 }
 
-.compareNameLeft {
-  font-weight: bold;
-  /* margin-right: 20%; */
-  text-align: left;
-  width: 50%;
-  font-size: large;
-}
-
+.compareNameLeft,
 .compareNameRight {
   font-weight: bold;
-  /* margin-left: 20%; */
-  text-align: right;
+  text-align: center;
   width: 50%;
-  font-size: large;
+  font-size: 24px;
 }
 
 .feature {
   text-align: center;
   margin-bottom: 1%;
-  font-size: larger;
 }
 
 .middle {
@@ -120,26 +118,39 @@ h3,
 .fourth {
   position:absolute;
   z-index:1;
-  right:0; bottom:0; left:0;
-  height:380px;
-  background-image: linear-gradient(to left, rgba(255,255,255,1),rgba(255,255,255,0) 120%);
+  top: -1px; right: -1px; bottom:0; left:0;
+  height: 101%;
+  background-image: linear-gradient(to left, rgba(255,255,255,1) 10%,rgba(255,255,255,0) 200%);
 }
 
 .fa-chevron-right {
   position: absolute;
   top: 50%;
-  right: 18%;
+  right: 15%;
   z-index: 2;
 }
 
 .fa-chevron-left {
   position: absolute;
   top: 50%;
-  left: 18%;
+  left: 15%;
   z-index: 2;
 }
 
 .relatedList,
 .inventoryList {
   position:relative;
+}
+
+.price {
+  display: flex;
+}
+
+.cross-out {
+  text-decoration: line-through;
+}
+
+.redPrice {
+  color: red;
+  margin-right:3%;
 }

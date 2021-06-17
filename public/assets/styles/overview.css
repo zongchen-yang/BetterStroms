@@ -1,3 +1,39 @@
+.big-header {
+  font-weight: 1000;
+  font-size: 40px;
+}
+
+.small-header {
+  font-weight: 600;
+  letter-spacing: .10rem;
+}
+
+.thicker-font {
+  font-weight: 600;
+}
+
+.bolderize-font {
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.feature-text {
+  padding-left:5px;
+  padding-right:5px;
+  font-weight:600;
+  font-size: 14px;
+}
+
+#slogan-text {
+  font-size: 25px;
+  font-weight: 600;
+  margin-left:-3px;
+}
+
+.small-text {
+  font-size: 15px;
+}
+
 button {
   text-rendering: auto;
   letter-spacing: normal;
@@ -17,6 +53,8 @@ button {
   min-height: 550px;
   width: 100%;
   height: max-content;
+  padding-bottom: 25px;
+  padding-top: 50px;
 }
 
 #options-master {
@@ -35,10 +73,9 @@ button {
 }
 
 #mainImage {
-  /* width: 800px;
-  height: 540px; */
-  object-fit: cover;
-  border: 1px solid black;
+  /* width: 825px;
+  height: 550px;
+  object-fit: fill; */
 }
 
 .expanding {
@@ -70,13 +107,12 @@ button {
 }
 
 #main-image-container {
-
-  z-index: 1;
-  /* display: flex;
-  width: 800px;
-  height: 540px;
-  justify-content: space-between;
-  background-color: black;*/
+  /* width: 825px;
+  height: 1000px;
+  object-fit: fill; */
+  border: 2px solid rgb(71, 71, 71);
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgb(71, 71, 71);
  }
 
  @keyframes stretch {
@@ -104,9 +140,11 @@ button {
 #descriptionContainer {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+  min-height: 125px;
 }
 
 .veritcalLine {
@@ -199,20 +237,20 @@ button {
 #main-image-container {
   display: flex;
   margin: auto;
-  height: 550px;
-  width: 825px ;
-  justify-content:center;
-  /* width: calc(50% - 60px); */
+  height: 650px;
+  width: 800px;
+  justify-content: center;
 }
 
 #main-image-container img {
   margin: auto;
-  height: auto;
-  width: auto;
+  height: 1000px;
+  width: 1000px;
   max-width: 100%;
   max-height: 100%;
   border: 0;
   vertical-align: middle;
+  object-fit: cover;
 }
 
 /* <img
@@ -230,6 +268,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 #options-price {
   padding-top: 5px;
   padding-bottom:5px;
+  padding-left: 14px;
 }
 
 #options-price span {
@@ -239,6 +278,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 #overview-social-media {
   padding-top: 5px;
   padding-bottom: 10px;
+  padding-left: 14px;
 }
 
 #size-select-warning-div {
@@ -271,8 +311,9 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   border: 1px solid black;
   border-radius: 100%;
   vertical-align: middle;
-  background: url(imgpath) no-repeat center;
-  background-size: cover;
+  object-fit: cover;
+  /* background: url(imgpath) no-repeat center; */
+  /* background-size: cover; */
 }
 
 .style-image-selector-container {
@@ -312,9 +353,110 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   z-index: 1;
 }
 
-/* #carousel-shevron-right {
-
+#carousel-shevron-right {
+  /* display:flex;
+  flex-direction: column; */
 }
-#carousel-shevron-left {
+/* #carousel-shevron-left {
 
 } */
+
+#expand-image-container {
+  /* position: absolute;
+  height:650px; */
+}
+
+#options-product-cat {
+  padding-top: 15px;
+  padding-left: 14px;
+}
+
+#options-randr {
+  padding-top: 30px;
+  padding-left: 14px;
+}
+
+#options-style-text {
+  padding-left: 7px;
+  font-size: 15px;
+}
+
+#options-style-text-des {
+  padding-left: 14px;
+}
+
+#options-product-name {
+  padding-left: 14px;
+}
+
+#overview-reviews-link {
+  color:rgb(71, 71, 71);
+}
+
+#size-and-quant {
+  display: flex;
+}
+
+.select-dropdowns {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid rgb(71, 71, 71);
+  border-radius: 0;
+  height: 40px;
+  width: 200px;
+  font-size: 18px;
+  text-align: center;
+  padding-left: 15px;
+  letter-spacing: .10rem;
+}
+
+.select-dropdowns:focus {
+  outline: none;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  /* font-size: 1rem; */
+  top: 6px;
+  right: 10px;
+  position: absolute;
+}
+
+#size-select-wrapper {
+  padding-left: 14px;
+  padding-right: 15px;
+}
+
+#quant-select-wrapper {
+
+}
+
+#cart-and-favorite {
+  padding-left: 14px;
+  padding-top: 10px;
+}
+
+#description-text {
+  display:flex;
+  flex-direction: column;
+  margin-left: -250px;
+}
+
+#description-right {
+  display: flex;
+  margin-left: 150px;
+}
+
+#feature-text-container {
+  display: flex;
+  flex-direction: column;
+  padding-left:20px;
+}
+
+.description-space-vertical {
+  padding-top:10px;
+}
