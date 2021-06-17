@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Ovrating = ({ rating }) => (
-  <div>
+  <div id="ovrating-container">
     <div className="overview-rating">
       {[...Array(rating.whole)].map((each, i) => <div key={i}><i className="fas fa-star" /></div>)}
       <div><i className="fas fa-star" style={{ width: rating.part, overflow: 'hidden' }} /></div>
