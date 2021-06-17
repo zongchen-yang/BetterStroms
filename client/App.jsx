@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Related from './components/related/Related/RelatedList';
 import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
-import ReviewList from './components/ratingsreviews/reviews/ReviewList';
+import ReviewComponents from './components/ratingsreviews/reviews/ReviewComponents';
 import Overview from './components/overview/Overview';
 import Announcement from './components/annoucements/Announcements';
 
@@ -185,7 +185,7 @@ function App() {
   return (
     <div>
       <Announcement />
-      <button type="button" onClick={toggleColors}>toggle</button>
+      <button type="button" id="toggle-theme" onClick={toggleColors}>toggle</button>
       <Overview
         product={selectedProduct}
         favoriteCH={favoriteCH}
@@ -199,12 +199,11 @@ function App() {
         displayItemCH={displayItemCH}
       />
       <QAndA product={selectedProduct} theme={theme} />
-      <ReviewList
+      <ReviewComponents
         product={selectedProduct}
         reviews={reviews}
-        // overallRating={selectedProduct.starRating}
         reviewMeta={reviewMeta}
-        // totalNumberOfRatings={selectedProduct.totalNumReviews}
+        theme={theme}
       />
     </div>
   );

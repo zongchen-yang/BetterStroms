@@ -221,7 +221,7 @@ button:hover {
 
 }
 
-.reviewListBox {
+#review-list-box {
   position: relative;
   top: 5%;
   float: right;
@@ -233,15 +233,32 @@ button:hover {
   margin: 0%;
 }
 
+#review-list-box-dark {
+  position: relative;
+  top: 5%;
+  float: right;
+  border-color: white;
+  border-style: groove;
+  width: 55%;
+  max-height: 45em;
+  overflow-y: scroll;
+  margin: 0%;
+}
+
 .review {
-  position: static;
+
   left: 0;
-  border-style: solid;
-  border-color: aquamarine;
   width: 90%;
   overflow-wrap: break-word;
   height: auto;
   font-size: 90%;
+  margin-left: 0%;
+  padding-left: 0%;
+}
+
+.review-items-container {
+  width: 100%;
+  float: left;
 }
 
 .reviewPhotoThumbnail {
@@ -259,6 +276,7 @@ button:hover {
   text-align: left;
   width: 100%;
   font-weight: bolder;
+  font-size: 18px;
 }
 
 .review-body {
@@ -268,15 +286,33 @@ button:hover {
   width: 100%
 }
 
+.review-rating {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .checkMark {
   size: 10px;
 }
 
-.reviewBreakdownBox {
+#review-breakdown-box {
   position: relative;
   top: 5%;
   float: left;
   border-color: black;
+  border-style: solid;
+  position: static;
+  width: 40%;
+  clear: both;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#review-breakdown-box-dark {
+  position: relative;
+  top: 5%;
+  float: left;
+  border-color: white;
   border-style: solid;
   position: static;
   width: 40%;
@@ -368,21 +404,21 @@ button:hover {
   float: left;
   width: 33.33%;
   font-size: smaller;
-  text-align: center;
+  text-align: left;
 }
 
 .perfectFit {
   float: left;
   width: 33.33%;
   font-size: smaller;
-  text-align: center;
+  text-align: left;
 }
 
 .tooBig {
   float: left;
   width: 33.33%;
   font-size: smaller;
-  text-align: center;
+  text-align: left;
 }
 
 .breakdownPercentageHolder {
@@ -406,6 +442,18 @@ button:hover {
   right: 30%;
   clear: both;
   z-index: 1;
+  background-color: white;
+}
+
+.add-review-box-dark {
+  font-family: sans-serif;
+  position: fixed;
+  border: 1px solid white;
+  top: 20%;
+  right: 30%;
+  clear: both;
+  z-index: 1;
+  background-color: black
 }
 
 .reviewFormStarContainer {
@@ -468,31 +516,90 @@ button:hover {
 }
 
 #review-form-submit {
-
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #review-form-close {
-
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #show-review-form {
-
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #submit-photos {
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
+}
 
+#toggle-theme {
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #sortOptions {
+  display: inline-block;
+  border-width: 2px;
+  border-style: outset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-style: solid;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
+}
 
+#see-more-reviews {
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #clearButton {
-
+  position: absolute;
+  float: right;
+  border-radius: 0px;
+  background-color: white;
+  padding: 15px;
+  margin: 5px;
 }
 
-#reivews-component-holder {
+#reviews-component-holder {
+  margin: auto;
+  width: 80%;
+}
 
+#reviews-component-header {
+  font-size: 150%;
+  font-weight: bolder;
+}
+
+#breakdown-header {
+  float: left;
+  font-size: 120%;
+  font-weight: bold;
+  width: 50%;
+  padding-bottom: 2%;
 }
 
 #announcement {
@@ -501,6 +608,15 @@ button:hover {
   margin: 0%;
 }
 
+#header-filter-container {
+  float: left;
+  width: 100%;
+}
+
+#recommended {
+  font-weight: bold;
+  text-align: center;
+}
 /* :root {
   background-color: black;
   color: whitesmoke;
