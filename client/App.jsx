@@ -6,10 +6,32 @@ import ReviewList from './components/ratingsreviews/reviews/ReviewList';
 import Overview from './components/overview/Overview';
 import Announcement from './components/annoucements/Announcements';
 
+function useLocalStorage(key, initialValue) {
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.log(error);
+      return initialValue;
+    }
+  });
+  const setValue = (value) => {
+    try {
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return [storedValue, setValue];
+}
+
 function App() {
   const [id, setId] = useState(20103);
   const [selectedProduct, setSelectedProduct] = useState();
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
@@ -77,7 +99,6 @@ function App() {
     rating = await rating.json();
     setReviewMeta(rating);
     rating = calculateRating(rating, fetchProduct);
-    // setting starRating as an object with a whole number and a decimal number
     fetchProduct.starRating = {
       whole: Math.floor(rating),
       part: `${Math.round(((rating - Math.floor(rating)) * 4)) * 25}%`,
@@ -86,7 +107,7 @@ function App() {
 
   function favoriteCH(product, style) {
     style.isFavorite = true;
-    const temp = Object.create(product);
+    const temp = { ...product };
     temp.style = style;
     setFavorites([...favorites, temp]);
   }

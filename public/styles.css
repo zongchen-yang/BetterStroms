@@ -43,8 +43,8 @@ h3,
   display: flex;
   margin: 20px;
   text-align: left;
-  margin-left: 250px;
-  margin-right: 250px;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .compare {
@@ -128,17 +128,18 @@ h3,
 .fa-chevron-right {
   position: absolute;
   top: 50%;
-  right: 15%;
+  right: 18%;
   z-index: 2;
 }
 
 .fa-chevron-left {
   position: absolute;
   top: 50%;
-  left: 15%;
+  left: 18%;
   z-index: 2;
 }
 
-.relatedList {
+.relatedList,
+.inventoryList {
   position:relative;
 }

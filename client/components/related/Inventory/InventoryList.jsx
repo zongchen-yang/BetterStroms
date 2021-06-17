@@ -40,12 +40,12 @@ const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
   const fourth = favorites.indexOf(window[2]) > -1 ? (favorites.indexOf(window[2]) + 1) : undefined;
 
   return (
-    <div>
+    <div className="inventoryList">
       <h3 className="title">YOUR OUTFIT</h3>
       <div className="list">
         {window && window[0] && favorites && favorites[0] && (window[0].id !== favorites[0].id
         || window[0].style.id !== favorites[0].style.id)
-          ? <button type="button" onClick={leftCH}>left</button> : null}
+          ? <i className="fas fa-chevron-left fa-2x" type="button" onClick={leftCH} /> : null}
         {window.map((each, i) => (
           <InventoryItem
             key={i}
@@ -65,7 +65,7 @@ const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
           ) : null}
         {window && windowLast && favorites && favorites[0] && (windowLast.id !== favoritesLast.id
         || windowLast.style.id !== favoritesLast.style.id)
-          ? <button type="button" onClick={rightCH}>right</button> : null}
+          ? <i className="fas fa-chevron-right fa-2x" type="button" onClick={rightCH} /> : null}
       </div>
     </div>
   );
