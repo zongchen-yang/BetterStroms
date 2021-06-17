@@ -1,8 +1,12 @@
 html {
   scroll-behavior: smooth;
   font-family: 'Raleway', sans-serif;
+<<<<<<< HEAD
   color:rgb(70, 70, 70);
   letter-spacing: .05rem;
+=======
+  color: rgb(70, 70, 70)
+>>>>>>> main
 }
 
 button:hover {
@@ -15,7 +19,7 @@ button:hover {
 }
 
 .QandA-module {
-  font-family: sans-serif;
+
 }
 
 .question-unfocused {
@@ -23,7 +27,6 @@ button:hover {
 }
 
 .add-answer-modal {
-  font-family: sans-serif;
   position: fixed;
   border: 1px solid black;
   top: 20%;
@@ -32,10 +35,10 @@ button:hover {
   height: 500px;
   background: white;
   z-index: 1;
+  padding: 5px;
 }
 
 .add-question-modal {
-  font-family: sans-serif;
   position: fixed;
   border: 1px solid black;
   top: 20%;
@@ -44,6 +47,13 @@ button:hover {
   height: 500px;
   background: white;
   z-index: 1;
+  padding: 5px;
+}
+
+.dark-modal {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
 }
 
 .question-search-bar-actual {
@@ -56,7 +66,7 @@ button:hover {
 .modal-input-box {
   border-radius: 0px;
   height: 20px;
-  margin: 5px;
+  margin: 5px 0px;
 }
 
 .QandA-title {
@@ -78,7 +88,7 @@ button:hover {
   radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
   radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
-  /* background-color: white; */
+  background-color: white;
   background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
   background-attachment: local, local, scroll, scroll;
 }
@@ -97,8 +107,25 @@ button:hover {
   radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
   radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
-  /* background-color: white; */
+  background-color: white;
   background-size: 100% 40px, 100% 40px, 100% 30px, 100% 30px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.dark-list {
+  background:
+  linear-gradient(black 30%, black),
+  linear-gradient(black, black 70%) 0 100%,
+  radial-gradient(50% 0, farthest-side, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)),
+  radial-gradient(50% 100%, farthest-side, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)) 0 100%;
+  background:
+  linear-gradient(black 30%, black),
+  linear-gradient(black, black 70%) 0 100%,
+  radial-gradient(farthest-side at 50% 0, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)),
+  radial-gradient(farthest-side at 50% 100%, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: black;
+  background-size: 100% 40px, 100% 40px, 100% 23px, 100% 23px;
   background-attachment: local, local, scroll, scroll;
 }
 
@@ -192,11 +219,14 @@ button:hover {
 }
 
 .input-flavor {
-  font-size: .8em;
+  font-size: .7em;
   color: gray;
+  padding-bottom: 5px;
+  margin-left: 2px;
+
 }
 
-.reviewListBox {
+#review-list-box {
   position: relative;
   top: 5%;
   float: right;
@@ -208,15 +238,32 @@ button:hover {
   margin: 0%;
 }
 
+#review-list-box-dark {
+  position: relative;
+  top: 5%;
+  float: right;
+  border-color: white;
+  border-style: groove;
+  width: 55%;
+  max-height: 45em;
+  overflow-y: scroll;
+  margin: 0%;
+}
+
 .review {
-  position: static;
+
   left: 0;
-  border-style: solid;
-  border-color: aquamarine;
   width: 90%;
   overflow-wrap: break-word;
   height: auto;
   font-size: 90%;
+  margin-left: 0%;
+  padding-left: 0%;
+}
+
+.review-items-container {
+  width: 100%;
+  float: left;
 }
 
 .reviewPhotoThumbnail {
@@ -234,6 +281,7 @@ button:hover {
   text-align: left;
   width: 100%;
   font-weight: bolder;
+  font-size: 18px;
 }
 
 .review-body {
@@ -243,15 +291,33 @@ button:hover {
   width: 100%
 }
 
+.review-rating {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .checkMark {
   size: 10px;
 }
 
-.reviewBreakdownBox {
+#review-breakdown-box {
   position: relative;
   top: 5%;
   float: left;
   border-color: black;
+  border-style: solid;
+  position: static;
+  width: 40%;
+  clear: both;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#review-breakdown-box-dark {
+  position: relative;
+  top: 5%;
+  float: left;
+  border-color: white;
   border-style: solid;
   position: static;
   width: 40%;
@@ -343,21 +409,21 @@ button:hover {
   float: left;
   width: 33.33%;
   font-size: smaller;
-  text-align: center;
+  text-align: left;
 }
 
 .perfectFit {
   float: left;
   width: 33.33%;
   font-size: smaller;
-  text-align: center;
+  text-align: left;
 }
 
 .tooBig {
   float: left;
   width: 33.33%;
   font-size: smaller;
-  text-align: center;
+  text-align: left;
 }
 
 .breakdownPercentageHolder {
@@ -381,6 +447,18 @@ button:hover {
   right: 30%;
   clear: both;
   z-index: 1;
+  background-color: white;
+}
+
+.add-review-box-dark {
+  font-family: sans-serif;
+  position: fixed;
+  border: 1px solid white;
+  top: 20%;
+  right: 30%;
+  clear: both;
+  z-index: 1;
+  background-color: black
 }
 
 .reviewFormStarContainer {
@@ -443,31 +521,90 @@ button:hover {
 }
 
 #review-form-submit {
-
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #review-form-close {
-
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #show-review-form {
-
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #submit-photos {
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
+}
 
+#toggle-theme {
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #sortOptions {
+  display: inline-block;
+  border-width: 2px;
+  border-style: outset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-style: solid;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
+}
 
+#see-more-reviews {
+  display: inline-block;
+  border-radius: 0px;
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
 }
 
 #clearButton {
-
+  position: absolute;
+  float: right;
+  border-radius: 0px;
+  background-color: white;
+  padding: 15px;
+  margin: 5px;
 }
 
-#reivews-component-holder {
+#reviews-component-holder {
+  margin: auto;
+  width: 80%;
+}
 
+#reviews-component-header {
+  font-size: 150%;
+  font-weight: bolder;
+}
+
+#breakdown-header {
+  float: left;
+  font-size: 120%;
+  font-weight: bold;
+  width: 50%;
+  padding-bottom: 2%;
 }
 
 #announcement {
@@ -476,6 +613,15 @@ button:hover {
   margin: 0%;
 }
 
+#header-filter-container {
+  float: left;
+  width: 100%;
+}
+
+#recommended {
+  font-weight: bold;
+  text-align: center;
+}
 /* :root {
   background-color: black;
   color: whitesmoke;

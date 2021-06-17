@@ -10,7 +10,7 @@ const RenderStars = ({ rating }) => {
         {rating.part ? <div><i className="fas fa-star" style={{ width: rating.part, overflow: 'hidden' }} /></div> : null}
         {rating.part ? (
           <div className="review-hiddenRating">
-            {[...Array(5)].map((each, i) => <div><i className="far fa-star" key={i} /></div>)}
+            {[...Array(5)].map((each, i) => <div key={i}><i className="far fa-star" /></div>)}
           </div>
         ) : (
           <div className="review-hiddenRating">

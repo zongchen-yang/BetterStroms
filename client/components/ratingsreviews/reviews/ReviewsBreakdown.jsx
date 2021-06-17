@@ -11,6 +11,7 @@ const ReviewsBreakdown = (props) => {
   const { totalNumberOfRatings } = props;
   const { reviewFilterHelper } = props;
   const { filtersUsedString } = props;
+  const { theme } = props;
   const [percentageOf5s, setPercentageOf5s] = useState([]);
   const [percentageOf4s, setPercentageOf4s] = useState('0%');
   const [percentageOf3s, setPercentageOf3s] = useState('0%');
@@ -61,23 +62,24 @@ const ReviewsBreakdown = (props) => {
 
   return (
     <>
-      <h2>
-        Overall Rating:
-        {' '}
-        <RenderStars rating={overallRating} />
-        {' '}
-        of
-        {' '}
-        {totalNumberOfRatings}
-        {' '}
-        ratings.
-      </h2>
-      <div>{filtersUsedString}</div>
-
       {reviewMeta.ratings
         ? (
           <>
-            <div className="reviewBreakdownBox">
+            <div id={theme ? 'review-breakdown-box' : 'review-breakdown-box-dark'}>
+              <div id="header-filter-container">
+              <div id="breakdown-header">
+                Overall Rating:
+                {' '}
+                <RenderStars rating={overallRating} />
+                {' '}
+                of
+                {' '}
+                {totalNumberOfRatings}
+                {' '}
+                ratings.
+              </div>
+              <div>{filtersUsedString}</div>
+            </div>
               <button type="button" id="clearButton" onClick={clearFilters}>Clear Filters</button>
               <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(5)}>
                 <div className="declareStars" value="5">
@@ -139,7 +141,7 @@ const ReviewsBreakdown = (props) => {
                   <div id="starDistribution" style={{ width: percentageOf1s }} />
                 </div>
               </div>
-              <div className="recommended">
+              <div id="recommended">
                 {percentageRecommends || 0}
                 {' '}
                 of reviewers recommend this product.

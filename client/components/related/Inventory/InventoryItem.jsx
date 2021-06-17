@@ -7,7 +7,10 @@ const InventoryItem = ({ item, displayItemCH, deleteCH, className }) => (
     <i className="icon far fa-times-circle fa-1x" onClick={()=> deleteCH(item, item.style)} />
     <div className="category">{item.category}</div>
     <div className="name">{item.name}</div>
-    <div className="price">${item.default_price}</div>
+    <div className="price">
+      {item.style.sale_price ? <div className="redPrice">${item.style.sale_price}</div> : null}
+      <div className={item.style.sale_price ? "cross-out" : null}>${item.default_price}</div>
+    </div>
     <Rating rating={item.starRating} />
     <div className={className ? `${className.className} ` : null} />
   </div>

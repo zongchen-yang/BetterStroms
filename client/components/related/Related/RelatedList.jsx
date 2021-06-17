@@ -41,6 +41,7 @@ const RelatedList = ({ product, displayItemCH }) => {
         item = await item.json();
         let image = await fetch(`/products/${eachId}/styles`);
         image = await image.json();
+        item.sale = image.results[0].sale_price;
         item.image = image.results[0].photos[0].url || null;
         let rating = await fetch(`/reviews/meta/?product_id=${eachId}`);
         rating = await rating.json();
