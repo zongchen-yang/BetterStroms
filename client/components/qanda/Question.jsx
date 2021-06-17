@@ -12,6 +12,7 @@ const Question = (props) => {
     openAddAnswerModal,
     getQuestionId,
     answerCount,
+    theme,
   } = props;
   const { question_id, question_body, question_helpfulness, asker_name, answers } = question;
   let [totalAnswerCount, upTotalAnswerCount] = useState(2);
@@ -72,7 +73,7 @@ const Question = (props) => {
             by {asker_name}
           </div> */}
           {/* {console.log(answers)} */}
-          <div className="answers-list">
+          <div className={theme ? 'answers-list' : 'answers-list dark-list'}>
             {Object.keys(answersList).map((answerId) => (
               <div key={answersList[answerId].id}>
                 <Answer

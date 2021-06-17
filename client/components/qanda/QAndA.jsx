@@ -18,7 +18,7 @@ const QAndA = (props) => {
   // const [answersArray, setAnswersArray] = useState([])
   // let [rerender, setRerender] = useState(0);
 
-  const { product } = props;
+  const { product, theme } = props;
   const { id, name } = product;
 
   async function getQuestions() {
@@ -161,6 +161,7 @@ const QAndA = (props) => {
             openAddAnswerModal={openAddAnswerModal}
             openAddQuestionModal={openAddQuestionModal}
             getQuestionId={getQuestionId}
+            theme={theme}
           />
         </div>
       </div>
@@ -171,6 +172,7 @@ const QAndA = (props) => {
             questionId={questionId}
             postNewAnswer={postNewAnswer}
             closeAddAnswerModal={closeAddAnswerModal}
+            theme={theme}
             />
           )
           : null}
@@ -180,6 +182,7 @@ const QAndA = (props) => {
             postNewQuestion={postNewQuestion}
             closeAddQuestionModal={closeAddQuestionModal}
             name={name}
+            theme={theme}
             />
           )
           : null}

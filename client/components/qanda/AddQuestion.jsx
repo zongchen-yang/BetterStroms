@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const AddQuestion = (props) => {
-  const {postNewQuestion, closeAddQuestionModal, name} = props;
+  const {postNewQuestion, closeAddQuestionModal, name, theme} = props;
   const [nameInput, setNameInput] = useState('');
   const [bodyInput, setBodyInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
@@ -39,7 +39,7 @@ const AddQuestion = (props) => {
   };
 
   return (
-    <div className="add-question-modal">
+    <div className={theme ? 'add-question-modal' : 'add-question-modal dark-modal'}>
       <h2>Ask Your Question</h2>
       <h4>
         About the

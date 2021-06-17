@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const AddAnswer = (props) => {
-  const {questionId, postNewAnswer, closeAddAnswerModal} = props;
+  const {questionId, postNewAnswer, closeAddAnswerModal, theme} = props;
   const [nameInput, setNameInput] = useState('');
   const [bodyInput, setBodyInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
@@ -83,7 +83,7 @@ const AddAnswer = (props) => {
   };
 
   return (
-    <div className="add-answer-modal">
+    <div className={theme ? 'add-answer-modal' : 'add-answer-modal dark-modal'}>
       <div className="modal-input">
         Your Answer *
         <div className="modal-input">

@@ -13,6 +13,7 @@ const QuestionsList = (props) => {
     openAddAnswerModal,
     openAddQuestionModal,
     getQuestionId,
+    theme,
   } = props;
   let [totalQuestionCount, upTotalCount] = useState(4);
   const [view, setView] = useState('questions');
@@ -29,7 +30,7 @@ const QuestionsList = (props) => {
   };
 
   const renderQuestions = () => (
-    <div className="questions-list">
+    <div className={theme ? 'questions-list' : 'questions-list dark-list'}>
       {questionsList.map((question) => (
         <div key={question.question_id}>
           <Question
@@ -42,6 +43,7 @@ const QuestionsList = (props) => {
             openAddAnswerModal={openAddAnswerModal}
             getQuestionId={getQuestionId}
             answerCount={answerCount}
+            theme={theme}
             // loadMoreAnswers={loadMoreAnswers}
           />
         </div>

@@ -1,5 +1,7 @@
 html {
   scroll-behavior: smooth;
+  font-family: 'Raleway', sans-serif;
+  color: rgb(70, 70, 70)
 }
 
 button:hover {
@@ -12,7 +14,7 @@ button:hover {
 }
 
 .QandA-module {
-  font-family: sans-serif;
+
 }
 
 .question-unfocused {
@@ -20,7 +22,6 @@ button:hover {
 }
 
 .add-answer-modal {
-  font-family: sans-serif;
   position: fixed;
   border: 1px solid black;
   top: 20%;
@@ -29,10 +30,10 @@ button:hover {
   height: 500px;
   background: white;
   z-index: 1;
+  padding: 5px;
 }
 
 .add-question-modal {
-  font-family: sans-serif;
   position: fixed;
   border: 1px solid black;
   top: 20%;
@@ -41,6 +42,13 @@ button:hover {
   height: 500px;
   background: white;
   z-index: 1;
+  padding: 5px;
+}
+
+.dark-modal {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
 }
 
 .question-search-bar-actual {
@@ -53,7 +61,7 @@ button:hover {
 .modal-input-box {
   border-radius: 0px;
   height: 20px;
-  margin: 5px;
+  margin: 5px 0px;
 }
 
 .QandA-title {
@@ -75,7 +83,7 @@ button:hover {
   radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
   radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
-  /* background-color: white; */
+  background-color: white;
   background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
   background-attachment: local, local, scroll, scroll;
 }
@@ -94,8 +102,25 @@ button:hover {
   radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
   radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
-  /* background-color: white; */
+  background-color: white;
   background-size: 100% 40px, 100% 40px, 100% 30px, 100% 30px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.dark-list {
+  background:
+  linear-gradient(black 30%, black),
+  linear-gradient(black, black 70%) 0 100%,
+  radial-gradient(50% 0, farthest-side, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)),
+  radial-gradient(50% 100%, farthest-side, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)) 0 100%;
+  background:
+  linear-gradient(black 30%, black),
+  linear-gradient(black, black 70%) 0 100%,
+  radial-gradient(farthest-side at 50% 0, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)),
+  radial-gradient(farthest-side at 50% 100%, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: black;
+  background-size: 100% 40px, 100% 40px, 100% 23px, 100% 23px;
   background-attachment: local, local, scroll, scroll;
 }
 
@@ -189,8 +214,11 @@ button:hover {
 }
 
 .input-flavor {
-  font-size: .8em;
+  font-size: .7em;
   color: gray;
+  padding-bottom: 5px;
+  margin-left: 2px;
+
 }
 
 .reviewListBox {
