@@ -29,6 +29,7 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
       nextIndex = 0;
     }
     setPhotoIndex(nextIndex);
+    selectedStyle.lastViewedIndex = nextIndex;
   }
 
   function sizeCH(skuValue) {
@@ -62,6 +63,7 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
   if (!isLoaded) {
     return <div>Loading overview...</div>;
   }
+  console.log(selectedStyle);
   return (
     <div id="overview">
       <div id="overviewContainer">
