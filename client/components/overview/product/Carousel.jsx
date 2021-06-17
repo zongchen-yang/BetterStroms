@@ -94,12 +94,12 @@ function Carousel({ style, photoIndex, clickHandler }) {
         <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
       </div>
       <div id="carousel-shevron-right" className="carousel-shevron-container">
+        <div id="expand-image-container">
+          <button type="button" onClick={expandImage}>expand</button>
+        </div>
         <button id="c-right" className="carousel-shevrons" hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
           {shevron}
         </button>
-      </div>
-      <div id="expand-image-container">
-        <button type="button" onClick={expandImage}>expand</button>
       </div>
     </div>
   );
