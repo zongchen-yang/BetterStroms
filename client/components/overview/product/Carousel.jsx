@@ -101,7 +101,7 @@ function Carousel({ style, photoIndex, clickHandler }) {
         </div>
       </div>
       <div id="expand-image-container">
-        <button id="expand-image-button" type="button" onClick={expandImage}><i className="fas fa-expand" i /></button>
+        <button id="expand-image-button" type="button" onClick={expandImage}><i className="fas fa-expand" /></button>
       </div>
     </div>
   );

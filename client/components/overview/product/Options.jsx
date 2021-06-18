@@ -104,7 +104,7 @@ function Options({ product, sku, style, chs }) {
     <div id="options-container">
       <div id="options-randr">
         <Ovrating rating={product.starRating} />
-        <a id="overview-reviews-link" href="#clearButton">
+        <a id="overview-reviews-link" href="#reviews-component-holder">
           Read All
           {' '}
           {product.totalNumReviews}
