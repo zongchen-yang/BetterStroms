@@ -83,22 +83,25 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
   }, [startIndex]);
 
   makeRenderedPhotos();
+  // const downShevron = (
+  //   <svg id="down-shevron" xmlns="http://www.w3.org/2000/svg" width="16px" height="9px" focusable="false">
+  //     <path id="_x3C_Group_x3E__4_" d="M8.002 8L1 1m7.002 7L15 1.004" />
+  //   </svg>
+  // );
   const downShevron = (
-    <svg id="down-shevron" xmlns="http://www.w3.org/2000/svg" width="16px" height="9px" focusable="false">
-      <path id="_x3C_Group_x3E__4_" d="M8.002 8L1 1m7.002 7L15 1.004" />
-    </svg>
-  );
+    <img src="assets/shevron_outlined.svg" alt="" focusable="false" />
+  )
   return (
     <div id="smallCarouselContainer">
       <div id="sc-up-placeholder">
-        <button id="sc-up" className="carousel-shevrons" hidden={upHidden} onClick={goUp} type="button">
+        <button id="sc-up" className="small-carousel-shevrons" hidden={upHidden} onClick={goUp} type="button">
           {downShevron}
         </button>
       </div>
       <div id="small-carousel-images-only">
         {renderedPhotos.slice(startIndex, (startIndex + max))}
       </div>
-      <button className="carousel-shevrons" hidden={downHidden} onClick={goDown} type="button">
+      <button id="small-carousel-down-button" className="small-carousel-shevrons" hidden={downHidden} onClick={goDown} type="button">
         {downShevron}
       </button>
     </div>
