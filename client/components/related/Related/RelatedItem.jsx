@@ -1,12 +1,17 @@
 import React from 'react';
 import Rating from './Rating';
+import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 const RelatedItem = ({
   item, showCompareCH, displayItemCH, className
 }) => (
   <div className={className ? 'itemWithFourth' : 'item'}>
-    <img className="image" src={item.image} onClick={()=> displayItemCH(item.id)} />
-    <i className="icon far fa-star fa-1x" onClick={() => {showCompareCH(item)}} />
+    <ClickTracking element={`related item ${item.id}`} module="related">
+      <img className="image" src={item.image} onClick={()=> displayItemCH(item.id)} />
+    </ClickTracking>
+    <ClickTracking element={`compare item ${item.id}`} module="related">
+      <i className="icon far fa-star fa-1x" onClick={() => {showCompareCH(item)}} />
+    </ClickTracking>
     <div className="category">{item.category}</div>
     <div className="name" onClick={()=>setId(item.id)}>{item.name}</div>
     <div className="price">

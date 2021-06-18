@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import RelatedItem from './RelatedItem';
 import Compare from './Compare';
+import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 const RelatedList = ({ related, product, displayItemCH }) => {
   const [showCompare, setShowCompare] = useState(false);
@@ -48,7 +49,13 @@ const RelatedList = ({ related, product, displayItemCH }) => {
     <div className="relatedList">
       <h3 className="title">RELATED PRODUCTS</h3>
       <div className="list">
-        {window && window[0] && window[0].index !== 0 ? <i className="fas fa-chevron-left fa-2x" type="button" onClick={leftCH} /> : null}
+        {window && window[0] && window[0].index !== 0
+          ? (
+            <ClickTracking element="related move left" module="related">
+              <i className="fas fa-chevron-left fa-2x" type="button" onClick={leftCH} />
+            </ClickTracking>
+          )
+          : null}
         {window.map((each, i) => (
           <RelatedItem
             key={i}
@@ -66,7 +73,13 @@ const RelatedList = ({ related, product, displayItemCH }) => {
               className={{ className: 'fourth' }}
             />
           ) : null}
-        {window && window[2] && window[2].index !== related.length - 1 ? <i className="fas fa-chevron-right fa-2x" type="button" onClick={rightCH} /> : null}
+        {window && window[2] && window[2].index !== related.length - 1
+          ? (
+            <ClickTracking element="related move right" module="related">
+              <i className="fas fa-chevron-right fa-2x" type="button" onClick={rightCH} />
+            </ClickTracking>
+          )
+          : null}
       </div>
       {selectedItem && showCompare
         ? <Compare product={product} related={selectedItem} setShowCompare={setShowCompare} />

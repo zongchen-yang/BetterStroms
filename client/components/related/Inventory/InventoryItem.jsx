@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Rating from '../Related/Rating';
+import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 const InventoryItem = ({ item, displayItemCH, deleteCH, className }) => (
   <div className={className ? 'itemWithFourth' : 'item'}>
-    <a href="#announcement"><img className="image" src={item.style.photos[0].url} href="#announcement" onClick={()=>displayItemCH(item.id)}></img></a>
-    <i className="icon far fa-times-circle fa-1x" onClick={()=> deleteCH(item, item.style)} />
+    <a href="#announcement">
+      <ClickTracking element={`favorites list item ${item.id} selected`} module="related">
+        <img className="image" src={item.style.photos[0].url} href="#announcement" onClick={()=>displayItemCH(item.id)}></img>
+      </ClickTracking>
+    </a>
+    <ClickTracking element={`delete item ${item.id} from favorites`} module="related">
+      <i className="icon far fa-times-circle fa-1x" onClick={()=> deleteCH(item, item.style)} />
+    </ClickTracking>
     <div className="category">{item.category}</div>
     <div className="name">{item.name}</div>
     <div className="price">
