@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Related from './components/related/Related/RelatedList';
 import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
@@ -29,13 +30,15 @@ function useLocalStorage(key, initialValue) {
 }
 
 function App() {
-  const [id, setId] = useState(20852);
+  const [id, setId] = useState(20100);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
   const [theme, setTheme] = useState(true);
+  const [related, setRelated] = useState([]);
+  const [questionsArray, setQuestionArray] = useState([]);
 
   async function getProduct() {
     let product = await fetch(`/products/${id}`);
@@ -85,7 +88,9 @@ function App() {
   const calculateRating = (obj, fetchProduct) => {
     const total = Object.keys(obj.ratings).reduce((accumRating, curr) => accumRating + parseInt(curr) * parseInt(obj.ratings[curr]), 0);
     const amount = Object.values(obj.ratings).reduce((accum, curr) => accum + parseInt(curr), 0);
-    fetchProduct.totalNumReviews = amount;
+    if (fetchProduct) {
+      fetchProduct.totalNumReviews = amount;
+    }
     return (total / amount) || 0;
   };
 
@@ -103,6 +108,46 @@ function App() {
       whole: Math.floor(rating),
       part: `${Math.round(((rating - Math.floor(rating)) * 4)) * 25}%`,
     };
+  };
+
+  const getRelatedStyles = async (item, id) => {
+    let style = await fetch(`/products/${id}/styles`);
+    style = await style.json();
+    item.sale = style.results[0].sale_price;
+    item.image = style.results[0].photos[0].url || null;
+  };
+
+  const getRelatedRating = async (item, id) => {
+    let rating = await fetch(`/reviews/meta/?product_id=${id}`);
+    rating = await rating.json();
+    rating = calculateRating(rating);
+    item.rating = {
+      whole: Math.floor(rating),
+      part: `${Math.round(((rating - Math.floor(rating)) * 4)) * 25}%`,
+    };
+  };
+
+  const getRelated = async () => {
+    let response = await fetch(`/products/${id}/related`);
+    response = await response.json();
+    const result = response.map(async (eachId) => {
+      let item = await fetch(`/products/${eachId}`);
+      item = await item.json();
+      const styles = getRelatedStyles(item, eachId);
+      const rating = getRelatedRating(item, eachId);
+      await Promise.all([styles, rating]);
+      return item;
+    });
+    const resolved = await Promise.all(result);
+    setRelated(resolved);
+  };
+
+  const getQuestions = async () => {
+    // console.log('this is the id', id);
+    let results = await fetch(`/qa/questions?product_id=${id}&count=100`);
+    results = await results.json();
+    // return results;
+    setQuestionArray(results.results);
   };
 
   function favoriteCH(product, style) {
@@ -167,8 +212,10 @@ function App() {
       const fetchStyles = getStyles(fetchProduct);
       const fetchReviews = getReviews(fetchProduct);
       const fetchRatings = getRatings(fetchProduct);
-      Promise.all([fetchStyles, fetchReviews, fetchRatings])
-        .then(([fetchedStyles, fetchedReviews, fetchedRatings]) => {
+      const fetchRelated = getRelated();
+      const fetchQuestions = getQuestions();
+      Promise.all([fetchStyles, fetchReviews, fetchRatings, fetchRelated, fetchQuestions])
+        .then(([fetchedStyles, fetchedReviews, fetchedRatings, fetchedQuestions]) => {
           fetchProduct.styleList = fetchedStyles;
           setSelectedProduct(fetchProduct);
           setReviews(fetchedReviews);
@@ -192,13 +239,23 @@ function App() {
         cartCH={cartCH}
         deleteFavoriteCH={deleteFavoriteCH}
       />
-      <Related product={selectedProduct} displayItemCH={displayItemCH} />
+      <Related
+        related={related}
+        product={selectedProduct}
+        displayItemCH={displayItemCH}
+      />
       <Inventory
         favorites={favorites}
         deleteFavoriteCH={deleteFavoriteCH}
         displayItemCH={displayItemCH}
       />
-      <QAndA product={selectedProduct} theme={theme} />
+      <QAndA
+        product={selectedProduct}
+        theme={theme}
+        id={id}
+        questionsArray={questionsArray}
+        getQuestions={getQuestions}
+      />
       <ReviewComponents
         product={selectedProduct}
         reviews={reviews}

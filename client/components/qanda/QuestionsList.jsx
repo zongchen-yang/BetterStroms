@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Question';
-import AddAnswer from './AddAnswer';
 import ClickTracking from '../../WithClickTrackingEventHandler';
 
 const QuestionsList = (props) => {
@@ -16,48 +15,31 @@ const QuestionsList = (props) => {
     theme,
   } = props;
   let [totalQuestionCount, upTotalCount] = useState(4);
-  const [view, setView] = useState('questions');
-  let [answerCount, setAnswerCount] = useState(2);
   const [questionsList, setQuestionsList] = useState([]);
-  // const [currentQuestionCount, upCurrentCount] = useState(0);
 
-  // const loadMoreAnswers = () => {
-  //   setAnswerCount(answerCount += 1);
-  // };
   const addMoreQuestions = () => {
     upTotalCount(totalQuestionCount += 2);
-    // console.log(totalQuestionCount);
   };
 
   const renderQuestions = () => (
-    <div className={theme ? 'questions-list' : 'questions-list dark-list'}>
-      {questionsList.map((question) => (
-        <div key={question.question_id}>
-          <Question
-            question={question}
-            key={question.question_id}
-            updateQuestionsHelpfulness={updateQuestionsHelpfulness}
-            updateAnswersHelpfulness={updateAnswersHelpfulness}
-            reportQuestion={reportQuestion}
-            reportAnswer={reportAnswer}
-            openAddAnswerModal={openAddAnswerModal}
-            getQuestionId={getQuestionId}
-            answerCount={answerCount}
-            theme={theme}
-            // loadMoreAnswers={loadMoreAnswers}
-          />
-        </div>
-      )).slice(0, totalQuestionCount)}
-    </div>
-  );
-
-  useEffect(() => {
-    setQuestionsList([...questions]);
-  }, [questions]);
-
-  return (
     <div>
-      {renderQuestions()}
+      <div className={theme ? 'questions-list' : 'questions-list dark-list'}>
+        {questionsList.map((question) => (
+          <div key={question.question_id}>
+            <Question
+              question={question}
+              key={question.question_id}
+              updateQuestionsHelpfulness={updateQuestionsHelpfulness}
+              updateAnswersHelpfulness={updateAnswersHelpfulness}
+              reportQuestion={reportQuestion}
+              reportAnswer={reportAnswer}
+              openAddAnswerModal={openAddAnswerModal}
+              getQuestionId={getQuestionId}
+              theme={theme}
+            />
+          </div>
+        )).slice(0, totalQuestionCount)}
+      </div>
       <div>
         <span>
           <button
@@ -80,6 +62,16 @@ const QuestionsList = (props) => {
           </ClickTracking>
         </span>
       </div>
+    </div>
+  );
+
+  useEffect(() => {
+    setQuestionsList([...questions]);
+  }, [questions]);
+
+  return (
+    <div>
+      {renderQuestions()}
     </div>
   );
 };

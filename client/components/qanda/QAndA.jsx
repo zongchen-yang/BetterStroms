@@ -1,5 +1,4 @@
-// This will be the strucute of my whole module.
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import AddQuestion from './AddQuestion';
 import AddAnswer from './AddAnswer';
@@ -7,48 +6,17 @@ import QuestionsList from './QuestionsList';
 import Search from './Search';
 
 const QAndA = (props) => {
-  const [questionsArray, setQuestionArray] = useState([]);
+  const { id, product, theme, getQuestions, questionsArray } = props;
   const [searched, setSearched] = useState(false);
   const [searchedArray, setSearchedArray] = useState(questionsArray);
-  const [questionHelpful, setQuestionHelpful] = useState(false);
-  const [answerHelpful, setAnswerHelpful] = useState(false);
   const [showAddAnswerModal, setAddAnswerModal] = useState(false);
   const [showAddQuestionModal, setAddQuestionModal] = useState(false);
   const [questionId, setQuestionId] = useState(0);
-  // const [answersArray, setAnswersArray] = useState([])
-  // let [rerender, setRerender] = useState(0);
-
-  const { product, theme } = props;
-  const { id, name } = product;
-
-  async function getQuestions() {
-    if (id) {
-      const results = await axios.get(`/qa/questions?product_id=${id}&count=100`);
-      setQuestionArray(results.data.results);
-    }
-  }
-
-  const addHighlightedText = (body, input) => {
-    const frontIndex = body.indexOf(input);
-    const backIndex = body.indexOf(input) + input.length;
-    if (body.includes(input)) {
-      const newBody = `${body.slice(0, frontIndex)}<mark>${input}</mark>${body.slice(backIndex)}`;
-      return newBody;
-    }
-  };
 
   const onSearch = (value) => {
     if (value === '') {
       setSearchedArray(questionsArray);
       setSearched(false);
-    // } else {
-    //   let newArray = questionsArray.filter((question) => (
-    //     question.question_body.toLowerCase().includes(value.toLowerCase())
-    //   ));
-    //   for (const question of newArray) {
-    //     question.question_body = addHighlightedText(question.question_body, value.toLowerCase())
-    //   }
-    //   setSearchedArray([...newArray]);
     } else {
       setSearchedArray(questionsArray.filter((question) => (
         question.question_body.toLowerCase().includes(value.toLowerCase())
@@ -58,19 +26,15 @@ const QAndA = (props) => {
   };
 
   const updateQuestionsHelpfulness = (questionId) => {
-    if (!questionHelpful) {
-      axios.put(`/qa/questions/${questionId}/helpful`)
-        .then(() => console.log('put request successful for question'))
-        .catch((error) => console.log(error));
-    }
+    axios.put(`/qa/questions/${questionId}/helpful`)
+      .then(() => console.log('put request successful for question'))
+      .catch((error) => console.log(error));
   };
 
   const updateAnswersHelpfulness = (answerId) => {
-    if (!answerHelpful) {
-      axios.put(`/qa/answers/${answerId}/helpful`)
-        .then(() => console.log('put request successful for answer'))
-        .catch((error) => console.log(error));
-    }
+    axios.put(`/qa/answers/${answerId}/helpful`)
+      .then(() => console.log('put request successful for answer'))
+      .catch((error) => console.log(error));
   };
 
   const reportQuestion = (questionId) => {
@@ -97,10 +61,8 @@ const QAndA = (props) => {
       .catch((error) => console.log(error));
   };
 
-  const postNewAnswer = (questionId, body, name, email, photos) => {
-    // const requestBody = { body, name, email, photos };
-    // axios.post(`/qa/questions/${questionId}/answers`, requestBody)
-    axios.post(`/qa/questions/${questionId}/answers`, {
+  const postNewAnswer = (currentQuestionId, body, name, email, photos) => {
+    axios.post(`/qa/questions/${currentQuestionId}/answers`, {
       body,
       name,
       email,
@@ -136,17 +98,20 @@ const QAndA = (props) => {
     closeAddQuestionModal();
   };
 
-  useEffect(() => { getQuestions(); }, [id]);
-
   return (
     <>
       <div
         id="QandA-module"
+        role="button"
+        tabIndex="0"
+        onKeyDown={showAddQuestionModal || showAddAnswerModal ? closeModals : () => {}}
         onClick={showAddQuestionModal || showAddAnswerModal ? closeModals : () => {}}
         className={
           showAddAnswerModal || showAddQuestionModal
-          ? "QandA-module question-unfocused"
-          : "QandA-module"}>
+            ? 'QandA-module question-unfocused'
+            : 'QandA-module'
+          }
+      >
         <h3 className="QandA-title">
           Questions and Answers
         </h3>
@@ -169,20 +134,20 @@ const QAndA = (props) => {
         {showAddAnswerModal
           ? (
             <AddAnswer
-            questionId={questionId}
-            postNewAnswer={postNewAnswer}
-            closeAddAnswerModal={closeAddAnswerModal}
-            theme={theme}
+              questionId={questionId}
+              postNewAnswer={postNewAnswer}
+              closeAddAnswerModal={closeAddAnswerModal}
+              theme={theme}
             />
           )
           : null}
         {showAddQuestionModal
           ? (
             <AddQuestion
-            postNewQuestion={postNewQuestion}
-            closeAddQuestionModal={closeAddQuestionModal}
-            name={name}
-            theme={theme}
+              postNewQuestion={postNewQuestion}
+              closeAddQuestionModal={closeAddQuestionModal}
+              name={product.name}
+              theme={theme}
             />
           )
           : null}
@@ -192,3 +157,19 @@ const QAndA = (props) => {
 };
 
 export default QAndA;
+
+// async function getQuestions() {
+//   if (id) {
+//     const results = await axios.get(`/qa/questions?product_id=${id}&count=100`);
+//     setQuestionArray(results.data.results);
+//   }
+// }
+// const addHighlightedText = (body, input) => {
+//   const frontIndex = body.indexOf(input);
+//   const backIndex = body.indexOf(input) + input.length;
+//   if (body.includes(input)) {
+//     const newBody = `${body.slice(0, frontIndex)}<mark>${input}</mark>${body.slice(backIndex)}`;
+//     return newBody;
+//   }
+// };
+// useEffect(() => { getQuestions(); }, [id]);
