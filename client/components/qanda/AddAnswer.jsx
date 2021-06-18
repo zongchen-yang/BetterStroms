@@ -6,16 +6,10 @@ const AddAnswer = (props) => {
   const [bodyInput, setBodyInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [photoUrl1, setPhoto1] = useState('');
-  const [photo1Valid, setPhoto1Valid] = useState(true);
   const [photoUrl2, setPhoto2] = useState('');
-  const [photo2Valid, setPhoto2Valid] = useState(true);
   const [photoUrl3, setPhoto3] = useState('');
-  const [photo3Valid, setPhoto3Valid] = useState(true);
-  const [photosArray, setPhotosArray] = useState([]);
   const [showError, setShowError] = useState(false);
   const [validEmail, setValidEmail] = useState(false);
-
-  // console.log('this is the current question id', questionId);
 
   const checkValidEmail = (value) => {
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
@@ -50,20 +44,10 @@ const AddAnswer = (props) => {
     setPhoto3(event.target.value);
   };
 
-  function imageExists(url, callback) {
-    const img = new Image();
-    img.onload = function() { callback(true); };
-    img.onerror = function() { callback(false); };
-    img.src = url;
-  }
-
   const handleAddAnswer = () => {
     const newArray = [];
     if (photoUrl1 !== '') {
-      // imageExists(photoUrl1, setPhoto1Valid);
-      // if (setPhoto1Valid) {
       newArray.push(photoUrl1);
-      // }
     }
     if (photoUrl2 !== '') {
       newArray.push(photoUrl2);
@@ -71,10 +55,7 @@ const AddAnswer = (props) => {
     if (photoUrl3 !== '') {
       newArray.push(photoUrl3);
     }
-    // for(const url of newArray) {
-    //   imageExists(url, )
-    // }
-    if (nameInput === '' || bodyInput === '' || !validEmail || !photo1Valid) {
+    if (nameInput === '' || bodyInput === '' || !validEmail) {
       setShowError(true);
     } else {
       postNewAnswer(questionId, bodyInput, nameInput, emailInput, newArray);
@@ -157,3 +138,10 @@ const AddAnswer = (props) => {
 };
 
 export default AddAnswer;
+
+// function imageExists(url, callback) {
+//   const img = new Image();
+//   img.onload = function() { callback(true); };
+//   img.onerror = function() { callback(false); };
+//   img.src = url;
+// }
