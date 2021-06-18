@@ -30,7 +30,7 @@ function useLocalStorage(key, initialValue) {
 }
 
 function App() {
-  const [id, setId] = useState(20100);
+  const [id, setId] = useState(20852);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);
@@ -95,8 +95,10 @@ function App() {
   };
 
   const displayItemCH = (num) => {
-    setIsLoaded(false);
-    setId(num);
+    if (num !== id) {
+      setIsLoaded(false);
+      setId(num);
+    }
   };
 
   const getRatings = async (fetchProduct) => {
@@ -130,9 +132,10 @@ function App() {
   const getRelated = async () => {
     let response = await fetch(`/products/${id}/related`);
     response = await response.json();
-    const result = response.map(async (eachId) => {
+    const result = response.map(async (eachId, index) => {
       let item = await fetch(`/products/${eachId}`);
       item = await item.json();
+      item.index = index;
       const styles = getRelatedStyles(item, eachId);
       const rating = getRelatedRating(item, eachId);
       await Promise.all([styles, rating]);
@@ -150,11 +153,22 @@ function App() {
     setQuestionArray(results.results);
   };
 
+  const hasFavConflict = (obj) => {
+    for (let i = 0; i < favorites.length; i++) {
+      if (favorites[i].id === obj.id && favorites[i].style.id === obj.style.id) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   function favoriteCH(product, style) {
-    style.isFavorite = true;
     const temp = { ...product };
     temp.style = style;
-    setFavorites([...favorites, temp]);
+    if (!hasFavConflict(temp)) {
+      temp.style.isFavorite = true;
+      setFavorites([...favorites, temp]);
+    }
   }
 
   const deleteFavoriteCH = (item, style) => {

@@ -50,9 +50,9 @@ const Compare = ({ product, related, setShowCompare }) => {
       </div>
       {Object.keys(features).map((key, i) => (
         <div key={i} className="compareFeature">
-          {features[key].product === true ? <div><i className="fas fa-check" /></div> : <div className="feature side">{features[key].product}</div>}
+          {features[key].product === true ? <div><i className="fas fa-check" /></div> : <div className="feature side"><i className="fas fa-check" /> {features[key].product}</div>}
           <div className="feature middle">{key}</div>
-          {features[key].related === true ? <i className="fas fa-check" /> : <div className="feature side">{features[key].related}</div>}
+          {features[key].related === true ? <i className="fas fa-check" /> : <div className="feature side">{features[key].related} <i className="fas fa-check" /></div>}
         </div>
       ))}
     </div>

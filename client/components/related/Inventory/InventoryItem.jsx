@@ -3,7 +3,7 @@ import Rating from '../Related/Rating';
 
 const InventoryItem = ({ item, displayItemCH, deleteCH, className }) => (
   <div className={className ? 'itemWithFourth' : 'item'}>
-    <img className="image" src={item.style.photos[0].url} onClick={()=>displayItemCH(item.id)}></img>
+    <a href="#announcement"><img className="image" src={item.style.photos[0].url} href="#announcement" onClick={()=>displayItemCH(item.id)}></img></a>
     <i className="icon far fa-times-circle fa-1x" onClick={()=> deleteCH(item, item.style)} />
     <div className="category">{item.category}</div>
     <div className="name">{item.name}</div>

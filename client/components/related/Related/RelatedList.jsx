@@ -30,12 +30,12 @@ const RelatedList = ({ related, product, displayItemCH }) => {
 
   const rightCH = () => {
     const rightIndex = related.indexOf(window[2]);
-    setWindow(related.slice(rightIndex + 1, rightIndex + 4));
+    setWindow(related.slice(rightIndex - 1, rightIndex + 2));
   };
 
   const leftCH = () => {
     const leftIndex = related.indexOf(window[0]);
-    setWindow(related.slice(leftIndex - 3, leftIndex));
+    setWindow(related.slice(leftIndex - 1, leftIndex + 2));
   };
 
   if (!pageReady) {
