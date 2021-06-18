@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Related from './components/related/Related/RelatedList';
 import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
@@ -29,13 +30,14 @@ function useLocalStorage(key, initialValue) {
 }
 
 function App() {
-  const [id, setId] = useState(20852);
+  const [id, setId] = useState(20103);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
   const [theme, setTheme] = useState(true);
+  const [questionsArray, setQuestionArray] = useState([]);
 
   async function getProduct() {
     let product = await fetch(`/products/${id}`);
@@ -105,6 +107,14 @@ function App() {
     };
   };
 
+  const getQuestions = async () => {
+    // console.log('this is the id', id);
+    let results = await fetch(`/qa/questions?product_id=${id}&count=100`);
+    results = await results.json();
+    // return results;
+    setQuestionArray(results.results);
+  };
+
   function favoriteCH(product, style) {
     style.isFavorite = true;
     const temp = { ...product };
@@ -167,8 +177,9 @@ function App() {
       const fetchStyles = getStyles(fetchProduct);
       const fetchReviews = getReviews(fetchProduct);
       const fetchRatings = getRatings(fetchProduct);
-      Promise.all([fetchStyles, fetchReviews, fetchRatings])
-        .then(([fetchedStyles, fetchedReviews, fetchedRatings]) => {
+      const fetchQuestions = getQuestions();
+      Promise.all([fetchStyles, fetchReviews, fetchRatings, fetchQuestions])
+        .then(([fetchedStyles, fetchedReviews, fetchedRatings, fetchedQuestions]) => {
           fetchProduct.styleList = fetchedStyles;
           setSelectedProduct(fetchProduct);
           setReviews(fetchedReviews);
@@ -198,7 +209,13 @@ function App() {
         deleteFavoriteCH={deleteFavoriteCH}
         displayItemCH={displayItemCH}
       />
-      <QAndA product={selectedProduct} theme={theme} />
+      <QAndA
+        product={selectedProduct}
+        theme={theme}
+        id={id}
+        questionsArray={questionsArray}
+        getQuestions={getQuestions}
+      />
       <ReviewComponents
         product={selectedProduct}
         reviews={reviews}
