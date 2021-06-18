@@ -23,12 +23,12 @@ const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
 
   const rightCH = () => {
     const rightIndex = favorites.indexOf(window[2]);
-    setWindow(favorites.slice(rightIndex + 1, rightIndex + 4));
+    setWindow(favorites.slice(rightIndex - 1, rightIndex + 2));
   };
 
   const leftCH = () => {
     const leftIndex = favorites.indexOf(window[0]);
-    setWindow(favorites.slice(leftIndex - 3, leftIndex));
+    setWindow(favorites.slice(leftIndex - 1, leftIndex + 2));
   };
 
   if (!pageReady) {
