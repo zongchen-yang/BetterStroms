@@ -81,7 +81,7 @@ function App() {
   const getReviews = async (fetchProduct) => {
     let response = await fetch(`/reviews?product_id=${id}`);
     response = await response.json();
-    fetchProduct.totalNumReviews = response.results.length;
+    //fetchProduct.totalNumReviews = response.results.length;
     return response.results;
   };
 
