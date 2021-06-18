@@ -58,13 +58,13 @@ function Options({ product, sku, style, chs }) {
   }
 
   if (style.isFavorite) {
-    favoriteButton = <button type="button" onClick={() => deleteFavoriteCH(product, style)}>Heart</button>;
+    favoriteButton = <button id="favorite-button" type="button" onClick={() => deleteFavoriteCH(product, style)}>♡</button>;
   } else {
-    favoriteButton = <button type="button" onClick={() => favoriteCH(product, style)}>Star</button>;
+    favoriteButton = <button id="favorite-button" type="button" onClick={() => favoriteCH(product, style)}>☆</button>;
   }
 
   if (inStock) {
-    cartButton = <button type="button" onClick={optionsCartHandler}>Add to Cart</button>;
+    cartButton = <button id="cart-button" type="button" onClick={optionsCartHandler}>Add to Cart</button>;
     sizeSelect = (
       <select className="select-dropdowns" onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
         <option value="disabled">Select Size</option>
@@ -125,9 +125,9 @@ function Options({ product, sku, style, chs }) {
         </span>
       </div>
       <div id="overview-social-media">
-        <button type="button">FB</button>
-        <button type="button">TTR</button>
-        <button type="button">PIN</button>
+        <button className="social-media-buttons" type="button">FB</button>
+        <button className="social-media-buttons" type="button">TTR</button>
+        <button className="social-media-buttons" type="button">PIN</button>
       </div>
       <div id="options-style-text-des">
         <span className="bolderize-font">STYLE  {'>'}</span>

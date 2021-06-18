@@ -36,8 +36,6 @@
 
 button {
   text-rendering: auto;
-  letter-spacing: normal;
-  word-spacing: normal;
   text-transform: none;
   text-indent: 0px;
   text-shadow: none;
@@ -404,6 +402,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   border-radius: 0;
   height: 40px;
   width: 200px;
+  font-family: 'Raleway', sans-serif;
   font-size: 18px;
   text-align: center;
   padding-left: 15px;
@@ -438,6 +437,10 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 #cart-and-favorite {
   padding-left: 14px;
   padding-top: 10px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 350px;
 }
 
 #description-text {
@@ -459,4 +462,43 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 
 .description-space-vertical {
   padding-top:10px;
+}
+
+.social-media-buttons {
+  background-color: transparent;
+  width: 60px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  border: none;
+}
+
+#favorite-button {
+  width: 100px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  border: 1px solid black;
+  background-color: rgb(223, 223, 223);
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  letter-spacing: .05rem;
+  font-size:28px;
+}
+
+#cart-button {
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  border: 1px solid black;
+  background-color: rgb(223, 223, 223);
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  letter-spacing: .05rem;
+  font-size: 18px;
+  font-weight: 500;
 }
