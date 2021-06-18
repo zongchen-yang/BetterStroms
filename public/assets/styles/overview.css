@@ -352,8 +352,8 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 
 #main-carousel {
   display:flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: right;
 }
 
 .carousel-shevron-container {
@@ -370,8 +370,9 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 } */
 
 #expand-image-container {
-  /* position: absolute;
-  height:650px; */
+  padding-top: 20px;
+  padding-right: 80px;
+  position: absolute;
 }
 
 #options-product-cat {
@@ -518,4 +519,22 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   letter-spacing: .05rem;
   font-size: 18px;
   font-weight: 500;
+}
+
+#main-carousel-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#expand-image-button {
+  font-size: 20px;
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  border: none;
+  padding: 0;
 }
