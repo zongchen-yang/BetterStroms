@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import ReviewsFilteredBy from './ReviewsFilteredBy'
 import ComponentRatingBreakdown from './ComponentRatingBreakdown';
 import RenderStars from './RenderStars';
 import ClickTracking from '../../../WithClickTrackingEventHandler';
@@ -19,7 +18,6 @@ const ReviewsBreakdown = (props) => {
   const [percentageOf2s, setPercentageOf2s] = useState('0%');
   const [percentageOf1s, setPercentageOf1s] = useState('0%');
   const [percentageRecommends, setPercentageRecommends] = useState('0%');
-  // const [rating, setRating] = useState({ whole: 3, part: 0.67 });
 
   const calculatePercentages = () => {
     if (reviewMeta.ratings) {
@@ -52,8 +50,6 @@ const ReviewsBreakdown = (props) => {
   useEffect(() => { calculatePercentages(); }, [reviewMeta]);
 
   const breakdownClickHandler = (val) => {
-    // console.log(e.target.attributes.rank.value);
-    // console.log(e.target.parentElement.attributes[1].value)
     reviewFilterHelper(val);
   };
 
@@ -153,7 +149,6 @@ const ReviewsBreakdown = (props) => {
                   <ComponentRatingBreakdown reviewMeta={reviewMeta} />
               </ClickTracking>
             </div>
-            {/* {reviewFilter.length ? <ReviewsFilteredBy reviewFilter={reviewFilter}> } */}
           </>
         ) : null }
     </>

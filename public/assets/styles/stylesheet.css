@@ -226,24 +226,22 @@ button:hover {
   position: relative;
   top: 5%;
   float: right;
-  border-color: black;
-  border-style: groove;
   width: 55%;
-  max-height: 45em;
+  max-height: 50em;
   overflow-y: scroll;
   margin: 0%;
+  padding: 1%;
 }
 
 #review-list-box-dark {
   position: relative;
   top: 5%;
   float: right;
-  border-color: white;
-  border-style: groove;
   width: 55%;
-  max-height: 45em;
+  max-height: 50em;
   overflow-y: scroll;
-  margin: 0%;
+  margin: 1%;
+  padding: 1%;
 }
 
 .review {
@@ -300,26 +298,29 @@ button:hover {
   position: relative;
   top: 5%;
   float: left;
-  border-color: black;
-  border-style: solid;
   position: static;
   width: 40%;
   clear: both;
   padding-top: 5px;
   padding-bottom: 5px;
+  padding: 1%;
 }
 
 #review-breakdown-box-dark {
   position: relative;
   top: 5%;
   float: left;
-  border-color: white;
-  border-style: solid;
   position: static;
   width: 40%;
   clear: both;
   padding-top: 5px;
   padding-bottom: 5px;
+  padding: 1%;
+}
+
+#filters-used {
+  position: relative;
+  float: left;
 }
 
 #clearButton {
@@ -364,11 +365,6 @@ button:hover {
   position: relative;
 }
 
-.recommended {
-  float: left;
-  width: 100%;
-  text-align: center;
-}
 
 .subcomponent-breakdown-container {
   float: left;
@@ -403,23 +399,23 @@ button:hover {
 
 .tooSmall {
   float: left;
-  width: 33.33%;
-  font-size: smaller;
+  width: 30%;
+  font-size: x-small;
   text-align: left;
 }
 
 .perfectFit {
   float: left;
-  width: 33.33%;
-  font-size: smaller;
-  text-align: left;
+  width: 30%;
+  font-size: x-small;
+  text-align: center;
 }
 
 .tooBig {
   float: left;
-  width: 33.33%;
-  font-size: smaller;
-  text-align: left;
+  width: 30%;
+  font-size: x-small;
+  text-align: right;
 }
 
 .breakdownPercentageHolder {
@@ -436,25 +432,27 @@ button:hover {
 }
 
 .add-review-box {
-  font-family: sans-serif;
   position: fixed;
   border: 1px solid black;
-  top: 20%;
-  right: 30%;
-  clear: both;
+  top: 5%;
+  left: 30%;
+  height: fit-content;
+  max-height: 95%;
   z-index: 1;
   background-color: white;
+  overflow: scroll;
 }
 
 .add-review-box-dark {
-  font-family: sans-serif;
   position: fixed;
   border: 1px solid white;
-  top: 20%;
-  right: 30%;
-  clear: both;
+  top: 5%;
+  left: 30%;
+  height: fit-content;
+  max-height: 95%;
   z-index: 1;
-  background-color: black
+  background-color: black;
+  overflow: scroll;
 }
 
 .reviewFormStarContainer {
@@ -465,6 +463,10 @@ button:hover {
 .reviewStar {
   position: relative;
   float: left;
+}
+
+.reviewStar:hover {
+  color: black
 }
 
 /* .fas fa-star {
@@ -496,8 +498,7 @@ button:hover {
 
 .review-hiddenRating {
   position: absolute;
-  bottom: 12%;
-  left: 0;
+  bottom: 10%;
   display: flex;
 }
 
@@ -516,12 +517,24 @@ button:hover {
   font-size: x-small;
 }
 
+.yes-review-helpful:hover {
+  background-color: black;
+  color: white;
+}
+
+
+
 #review-form-submit {
   display: inline-block;
   border-radius: 0px;
   padding: 15px;
   margin: 5px;
   background-color: white;
+}
+
+#review-form-submit:hover {
+  background-color: black;
+  color: white;
 }
 
 #review-form-close {
@@ -532,12 +545,22 @@ button:hover {
   background-color: white;
 }
 
+#review-form-close:hover {
+  background-color: black;
+  color: white;
+}
+
 #show-review-form {
   display: inline-block;
   border-radius: 0px;
   padding: 15px;
   margin: 5px;
   background-color: white;
+}
+
+#show-review-form:hover {
+  background-color: black;
+  color: white;
 }
 
 #submit-photos {
@@ -548,12 +571,22 @@ button:hover {
   background-color: white;
 }
 
+#submit-photos:hover {
+  background-color: black;
+  color: white;
+}
+
 #toggle-theme {
   display: inline-block;
   border-radius: 0px;
   padding: 15px;
   margin: 5px;
   background-color: white;
+}
+
+#toggle-theme:hover {
+  background-color: black;
+  color: white;
 }
 
 #sortOptions {
@@ -568,12 +601,22 @@ button:hover {
   background-color: white;
 }
 
+#sortOptions:hover {
+  background-color: black;
+  color: white;
+}
+
 #see-more-reviews {
   display: inline-block;
   border-radius: 0px;
   padding: 15px;
   margin: 5px;
   background-color: white;
+}
+
+#see-more-reviews:hover {
+  background-color: black;
+  color: white;
 }
 
 #clearButton {
@@ -585,12 +628,19 @@ button:hover {
   margin: 5px;
 }
 
+#clearButton:hover {
+  background-color: black;
+  color: white;
+}
+
 #reviews-component-holder {
   margin: auto;
   width: 80%;
 }
 
+
 #reviews-component-header {
+  margin-top: 5%;
   font-size: 150%;
   font-weight: bolder;
 }
@@ -616,7 +666,10 @@ button:hover {
 
 #recommended {
   font-weight: bold;
+  float: left;
+  width: 100%;
   text-align: center;
+  font-size: smaller;
 }
 /* :root {
   background-color: black;

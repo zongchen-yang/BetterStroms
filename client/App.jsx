@@ -30,7 +30,7 @@ function useLocalStorage(key, initialValue) {
 }
 
 function App() {
-  const [id, setId] = useState(20852);
+  const [id, setId] = useState(20104);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);
@@ -81,7 +81,7 @@ function App() {
   const getReviews = async (fetchProduct) => {
     let response = await fetch(`/reviews?product_id=${id}`);
     response = await response.json();
-    fetchProduct.totalNumReviews = response.results.length;
+    //fetchProduct.totalNumReviews = response.results.length;
     return response.results;
   };
 
