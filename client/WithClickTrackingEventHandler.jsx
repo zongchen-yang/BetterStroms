@@ -16,13 +16,15 @@ const WithClickTrackingEventHandler = (props) => {
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
     // originalOnClick();
-    originalOnClick(event);
+    if (originalOnClick) {
+      originalOnClick(event);
+    }
     // console.log('this is the child', child);
     // console.log('this is the element', requestBody.element);
     // console.log('this is the module', requestBody.widget);
     // console.log('this is the timestamp', requestBody.time);
     // console.log('children', React.Children.toArray());
-    console.log('TRACKING is working on this button', props.eventName);
+    console.log('TRACKING is working on this button', props.element, props.module);
   };
 
   // const decoratedWithClickTrackingComponent = () => (
@@ -33,7 +35,7 @@ const WithClickTrackingEventHandler = (props) => {
 
   // return decoratedWithClickTrackingComponent;
   return (
-    React.Children.map(props.children, (child) => React.cloneElement(child, {
+    React.Children.map(props.children, (child, i) => React.cloneElement(child, {
       onClick: handleClickTracking.bind(child, child.props.onClick, child),
     }))
   );

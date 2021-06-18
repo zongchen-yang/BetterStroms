@@ -42,13 +42,15 @@ const QuestionsList = (props) => {
       </div>
       <div>
         <span>
-          <button
-            className="button-questions"
-            type="button"
-            onClick={addMoreQuestions}
-          >
-            MORE ANSWERED QUESTIONS
-          </button>
+          <ClickTracking element="More answered questions" module="QandA">
+            <button
+              className="button-questions"
+              type="button"
+              onClick={addMoreQuestions}
+            >
+              MORE ANSWERED QUESTIONS
+            </button>
+          </ClickTracking>
         </span>
         <span>
           <ClickTracking element="Add A Question Button" module="QandA">

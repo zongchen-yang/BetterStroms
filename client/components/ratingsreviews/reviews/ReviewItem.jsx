@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReviewPhoto from './ReviewPhoto';
 import RenderStars from './RenderStars';
+import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 const ReviewItem = (props) => {
   const { review } = props;
@@ -90,7 +91,9 @@ const ReviewItem = (props) => {
         <div className="helpfulness">
           Was this review helpful?
           {' '}
-          <button id={review.review_id} onClick={(e) => helpfulHandler(e)}>Yes</button>
+          <ClickTracking element={`helpful review ${review.review_id}`} module="Ratings and Reviews">
+            <button id={review.review_id} onClick={(e) => helpfulHandler(e)}>Yes</button>
+          </ClickTracking>
           {`     ${reviewHelpfulness}`}
         </div>
       </ul>

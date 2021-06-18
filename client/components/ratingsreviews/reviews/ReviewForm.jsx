@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import CharacteristicRadioButtons from './CharacteristicRadioButtons';
 import ReviewFormPhotos from './ReviewFormPhotos';
+import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 const ReviewForm = ({
   showReviewFormHandler, reviewMeta, id, sortByDate, theme
@@ -148,11 +149,13 @@ const ReviewForm = ({
         {rated ? starRating
           : (
             <>
-              <div className="reviewStar" onClick={(e) => handleStarSelection(1)}><i className="far fa-star" /></div>
-              <div className="reviewStar" onClick={(e) => handleStarSelection(2)}><i className="far fa-star" /></div>
-              <div className="reviewStar" onClick={(e) => handleStarSelection(3)}><i className="far fa-star" /></div>
-              <div className="reviewStar" onClick={(e) => handleStarSelection(4)}><i className="far fa-star" /></div>
-              <div className="reviewStar" onClick={(e) => handleStarSelection(5)}><i className="far fa-star" /></div>
+              <ClickTracking element="view selected star rating" module="Ratings and Reviews">
+                <div className="reviewStar" onClick={(e) => handleStarSelection(1)}><i className="far fa-star" /></div>
+                <div className="reviewStar" onClick={(e) => handleStarSelection(2)}><i className="far fa-star" /></div>
+                <div className="reviewStar" onClick={(e) => handleStarSelection(3)}><i className="far fa-star" /></div>
+                <div className="reviewStar" onClick={(e) => handleStarSelection(4)}><i className="far fa-star" /></div>
+                <div className="reviewStar" onClick={(e) => handleStarSelection(5)}><i className="far fa-star" /></div>
+              </ClickTracking>
             </>
           )}
       </div>
@@ -160,26 +163,32 @@ const ReviewForm = ({
       <form>
         <div>Do you recommend this product?</div>
         <div>
-          <input
-            type="radio"
-            id="yes"
-            name="recommend"
-            value="yes"
-            onClick={(e) => (recommendationHandler(e))}
-            checked
-          />
+          <ClickTracking element="i recomend this product" module="Ratings and Reviews">
+            <input
+              type="radio"
+              id="yes"
+              name="recommend"
+              value="yes"
+              onClick={(e) => (recommendationHandler(e))}
+              checked
+            />
+          </ClickTracking>
           <label htmlFor="yes">Yes</label>
         </div>
 
         <div>
-          <input type="radio" id="no" name="recommend" value="no" onClick={(e) => (recommendationHandler(e))} />
+          <ClickTracking element="i do not recomend this product" module="Ratings and Reviews">
+            <input type="radio" id="no" name="recommend" value="no" onClick={(e) => (recommendationHandler(e))} />
+          </ClickTracking>
           <label htmlFor="no">No</label>
         </div>
       </form>
-      <CharacteristicRadioButtons
-        reviewMeta={reviewMeta}
-        characteristicRadioHandler={characteristicRadioHandler}
-      />
+      <ClickTracking element="add review characteristic select" module="Ratings and Reviews">
+        <CharacteristicRadioButtons
+          reviewMeta={reviewMeta}
+          characteristicRadioHandler={characteristicRadioHandler}
+        />
+      </ClickTracking>
       <div>
         Review Summary
         <textarea placeholder="Example: Best Purchase Ever!" onChange={handleSummaryChange} />
@@ -228,7 +237,9 @@ const ReviewForm = ({
           {alertMessage.map((message, index) => (<div className="alertMessage" id={index}>{message}</div>))}
         </div>
       ) : null }
-      <button type="button" id="review-form-submit" onClick={() => submitHandler()}>SUBMIT</button>
+      <ClickTracking element="add review submit" module="Ratings and Reviews">
+        <button type="button" id="review-form-submit" onClick={() => submitHandler()}>SUBMIT</button>
+      </ClickTracking>
       <button type="button" id="review-form-close" onClick={() => showReviewFormHandler()}>CLOSE</button>
     </div>
   );

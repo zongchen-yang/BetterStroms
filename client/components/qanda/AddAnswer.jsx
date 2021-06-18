@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ClickTracking from '../../WithClickTrackingEventHandler';
 
 const AddAnswer = (props) => {
   const {questionId, postNewAnswer, closeAddAnswerModal, theme} = props;
@@ -68,61 +69,75 @@ const AddAnswer = (props) => {
       <div className="modal-input">
         Your Answer *
         <div className="modal-input">
-          <textarea
-            className="modal-input-box"
-            onChange={handleBodyChange}
-            maxLength="1000"
-            placeholder=""
-            rows="5"
-            cols="50"
-          />
+          <ClickTracking element="Add answer body input" module="QandA">
+            <textarea
+              className="modal-input-box"
+              onChange={handleBodyChange}
+              maxLength="1000"
+              placeholder=""
+              rows="5"
+              cols="50"
+            />
+          </ClickTracking>
         </div>
       </div>
       <div className="modal-input">
         What is your nickname *
         <div className="modal-input">
-          <input
-            className="modal-input-box"
-            onChange={handleNameChange}
-            maxLength="60"
-            placeholder="Example: jack543!!"
-            size="50"
-          />
+          <ClickTracking element="Add answer name input" module="QandA">
+            <input
+              className="modal-input-box"
+              onChange={handleNameChange}
+              maxLength="60"
+              placeholder="Example: jack543!!"
+              size="50"
+            />
+          </ClickTracking>
         </div>
         <div className="modal-input input-flavor">For privacy reasons, do not use your full name or email address</div>
       </div>
       <div className="modal-input">
         Your Email*
         <div className="modal-input">
-          <input
-            className="modal-input-box"
-            onChange={handleEmailChange}
-            maxLength="60"
-            placeholder="Example: jack@email.com"
-            size="50"
-          />
+          <ClickTracking element="Add answer email input" module="QandA">
+            <input
+              className="modal-input-box"
+              onChange={handleEmailChange}
+              maxLength="60"
+              placeholder="Example: jack@email.com"
+              size="50"
+            />
+          </ClickTracking>
         </div>
         <div className="modal-input input-flavor">For authentication reasons, you will not be emailed</div>
       </div>
       <div className="modal-input">
         Upload Your Photos
         <div>
-          <input className="modal-input-box" onChange={handlePhotoChange1} />
+          <ClickTracking element="Add answer photo1 input" module="QandA">
+            <input className="modal-input-box" onChange={handlePhotoChange1} />
+          </ClickTracking>
         </div>
         <div>
-          <input className="modal-input-box" onChange={handlePhotoChange2} />
+          <ClickTracking element="Add answer photo2 input" module="QandA">
+            <input className="modal-input-box" onChange={handlePhotoChange2} />
+          </ClickTracking>
         </div>
         <div>
-          <input className="modal-input-box" onChange={handlePhotoChange3} />
+          <ClickTracking element="Add answer photo3 input" module="QandA">
+            <input className="modal-input-box" onChange={handlePhotoChange3} />
+          </ClickTracking>
         </div>
       </div>
-      <button
-        className="button-questions"
-        type="button"
-        onClick={() => handleAddAnswer()}
-      >
-        Submit Answer
-      </button>
+      <ClickTracking element="Add answer submit question" module="QandA">
+        <button
+          className="button-questions"
+          type="button"
+          onClick={() => handleAddAnswer()}
+        >
+          Submit Answer
+        </button>
+      </ClickTracking>
       <button
         className="button-questions"
         type="button"

@@ -1,4 +1,5 @@
 import React from 'react';
+import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 function QuantSelector({ sku }) {
   let displayedQuantity = sku.quantity;
@@ -21,9 +22,11 @@ function QuantSelector({ sku }) {
   return (
     <span className="quant-select-wrapper">
       <div className="select-wrapper">
-        <select className="select-dropdowns" name="quantity" id="quantity-select">
-          {optionArray}
-        </select>
+        <ClickTracking element="Select quantity dropdown" module="Overview">
+          <select className="select-dropdowns" name="quantity" id="quantity-select">
+            {optionArray}
+          </select>
+        </ClickTracking>
       </div>
     </span>
   );

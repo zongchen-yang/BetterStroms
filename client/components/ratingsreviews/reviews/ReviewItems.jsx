@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReviewItem from './ReviewItem';
 import ReviewForm from './ReviewForm';
+import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 const ReviewItems = (props) => {
   // eslint-disable-next-line prefer-const
@@ -111,11 +112,13 @@ const ReviewItems = (props) => {
     <div>
       <div id={theme ? 'review-list-box' : 'review-list-box-dark'}>
         <label htmlFor="sortOptions">Sort By</label>
-        <select name="sortOptions" id="sortOptions" onChange={(e) => sortHandler(e)}>
-          <option value="Relevant">Relevant</option>
-          <option value="Helpful">Helpful</option>
-          <option value="Newest">Newest</option>
-        </select>
+        <ClickTracking element="sort reviews selector" module="Ratings and Reviews">
+          <select name="sortOptions" id="sortOptions" onChange={(e) => sortHandler(e)}>
+            <option value="Relevant">Relevant</option>
+            <option value="Helpful">Helpful</option>
+            <option value="Newest">Newest</option>
+          </select>
+        </ClickTracking>
 
           {reviews.length ? reviews.map((review, index) => (
             <ReviewItem review={review} key={index} />
