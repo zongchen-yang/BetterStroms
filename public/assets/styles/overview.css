@@ -129,7 +129,7 @@ button {
     z-index: 2;
     position: absolute;
     padding-top: 20px;
-    padding-left: 100px;
+    padding-left: 60px;
 }
 
 .smallCarouselImages {
@@ -203,7 +203,6 @@ button {
 
 .carousel-shevrons path {
   fill: none;
-  /* stroke: #737373; */
   stroke: black;
   stroke-linecap: round;
   stroke-miterlimit: 10;
@@ -217,12 +216,19 @@ button {
 
 #c-left {
   position:absolute;
-  transform: rotate(180deg) scale(2);
+  height:64px;
+  width:64px;
+  margin-left: -8px;
+  /* transform: rotate(180deg) scale(2); */
 }
 
 #c-right {
   position: absolute;
-  transform: rotate(0deg) scale(2);
+  transform: rotate(180deg);
+  height:64px;
+  width:64px;
+  margin-left: -60px;
+  /* transform: rotate(0deg) scale(2); */
 }
 
 #overview-main {
@@ -367,9 +373,10 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   /* display:flex;
   flex-direction: column; */
 }
-/* #carousel-shevron-left {
 
-} */
+#carousel-shevron-left {
+  position:absolute;
+}
 
 #expand-image-container {
   padding-top: 20px;
@@ -579,5 +586,6 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 }
 
 #down-shevron {
-  stroke-width: 2px;
+  /* stroke-width: 2px;
+  outline: 1px solid rgb(223, 223, 223) */
 }
