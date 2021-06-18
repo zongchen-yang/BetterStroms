@@ -124,8 +124,16 @@ const ReviewItems = (props) => {
             <ReviewItem review={review} key={index} />
           )).slice(0, currentList) : null}
 
-        {(reviews && reviews.length > 2) ? <button type="button" id="see-more-reviews" onClick={seeMoreHandler}>See More</button> : null}
-        <button type="button" id="show-review-form" onClick={showReviewFormHandler}>Write Your Review</button>
+        {(reviews && reviews.length > 2)
+          ? (
+            <ClickTracking element="see more reviews button" module="Ratings and Reviews">
+              <button type="button" id="see-more-reviews" onClick={seeMoreHandler}>See More</button>
+            </ClickTracking>
+          )
+          : null}
+        <ClickTracking element="add review" module="Ratings and Reviews">
+          <button type="button" id="show-review-form" onClick={showReviewFormHandler}>Write Your Review</button>
+        </ClickTracking>
         {showReviewForm
           ? (
             <ReviewForm

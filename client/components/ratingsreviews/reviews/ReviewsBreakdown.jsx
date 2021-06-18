@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import ReviewsFilteredBy from './ReviewsFilteredBy'
 import ComponentRatingBreakdown from './ComponentRatingBreakdown';
 import RenderStars from './RenderStars';
+import ClickTracking from '../../../WithClickTrackingEventHandler';
 // import Rating from '../../related/related/Rating';
 
 const ReviewsBreakdown = (props) => {
@@ -67,88 +68,90 @@ const ReviewsBreakdown = (props) => {
           <>
             <div id={theme ? 'review-breakdown-box' : 'review-breakdown-box-dark'}>
               <div id="header-filter-container">
-              <div id="breakdown-header">
-                Overall Rating:
-                {' '}
-                <RenderStars rating={overallRating} />
-                {' '}
-                of
-                {' '}
-                {totalNumberOfRatings}
-                {' '}
-                ratings.
-              </div>
-              <div>{filtersUsedString}</div>
-            </div>
-              <button type="button" id="clearButton" onClick={clearFilters}>Clear Filters</button>
-              <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(5)}>
-                <div className="declareStars" value="5">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
+                <div id="breakdown-header">
+                  Overall Rating:
                   {' '}
-                  {reviewMeta.ratings[5] || 0}
-                </div>
-                <div id="reviewTotal" value="5">
-                  <div id="starDistribution" value="5" style={{ width: percentageOf5s }} />
-                </div>
-              </div>
-              <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(4)}>
-                <div className="declareStars">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
+                  <RenderStars rating={overallRating} />
                   {' '}
-                  {reviewMeta.ratings[4] || 0}
-                </div>
-                <div id="reviewTotal">
-                  <div id="starDistribution" style={{ width: percentageOf4s }} />
-                </div>
-              </div>
-              <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(3)}>
-                <div className="declareStars">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
+                  of
                   {' '}
-                  {reviewMeta.ratings[3] || 0}
-                </div>
-                <div id="reviewTotal">
-                  <div id="starDistribution" style={{ width: percentageOf3s }} />
-                </div>
-              </div>
-              <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(2)}>
-                <div className="declareStars">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
+                  {totalNumberOfRatings}
                   {' '}
-                  {reviewMeta.ratings[2] || 0}
+                  ratings.
                 </div>
-                <div id="reviewTotal">
-                  <div id="starDistribution" style={{ width: percentageOf2s }} />
-                </div>
+                <div>{filtersUsedString}</div>
               </div>
-              <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(1)}>
-                <div className="declareStars">
-                  <i className="fas fa-star" />
-                  {' '}
-                  {reviewMeta.ratings[1] || 0}
-                </div>
-                <div id="reviewTotal">
-                  <div id="starDistribution" style={{ width: percentageOf1s }} />
-                </div>
-              </div>
-              <div id="recommended">
-                {percentageRecommends || 0}
-                {' '}
-                of reviewers recommend this product.
-              </div>
-
-              <ComponentRatingBreakdown reviewMeta={reviewMeta} />
-
+              <ClickTracking element="clear reviews filter" module="Ratings and Reviews">
+                <button type="button" id="clearButton" onClick={clearFilters}>Clear Filters</button>
+              </ClickTracking>
+              <ClickTracking element="set reviews filter" module="Ratings and Reviews">
+                  <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(5)}>
+                    <div className="declareStars" value="5">
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      {' '}
+                      {reviewMeta.ratings[5] || 0}
+                    </div>
+                    <div id="reviewTotal" value="5">
+                      <div id="starDistribution" value="5" style={{ width: percentageOf5s }} />
+                    </div>
+                  </div>
+                  <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(4)}>
+                    <div className="declareStars">
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      {' '}
+                      {reviewMeta.ratings[4] || 0}
+                    </div>
+                    <div id="reviewTotal">
+                      <div id="starDistribution" style={{ width: percentageOf4s }} />
+                    </div>
+                  </div>
+                  <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(3)}>
+                    <div className="declareStars">
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      {' '}
+                      {reviewMeta.ratings[3] || 0}
+                    </div>
+                    <div id="reviewTotal">
+                      <div id="starDistribution" style={{ width: percentageOf3s }} />
+                    </div>
+                  </div>
+                  <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(2)}>
+                    <div className="declareStars">
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      {' '}
+                      {reviewMeta.ratings[2] || 0}
+                    </div>
+                    <div id="reviewTotal">
+                      <div id="starDistribution" style={{ width: percentageOf2s }} />
+                    </div>
+                  </div>
+                  <div className="reviewBreakdownItem" onClick={() => breakdownClickHandler(1)}>
+                    <div className="declareStars">
+                      <i className="fas fa-star" />
+                      {' '}
+                      {reviewMeta.ratings[1] || 0}
+                    </div>
+                    <div id="reviewTotal">
+                      <div id="starDistribution" style={{ width: percentageOf1s }} />
+                    </div>
+                  </div>
+                  <div id="recommended">
+                    {percentageRecommends || 0}
+                    {' '}
+                    of reviewers recommend this product.
+                  </div>
+                  <ComponentRatingBreakdown reviewMeta={reviewMeta} />
+              </ClickTracking>
             </div>
             {/* {reviewFilter.length ? <ReviewsFilteredBy reviewFilter={reviewFilter}> } */}
           </>
