@@ -39,7 +39,6 @@ const Answer = (props) => {
 
   return (
     <div className="answer">
-      {/* {console.log('this is the converted date for the answer', convertDate(answer.date))} */}
       <div className="answer-body">
         <strong>A:</strong> {body}
       </div>
@@ -58,15 +57,15 @@ const Answer = (props) => {
         <span className="answer-flavor-text">|</span>
         <span className="answer-flavor-text">
           Helpful?
-      </span>
+        </span>
         <span
           className="answer-flavor-text underline"
           onClick={() => updateHelpfulCount()} role="button">
           Yes
-      </span>
+        </span>
         <span className="answer-flavor-text">
           &#40;{helpfulCount}&#41;
-      </span>
+        </span>
         <span className="answer-flavor-text">|</span>
         {isReported
           ? (
@@ -74,21 +73,19 @@ const Answer = (props) => {
               Reported
             </span>
           )
-          :(
+          : (
             <span
               className="answer-flavor-text underline"
               onClick={() => handleReportClick()}>
               Report
-          </span>
+            </span>
           )}
       </div>
       {photos.map((url, idx) => (
         <img className="answer-image" src={url} key={id + idx} width="75" height="75" alt="" />
       ))}
-      {/* <div onDoubleClick={() => reportAnswer(id)}>Report</div> */}
     </div>
-
-  )
-}
+  );
+};
 
 export default Answer;

@@ -19,15 +19,12 @@ const QuestionsList = (props) => {
   const [view, setView] = useState('questions');
   let [answerCount, setAnswerCount] = useState(2);
   const [questionsList, setQuestionsList] = useState([]);
-  // const [currentQuestionCount, upCurrentCount] = useState(0);
 
-  // const loadMoreAnswers = () => {
-  //   setAnswerCount(answerCount += 1);
-  // };
   const addMoreQuestions = () => {
     upTotalCount(totalQuestionCount += 2);
-    // console.log(totalQuestionCount);
   };
+
+  // console.log(questions)
 
   const renderQuestions = () => (
     <div className={theme ? 'questions-list' : 'questions-list dark-list'}>
@@ -44,7 +41,6 @@ const QuestionsList = (props) => {
             getQuestionId={getQuestionId}
             answerCount={answerCount}
             theme={theme}
-            // loadMoreAnswers={loadMoreAnswers}
           />
         </div>
       )).slice(0, totalQuestionCount)}

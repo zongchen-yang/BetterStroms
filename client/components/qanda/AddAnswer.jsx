@@ -15,8 +15,6 @@ const AddAnswer = (props) => {
   const [showError, setShowError] = useState(false);
   const [validEmail, setValidEmail] = useState(false);
 
-  // console.log('this is the current question id', questionId);
-
   const checkValidEmail = (value) => {
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       setValidEmail(true);
@@ -60,10 +58,7 @@ const AddAnswer = (props) => {
   const handleAddAnswer = () => {
     const newArray = [];
     if (photoUrl1 !== '') {
-      // imageExists(photoUrl1, setPhoto1Valid);
-      // if (setPhoto1Valid) {
       newArray.push(photoUrl1);
-      // }
     }
     if (photoUrl2 !== '') {
       newArray.push(photoUrl2);
@@ -71,9 +66,6 @@ const AddAnswer = (props) => {
     if (photoUrl3 !== '') {
       newArray.push(photoUrl3);
     }
-    // for(const url of newArray) {
-    //   imageExists(url, )
-    // }
     if (nameInput === '' || bodyInput === '' || !validEmail || !photo1Valid) {
       setShowError(true);
     } else {

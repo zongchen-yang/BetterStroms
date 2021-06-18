@@ -21,10 +21,6 @@ const Question = (props) => {
   const [isHelpful, setIsHelpful] = useState(false);
   const [answersList, setAnswersList] = useState({});
 
-  // const loadMoreAnswers = () => {
-  //   upTotalAnswerCount(totalAnswerCount += 1);
-  // };
-
   const updateHelpfulCount = () => {
     if (!isHelpful) {
       setIsHelpful(true);
@@ -69,10 +65,6 @@ const Question = (props) => {
           >
             Helpful?
           </span>
-          {/* <div>
-            by {asker_name}
-          </div> */}
-          {/* {console.log(answers)} */}
           <div className={theme ? 'answers-list' : 'answers-list dark-list'}>
             {Object.keys(answersList).map((answerId) => (
               <div key={answersList[answerId].id}>
@@ -83,7 +75,6 @@ const Question = (props) => {
                 />
               </div>
             )).slice(0, totalAnswerCount)}
-            {/* {console.log('total answer ount:', totalAnswerCount)} */}
             {Object.keys(answersList).length > totalAnswerCount
               ? (
                 <div
@@ -93,18 +84,13 @@ const Question = (props) => {
                   Load More Answers
                 </div>
               )
-              : null
-            }
+              : null}
           </div>
-          {/* <button type="button" onClick={loadMoreAnswers}>Load More Answers</button> */}
         </div>
       );
     }
   };
 
-  // useEffect(() => {
-  //   upTotalAnswerCount(totalAnswerCount += 1);
-  // }, [answerCount]);
   useEffect(() => {
     setAnswersList(answers);
   }, [answers]);

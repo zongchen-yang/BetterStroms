@@ -1,4 +1,3 @@
-// This will be the strucute of my whole module.
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddQuestion from './AddQuestion';
@@ -7,7 +6,9 @@ import QuestionsList from './QuestionsList';
 import Search from './Search';
 
 const QAndA = (props) => {
-  const [questionsArray, setQuestionArray] = useState([]);
+  // const [questionsArray, setQuestionArray] = useState([]);
+  const { id, product, theme, getQuestions, questionsArray } = props;
+  const { name } = product;
   const [searched, setSearched] = useState(false);
   const [searchedArray, setSearchedArray] = useState(questionsArray);
   const [questionHelpful, setQuestionHelpful] = useState(false);
@@ -15,18 +16,13 @@ const QAndA = (props) => {
   const [showAddAnswerModal, setAddAnswerModal] = useState(false);
   const [showAddQuestionModal, setAddQuestionModal] = useState(false);
   const [questionId, setQuestionId] = useState(0);
-  // const [answersArray, setAnswersArray] = useState([])
-  // let [rerender, setRerender] = useState(0);
 
-  const { product, theme } = props;
-  const { id, name } = product;
-
-  async function getQuestions() {
-    if (id) {
-      const results = await axios.get(`/qa/questions?product_id=${id}&count=100`);
-      setQuestionArray(results.data.results);
-    }
-  }
+  // async function getQuestions() {
+  //   if (id) {
+  //     const results = await axios.get(`/qa/questions?product_id=${id}&count=100`);
+  //     setQuestionArray(results.data.results);
+  //   }
+  // }
 
   const addHighlightedText = (body, input) => {
     const frontIndex = body.indexOf(input);
@@ -41,14 +37,6 @@ const QAndA = (props) => {
     if (value === '') {
       setSearchedArray(questionsArray);
       setSearched(false);
-    // } else {
-    //   let newArray = questionsArray.filter((question) => (
-    //     question.question_body.toLowerCase().includes(value.toLowerCase())
-    //   ));
-    //   for (const question of newArray) {
-    //     question.question_body = addHighlightedText(question.question_body, value.toLowerCase())
-    //   }
-    //   setSearchedArray([...newArray]);
     } else {
       setSearchedArray(questionsArray.filter((question) => (
         question.question_body.toLowerCase().includes(value.toLowerCase())
@@ -98,8 +86,6 @@ const QAndA = (props) => {
   };
 
   const postNewAnswer = (questionId, body, name, email, photos) => {
-    // const requestBody = { body, name, email, photos };
-    // axios.post(`/qa/questions/${questionId}/answers`, requestBody)
     axios.post(`/qa/questions/${questionId}/answers`, {
       body,
       name,
@@ -136,7 +122,7 @@ const QAndA = (props) => {
     closeAddQuestionModal();
   };
 
-  useEffect(() => { getQuestions(); }, [id]);
+  // useEffect(() => { getQuestions(); }, [id]);
 
   return (
     <>
