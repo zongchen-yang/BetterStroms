@@ -19,9 +19,9 @@
 
 .feature-text {
   padding-left:5px;
-  padding-right:5px;
-  font-weight:600;
-  font-size: 14px;
+  padding-right:1px;
+  font-weight:400;
+  font-size: 16px;
 }
 
 #slogan-text {
@@ -123,16 +123,19 @@ button {
  }
 
 #smallCarouselContainer {
-  /* display:flex; */
-  display: none;
-  flex-direction: column;
-  z-index: 1;
-  margin-right: -125px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    position: absolute;
+    padding-top: 25px;
+    padding-left: 100px;
 }
 
 .smallCarouselImages {
-  height: 50px;
-  width: 70px;
+  height: 75px;
+  width: 75px;
+  object-fit: cover;
+  border: 1px solid black;
 }
 
 #descriptionContainer {
@@ -165,7 +168,7 @@ button {
 }
 
 .small-carousel-highlight {
-  border-bottom: 2px solid yellow;
+  border-bottom: 5px solid black;
 }
 
 .overview-rating {
@@ -537,4 +540,20 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   vertical-align: baseline;
   border: none;
   padding: 0;
+}
+
+.small-carousel-image-container {
+  padding-top: 8px;
+}
+
+.feature-checkmark {
+  height: 16px;
+  width: 16px;
+}
+
+.description-feature-text {
+  display:flex;
+  flex-direction: row;
+  padding-bottom:8px;
+  width: 220px;
 }

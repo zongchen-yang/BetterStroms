@@ -39,12 +39,12 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
   }
   function makeRenderedPhotos() {
     renderedPhotos = style.photos.map((picObj, index) => {
-      let highlighted = '';
+      let highlighted = 'small-carousel-image-container';
       if (index === largePhotoIndex) {
-        highlighted = 'small-carousel-highlight';
+        highlighted = 'small-carousel-highlight small-carousel-image-container';
       }
       return (
-        <span
+        <div
           key={i++}
           className={highlighted}
           index={index}
@@ -53,7 +53,7 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
           role="presentation"
         >
           <img className="smallCarouselImages" alt={style.name} src={picObj.thumbnail_url} />
-        </span>
+        </div>
       );
     });
   }
