@@ -1,3 +1,7 @@
+#overview {
+  margin-top:-25px;
+}
+
 .big-header {
   font-weight: 1000;
   font-size: 40px;
@@ -500,6 +504,10 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   vertical-align: baseline;
   border: none;
   padding: 0;
+}
+
+.social-media-buttons:hover {
+  filter:drop-shadow(2px 2px 2px black)
 }
 
 .social-media-buttons img {

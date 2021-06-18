@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Related from './components/related/Related/RelatedList';
 import Inventory from './components/related/Inventory/InventoryList';
 import QAndA from './components/qanda/QAndA';
 import ReviewComponents from './components/ratingsreviews/reviews/ReviewComponents';
 import Overview from './components/overview/Overview';
 import Announcement from './components/annoucements/Announcements';
+import Header from './components/header/Header';
 
 function useLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
@@ -30,7 +30,7 @@ function useLocalStorage(key, initialValue) {
 }
 
 function App() {
-  const [id, setId] = useState(20852);
+  const [id, setId] = useState(20104);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);
@@ -243,10 +243,12 @@ function App() {
     return <div>Loading...</div>;
   }
 
+  const toggle = <button type="button" id="toggle-theme" onClick={toggleColors}>toggle</button>;
+
   return (
-    <div>
+    <div id="app-inner">
+      <Header />
       <Announcement />
-      <button type="button" id="toggle-theme" onClick={toggleColors}>toggle</button>
       <Overview
         product={selectedProduct}
         favoriteCH={favoriteCH}
@@ -276,6 +278,9 @@ function App() {
         reviewMeta={reviewMeta}
         theme={theme}
       />
+      <div>
+        {toggle}
+      </div>
     </div>
   );
 }
