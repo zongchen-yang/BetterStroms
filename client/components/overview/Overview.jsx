@@ -67,7 +67,11 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
     <div id="overview">
       <div id="overviewContainer">
         <div id="overview-main">
-          <SmallCarousel style={style} clickHandler={smallCarouselCH} largePhotoIndex={photoIndex} />
+          <SmallCarousel
+            style={style}
+            clickHandler={smallCarouselCH}
+            largePhotoIndex={photoIndex}
+          />
           <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
         </div>
         <div id="options-master">
