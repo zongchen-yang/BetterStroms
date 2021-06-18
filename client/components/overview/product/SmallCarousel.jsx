@@ -84,7 +84,7 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
 
   makeRenderedPhotos();
   const downShevron = (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="9px" focusable="false">
+    <svg id="down-shevron" xmlns="http://www.w3.org/2000/svg" width="16px" height="9px" focusable="false">
       <path id="_x3C_Group_x3E__4_" d="M8.002 8L1 1m7.002 7L15 1.004" />
     </svg>
   );

@@ -577,3 +577,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   height:20px;
   width:65px;
 }
+
+#down-shevron {
+  stroke-width: 2px;
+}
