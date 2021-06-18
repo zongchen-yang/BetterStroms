@@ -128,13 +128,13 @@ button {
     flex-direction: column;
     z-index: 2;
     position: absolute;
-    padding-top: 25px;
-    padding-left: 100px;
+    padding-top: 20px;
+    padding-left: 60px;
 }
 
 .smallCarouselImages {
-  height: 75px;
-  width: 75px;
+  height: 65px;
+  width: 65px;
   object-fit: cover;
   border: 1px solid black;
 }
@@ -168,10 +168,6 @@ button {
   text-decoration: line-through;
 }
 
-.small-carousel-highlight {
-  border-bottom: 5px solid black;
-}
-
 .overview-rating {
   position: absolute;
   display:flex;
@@ -195,7 +191,7 @@ button {
   z-index: 2;
   background-color: transparent;
   cursor: pointer;
-  width: 60px;
+  width: 65px;
   height: 20px;
   justify-content: center;
   align-items: center;
@@ -207,7 +203,6 @@ button {
 
 .carousel-shevrons path {
   fill: none;
-  /* stroke: #737373; */
   stroke: black;
   stroke-linecap: round;
   stroke-miterlimit: 10;
@@ -215,17 +210,25 @@ button {
 }
 
 #sc-up {
-  transform: rotate(180deg);
+  position:absolute;
+  transform: rotate(90deg);
 }
 
 #c-left {
   position:absolute;
-  transform: rotate(180deg) scale(2);
+  height:64px;
+  width:64px;
+  margin-left: -8px;
+  /* transform: rotate(180deg) scale(2); */
 }
 
 #c-right {
   position: absolute;
-  transform: rotate(0deg) scale(2);
+  transform: rotate(180deg);
+  height:64px;
+  width:64px;
+  margin-left: -60px;
+  /* transform: rotate(0deg) scale(2); */
 }
 
 #overview-main {
@@ -234,6 +237,7 @@ button {
   padding: 0;
   width: fit-content;
   padding-right: 15px;
+  margin-right: -50px;
 }
 
 #main-image-container {
@@ -370,9 +374,10 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   /* display:flex;
   flex-direction: column; */
 }
-/* #carousel-shevron-left {
 
-} */
+#carousel-shevron-left {
+  position:absolute;
+}
 
 #expand-image-container {
   padding-top: 20px;
@@ -425,6 +430,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   padding-left: 15px;
   letter-spacing: .10rem;
   z-index:0;
+  background-color: #fff;
 }
 
 .select-dropdowns:focus {
@@ -459,12 +465,13 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   flex-direction: row;
   justify-content: space-between;
   max-width: 350px;
+  background-color: #fff;
 }
 
 #description-text {
   display:flex;
   flex-direction: column;
-  margin-left: -250px;
+  margin-left: -150px;
 }
 
 #description-right {
@@ -506,11 +513,11 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   align-items: center;
   vertical-align: baseline;
   border: 1px solid black;
-  background-color: rgb(223, 223, 223);
   font-family: 'Raleway', sans-serif;
-  color: black;
+  color: rgb(71, 71, 71);
   letter-spacing: .05rem;
   font-size:28px;
+  background-color: #fff;
 }
 
 #cart-button {
@@ -520,12 +527,12 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   align-items: center;
   vertical-align: baseline;
   border: 1px solid black;
-  background-color: rgb(223, 223, 223);
   font-family: 'Raleway', sans-serif;
-  color: black;
+  color: rgb(71, 71, 71);
   letter-spacing: .05rem;
   font-size: 18px;
   font-weight: 500;
+  background: #fff;
 }
 
 #main-carousel-inner {
@@ -548,8 +555,9 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 }
 
 .small-carousel-image-container {
-  padding-top: 8px;
+  padding-top: 5px;
   z-index: 2;
+  border-bottom: 5px solid transparent;
 }
 
 .feature-checkmark {
@@ -562,4 +570,54 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   flex-direction: row;
   padding-bottom:8px;
   width: 220px;
+}
+
+#small-carousel-images-only {
+  display:flex;
+  flex-direction: column;
+}
+
+.small-carousel-highlight {
+  border-bottom: 5px solid black;
+}
+
+#sc-up-placeholder {
+  width: 65px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+#down-shevron {
+  /* stroke-width: 2px;
+  outline: 1px solid rgb(223, 223, 223) */
+}
+
+.small-carousel-shevrons {
+  z-index: 2;
+  background-color: transparent;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  transition: background-color 0.4s ease;
+  border: none;
+  padding: none;
+}
+
+#small-carousel-down-button{
+  margin-left: 16px;
+  margin-top: -4px;
+}
+
+#small-carousel-down-button img {
+  transform: rotate(270deg);
+}
+
+img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
