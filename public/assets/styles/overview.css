@@ -277,10 +277,20 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   padding-top: 5px;
   padding-bottom: 10px;
   padding-left: 14px;
+  display:flex;
+  justify-content: space-evenly;
+  flex-direction: row;
 }
 
 #size-select-warning-div {
   min-height: 20px;
+  padding-left: 14px;
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+
+#size-select-warning {
+  font-size: 18px;
 }
 
 .specific-style-selector {
@@ -466,12 +476,19 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 
 .social-media-buttons {
   background-color: transparent;
-  width: 60px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   justify-content: center;
   align-items: center;
   vertical-align: baseline;
   border: none;
+  padding: 0;
+}
+
+.social-media-buttons img {
+  object-fit: fill;
+  height: 100%;
+  width: 100%;
 }
 
 #favorite-button {
