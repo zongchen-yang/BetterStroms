@@ -30,7 +30,7 @@ function useLocalStorage(key, initialValue) {
 }
 
 function App() {
-  const [id, setId] = useState(20852);
+  const [id, setId] = useState(20100);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);

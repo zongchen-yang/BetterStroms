@@ -16,8 +16,9 @@ function Description({ product }) {
         <div id="feature-text-container">
           {product.features.map((item, index) => (
             <div key={index} className="description-feature-text">
-              <span className="feature-text">{item.feature}</span>
+              <span><img className="feature-checkmark" alt="check" src="assets/checkmark.png" /></span>
               <span className="feature-text">{item.value}</span>
+              <span className="feature-text">{item.feature}</span>
             </div>
           ))}
         </div>

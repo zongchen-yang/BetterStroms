@@ -19,9 +19,9 @@
 
 .feature-text {
   padding-left:5px;
-  padding-right:5px;
-  font-weight:600;
-  font-size: 14px;
+  padding-right:1px;
+  font-weight:400;
+  font-size: 16px;
 }
 
 #slogan-text {
@@ -36,8 +36,6 @@
 
 button {
   text-rendering: auto;
-  letter-spacing: normal;
-  word-spacing: normal;
   text-transform: none;
   text-indent: 0px;
   text-shadow: none;
@@ -76,6 +74,7 @@ button {
   /* width: 825px;
   height: 550px;
   object-fit: fill; */
+  z-index:1;
 }
 
 .expanding {
@@ -125,16 +124,19 @@ button {
  }
 
 #smallCarouselContainer {
-  /* display:flex; */
-  display: none;
-  flex-direction: column;
-  z-index: 1;
-  margin-right: -125px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    position: absolute;
+    padding-top: 25px;
+    padding-left: 100px;
 }
 
 .smallCarouselImages {
-  height: 50px;
-  width: 70px;
+  height: 75px;
+  width: 75px;
+  object-fit: cover;
+  border: 1px solid black;
 }
 
 #descriptionContainer {
@@ -167,7 +169,7 @@ button {
 }
 
 .small-carousel-highlight {
-  border-bottom: 2px solid yellow;
+  border-bottom: 5px solid black;
 }
 
 .overview-rating {
@@ -279,10 +281,21 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   padding-top: 5px;
   padding-bottom: 10px;
   padding-left: 14px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 250px;
+  flex-direction: row;
 }
 
 #size-select-warning-div {
   min-height: 20px;
+  padding-left: 14px;
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+
+#size-select-warning {
+  font-size: 18px;
 }
 
 .specific-style-selector {
@@ -344,13 +357,13 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 
 #main-carousel {
   display:flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: right;
 }
 
 .carousel-shevron-container {
   min-width: 60px;
-  z-index: 1;
+  z-index: 2;
 }
 
 #carousel-shevron-right {
@@ -362,8 +375,10 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 } */
 
 #expand-image-container {
-  /* position: absolute;
-  height:650px; */
+  padding-top: 20px;
+  padding-right: 80px;
+  position: absolute;
+  z-index: 2;
 }
 
 #options-product-cat {
@@ -404,10 +419,12 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   border-radius: 0;
   height: 40px;
   width: 200px;
+  font-family: 'Raleway', sans-serif;
   font-size: 18px;
   text-align: center;
   padding-left: 15px;
   letter-spacing: .10rem;
+  z-index:0;
 }
 
 .select-dropdowns:focus {
@@ -438,6 +455,10 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 #cart-and-favorite {
   padding-left: 14px;
   padding-top: 10px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 350px;
 }
 
 #description-text {
@@ -459,4 +480,86 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 
 .description-space-vertical {
   padding-top:10px;
+}
+
+.social-media-buttons {
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  border: none;
+  padding: 0;
+}
+
+.social-media-buttons img {
+  object-fit: fill;
+  height: 100%;
+  width: 100%;
+}
+
+#favorite-button {
+  width: 100px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  border: 1px solid black;
+  background-color: rgb(223, 223, 223);
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  letter-spacing: .05rem;
+  font-size:28px;
+}
+
+#cart-button {
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  border: 1px solid black;
+  background-color: rgb(223, 223, 223);
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  letter-spacing: .05rem;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#main-carousel-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#expand-image-button {
+  font-size: 20px;
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
+  border: none;
+  padding: 0;
+  z-index: 2;
+}
+
+.small-carousel-image-container {
+  padding-top: 8px;
+  z-index: 2;
+}
+
+.feature-checkmark {
+  height: 16px;
+  width: 16px;
+}
+
+.description-feature-text {
+  display:flex;
+  flex-direction: row;
+  padding-bottom:8px;
+  width: 220px;
 }

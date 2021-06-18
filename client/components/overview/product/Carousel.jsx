@@ -84,22 +84,24 @@ function Carousel({ style, photoIndex, clickHandler }) {
   );
   return (
     <div id="main-carousel">
-      <div id="carousel-shevron-left" className="carousel-shevron-container">
-        <button id="c-left" className="carousel-shevrons" hidden={leftHidden} type="button" onClick={(e) => clickHandler('left')}>
-          {shevron}
-        </button>
-      </div>
-      <div id="main-image-container">
-        {mainImage}
-        <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
-      </div>
-      <div id="carousel-shevron-right" className="carousel-shevron-container">
-        <div id="expand-image-container">
-          <button type="button" onClick={expandImage}>expand</button>
+      <div id="main-carousel-inner">
+        <div id="carousel-shevron-left" className="carousel-shevron-container">
+          <button id="c-left" className="carousel-shevrons" hidden={leftHidden} type="button" onClick={(e) => clickHandler('left')}>
+            {shevron}
+          </button>
         </div>
-        <button id="c-right" className="carousel-shevrons" hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
-          {shevron}
-        </button>
+        <div id="main-image-container">
+          {mainImage}
+          <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
+        </div>
+        <div id="carousel-shevron-right" className="carousel-shevron-container">
+          <button id="c-right" className="carousel-shevrons" hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
+            {shevron}
+          </button>
+        </div>
+      </div>
+      <div id="expand-image-container">
+        <button id="expand-image-button" type="button" onClick={expandImage}><i className="fas fa-expand" /></button>
       </div>
     </div>
   );
