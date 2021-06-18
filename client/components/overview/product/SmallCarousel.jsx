@@ -90,10 +90,14 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
   );
   return (
     <div id="smallCarouselContainer">
-      <button id="sc-up" className="carousel-shevrons" hidden={upHidden} onClick={goUp} type="button">
-        {downShevron}
-      </button>
-      {renderedPhotos.slice(startIndex, (startIndex + max))}
+      <div id="sc-up-placeholder">
+        <button id="sc-up" className="carousel-shevrons" hidden={upHidden} onClick={goUp} type="button">
+          {downShevron}
+        </button>
+      </div>
+      <div id="small-carousel-images-only">
+        {renderedPhotos.slice(startIndex, (startIndex + max))}
+      </div>
       <button className="carousel-shevrons" hidden={downHidden} onClick={goDown} type="button">
         {downShevron}
       </button>

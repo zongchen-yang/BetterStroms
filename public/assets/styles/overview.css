@@ -128,13 +128,13 @@ button {
     flex-direction: column;
     z-index: 2;
     position: absolute;
-    padding-top: 25px;
+    padding-top: 20px;
     padding-left: 100px;
 }
 
 .smallCarouselImages {
-  height: 75px;
-  width: 75px;
+  height: 65px;
+  width: 65px;
   object-fit: cover;
   border: 1px solid black;
 }
@@ -168,10 +168,6 @@ button {
   text-decoration: line-through;
 }
 
-.small-carousel-highlight {
-  border-bottom: 5px solid black;
-}
-
 .overview-rating {
   position: absolute;
   display:flex;
@@ -195,7 +191,7 @@ button {
   z-index: 2;
   background-color: transparent;
   cursor: pointer;
-  width: 60px;
+  width: 65px;
   height: 20px;
   justify-content: center;
   align-items: center;
@@ -215,6 +211,7 @@ button {
 }
 
 #sc-up {
+  position:absolute;
   transform: rotate(180deg);
 }
 
@@ -550,8 +547,9 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 }
 
 .small-carousel-image-container {
-  padding-top: 8px;
+  padding-top: 5px;
   z-index: 2;
+  border-bottom: 5px solid transparent;
 }
 
 .feature-checkmark {
@@ -564,4 +562,18 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   flex-direction: row;
   padding-bottom:8px;
   width: 220px;
+}
+
+#small-carousel-images-only {
+  display:flex;
+  flex-direction: column;
+}
+
+.small-carousel-highlight {
+  border-bottom: 5px solid black;
+}
+
+#sc-up-placeholder {
+  height:20px;
+  width:65px;
 }
