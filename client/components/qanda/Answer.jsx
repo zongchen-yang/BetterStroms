@@ -8,9 +8,9 @@ const Answer = (props) => {
   const [isSeller, setIsSeller] = useState(false);
   const [isReported, setIsReported] = useState(false);
 
-  const convertDate = (date) => {
+  const convertDate = (inputDate) => {
     const options = { month: 'long', day: 'numeric', year: 'numeric' };
-    const newDate = new Date(date).toLocaleDateString([], options);
+    const newDate = new Date(inputDate).toLocaleDateString([], options);
     return newDate;
   };
 
@@ -40,18 +40,26 @@ const Answer = (props) => {
   return (
     <div className="answer">
       <div className="answer-body">
-        <strong>A:</strong> {body}
+        <strong>A:</strong>
+        &nbsp;
+        {body}
       </div>
       <div className="answer-flavor-text-container">
         {isSeller
           ? (
             <span className="answer-flavor-text">
-              by <strong>Seller</strong>, {convertDate(answer.date)}
+              by
+              <strong>Seller</strong>
+              ,&nbsp;
+              {convertDate(date)}
             </span>
           )
           : (
             <span className="answer-flavor-text">
-              by {answerer_name}, {convertDate(answer.date)}
+              by
+              {answerer_name}
+              ,&nbsp;
+              {convertDate(date)}
             </span>
           )}
         <span className="answer-flavor-text">|</span>
@@ -60,11 +68,17 @@ const Answer = (props) => {
         </span>
         <span
           className="answer-flavor-text underline"
-          onClick={() => updateHelpfulCount()} role="button">
+          role="button"
+          tabIndex="0"
+          onKeyPress={() => updateHelpfulCount()}
+          onClick={() => updateHelpfulCount()}
+        >
           Yes
         </span>
         <span className="answer-flavor-text">
-          &#40;{helpfulCount}&#41;
+          &#40;
+          {helpfulCount}
+          &#41;
         </span>
         <span className="answer-flavor-text">|</span>
         {isReported
@@ -76,7 +90,11 @@ const Answer = (props) => {
           : (
             <span
               className="answer-flavor-text underline"
-              onClick={() => handleReportClick()}>
+              role="button"
+              tabIndex="0"
+              onKeyPress={() => handleReportClick()}
+              onClick={() => handleReportClick()}
+            >
               Report
             </span>
           )}
