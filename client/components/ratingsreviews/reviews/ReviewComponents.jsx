@@ -62,6 +62,7 @@ const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
               reviewMeta={reviewMeta}
               id={id}
               theme={theme}
+              product={product}
             />
           </>
         )
@@ -71,4 +72,3 @@ const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
 };
 
 export default ReviewList;
-

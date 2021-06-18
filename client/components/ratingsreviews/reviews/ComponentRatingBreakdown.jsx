@@ -9,7 +9,6 @@ const ComponentRatingBreakdown = ({ reviewMeta }) => {
   const [size, setSize] = useState('0%');
 
   const calculatePercentagesForCharacteristics = () => {
-    console.log('calculating...');
     const convertToPercentage = (num) => {
       let number = parseFloat(num);
       number /= 5;
@@ -39,7 +38,6 @@ const ComponentRatingBreakdown = ({ reviewMeta }) => {
       if (reviewMeta.characteristics.Fit) {
         const tempFit = convertToPercentage(reviewMeta.characteristics.Fit.value);
         setFit(tempFit);
-        console.log('fit:', fit);
       }
       if (reviewMeta.characteristics.Size) {
         const tempSize = convertToPercentage(reviewMeta.characteristics.Size.value);
