@@ -59,6 +59,14 @@ function App() {
     return thisProduct;
   }
 
+  const assignIsFav = (style) => {
+    favorites.forEach((each) => {
+      if (each.id === id && each.style.id === style.id) {
+        style.isFavorite = true;
+      }
+    });
+  };
+
   async function getStyles() {
     let response = await fetch(`/products/${id}/styles`);
     response = await response.json();
@@ -73,7 +81,9 @@ function App() {
         skus: style.skus,
         lastViewedIndex: 0,
       };
-      styles.push(thisStyle);
+      await Promise.all([thisStyle])
+        .then(assignIsFav(thisStyle))
+        .then(styles.push(thisStyle));
     });
     return styles;
   }

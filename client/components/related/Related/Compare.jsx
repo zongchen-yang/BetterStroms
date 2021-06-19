@@ -8,17 +8,18 @@ const Compare = ({ product, related, setShowCompare }) => {
     const obj = {};
     for (let i = 0; i < product.features.length; i++) {
       obj[product.features[i].feature] = {};
-      obj[product.features[i].feature].product = product.features[i].value;
+      obj[product.features[i].feature].product = product.features[i].value || true;
     }
     if (related) {
       for (let i = 0; i < related.features.length; i++) {
         let feature = related.features[i].feature;
-        let value = related.features[i].value;
+        let value = related.features[i].value || true;
         if (!obj[feature]) {
           obj[feature] = {};
         }
         obj[feature].related = value;
       }
+      console.log(obj);
     }
     setFeature(obj);
   }, [related]);
@@ -43,16 +44,26 @@ const Compare = ({ product, related, setShowCompare }) => {
 
   return (
     <div className="compare" id="compare" ref={node}>
-      <h4>COMPARING</h4>
+      <h4 className="comparing">COMPARING</h4>
       <div className="compareName">
         <span className="compareNameLeft">{product.name}</span>
         <span className="compareNameRight">{related.name}</span>
       </div>
       {Object.keys(features).map((key, i) => (
         <div key={i} className="compareFeature">
-          {features[key].product === true ? <div><i className="fas fa-check" /></div> : <div className="feature side"><i className="fas fa-check" /> {features[key].product}</div>}
+          <div className="checks">
+            {features[key].product ? <i className="fas fa-check" /> : <span> </span>}
+          </div>
+          <div className="feature">
+            {features[key].product === true ? <span> </span> : <span>{features[key].product}</span>}
+          </div>
           <div className="feature middle">{key}</div>
-          {features[key].related === true ? <i className="fas fa-check" /> : <div className="feature side">{features[key].related} <i className="fas fa-check" /></div>}
+          <div className="feature">
+            {features[key].related === true ? <span> </span> : <span>{features[key].related}</span>}
+          </div>
+          <div className="checks">
+            {features[key].related ? <i className="fas fa-check" /> : <span> </span>}
+          </div>
         </div>
       ))}
     </div>
