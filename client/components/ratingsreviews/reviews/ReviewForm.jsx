@@ -4,12 +4,12 @@ import CharacteristicRadioButtons from './CharacteristicRadioButtons';
 import ReviewFormPhotos from './ReviewFormPhotos';
 
 const ReviewForm = ({
-  showReviewFormHandler, reviewMeta, id, sortByDate, theme
+  showReviewFormHandler, reviewMeta, id, sortByDate, theme, product
 }) => {
   const [rated, toggleRated] = useState(false);
   const [starRating, setStarRating] = useState([]);
   const [rating, setRating] = useState(0);
-  const [recommended, setRecommended] = useState(true);
+  const [recommended, setRecommended] = useState(null);
   const [radioValues, setRadioValues] = useState({});
   const [nameInput, setNameInput] = useState('');
   const [summaryInput, setSummaryInput] = useState('');
@@ -91,9 +91,7 @@ const ReviewForm = ({
       photos: photoList,
       characteristics: radioValues,
     })
-      .then((response) => console.log(response))
       .then(() => (sortByDate()))
-      .catch((error) => console.log(error));
   };
 
   const submitHandler = () => {
@@ -101,6 +99,12 @@ const ReviewForm = ({
     if (emailInput.indexOf('@') === -1) {
       var temp = alertMessage;
       temp.push('A Valid Email \n');
+      setAlertMessage(temp);
+      needToAlert = true;
+    }
+    if (recommended === null) {
+      var temp = alertMessage;
+      temp.push('A Recommendation \n');
       setAlertMessage(temp);
       needToAlert = true;
     }
@@ -143,6 +147,7 @@ const ReviewForm = ({
 
   return (
     <div className={theme ? 'add-review-box' : 'add-review-box-dark'}>
+      <div>Write Your Review about {product.name}</div>
       <div>Rating</div>
       <div className="reviewFormStarContainer">
         {rated ? starRating
@@ -166,7 +171,6 @@ const ReviewForm = ({
             name="recommend"
             value="yes"
             onClick={(e) => (recommendationHandler(e))}
-            checked
           />
           <label htmlFor="yes">Yes</label>
         </div>
@@ -191,7 +195,7 @@ const ReviewForm = ({
           ? <div className="body-input-length">minimum reached</div>
           : (
             <div className="body-input-length">
-              'Minimum characters left:
+              Minimum characters left:
               {50 - bodyInput.length}
             </div>
           )}
@@ -225,7 +229,7 @@ const ReviewForm = ({
       { alert ? (
         <div>
           You must enter the following:
-          {alertMessage.map((message, index) => (<div className="alertMessage" id={index}>{message}</div>))}
+          {alertMessage.map((message, index) => (<div className="alertMessage" key={index}>{message}</div>))}
         </div>
       ) : null }
       <button type="button" id="review-form-submit" onClick={() => submitHandler()}>SUBMIT</button>

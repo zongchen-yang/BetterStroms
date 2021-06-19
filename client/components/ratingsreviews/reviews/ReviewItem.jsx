@@ -57,10 +57,10 @@ const ReviewItem = (props) => {
   return (
     <div className="review-items-container">
       <ul className="review">
-        <h6 className="review-rating">
+        <div className="review-rating">
           Rating:
           <RenderStars rating={review.rating} />
-        </h6>
+        </div>
         <div>{reviewDate}</div>
         <div className="review-summary">{review.summary}</div>
         <p className="review-body">{review.body}</p>
@@ -90,7 +90,7 @@ const ReviewItem = (props) => {
         <div className="helpfulness">
           Was this review helpful?
           {' '}
-          <button id={review.review_id} onClick={(e) => helpfulHandler(e)}>Yes</button>
+          <button id={review.review_id} className="yes-review-helpful" onClick={(e) => helpfulHandler(e)}>Yes</button>
           {`     ${reviewHelpfulness}`}
         </div>
       </ul>

@@ -1,12 +1,19 @@
-// import React from 'react';
+import React from 'react';
 
-// const Header = (props) => {
-//   return (
-//     <div className="header-block">
-//       <img src="../../../public/styles/usecLogo.jpeg" />
-//         Tarkovian Outfitters
-//     </div>
-//   )
-// }
+function Header() {
+  return (
+    <div id="main-header-container">
+      <span id="main-header" className="big-header">
+        BetterStroms
+      </span>
+      <span id="header-searchbar">
+        <input id="header-inputbar" />
+        <button className="social-media-buttons" id="search-button" type="button">
+          <img src="./assets/magnifying_glass.svg" alt="" />
+        </button>
+      </span>
+    </div>
+  );
+}
 
-// export default Header;
+export default Header;
