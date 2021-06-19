@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReviewItems from './ReviewItems';
 import ReviewsBreakdown from './ReviewsBreakdown';
-import NoReviews from './NoReviews';
+
 
 const ReviewList = (props) => {
   const {
-    product, reviewMeta, theme
+    product, theme
   } = props;
   const [reviewFilter, setReviewFilter] = useState([]);
   const [filtersUsedString, setFiltersUsedString] = useState('');
@@ -13,6 +13,7 @@ const ReviewList = (props) => {
   const overallRating = product.starRating;
   const totalNumberOfRatings = product.totalNumReviews;
   const [reviews, setReviews] = useState(props.reviews);
+  const [reviewMeta, setReviewMeta] = useState(props.reviewMeta);
 
   const displayFiltersUsed = () => {
     if (reviewFilter.length === 0) {
@@ -30,13 +31,6 @@ const ReviewList = (props) => {
       }
       setFiltersUsedString(`Showing only ${starFilter}star reviews.`);
     }
-  };
-
-  const sortByDate = async () => {
-    let response = await fetch(`/reviews?product_id=${id}&sort=newest&count=1000`);
-    response = await response.json();
-    setReviews(response.results);
-    console.log('sorted by date');
   };
 
   const reviewFilterHelper = (num) => {
@@ -68,30 +62,17 @@ const ReviewList = (props) => {
           />
         )
         : null}
-      {reviews.length
-        ? (
-          <>
-            <ReviewItems
-              key={reviewFilter}
-              reviews={reviews}
-              reviewFilter={reviewFilter}
-              reviewMeta={reviewMeta}
-              id={id}
-              theme={theme}
-              product={product}
-              sortByDate={sortByDate}
-            />
-          </>
-        )
-        : (
-          <NoReviews
-            reviewMeta={reviewMeta}
-            id={id}
-            sortByDate={sortByDate}
-            theme={theme}
-            product={product}
-          />
-        )}
+      <>
+        <ReviewItems
+          key={reviewFilter}
+          reviews={reviews}
+          reviewFilter={reviewFilter}
+          reviewMeta={reviewMeta}
+          id={id}
+          theme={theme}
+          product={product}
+        />
+      </>
     </div>
   );
 };

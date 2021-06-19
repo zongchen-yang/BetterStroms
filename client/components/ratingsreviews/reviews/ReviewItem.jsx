@@ -64,7 +64,7 @@ const ReviewItem = (props) => {
       <ul className="review">
         <div className="review-rating">
           Rating:
-          <RenderStars rating={review.rating} />
+          {review.rating ? <RenderStars rating={review.rating} /> : null}
         </div>
         <div>{reviewDate}</div>
         <div className="review-summary">{review.summary}</div>

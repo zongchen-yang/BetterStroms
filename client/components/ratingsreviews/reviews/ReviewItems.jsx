@@ -5,7 +5,7 @@ import ReviewForm from './ReviewForm';
 const ReviewItems = (props) => {
   // eslint-disable-next-line prefer-const
   const {
-    reviewMeta, id, theme, product, sortByDate
+    reviewMeta, id, theme, product
   } = props;
   let [currentList, increaseCurrentList] = useState(2);
   const [showReviewForm, toggleShowReviewForm] = useState(false);
@@ -43,6 +43,12 @@ const ReviewItems = (props) => {
     };
 
     sorter(temp);
+  };
+
+  const sortByDate = async () => {
+    let response = await fetch(`/reviews?product_id=${id}&sort=newest&count=1000`);
+    response = await response.json();
+    setReviews([...response.results]);
   };
 
   const sortByHelpful = () => {
@@ -101,20 +107,28 @@ const ReviewItems = (props) => {
   return (
     <div>
       <div id={theme ? 'review-list-box' : 'review-list-box-dark'}>
-        <label htmlFor="sortOptions">Sort By</label>
-        <select name="sortOptions" id="sortOptions" onChange={(e) => sortHandler(e)}>
-          <option value="Relevant">Relevant</option>
-          <option value="Helpful">Helpful</option>
-          <option value="Newest">Newest</option>
-        </select>
+        {reviews.length
+          ? (
+            <>
+              <label htmlFor="sortOptions">Sort By</label>
+              <select name="sortOptions" id="sortOptions" onChange={(e) => sortHandler(e)}>
+                <option value="Relevant">Relevant</option>
+                <option value="Helpful">Helpful</option>
+                <option value="Newest">Newest</option>
+              </select>
+            </>
+          ) : null }
 
         {reviews.length ? reviews.map((review, index) => (
           <ReviewItem review={review} key={index} />
-        )).slice(0, currentList) : null}
+        )).slice(0, currentList)
+          : (
+            <div>There are no reviews for this product. Write the first review!</div>
+          )}
 
         <div id="review-list-buttons-container">
-        {(reviews && reviews.length > 2) ? <button type="button" id="see-more-reviews" onClick={seeMoreHandler}>See More</button> : null}
-        <button type="button" id="show-review-form" onClick={showReviewFormHandler}>Write Your Review</button>
+          {(reviews && reviews.length > 2) ? <button type="button" id="see-more-reviews" onClick={seeMoreHandler}>See More</button> : null}
+          <button type="button" id="show-review-form" onClick={showReviewFormHandler}>Write Your Review</button>
         </div>
         {showReviewForm
           ? (

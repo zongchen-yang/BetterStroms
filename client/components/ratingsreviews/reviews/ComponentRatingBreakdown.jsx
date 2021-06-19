@@ -12,16 +12,16 @@ const ComponentRatingBreakdown = ({ reviewMeta }) => {
     const convertToPercentage = (num) => {
       let number = parseFloat(num);
       number /= 5;
-      if (number === 1) {
-        number = '100%';
-      } else {
-        number = number.toString();
-        if (number.length === 3) {
-          number = number.concat('0');
-        }
-        number = number.slice(2, 4);
-        number = number.concat('%');
+      if (number !== 0) {
+        number -= 0.05;
       }
+      number = number.toString();
+      if (number.length === 3) {
+        number = number.concat('0');
+      }
+      number = number.slice(2, 4);
+      number = number.concat('%');
+
       return number;
     };
 

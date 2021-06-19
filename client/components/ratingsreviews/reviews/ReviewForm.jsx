@@ -47,25 +47,13 @@ const ReviewForm = ({
     const terms = {1: 'Poor', 2: 'Fair', 3: 'Average', 4: 'Good', 5: 'Great'}
     const stars = [];
     for (let i = 0; i < val; i++) {
-      stars.push(<div><i className="fas fa-star" /></div>);
+      stars.push(<div key={i}><i className="fas fa-star" /></div>);
     }
     for (let j = 0; j < 5 - val; j++) {
-      stars.push(<div><i className="far fa-star" /></div>);
+      stars.push(<div key={j + 6}><i className="far fa-star" /></div>);
     }
-    stars.push(<div className="formReviewRatingDescription">{terms[val]}</div>);
+    stars.push(<div key="100" className="formReviewRatingDescription">{terms[val]}</div>);
 
-    // if (val === 2) {
-    //   stars.push(<div className="formReviewRatingDescription">Fair</div>);
-    // }
-    // if (val === 3) {
-    //   stars.push(<div className="formReviewRatingDescription">Average</div>);
-    // }
-    // if (val === 4) {
-    //   stars.push(<div className="formReviewRatingDescription">Good</div>);
-    // }
-    // if (val === 5) {
-    //   stars.push(<div className="formReviewRatingDescription">Great</div>);
-    // }
     setStarRating(stars);
     setRating(val);
     toggleRated(true);
@@ -92,7 +80,7 @@ const ReviewForm = ({
       characteristics: radioValues,
     })
       .then((response) => console.log(response))
-      .then(() => (sortByDate()))
+      .then(() => sortByDate())
       .catch((err) => console.log(err));
   };
 
