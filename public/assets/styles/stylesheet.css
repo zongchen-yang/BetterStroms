@@ -229,8 +229,8 @@ button:hover {
 
 .button-questions:hover {
   background-color: black;
-  color: #04AA6D;
-  border: 1px solid #04AA6D;
+  color: white;
+  border: 1px solid white;
 }
 
 .answers-title {
