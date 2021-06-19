@@ -10,6 +10,7 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
   const [selectedStyle, setSelectedStyle] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [selectedSku, setSelectedSku] = useState({ quantity: 0, size: 'empty', value: 0 });
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     setSelectedStyle(product.styleList[0]);
@@ -53,6 +54,10 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
     selectedStyle.lastViewedIndex = i;
   }
 
+  function expandedClicked() {
+    setExpanded(!expanded);
+  }
+
   const style = selectedStyle;
   const clickHandlers = {
     styleCH,
@@ -73,8 +78,14 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
               style={style}
               clickHandler={smallCarouselCH}
               largePhotoIndex={photoIndex}
+              expanded={expanded}
             />
-            <Carousel style={style} photoIndex={photoIndex} clickHandler={mainImageCH} />
+            <Carousel
+              style={style}
+              photoIndex={photoIndex}
+              clickHandler={mainImageCH}
+              expandedClicked={expandedClicked}
+            />
           </div>
           <div id="options-master">
             <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />

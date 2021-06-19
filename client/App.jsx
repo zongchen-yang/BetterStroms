@@ -157,7 +157,6 @@ function App() {
   };
 
   const getQuestions = async () => {
-    // console.log('this is the id', id);
     let results = await fetch(`/qa/questions?product_id=${id}&count=100`);
     results = await results.json();
     // return results;
@@ -196,7 +195,6 @@ function App() {
   };
 
   async function cartCH(sku, quantity) {
-    console.log(`added ${quantity} of item with sku ${sku.value} to cart`);
     const skuInt = parseInt(sku.value, 10);
     const data = {
       sku_id: skuInt,
@@ -213,7 +211,6 @@ function App() {
       respArray.push(response);
     }
     Promise.all(respArray)
-      .then((resArray) => console.log(resArray))
       .catch((err) => console.log(err));
   }
 

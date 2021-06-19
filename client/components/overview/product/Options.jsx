@@ -68,9 +68,7 @@ function Options({ product, sku, style, chs }) {
   }
 
   if (inStock) {
-    cartButton = (
-      <button id="cart-button" type="button" onClick={optionsCartHandler}>Add to Cart</button>
-    );
+    cartButton = <button id="cart-button" type="button" onClick={optionsCartHandler}>Add to Bag</button>;
     sizeSelect = (
       <select className="select-dropdowns" onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
         <option value="disabled">Select Size</option>
@@ -110,13 +108,13 @@ function Options({ product, sku, style, chs }) {
     <div id="options-container">
       <div id="options-randr">
         <Ovrating rating={product.starRating} />
-          <a id="overview-reviews-link" href="#reviews-component-holder">
-            Read All
-            {' '}
-            {product.totalNumReviews}
-            {' '}
-            Reviews
-          </a>
+        <a id="overview-reviews-link" href="#reviews-component-holder">
+          Read All
+          {' '}
+          {product.totalNumReviews}
+          {' '}
+          Reviews
+        </a>
       </div>
       <div id="options-product-cat">
         <span className="small-header" id="options-product-cat-text">{product.category.toUpperCase()}</span>
