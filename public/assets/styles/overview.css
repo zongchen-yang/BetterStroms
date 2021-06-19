@@ -206,6 +206,10 @@ button {
   padding: none;
 }
 
+.carousel-shevrons:hover {
+  filter:drop-shadow(2px 2px 2px black)
+}
+
 .carousel-shevrons path {
   fill: none;
   stroke: black;
@@ -234,6 +238,10 @@ button {
   width:64px;
   margin-left: -60px;
   /* transform: rotate(0deg) scale(2); */
+}
+
+#c-right:hover {
+  filter: drop-shadow(-2px -2px 2px black);
 }
 
 #overview-main {
@@ -615,6 +623,10 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   transition: background-color 0.4s ease;
   border: none;
   padding: none;
+}
+
+.small-carousel-shevrons:hover {
+  filter: drop-shadow(1px 1px 2px black);
 }
 
 #small-carousel-down-button{
