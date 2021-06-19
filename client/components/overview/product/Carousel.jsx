@@ -19,25 +19,13 @@ function Carousel({ style, photoIndex, clickHandler, expandedClicked }) {
   let mainImage;
   let imageSource;
   let moveExpand = {
-    transform: '',
+    transform: 'none',
   };
 
   if (!photoIndex) {
     imageSource = style.photos[0].url;
   } else {
     imageSource = style.photos[photoIndex].url;
-  }
-
-  function expandImage() {
-    if (expanded < 2) {
-      setExpanded(2);
-      setTimeout(() => { setExpanded(3); }, 450);
-      expandedClicked();
-    } else {
-      setExpanded(1);
-      setTimeout(() => { setExpanded(0); }, 450);
-      expandedClicked();
-    }
   }
 
   function convertPercentForTransform(input) {
@@ -58,6 +46,21 @@ function Carousel({ style, photoIndex, clickHandler, expandedClicked }) {
     }
   }
 
+  function expandImage() {
+    if (zoomed) {
+      toggleZoom();
+    }
+    if (expanded < 2) {
+      setExpanded(2);
+      setTimeout(() => { setExpanded(3); }, 450);
+      expandedClicked();
+    } else {
+      setExpanded(1);
+      setTimeout(() => { setExpanded(0); }, 450);
+      expandedClicked();
+    }
+  }
+
   const overlayStyle = {
     transform: `scale(2) translateX(${zoomX}%) translateY(${zoomY}%)`,
   };
@@ -69,10 +72,21 @@ function Carousel({ style, photoIndex, clickHandler, expandedClicked }) {
   const overlayZoomed = !zoomed;
 
   if (expanded === 2) {
+    moveExpand = {
+      display: 'none',
+      transform: 'none',
+    };
     mainImage = <div style={imgStyle} className="expanding" id="main-image-container"><img hidden={zoomed} id="mainImage" alt="hi" src={imageSource} /></div>;
   } else if (expanded === 1) {
+    moveExpand = {
+      display: 'none',
+      transform: 'none',
+    };
     mainImage = <div style={imgStyle} className="deexpanding" id="main-image-container"><img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} /></div>;
   } else if (expanded === 3) {
+    moveExpand = {
+      transform: 'translateX(450%)',
+    };
     mainImage = (
       <div style={imgStyle} className="expanded" id="main-image-container">
         <img id="mainImage" onClick={toggleZoom} hidden={zoomed} alt="click to zoom" src={imageSource} />
@@ -81,12 +95,6 @@ function Carousel({ style, photoIndex, clickHandler, expandedClicked }) {
     );
   } else {
     mainImage = <div id="main-image-container"><img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} /></div>;
-  }
-
-  if (expanded > 1) {
-    moveExpand = {
-      transform: 'translateX(450%)',
-    };
   }
 
   useEffect(() => {
