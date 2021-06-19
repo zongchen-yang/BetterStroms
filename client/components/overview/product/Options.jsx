@@ -64,7 +64,7 @@ function Options({ product, sku, style, chs }) {
   }
 
   if (inStock) {
-    cartButton = <button id="cart-button" type="button" onClick={optionsCartHandler}>Add to Cart</button>;
+    cartButton = <button id="cart-button" type="button" onClick={optionsCartHandler}>Add to Bag</button>;
     sizeSelect = (
       <select className="select-dropdowns" onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
         <option value="disabled">Select Size</option>

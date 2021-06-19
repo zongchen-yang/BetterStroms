@@ -110,15 +110,6 @@ button {
   cursor: crosshair;
 }
 
-#main-image-container {
-  /* width: 825px;
-  height: 1000px;
-  object-fit: fill; */
-  border: 2px solid rgb(71, 71, 71);
-  border-radius: 10px;
-  box-shadow: 10px 10px 10px rgb(71, 71, 71);
- }
-
  @keyframes stretch {
    0% {
     transform: matrix(1, 0, 0, 1, 0, 0)
@@ -206,6 +197,10 @@ button {
   padding: none;
 }
 
+.carousel-shevrons:hover {
+  filter:drop-shadow(2px 2px 2px black)
+}
+
 .carousel-shevrons path {
   fill: none;
   stroke: black;
@@ -236,6 +231,10 @@ button {
   /* transform: rotate(0deg) scale(2); */
 }
 
+#c-right:hover {
+  filter: drop-shadow(-2px -2px 2px black);
+}
+
 #overview-main {
   display: flex;
   margin: 0;
@@ -251,6 +250,11 @@ button {
   height: 650px;
   width: 800px;
   justify-content: center;
+  border: 2px solid rgb(71, 71, 71);
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgb(71, 71, 71);
+  z-index: 1;
+  overflow: hidden;
 }
 
 #main-image-container img {
@@ -304,7 +308,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 }
 
 #size-select-warning {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .specific-style-selector {
@@ -442,6 +446,11 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   outline: none;
 }
 
+.select-dropdowns:hover {
+  background-color: black;
+  color: white;
+}
+
 .select-wrapper {
   position: relative;
 }
@@ -470,7 +479,6 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   flex-direction: row;
   justify-content: space-between;
   max-width: 350px;
-  background-color: #fff;
 }
 
 #description-text {
@@ -530,6 +538,11 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   background-color: #fff;
 }
 
+#favorite-button:hover {
+  background-color: black;
+  color:white;
+}
+
 #cart-button {
   width: 200px;
   height: 40px;
@@ -543,6 +556,11 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   font-size: 18px;
   font-weight: 500;
   background: #fff;
+}
+
+#cart-button:hover {
+  background-color: black;
+  color:white;
 }
 
 #main-carousel-inner {
@@ -563,6 +581,14 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   padding: 0;
   z-index: 2;
 }
+
+#expand-image-button path {
+  stroke: black;
+  stroke-width: 25px;
+  stroke-linejoin: round;
+  fill:white;
+}
+
 
 .small-carousel-image-container {
   padding-top: 5px;
@@ -617,6 +643,10 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   padding: none;
 }
 
+.small-carousel-shevrons:hover {
+  filter: drop-shadow(1px 1px 2px black);
+}
+
 #small-carousel-down-button{
   margin-left: 16px;
   margin-top: -4px;
@@ -630,4 +660,14 @@ img {
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+
+#main-image-overlay {
+  object-fit:none;
+  z-index: 2;
+  transform: scale(2);
+}
+
+#main-image-overlay:hover {
+  cursor:zoom-out;
 }

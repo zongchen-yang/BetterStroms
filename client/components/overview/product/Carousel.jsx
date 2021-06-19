@@ -1,90 +1,120 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-function Carousel({ style, photoIndex, clickHandler }) {
+function Carousel({ style, photoIndex, clickHandler, expandedClicked }) {
   // 0 = initial, 1 = deexpanding, 2 = expanding, 3 = expanded
   const [expanded, setExpanded] = useState(0);
   const [leftHidden, setLeftHidden] = useState(false);
   const [rightHidden, setRightHidden] = useState(false);
   const [zoomed, setZoomed] = useState(false);
+  const [zoomX, setZoomX] = useState(0);
+  const [zoomY, setZoomY] = useState(0);
+
+  const expandImageElement = (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path d="M396.795 396.8H320V448h128V320h-51.205zM396.8 115.205V192H448V64H320v51.205zM115.205 115.2H192V64H64v128h51.205zM115.2 396.795V320H64v128h128v-51.205z"/>
+    </svg>
+  );
 
   let mainImage;
   let imageSource;
+  let moveExpand = {
+    transform: 'none',
+  };
+
   if (!photoIndex) {
     imageSource = style.photos[0].url;
   } else {
     imageSource = style.photos[photoIndex].url;
   }
 
-  function expandImage() {
-    if (expanded < 2) {
-      setExpanded(2);
-      setTimeout(() => { setExpanded(3); }, 450);
-    } else {
-      setExpanded(1);
-      setTimeout(() => { setExpanded(0); }, 450);
-    }
+  function convertPercentForTransform(input) {
+    return ((input * 0.5 - 25) * -1);
   }
 
   function toggleZoom(event) {
-    console.log(event)
     if (zoomed) {
-      // zoom out
       setZoomed(false);
     } else {
-      // zoom in
+      let calcX = Math.floor((event.nativeEvent.offsetX / event.target.width) * 100);
+      let calcY = Math.floor((event.nativeEvent.offsetY / event.target.height) * 100);
+      calcX = convertPercentForTransform(calcX);
+      calcY = convertPercentForTransform(calcY);
+      setZoomX(calcX);
+      setZoomY(calcY);
       setZoomed(true);
     }
   }
 
-  const imgStyle = {
-    animationPlayState: 'running',
-  };
-  if (expanded === 2) {
-    mainImage = <img id="mainImage" hidden={zoomed} style={imgStyle} className="expanding" alt="hi" src={imageSource} />;
-  } else if (expanded === 1) {
-    mainImage = <img id="mainImage" hidden={zoomed} style={imgStyle} className="deexpanding" alt="hi" src={imageSource} />;
-  } else if (expanded === 3) {
-    mainImage = <img id="mainImage" onClick={toggleZoom} hidden={zoomed} style={imgStyle} className="expanded" alt="hi" src={imageSource} />;
-  } else {
-    mainImage = <img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} />;
-  }
-  let overlayDisplay = 'none';
-  if (zoomed) {
-    overlayDisplay = 'inline-block';
+  function expandImage() {
+    if (zoomed) {
+      toggleZoom();
+    }
+    if (expanded < 2) {
+      setExpanded(2);
+      setTimeout(() => { setExpanded(3); }, 450);
+      expandedClicked();
+    } else {
+      setExpanded(1);
+      setTimeout(() => { setExpanded(0); }, 450);
+      expandedClicked();
+    }
   }
 
   const overlayStyle = {
-    border: '1px solid black',
-    display: overlayDisplay,
-    backgroundImage: `url('${imageSource}')`,
-    backgroundRepeat: 'no-repeat',
-    width: '1320px',
-    height: '891px',
+    transform: `scale(2) translateX(${zoomX}%) translateY(${zoomY}%)`,
   };
 
+  const imgStyle = {
+    animationPlayState: 'running',
+  };
+
+  const overlayZoomed = !zoomed;
+
+  if (expanded === 2) {
+    moveExpand = {
+      display: 'none',
+      transform: 'none',
+    };
+    mainImage = <div style={imgStyle} className="expanding" id="main-image-container"><img hidden={zoomed} id="mainImage" alt="hi" src={imageSource} /></div>;
+  } else if (expanded === 1) {
+    moveExpand = {
+      display: 'none',
+      transform: 'none',
+    };
+    mainImage = <div style={imgStyle} className="deexpanding" id="main-image-container"><img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} /></div>;
+  } else if (expanded === 3) {
+    moveExpand = {
+      transform: 'translateX(450%)',
+    };
+    mainImage = (
+      <div style={imgStyle} className="expanded" id="main-image-container">
+        <img id="mainImage" onClick={toggleZoom} hidden={zoomed} alt="click to zoom" src={imageSource} />
+        <img id="main-image-overlay" onClick={toggleZoom} hidden={overlayZoomed} style={overlayStyle} src={imageSource} alt="click to zoom out" />
+      </div>
+    );
+  } else {
+    mainImage = <div id="main-image-container"><img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} /></div>;
+  }
+
   useEffect(() => {
-    if (photoIndex === 0) {
+    if ((photoIndex === 0) || (expanded > 0)) {
       setLeftHidden(true);
     } else {
       setLeftHidden(false);
-    };
+    }
 
-    if (photoIndex === style.photos.length - 1) {
+    if ((photoIndex === style.photos.length - 1) || expanded > 0) {
       setRightHidden(true);
     } else {
       setRightHidden(false);
     }
-  }, [photoIndex]);
-  const notZoomed = !zoomed;
-  // const shevron = (
-  //   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
-  //     <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-  //   </svg>
-  // );
+  }, [photoIndex, expanded]);
+
   const shevron = (
     <img src="assets/shevron_outlined.svg" alt="" width="64" height="64" />
   );
+
   return (
     <div id="main-carousel">
       <div id="main-carousel-inner">
@@ -93,18 +123,17 @@ function Carousel({ style, photoIndex, clickHandler }) {
             {shevron}
           </button>
         </div>
-        <div id="main-image-container">
-          {mainImage}
-          <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
-        </div>
+        {mainImage}
         <div id="carousel-shevron-right" className="carousel-shevron-container">
           <button id="c-right" className="carousel-shevrons" hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
             {shevron}
           </button>
         </div>
       </div>
-      <div id="expand-image-container">
-        <button id="expand-image-button" type="button" onClick={expandImage}><i className="fas fa-expand" /></button>
+      <div id="expand-image-container" style={moveExpand}>
+        <button id="expand-image-button" type="button" onClick={expandImage}>
+          {expandImageElement}
+        </button>
       </div>
     </div>
   );
