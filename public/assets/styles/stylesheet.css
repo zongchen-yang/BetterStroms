@@ -400,7 +400,7 @@ button:hover {
   font-weight: bold;
   float: left;
   position: relative;
-  width: 100%;
+  width: 90%;
 }
 
 .componentBreakdownHolder {
@@ -511,7 +511,6 @@ button:hover {
 
 .review-hiddenRating {
   position: absolute;
-  bottom: 10%;
   display: flex;
 }
 
