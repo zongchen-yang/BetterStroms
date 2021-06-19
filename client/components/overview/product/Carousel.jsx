@@ -7,9 +7,12 @@ function Carousel({ style, photoIndex, clickHandler }) {
   const [leftHidden, setLeftHidden] = useState(false);
   const [rightHidden, setRightHidden] = useState(false);
   const [zoomed, setZoomed] = useState(false);
+  const [zoomX, setZoomX] = useState(0);
+  const [zoomY, setZoomY] = useState(0);
 
   let mainImage;
   let imageSource;
+
   if (!photoIndex) {
     imageSource = style.photos[0].url;
   } else {
@@ -26,13 +29,27 @@ function Carousel({ style, photoIndex, clickHandler }) {
     }
   }
 
+  function convertPercentForTransform(input) {
+    return ((input * 0.5 - 25) * -1);
+  }
+
   function toggleZoom(event) {
     if (zoomed) {
       setZoomed(false);
     } else {
+      let calcX = Math.floor((event.nativeEvent.offsetX / event.target.width) * 100);
+      let calcY = Math.floor((event.nativeEvent.offsetY / event.target.height) * 100);
+      calcX = convertPercentForTransform(calcX);
+      calcY = convertPercentForTransform(calcY);
+      setZoomX(calcX);
+      setZoomY(calcY);
       setZoomed(true);
     }
   }
+
+  const overlayStyle = {
+    transform: `scale(2) translateX(${zoomX}%) translateY(${zoomY}%)`,
+  };
 
   const imgStyle = {
     animationPlayState: 'running',
@@ -48,15 +65,12 @@ function Carousel({ style, photoIndex, clickHandler }) {
     mainImage = (
       <div style={imgStyle} className="expanded" id="main-image-container">
         <img id="mainImage" onClick={toggleZoom} hidden={zoomed} alt="click to zoom" src={imageSource} />
-        <img id="main-image-overlay" onClick={toggleZoom} hidden={overlayZoomed} src={imageSource} alt="click to zoom out" />
+        <img id="main-image-overlay" onClick={toggleZoom} hidden={overlayZoomed} style={overlayStyle} src={imageSource} alt="click to zoom out" />
       </div>
     );
   } else {
     mainImage = <div id="main-image-container"><img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} /></div>;
   }
-
-
-
 
   useEffect(() => {
     if ((photoIndex === 0) || (expanded > 0)) {
@@ -71,12 +85,7 @@ function Carousel({ style, photoIndex, clickHandler }) {
       setRightHidden(false);
     }
   }, [photoIndex, expanded]);
-  const notZoomed = !zoomed;
-  // const shevron = (
-  //   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
-  //     <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-  //   </svg>
-  // );
+
   const shevron = (
     <img src="assets/shevron_outlined.svg" alt="" width="64" height="64" />
   );
@@ -88,10 +97,7 @@ function Carousel({ style, photoIndex, clickHandler }) {
             {shevron}
           </button>
         </div>
-        {/* <div id="main-image-container"> */}
         {mainImage}
-        {/* <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" /> */}
-        {/* </div> */}
         <div id="carousel-shevron-right" className="carousel-shevron-container">
           <button id="c-right" className="carousel-shevrons" hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
             {shevron}

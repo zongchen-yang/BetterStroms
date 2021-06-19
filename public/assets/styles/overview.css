@@ -110,17 +110,6 @@ button {
   cursor: crosshair;
 }
 
-#main-image-container {
-  /* width: 825px;
-  height: 1000px;
-  object-fit: fill; */
-  border: 2px solid rgb(71, 71, 71);
-  border-radius: 10px;
-  box-shadow: 10px 10px 10px rgb(71, 71, 71);
-  z-index: 1;
-  overflow: hidden;
- }
-
  @keyframes stretch {
    0% {
     transform: matrix(1, 0, 0, 1, 0, 0)
@@ -261,6 +250,11 @@ button {
   height: 650px;
   width: 800px;
   justify-content: center;
+  border: 2px solid rgb(71, 71, 71);
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgb(71, 71, 71);
+  z-index: 1;
+  overflow: hidden;
 }
 
 #main-image-container img {
@@ -647,10 +641,11 @@ img {
 }
 
 #main-image-overlay {
-  z-index: 1;
-  cursor:zoom-out;
+  object-fit:none;
+  z-index: 2;
+  transform: scale(2);
 }
 
 #main-image-overlay:hover {
-  transform: scale(2.5);
+  cursor:zoom-out;
 }
