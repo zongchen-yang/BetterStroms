@@ -118,6 +118,7 @@ button {
   border-radius: 10px;
   box-shadow: 10px 10px 10px rgb(71, 71, 71);
   z-index: 1;
+  overflow: hidden;
  }
 
  @keyframes stretch {
@@ -643,4 +644,13 @@ img {
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+
+#main-image-overlay {
+  z-index: 1;
+  cursor:zoom-out;
+}
+
+#main-image-overlay:hover {
+  transform: scale(2.5);
 }

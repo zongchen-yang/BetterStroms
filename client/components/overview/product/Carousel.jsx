@@ -37,28 +37,26 @@ function Carousel({ style, photoIndex, clickHandler }) {
   const imgStyle = {
     animationPlayState: 'running',
   };
+
+  const overlayZoomed = !zoomed;
+
   if (expanded === 2) {
     mainImage = <div style={imgStyle} className="expanding" id="main-image-container"><img hidden={zoomed} id="mainImage" alt="hi" src={imageSource} /></div>;
   } else if (expanded === 1) {
     mainImage = <div style={imgStyle} className="deexpanding" id="main-image-container"><img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} /></div>;
   } else if (expanded === 3) {
-    mainImage = <div style={imgStyle} className="expanded" id="main-image-container"><img id="mainImage" onClick={toggleZoom} hidden={zoomed} alt="hi" src={imageSource} /></div>;
+    mainImage = (
+      <div style={imgStyle} className="expanded" id="main-image-container">
+        <img id="mainImage" onClick={toggleZoom} hidden={zoomed} alt="click to zoom" src={imageSource} />
+        <img id="main-image-overlay" onClick={toggleZoom} hidden={overlayZoomed} src={imageSource} alt="click to zoom out" />
+      </div>
+    );
   } else {
     mainImage = <div id="main-image-container"><img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} /></div>;
   }
-  let overlayDisplay = 'none';
-  if (zoomed) {
-    overlayDisplay = 'inline-block';
-  }
 
-  const overlayStyle = {
-    border: '1px solid black',
-    display: overlayDisplay,
-    backgroundImage: `url('${imageSource}')`,
-    backgroundRepeat: 'no-repeat',
-    width: '1320px',
-    height: '891px',
-  };
+
+
 
   useEffect(() => {
     if ((photoIndex === 0) || (expanded > 0)) {
@@ -92,7 +90,7 @@ function Carousel({ style, photoIndex, clickHandler }) {
         </div>
         {/* <div id="main-image-container"> */}
         {mainImage}
-        <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
+        {/* <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" /> */}
         {/* </div> */}
         <div id="carousel-shevron-right" className="carousel-shevron-container">
           <button id="c-right" className="carousel-shevrons" hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
