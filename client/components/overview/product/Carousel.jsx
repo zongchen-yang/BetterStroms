@@ -27,7 +27,7 @@ function Carousel({ style, photoIndex, clickHandler }) {
   }
 
   function toggleZoom(event) {
-    console.log(event)
+    console.log(event);
     if (zoomed) {
       // zoom out
       setZoomed(false);
@@ -64,18 +64,18 @@ function Carousel({ style, photoIndex, clickHandler }) {
   };
 
   useEffect(() => {
-    if (photoIndex === 0) {
+    if ((photoIndex === 0) || (expanded > 0)) {
       setLeftHidden(true);
     } else {
       setLeftHidden(false);
     };
 
-    if (photoIndex === style.photos.length - 1) {
+    if ((photoIndex === style.photos.length - 1) || expanded > 0) {
       setRightHidden(true);
     } else {
       setRightHidden(false);
     }
-  }, [photoIndex]);
+  }, [photoIndex, expanded]);
   const notZoomed = !zoomed;
   // const shevron = (
   //   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
