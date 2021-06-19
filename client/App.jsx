@@ -224,7 +224,7 @@ function App() {
       root.style.setProperty('color', 'whitesmoke');
       setTheme(false);
     } else {
-      root.style.setProperty('background-color', 'whitesmoke');
+      root.style.setProperty('background-color', 'white');
       root.style.setProperty('color', 'black');
       setTheme(true);
     }
@@ -275,6 +275,7 @@ function App() {
         favorites={favorites}
         deleteFavoriteCH={deleteFavoriteCH}
         displayItemCH={displayItemCH}
+        theme={theme}
       />
       <QAndA
         product={selectedProduct}
