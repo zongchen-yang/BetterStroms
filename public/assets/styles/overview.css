@@ -372,6 +372,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   display:flex;
   flex-direction: row-reverse;
   justify-content: right;
+  max-height: 654px;
 }
 
 .carousel-shevron-container {

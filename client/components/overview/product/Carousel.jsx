@@ -29,7 +29,7 @@ function Carousel({ style, photoIndex, clickHandler, expandedClicked }) {
   }
 
   function convertPercentForTransform(input) {
-    return ((input * 0.5 - 25) * -1);
+    return ((input * 0.6 - 30) * -1);
   }
 
   function toggleZoom(event) {
@@ -62,7 +62,7 @@ function Carousel({ style, photoIndex, clickHandler, expandedClicked }) {
   }
 
   const overlayStyle = {
-    transform: `scale(2) translateX(${zoomX}%) translateY(${zoomY}%)`,
+    transform: `scale(2.5) translateX(${zoomX}%) translateY(${zoomY}%)`,
   };
 
   const imgStyle = {
