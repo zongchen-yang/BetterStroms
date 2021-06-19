@@ -222,10 +222,10 @@ function App() {
 
     if (theme) {
       root.style.setProperty('background-color', 'black');
-      root.style.setProperty('color', 'whitesmoke');
+      root.style.setProperty('color', 'white');
       setTheme(false);
     } else {
-      root.style.setProperty('background-color', 'whitesmoke');
+      root.style.setProperty('background-color', 'white');
       root.style.setProperty('color', 'black');
       setTheme(true);
     }
