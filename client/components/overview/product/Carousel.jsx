@@ -27,7 +27,6 @@ function Carousel({ style, photoIndex, clickHandler }) {
   }
 
   function toggleZoom(event) {
-    console.log(event);
     if (zoomed) {
       // zoom out
       setZoomed(false);
