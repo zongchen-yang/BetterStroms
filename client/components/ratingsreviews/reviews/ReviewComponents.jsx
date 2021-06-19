@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import ReviewItems from './ReviewItems';
 import ReviewsBreakdown from './ReviewsBreakdown';
+import NoReviews from './NoReviews';
 
-const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
+const ReviewList = (props) => {
+  const {
+    product, reviewMeta, theme
+  } = props;
   const [reviewFilter, setReviewFilter] = useState([]);
   const [filtersUsedString, setFiltersUsedString] = useState('');
   const { id } = product;
   const overallRating = product.starRating;
   const totalNumberOfRatings = product.totalNumReviews;
+  const [reviews, setReviews] = useState(props.reviews);
 
   const displayFiltersUsed = () => {
     if (reviewFilter.length === 0) {
@@ -27,8 +32,15 @@ const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
     }
   };
 
+  const sortByDate = async () => {
+    let response = await fetch(`/reviews?product_id=${id}&sort=newest&count=1000`);
+    response = await response.json();
+    setReviews(response.results);
+    console.log('sorted by date');
+  };
+
   const reviewFilterHelper = (num) => {
-    let temp = reviewFilter;
+    const temp = reviewFilter;
     if (num === 'clear') {
       temp.splice(0, temp.length);
     } else if (temp.indexOf(num) >= 0) {
@@ -45,16 +57,20 @@ const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
       <div id="reviews-component-header">Ratings and Reviews</div>
       {reviews.length
         ? (
+          <ReviewsBreakdown
+            reviews={reviews}
+            overallRating={overallRating}
+            reviewMeta={reviewMeta}
+            totalNumberOfRatings={totalNumberOfRatings}
+            reviewFilterHelper={reviewFilterHelper}
+            filtersUsedString={filtersUsedString}
+            theme={theme}
+          />
+        )
+        : null}
+      {reviews.length
+        ? (
           <>
-            <ReviewsBreakdown
-              reviews={reviews}
-              overallRating={overallRating}
-              reviewMeta={reviewMeta}
-              totalNumberOfRatings={totalNumberOfRatings}
-              reviewFilterHelper={reviewFilterHelper}
-              filtersUsedString={filtersUsedString}
-              theme={theme}
-            />
             <ReviewItems
               key={reviewFilter}
               reviews={reviews}
@@ -63,10 +79,19 @@ const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
               id={id}
               theme={theme}
               product={product}
+              sortByDate={sortByDate}
             />
           </>
         )
-        : null}
+        : (
+          <NoReviews
+            reviewMeta={reviewMeta}
+            id={id}
+            sortByDate={sortByDate}
+            theme={theme}
+            product={product}
+          />
+        )}
     </div>
   );
 };

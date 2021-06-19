@@ -52,6 +52,11 @@ const ReviewItem = (props) => {
     setHelpfulness(reviewHelpfulness + 1);
   };
 
+  const reportReviewHandler = (e) => {
+    const revId = parseInt(e.target.id);
+    axios.put(`/reviews/${revId}/report`);
+  };
+
   // { params: { review_id: revId } }
 
   return (
@@ -92,6 +97,11 @@ const ReviewItem = (props) => {
           {' '}
           <button id={review.review_id} className="yes-review-helpful" onClick={(e) => helpfulHandler(e)}>Yes</button>
           {`     ${reviewHelpfulness}`}
+        </div>
+        <div className="report-review">
+          Report Abuse
+          {' '}
+          <button id={review.review_id} className="report-review" onClick={(e) => reportReviewHandler(e)}>Report</button>
         </div>
       </ul>
       <hr />

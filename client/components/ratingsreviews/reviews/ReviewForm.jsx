@@ -91,7 +91,9 @@ const ReviewForm = ({
       photos: photoList,
       characteristics: radioValues,
     })
+      .then((response) => console.log(response))
       .then(() => (sortByDate()))
+      .catch((err) => console.log(err));
   };
 
   const submitHandler = () => {
@@ -129,6 +131,7 @@ const ReviewForm = ({
     if (needToAlert) {
       setAlert(true);
     } else {
+      showReviewFormHandler();
       sendForm();
     }
   };

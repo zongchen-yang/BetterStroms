@@ -14,7 +14,7 @@ const RenderStars = ({ rating }) => {
           </div>
         ) : (
           <div className="review-hiddenRating">
-            {[...Array(5)].map((each, i) => <i className="far fa-star" key={i} />)}
+            {[...Array(5)].map((each, i) => <div key={i}><i className="far fa-star" /></div>)}
           </div>
         )}
       </div>

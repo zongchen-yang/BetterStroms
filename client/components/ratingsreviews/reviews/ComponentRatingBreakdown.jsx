@@ -12,9 +12,16 @@ const ComponentRatingBreakdown = ({ reviewMeta }) => {
     const convertToPercentage = (num) => {
       let number = parseFloat(num);
       number /= 5;
-      number = number.toString();
-      number = number.slice(2, 4);
-      number = number.concat('%');
+      if (number === 1) {
+        number = '100%';
+      } else {
+        number = number.toString();
+        if (number.length === 3) {
+          number = number.concat('0');
+        }
+        number = number.slice(2, 4);
+        number = number.concat('%');
+      }
       return number;
     };
 
@@ -46,7 +53,7 @@ const ComponentRatingBreakdown = ({ reviewMeta }) => {
     }
   };
 
-  useEffect(() => { calculatePercentagesForCharacteristics(); }, [reviewMeta]);
+  useEffect(() => { calculatePercentagesForCharacteristics(); }, [reviewMeta, reviewMeta.characteristics]);
 
   return (
     <div className="subcomponent-breakdown-container">

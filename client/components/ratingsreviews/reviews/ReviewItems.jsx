@@ -5,7 +5,7 @@ import ReviewForm from './ReviewForm';
 const ReviewItems = (props) => {
   // eslint-disable-next-line prefer-const
   const {
-    reviewMeta, id, theme, product,
+    reviewMeta, id, theme, product, sortByDate
   } = props;
   let [currentList, increaseCurrentList] = useState(2);
   const [showReviewForm, toggleShowReviewForm] = useState(false);
@@ -14,16 +14,6 @@ const ReviewItems = (props) => {
 
   const seeMoreHandler = () => {
     increaseCurrentList(currentList += 2);
-  };
-
-  const sortHandler = (e) => {
-    if (e.target.value === 'Newest') {
-      sortByDate();
-    } else if (e.target.value === 'Helpful') {
-      sortByHelpful();
-    } else {
-      sortByRelevance();
-    }
   };
 
   const sortByRelevance = (arr) => {
@@ -76,10 +66,14 @@ const ReviewItems = (props) => {
     sorter(temp2);
   };
 
-  const sortByDate = async () => {
-    let response = await fetch(`/reviews?product_id=${id}&sort=newest&count=1000`);
-    response = await response.json();
-    setReviews(response.results);
+  const sortHandler = (e) => {
+    if (e.target.value === 'Newest') {
+      sortByDate();
+    } else if (e.target.value === 'Helpful') {
+      sortByHelpful();
+    } else {
+      sortByRelevance();
+    }
   };
 
   const filterReviews = () => {
