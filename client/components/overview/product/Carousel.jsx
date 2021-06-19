@@ -28,10 +28,8 @@ function Carousel({ style, photoIndex, clickHandler }) {
 
   function toggleZoom(event) {
     if (zoomed) {
-      // zoom out
       setZoomed(false);
     } else {
-      // zoom in
       setZoomed(true);
     }
   }
@@ -93,9 +91,9 @@ function Carousel({ style, photoIndex, clickHandler }) {
           </button>
         </div>
         {/* <div id="main-image-container"> */}
-          {mainImage}
-          {/* <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
-        </div> */}
+        {mainImage}
+        <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
+        {/* </div> */}
         <div id="carousel-shevron-right" className="carousel-shevron-container">
           <button id="c-right" className="carousel-shevrons" hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
             {shevron}
