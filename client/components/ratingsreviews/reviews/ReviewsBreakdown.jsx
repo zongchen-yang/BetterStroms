@@ -22,7 +22,9 @@ const ReviewsBreakdown = (props) => {
     if (reviewMeta.ratings) {
       let total = 0;
       for (let i = 1; i < 6; i++) {
-        total += parseInt(reviewMeta.ratings[i]);
+        if (reviewMeta.ratings[i]) {
+          total += parseInt(reviewMeta.ratings[i]);
+        }
       }
       const perc5s = reviewMeta.ratings[5] ? (reviewMeta.ratings[5] / total) : 0.00;
       const perc4s = reviewMeta.ratings[4] ? (reviewMeta.ratings[4] / total) : 0.00;
@@ -32,11 +34,20 @@ const ReviewsBreakdown = (props) => {
       const arr = [perc5s, perc4s, perc3s, perc2s, perc1s];
 
       for (let j = 0; j < arr.length; j++) {
-        arr[j] = arr[j].toString();
-        arr[j] = arr[j].slice(2, 4);
-        arr[j] = arr[j].concat('%');
+        if (arr[j] === 1) {
+          arr[j] = '100%';
+        } else {
+          arr[j] = arr[j].toFixed(2, 10).toString().slice(2, 4).concat('%');
+        }
       }
-      const recommends = (reviewMeta.recommended.true / total).toFixed(2, 10).toString().slice(2, 4).concat('%');
+
+      let recommends = (reviewMeta.recommended.true / total);
+      if (recommends === 1) {
+        recommends = '100%';
+      } else {
+        recommends = recommends.toFixed(2, 10).toString().slice(2, 4);
+      }
+
       setPercentageOf5s(arr[0]);
       setPercentageOf4s(arr[1]);
       setPercentageOf3s(arr[2]);

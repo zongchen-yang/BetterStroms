@@ -3,12 +3,18 @@ import ReviewItems from './ReviewItems';
 import ReviewsBreakdown from './ReviewsBreakdown';
 import ClickTracking from '../../../WithClickTrackingEventHandler';
 
-const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
+
+const ReviewList = (props) => {
+  const {
+    product, theme
+  } = props;
   const [reviewFilter, setReviewFilter] = useState([]);
   const [filtersUsedString, setFiltersUsedString] = useState('');
   const { id } = product;
   const overallRating = product.starRating;
   const totalNumberOfRatings = product.totalNumReviews;
+  const [reviews, setReviews] = useState(props.reviews);
+  const [reviewMeta, setReviewMeta] = useState(props.reviewMeta);
 
   const displayFiltersUsed = () => {
     if (reviewFilter.length === 0) {
@@ -29,7 +35,7 @@ const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
   };
 
   const reviewFilterHelper = (num) => {
-    let temp = reviewFilter;
+    const temp = reviewFilter;
     if (num === 'clear') {
       temp.splice(0, temp.length);
     } else if (temp.indexOf(num) >= 0) {
@@ -42,33 +48,33 @@ const ReviewList = ({ reviews, product, reviewMeta, theme }) => {
   };
 
   return (
-    <ClickTracking module="Reviews and Ratings">
+    <ClickTracking module="Ratings and Reviews">
       <div id="reviews-component-holder">
         <div id="reviews-component-header">Ratings and Reviews</div>
         {reviews.length
           ? (
-            <>
-              <ReviewsBreakdown
-                reviews={reviews}
-                overallRating={overallRating}
-                reviewMeta={reviewMeta}
-                totalNumberOfRatings={totalNumberOfRatings}
-                reviewFilterHelper={reviewFilterHelper}
-                filtersUsedString={filtersUsedString}
-                theme={theme}
-              />
-              <ReviewItems
-                key={reviewFilter}
-                reviews={reviews}
-                reviewFilter={reviewFilter}
-                reviewMeta={reviewMeta}
-                id={id}
-                theme={theme}
-                product={product}
-              />
-            </>
+            <ReviewsBreakdown
+              reviews={reviews}
+              overallRating={overallRating}
+              reviewMeta={reviewMeta}
+              totalNumberOfRatings={totalNumberOfRatings}
+              reviewFilterHelper={reviewFilterHelper}
+              filtersUsedString={filtersUsedString}
+              theme={theme}
+            />
           )
           : null}
+        <>
+          <ReviewItems
+            key={reviewFilter}
+            reviews={reviews}
+            reviewFilter={reviewFilter}
+            reviewMeta={reviewMeta}
+            id={id}
+            theme={theme}
+            product={product}
+          />
+        </>
       </div>
     </ClickTracking>
   );
