@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
+function SmallCarousel({ style, clickHandler, largePhotoIndex, expanded}) {
   const [startIndex, setStartIndex] = useState(0);
   const [upHidden, setUpHidden] = useState(false);
   const [downHidden, setDownHidden] = useState(false);
   const [changedPhoto, setChangedPhoto] = useState(false);
+
   let renderedPhotos;
+  let hideSmCarousel = {
+    display: 'flex',
+  };
 
   if (style.photos === undefined) {
     return null;
@@ -82,17 +86,20 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex}) {
     }
   }, [startIndex]);
 
+  if (expanded) {
+    hideSmCarousel = {
+      display: 'none',
+    };
+  }
+
   makeRenderedPhotos();
-  // const downShevron = (
-  //   <svg id="down-shevron" xmlns="http://www.w3.org/2000/svg" width="16px" height="9px" focusable="false">
-  //     <path id="_x3C_Group_x3E__4_" d="M8.002 8L1 1m7.002 7L15 1.004" />
-  //   </svg>
-  // );
+
   const downShevron = (
     <img src="assets/shevron_outlined.svg" alt="" focusable="false" />
-  )
+  );
+
   return (
-    <div id="smallCarouselContainer">
+    <div id="smallCarouselContainer" style={hideSmCarousel}>
       <div id="sc-up-placeholder">
         <button id="sc-up" className="small-carousel-shevrons" hidden={upHidden} onClick={goUp} type="button">
           {downShevron}

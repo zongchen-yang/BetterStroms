@@ -474,7 +474,6 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   flex-direction: row;
   justify-content: space-between;
   max-width: 350px;
-  background-color: #fff;
 }
 
 #description-text {
@@ -567,6 +566,14 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   padding: 0;
   z-index: 2;
 }
+
+#expand-image-button path {
+  stroke: black;
+  stroke-width: 25px;
+  stroke-linejoin: round;
+  fill:white;
+}
+
 
 .small-carousel-image-container {
   padding-top: 5px;

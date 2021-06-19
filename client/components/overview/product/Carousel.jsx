@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-function Carousel({ style, photoIndex, clickHandler }) {
+function Carousel({ style, photoIndex, clickHandler, expandedClicked }) {
   // 0 = initial, 1 = deexpanding, 2 = expanding, 3 = expanded
   const [expanded, setExpanded] = useState(0);
   const [leftHidden, setLeftHidden] = useState(false);
@@ -23,9 +23,11 @@ function Carousel({ style, photoIndex, clickHandler }) {
     if (expanded < 2) {
       setExpanded(2);
       setTimeout(() => { setExpanded(3); }, 450);
+      expandedClicked();
     } else {
       setExpanded(1);
       setTimeout(() => { setExpanded(0); }, 450);
+      expandedClicked();
     }
   }
 
@@ -89,6 +91,13 @@ function Carousel({ style, photoIndex, clickHandler }) {
   const shevron = (
     <img src="assets/shevron_outlined.svg" alt="" width="64" height="64" />
   );
+
+  const expandImageElement = (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path d="M396.795 396.8H320V448h128V320h-51.205zM396.8 115.205V192H448V64H320v51.205zM115.205 115.2H192V64H64v128h51.205zM115.2 396.795V320H64v128h128v-51.205z"/>
+    </svg>
+  );
+
   return (
     <div id="main-carousel">
       <div id="main-carousel-inner">
@@ -105,7 +114,9 @@ function Carousel({ style, photoIndex, clickHandler }) {
         </div>
       </div>
       <div id="expand-image-container">
-        <button id="expand-image-button" type="button" onClick={expandImage}><i className="fas fa-expand" /></button>
+        <button id="expand-image-button" type="button" onClick={expandImage}>
+          {expandImageElement}
+        </button>
       </div>
     </div>
   );
