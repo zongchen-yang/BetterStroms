@@ -3,23 +3,27 @@ import axios from 'axios';
 
 const WithClickTrackingEventHandler = (props) => {
   const handleClickTracking = (originalOnClick, event) => {
+    const element = {
+      name: event.target.localName,
+    };
+    if (event.target.id) {
+      element.id = event.target.id;
+    } else {
+      element.className = event.target.className;
+    }
+
     const requestBody = {
-      element: props.element,
-      // 'string', //required: Selector for the element which was clicked
+      element: JSON.stringify(element),
       widget: props.module,
-      // 'sting',   //required: Name of the module in which the click occured
       time: new Date(),
-      // 'string'     //required: Time the interaction occured (timestamp)
     };
 
     axios.post(`/interactions`, requestBody)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
-    // originalOnClick();
+      // .then((response) => console.log(response))
+      .catch((error) => { throw error; });
     if (originalOnClick) {
       originalOnClick(event);
     }
-    // console.log('TRACKING is working on this button', props.element, props.module);
   };
 
   return (
@@ -40,3 +44,7 @@ export default WithClickTrackingEventHandler;
 // );
 
 // return decoratedWithClickTrackingComponent;
+
+// console.log('TRACKING is working on this button', props.element, props.module);
+// console.log('this is the element', event.target);
+// console.log('this is the element', event.target);

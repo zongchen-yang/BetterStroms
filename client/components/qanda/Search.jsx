@@ -1,9 +1,7 @@
 import React from 'react';
-import ClickTracking from '../../WithClickTrackingEventHandler';
 
 const Search = ({search}) => (
-  <div className="search-bar">
-    <ClickTracking element="QandA search bar" module="QandA">
+    <div className="search-bar">
       <input
         className="question-search-bar-actual"
         placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
@@ -16,8 +14,8 @@ const Search = ({search}) => (
           }
         }}
       />
-    </ClickTracking>
-  </div>
+      <img className="QandA-search-bar-image" alt="" src="./assets/magnifying_glass.svg" />
+    </div>
 );
 
 export default Search;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 function SmallCarousel({ style, clickHandler, largePhotoIndex }) {
   const [startIndex, setStartIndex] = useState(0);
@@ -45,18 +44,16 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex }) {
         highlighted = 'small-carousel-highlight small-carousel-image-container';
       }
       return (
-        <ClickTracking element={`Thumbnail ${index}`} module="Overview" key={i++}>
-          <div
-            key={i++}
-            className={highlighted}
-            index={index}
-            onClick={() => clickHandler(index)}
-            onKeyPress={() => clickHandler(index)}
-            role="presentation"
-          >
-            <img className="smallCarouselImages" alt={style.name} src={picObj.thumbnail_url} />
-          </div>
-        </ClickTracking>
+        <div
+          key={i++}
+          className={highlighted}
+          index={index}
+          onClick={() => clickHandler(index)}
+          onKeyPress={() => clickHandler(index)}
+          role="presentation"
+        >
+          <img className="smallCarouselImages" alt={style.name} src={picObj.thumbnail_url} />
+        </div>
       );
     });
   }
@@ -97,20 +94,16 @@ function SmallCarousel({ style, clickHandler, largePhotoIndex }) {
   return (
     <div id="smallCarouselContainer">
       <div id="sc-up-placeholder">
-        <ClickTracking element="Thumbnails up chevron" module="Overview">
-          <button id="sc-up" className="small-carousel-shevrons" hidden={upHidden} onClick={goUp} type="button">
-            {downShevron}
-          </button>
-        </ClickTracking>
+        <button id="sc-up" className="small-carousel-shevrons" hidden={upHidden} onClick={goUp} type="button">
+          {downShevron}
+        </button>
       </div>
       <div id="small-carousel-images-only">
         {renderedPhotos.slice(startIndex, (startIndex + max))}
       </div>
-      <ClickTracking element="Thumbnails down chevron" module="Overview">
-        <button id="small-carousel-down-button" className="small-carousel-shevrons" hidden={downHidden} onClick={goDown} type="button">
-          {downShevron}
-        </button>
-      </ClickTracking>
+      <button id="small-carousel-down-button" className="small-carousel-shevrons" hidden={downHidden} onClick={goDown} type="button">
+        {downShevron}
+      </button>
     </div>
   );
 }

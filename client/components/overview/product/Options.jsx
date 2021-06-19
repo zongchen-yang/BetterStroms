@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuantSelector from './QuantSelector';
 import Ovrating from './Ovrating';
-import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 function Options({ product, sku, style, chs }) {
   const [sizeNotSelected, setSizeNotSelected] = useState(false);
@@ -60,41 +59,33 @@ function Options({ product, sku, style, chs }) {
 
   if (style.isFavorite) {
     favoriteButton = (
-      <ClickTracking element="Favorite button remove" module="Overview">
-          <button id="favorite-button" type="button" onClick={() => deleteFavoriteCH(product, style)}>♡</button>
-      </ClickTracking>
+      <button id="favorite-button" type="button" onClick={() => deleteFavoriteCH(product, style)}>♡</button>
     );
   } else {
     favoriteButton = (
-      <ClickTracking element="Favorite button add" module="Overview">
-        <button id="favorite-button" type="button" onClick={() => favoriteCH(product, style)}>☆</button>
-      </ClickTracking>
+      <button id="favorite-button" type="button" onClick={() => favoriteCH(product, style)}>☆</button>
     );
   }
 
   if (inStock) {
     cartButton = (
-      <ClickTracking element="Add to cart" module="Overview">
-        <button id="cart-button" type="button" onClick={optionsCartHandler}>Add to Cart</button>
-      </ClickTracking>
+      <button id="cart-button" type="button" onClick={optionsCartHandler}>Add to Cart</button>
     );
     sizeSelect = (
-      <ClickTracking element="Size selector dropdown" module="Overview">
-        <select className="select-dropdowns" onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
-          <option value="disabled">Select Size</option>
-          {/* Object.keys returns an array = ['sku1', sku2', ...] */}
-          {Object.keys(style.skus).map((currentSkuString) => {
-            const skuInt = parseInt(currentSkuString, 10);
-            const skuObj = style.skus[skuInt];
-            if (skuObj === undefined) {
-              return null;
-            }
-            return (
-              <option key={skuInt} value={skuInt}>{skuObj.size}</option>
-            );
-          })}
-        </select>
-      </ClickTracking>
+      <select className="select-dropdowns" onChange={(e) => sizeSelectedCH(e)} name="size" id="size-select">
+        <option value="disabled">Select Size</option>
+        {/* Object.keys returns an array = ['sku1', sku2', ...] */}
+        {Object.keys(style.skus).map((currentSkuString) => {
+          const skuInt = parseInt(currentSkuString, 10);
+          const skuObj = style.skus[skuInt];
+          if (skuObj === undefined) {
+            return null;
+          }
+          return (
+            <option key={skuInt} value={skuInt}>{skuObj.size}</option>
+          );
+        })}
+      </select>
     );
   } else {
     sizeSelect = (
@@ -119,7 +110,6 @@ function Options({ product, sku, style, chs }) {
     <div id="options-container">
       <div id="options-randr">
         <Ovrating rating={product.starRating} />
-        <ClickTracking element="Read all reviews" module="Overview">
           <a id="overview-reviews-link" href="#reviews-component-holder">
             Read All
             {' '}
@@ -127,7 +117,6 @@ function Options({ product, sku, style, chs }) {
             {' '}
             Reviews
           </a>
-        </ClickTracking>
       </div>
       <div id="options-product-cat">
         <span className="small-header" id="options-product-cat-text">{product.category.toUpperCase()}</span>
@@ -163,25 +152,23 @@ function Options({ product, sku, style, chs }) {
             hideCheckMark = false;
           }
           return (
-            <ClickTracking element={`Style selected ${aStyle.id}`} module="Overview" key={aStyle.id}>
-              <div
-                key={aStyle.id}
-                index={index}
-                onClick={() => styleCH(index)}
-                onKeyPress={() => styleCH(index)}
-                role="presentation"
-                className="specific-style-selector"
-              >
-                <div className="four-per-line">
-                  <div className="style-image-selector-container">
-                    <img className="style-selector-image" alt={aStyle.name} src={aStyle.photos[0].thumbnail_url} />
-                  </div>
-                  <div hidden={hideCheckMark} className="style-selector-checkmark">
-                    <img alt="selected" height="25" width="25" src="assets/checkmark.png" />
-                  </div>
+            <div
+              key={aStyle.id}
+              index={index}
+              onClick={() => styleCH(index)}
+              onKeyPress={() => styleCH(index)}
+              role="presentation"
+              className="specific-style-selector"
+            >
+              <div className="four-per-line">
+                <div className="style-image-selector-container">
+                  <img className="style-selector-image" alt={aStyle.name} src={aStyle.photos[0].thumbnail_url} />
+                </div>
+                <div hidden={hideCheckMark} className="style-selector-checkmark">
+                  <img alt="selected" height="25" width="25" src="assets/checkmark.png" />
                 </div>
               </div>
-            </ClickTracking>
+            </div>
           );
         })}
       </div>

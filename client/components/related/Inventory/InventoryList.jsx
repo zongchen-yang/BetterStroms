@@ -41,45 +41,39 @@ const InventoryList = ({ favorites, displayItemCH, deleteFavoriteCH }) => {
   const fourth = favorites.indexOf(window[2]) > -1 ? (favorites.indexOf(window[2]) + 1) : undefined;
 
   return (
-    <div className="inventoryList">
-      <h3 className="title">YOUR OUTFIT</h3>
-      <div className="list">
-        {window.length ? null : <span>This is empty. Go pick something!</span>}
-        {window && window[0] && favorites && favorites[0] && (window[0].id !== favorites[0].id
-        || window[0].style.id !== favorites[0].style.id)
-          ? (
-            <ClickTracking element=" favorites move left" module="related">
-              <i className="fas fa-chevron-left fa-2x" type="button" onClick={leftCH} />
-            </ClickTracking>
-          )
-          : null}
-        {window.map((each, i) => (
-          <InventoryItem
-            key={i}
-            item={each}
-            displayItemCH={displayItemCH}
-            deleteCH={deleteFavoriteCH}
-          />
-        ))}
-        {favorites[fourth]
-          ? (
+    <ClickTracking module="Related">
+      <div className="inventoryList">
+        <h3 className="title">YOUR OUTFIT</h3>
+        <div className="list">
+          {window.length ? null : <span>This is empty. Go pick something!</span>}
+          {window && window[0] && favorites && favorites[0] && (window[0].id !== favorites[0].id
+          || window[0].style.id !== favorites[0].style.id)
+            ? <i className="fas fa-chevron-left fa-2x" type="button" onClick={leftCH} />
+            : null}
+          {window.map((each, i) => (
             <InventoryItem
-              item={favorites[fourth]}
+              key={i}
+              item={each}
               displayItemCH={displayItemCH}
               deleteCH={deleteFavoriteCH}
-              className={{ className: 'fourth' }}
             />
-          ) : null}
-        {window && windowLast && favorites && favorites[0] && (windowLast.id !== favoritesLast.id
-        || windowLast.style.id !== favoritesLast.style.id)
-          ? (
-            <ClickTracking element="favorites move right" module="related">
-              <i className="fas fa-chevron-right fa-2x" type="button" onClick={rightCH} />
-            </ClickTracking>
-          )
-          : null}
+          ))}
+          {favorites[fourth]
+            ? (
+              <InventoryItem
+                item={favorites[fourth]}
+                displayItemCH={displayItemCH}
+                deleteCH={deleteFavoriteCH}
+                className={{ className: 'fourth' }}
+              />
+            ) : null}
+          {window && windowLast && favorites && favorites[0] && (windowLast.id !== favoritesLast.id
+          || windowLast.style.id !== favoritesLast.style.id)
+            ? <i className="fas fa-chevron-right fa-2x" type="button" onClick={rightCH} />
+            : null}
+        </div>
       </div>
-    </div>
+    </ClickTracking>
   );
 };
 

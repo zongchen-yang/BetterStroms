@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Question';
-import ClickTracking from '../../WithClickTrackingEventHandler';
 
 const QuestionsList = (props) => {
   const {
@@ -42,26 +41,22 @@ const QuestionsList = (props) => {
       </div>
       <div>
         <span>
-          <ClickTracking element="More answered questions" module="QandA">
-            <button
-              className="button-questions"
-              type="button"
-              onClick={addMoreQuestions}
-            >
-              MORE ANSWERED QUESTIONS
-            </button>
-          </ClickTracking>
+          <button
+            className="button-questions"
+            type="button"
+            onClick={addMoreQuestions}
+          >
+            MORE ANSWERED QUESTIONS
+          </button>
         </span>
         <span>
-          <ClickTracking element="Add A Question Button" module="QandA">
-            <button
-              className="button-questions"
-              type="button"
-              onClick={openAddQuestionModal}
-            >
-              ADD A QUESTION +
-            </button>
-          </ClickTracking>
+          <button
+            className="button-questions"
+            type="button"
+            onClick={openAddQuestionModal}
+          >
+            ADD A QUESTION +
+          </button>
         </span>
       </div>
     </div>

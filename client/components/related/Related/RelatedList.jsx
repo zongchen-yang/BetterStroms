@@ -46,45 +46,39 @@ const RelatedList = ({ related, product, displayItemCH }) => {
   const fourth = related.indexOf(window[2]) > -1 ? (related.indexOf(window[2]) + 1) : undefined;
 
   return (
-    <div className="relatedList">
-      <h3 className="title">RELATED PRODUCTS</h3>
-      <div className="list">
-        {window && window[0] && window[0].index !== 0
-          ? (
-            <ClickTracking element="related move left" module="related">
-              <i className="fas fa-chevron-left fa-2x" type="button" onClick={leftCH} />
-            </ClickTracking>
-          )
-          : null}
-        {window.map((each, i) => (
-          <RelatedItem
-            key={i}
-            item={each}
-            showCompareCH={showCompareCH}
-            displayItemCH={displayItemCH}
-          />
-        ))}
-        {related[fourth]
-          ? (
+    <ClickTracking module="Related">
+      <div className="relatedList">
+        <h3 className="title">RELATED PRODUCTS</h3>
+        <div className="list">
+          {window && window[0] && window[0].index !== 0
+            ? <i className="fas fa-chevron-left fa-2x" type="button" onClick={leftCH} />
+            : null}
+          {window.map((each, i) => (
             <RelatedItem
-              item={related[fourth]}
+              key={i}
+              item={each}
               showCompareCH={showCompareCH}
               displayItemCH={displayItemCH}
-              className={{ className: 'fourth' }}
             />
-          ) : null}
-        {window && window[2] && window[2].index !== related.length - 1
-          ? (
-            <ClickTracking element="related move right" module="related">
-              <i className="fas fa-chevron-right fa-2x" type="button" onClick={rightCH} />
-            </ClickTracking>
-          )
+          ))}
+          {related[fourth]
+            ? (
+              <RelatedItem
+                item={related[fourth]}
+                showCompareCH={showCompareCH}
+                displayItemCH={displayItemCH}
+                className={{ className: 'fourth' }}
+              />
+            ) : null}
+          {window && window[2] && window[2].index !== related.length - 1
+            ? <i className="fas fa-chevron-right fa-2x" type="button" onClick={rightCH} />
+            : null}
+        </div>
+        {selectedItem && showCompare
+          ? <Compare product={product} related={selectedItem} setShowCompare={setShowCompare} />
           : null}
       </div>
-      {selectedItem && showCompare
-        ? <Compare product={product} related={selectedItem} setShowCompare={setShowCompare} />
-        : null}
-    </div>
+    </ClickTracking>
   );
 };
 

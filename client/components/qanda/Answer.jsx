@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ClickTracking from '../../WithClickTrackingEventHandler';
 
 const Answer = (props) => {
   const { answer, updateAnswersHelpfulness, reportAnswer } = props;
@@ -49,7 +48,7 @@ const Answer = (props) => {
         {isSeller
           ? (
             <span className="answer-flavor-text">
-              by
+              by&nbsp;
               <strong>Seller</strong>
               ,&nbsp;
               {convertDate(date)}
@@ -57,7 +56,7 @@ const Answer = (props) => {
           )
           : (
             <span className="answer-flavor-text">
-              by
+              by&nbsp;
               {answerer_name}
               ,&nbsp;
               {convertDate(date)}
@@ -67,17 +66,15 @@ const Answer = (props) => {
         <span className="answer-flavor-text">
           Helpful?
         </span>
-        <ClickTracking element={`helpful answer ${id}`} module="QandA">
-          <span
-            className="answer-flavor-text underline"
-            role="button"
-            tabIndex="0"
-            onKeyPress={() => updateHelpfulCount()}
-            onClick={() => updateHelpfulCount()}
-          >
-            Yes
-          </span>
-        </ClickTracking>
+        <span
+          className="answer-flavor-text underline"
+          role="button"
+          tabIndex="0"
+          onKeyPress={() => updateHelpfulCount()}
+          onClick={() => updateHelpfulCount()}
+        >
+          Yes
+        </span>
         <span className="answer-flavor-text">
           &#40;
           {helpfulCount}
@@ -91,17 +88,15 @@ const Answer = (props) => {
             </span>
           )
           : (
-            <ClickTracking element={`report answer ${id}`} module="QandA">
-              <span
-                className="answer-flavor-text underline"
-                role="button"
-                tabIndex="0"
-                onKeyPress={() => handleReportClick()}
-                onClick={() => handleReportClick()}
-              >
-                Report
-              </span>
-            </ClickTracking>
+            <span
+              className="answer-flavor-text underline"
+              role="button"
+              tabIndex="0"
+              onKeyPress={() => handleReportClick()}
+              onClick={() => handleReportClick()}
+            >
+              Report
+            </span>
           )}
       </div>
       {photos.map((url, idx) => (

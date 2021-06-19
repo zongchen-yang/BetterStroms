@@ -4,6 +4,7 @@ import AddQuestion from './AddQuestion';
 import AddAnswer from './AddAnswer';
 import QuestionsList from './QuestionsList';
 import Search from './Search';
+import ClickTracking from '../../WithClickTrackingEventHandler';
 
 const QAndA = (props) => {
   const { id, product, theme, getQuestions, questionsArray } = props;
@@ -27,26 +28,26 @@ const QAndA = (props) => {
 
   const updateQuestionsHelpfulness = (questionId) => {
     axios.put(`/qa/questions/${questionId}/helpful`)
-      .then(() => console.log('put request successful for question'))
-      .catch((error) => console.log(error));
+      .then(() => {})
+      .catch((error) => { throw error; });
   };
 
   const updateAnswersHelpfulness = (answerId) => {
     axios.put(`/qa/answers/${answerId}/helpful`)
-      .then(() => console.log('put request successful for answer'))
-      .catch((error) => console.log(error));
+      .then(() => {})
+      .catch((error) => { throw error; });
   };
 
   const reportQuestion = (questionId) => {
     axios.put(`/qa/questions/${questionId}/report`)
-      .then(() => console.log('question reported'))
-      .catch((error) => console.log(error));
+      .then(() => {})
+      .catch((error) => { throw error; });
   };
 
   const reportAnswer = (answerId) => {
     axios.put(`/qa/answers/${answerId}/report`)
-      .then(() => console.log('answer reported'))
-      .catch((error) => console.log(error));
+      .then(() => {})
+      .catch((error) => { throw error; });
   };
 
   const postNewQuestion = (body, name, email) => {
@@ -56,9 +57,9 @@ const QAndA = (props) => {
       email,
       product_id: id,
     })
-      .then((response) => console.log(response))
+      // .then((response) => console.log(response))
       .then(() => getQuestions())
-      .catch((error) => console.log(error));
+      .catch((error) => { throw error; });
   };
 
   const postNewAnswer = (currentQuestionId, body, name, email, photos) => {
@@ -68,9 +69,9 @@ const QAndA = (props) => {
       email,
       photos,
     })
-      .then((response) => console.log(response))
+      // .then((response) => console.log(response))
       .then(() => getQuestions())
-      .catch((error) => console.log(error));
+      .catch((error) => { throw error; });
   };
 
   const openAddAnswerModal = () => {
@@ -100,58 +101,60 @@ const QAndA = (props) => {
 
   return (
     <>
-      <div
-        id="QandA-module"
-        role="button"
-        tabIndex="0"
-        onKeyDown={showAddQuestionModal || showAddAnswerModal ? closeModals : () => {}}
-        onClick={showAddQuestionModal || showAddAnswerModal ? closeModals : () => {}}
-        className={
-          showAddAnswerModal || showAddQuestionModal
-            ? 'QandA-module question-unfocused'
-            : 'QandA-module'
-          }
-      >
-        <h3 className="QandA-title">
-          Questions and Answers
-        </h3>
-        <Search search={onSearch} />
-        <div className="questions-list-component">
-          <QuestionsList
-            questions={searched ? searchedArray : questionsArray}
-            updateQuestionsHelpfulness={updateQuestionsHelpfulness}
-            updateAnswersHelpfulness={updateAnswersHelpfulness}
-            reportQuestion={reportQuestion}
-            reportAnswer={reportAnswer}
-            openAddAnswerModal={openAddAnswerModal}
-            openAddQuestionModal={openAddQuestionModal}
-            getQuestionId={getQuestionId}
-            theme={theme}
-          />
+      <ClickTracking module="QandA">
+        <div
+          id="QandA-module"
+          role="button"
+          tabIndex="0"
+          onKeyDown={showAddQuestionModal || showAddAnswerModal ? closeModals : () => {}}
+          onClick={showAddQuestionModal || showAddAnswerModal ? closeModals : () => {}}
+          className={
+            showAddAnswerModal || showAddQuestionModal
+              ? 'QandA-module question-unfocused'
+              : 'QandA-module'
+            }
+        >
+          <h3 className="QandA-title">
+            Questions and Answers
+          </h3>
+          <Search search={onSearch} />
+          <div className="questions-list-component">
+            <QuestionsList
+              questions={searched ? searchedArray : questionsArray}
+              updateQuestionsHelpfulness={updateQuestionsHelpfulness}
+              updateAnswersHelpfulness={updateAnswersHelpfulness}
+              reportQuestion={reportQuestion}
+              reportAnswer={reportAnswer}
+              openAddAnswerModal={openAddAnswerModal}
+              openAddQuestionModal={openAddQuestionModal}
+              getQuestionId={getQuestionId}
+              theme={theme}
+            />
+          </div>
         </div>
-      </div>
-      <div>
-        {showAddAnswerModal
-          ? (
-            <AddAnswer
-              questionId={questionId}
-              postNewAnswer={postNewAnswer}
-              closeAddAnswerModal={closeAddAnswerModal}
-              theme={theme}
-            />
-          )
-          : null}
-        {showAddQuestionModal
-          ? (
-            <AddQuestion
-              postNewQuestion={postNewQuestion}
-              closeAddQuestionModal={closeAddQuestionModal}
-              name={product.name}
-              theme={theme}
-            />
-          )
-          : null}
-      </div>
+        <div>
+          {showAddAnswerModal
+            ? (
+              <AddAnswer
+                questionId={questionId}
+                postNewAnswer={postNewAnswer}
+                closeAddAnswerModal={closeAddAnswerModal}
+                theme={theme}
+              />
+            )
+            : null}
+          {showAddQuestionModal
+            ? (
+              <AddQuestion
+                postNewQuestion={postNewQuestion}
+                closeAddQuestionModal={closeAddQuestionModal}
+                name={product.name}
+                theme={theme}
+              />
+            )
+            : null}
+        </div>
+      </ClickTracking>
     </>
   );
 };
