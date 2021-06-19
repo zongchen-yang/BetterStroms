@@ -41,13 +41,13 @@ function Carousel({ style, photoIndex, clickHandler }) {
     animationPlayState: 'running',
   };
   if (expanded === 2) {
-    mainImage = <img id="mainImage" hidden={zoomed} style={imgStyle} className="expanding" alt="hi" src={imageSource} />;
+    mainImage = <div style={imgStyle} className="expanding" id="main-image-container"><img hidden={zoomed} id="mainImage" alt="hi" src={imageSource} /></div>;
   } else if (expanded === 1) {
-    mainImage = <img id="mainImage" hidden={zoomed} style={imgStyle} className="deexpanding" alt="hi" src={imageSource} />;
+    mainImage = <div style={imgStyle} className="deexpanding" id="main-image-container"><img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} /></div>;
   } else if (expanded === 3) {
-    mainImage = <img id="mainImage" onClick={toggleZoom} hidden={zoomed} style={imgStyle} className="expanded" alt="hi" src={imageSource} />;
+    mainImage = <div style={imgStyle} className="expanded" id="main-image-container"><img id="mainImage" onClick={toggleZoom} hidden={zoomed} alt="hi" src={imageSource} /></div>;
   } else {
-    mainImage = <img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} />;
+    mainImage = <div id="main-image-container"><img id="mainImage" hidden={zoomed} alt="hi" src={imageSource} /></div>;
   }
   let overlayDisplay = 'none';
   if (zoomed) {
@@ -93,10 +93,10 @@ function Carousel({ style, photoIndex, clickHandler }) {
             {shevron}
           </button>
         </div>
-        <div id="main-image-container">
+        {/* <div id="main-image-container"> */}
           {mainImage}
-          <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
-        </div>
+          {/* <div style={overlayStyle} onClick={toggleZoom} id="main-image-overplay" />
+        </div> */}
         <div id="carousel-shevron-right" className="carousel-shevron-container">
           <button id="c-right" className="carousel-shevrons" hidden={rightHidden} type="button" onClick={(e) => clickHandler('right')}>
             {shevron}
