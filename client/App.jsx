@@ -30,7 +30,7 @@ function useLocalStorage(key, initialValue) {
 }
 
 function App() {
-  const [id, setId] = useState(20104);
+  const [id, setId] = useState(20852);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);
@@ -155,7 +155,6 @@ function App() {
   };
 
   const getQuestions = async () => {
-    // console.log('this is the id', id);
     let results = await fetch(`/qa/questions?product_id=${id}&count=100`);
     results = await results.json();
     // return results;
@@ -194,7 +193,6 @@ function App() {
   };
 
   async function cartCH(sku, quantity) {
-    console.log(`added ${quantity} of item with sku ${sku.value} to cart`);
     const skuInt = parseInt(sku.value, 10);
     const data = {
       sku_id: skuInt,
@@ -211,7 +209,6 @@ function App() {
       respArray.push(response);
     }
     Promise.all(respArray)
-      .then((resArray) => console.log(resArray))
       .catch((err) => console.log(err));
   }
 
@@ -223,7 +220,7 @@ function App() {
       root.style.setProperty('color', 'whitesmoke');
       setTheme(false);
     } else {
-      root.style.setProperty('background-color', 'whitesmoke');
+      root.style.setProperty('background-color', 'white');
       root.style.setProperty('color', 'black');
       setTheme(true);
     }
@@ -268,11 +265,13 @@ function App() {
         related={related}
         product={selectedProduct}
         displayItemCH={displayItemCH}
+        theme={theme}
       />
       <Inventory
         favorites={favorites}
         deleteFavoriteCH={deleteFavoriteCH}
         displayItemCH={displayItemCH}
+        theme={theme}
       />
       <QAndA
         product={selectedProduct}
