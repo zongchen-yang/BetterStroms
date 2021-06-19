@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ClickTracking from '../../WithClickTrackingEventHandler';
 
 const AddAnswer = (props) => {
   const {questionId, postNewAnswer, closeAddAnswerModal, theme} = props;

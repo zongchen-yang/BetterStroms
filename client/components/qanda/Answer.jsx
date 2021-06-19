@@ -48,7 +48,7 @@ const Answer = (props) => {
         {isSeller
           ? (
             <span className="answer-flavor-text">
-              by
+              by&nbsp;
               <strong>Seller</strong>
               ,&nbsp;
               {convertDate(date)}
@@ -56,7 +56,7 @@ const Answer = (props) => {
           )
           : (
             <span className="answer-flavor-text">
-              by
+              by&nbsp;
               {answerer_name}
               ,&nbsp;
               {convertDate(date)}

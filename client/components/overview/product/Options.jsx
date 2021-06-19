@@ -58,9 +58,13 @@ function Options({ product, sku, style, chs }) {
   }
 
   if (style.isFavorite) {
-    favoriteButton = <button id="favorite-button" type="button" onClick={() => deleteFavoriteCH(product, style)}>♡</button>;
+    favoriteButton = (
+      <button id="favorite-button" type="button" onClick={() => deleteFavoriteCH(product, style)}>♡</button>
+    );
   } else {
-    favoriteButton = <button id="favorite-button" type="button" onClick={() => favoriteCH(product, style)}>☆</button>;
+    favoriteButton = (
+      <button id="favorite-button" type="button" onClick={() => favoriteCH(product, style)}>☆</button>
+    );
   }
 
   if (inStock) {

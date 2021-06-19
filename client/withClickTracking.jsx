@@ -19,9 +19,11 @@ const withClickTracking = (Component) => {
   // }
 
   return (
-    React.Children.map(Component, (child) => React.cloneElement(child, {
-      onClick: onClick.bind(child, child.props.onClick),
-    }))
+    <Component>
+      {React.Children.map(Component, (child) => React.cloneElement(child, {
+        onClick: onClick.bind(child, child.props.onClick),
+      }))}
+    </Component>
   );
 };
 

@@ -3,6 +3,7 @@ import Carousel from './product/Carousel';
 import Options from './product/Options';
 import Description from './product/Description';
 import SmallCarousel from './product/SmallCarousel';
+import ClickTracking from '../../WithClickTrackingEventHandler';
 
 function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -69,28 +70,30 @@ function Overview({ product, favoriteCH, cartCH, deleteFavoriteCH }) {
     return <div>Loading overview...</div>;
   }
   return (
-    <div id="overview">
-      <div id="overviewContainer">
-        <div id="overview-main">
-          <SmallCarousel
-            style={style}
-            clickHandler={smallCarouselCH}
-            largePhotoIndex={photoIndex}
-            expanded={expanded}
-          />
-          <Carousel
-            style={style}
-            photoIndex={photoIndex}
-            clickHandler={mainImageCH}
-            expandedClicked={expandedClicked}
-          />
+    <ClickTracking module="Overview">
+      <div id="overview">
+        <div id="overviewContainer">
+          <div id="overview-main">
+            <SmallCarousel
+              style={style}
+              clickHandler={smallCarouselCH}
+              largePhotoIndex={photoIndex}
+              expanded={expanded}
+            />
+            <Carousel
+              style={style}
+              photoIndex={photoIndex}
+              clickHandler={mainImageCH}
+              expandedClicked={expandedClicked}
+            />
+          </div>
+          <div id="options-master">
+            <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
+          </div>
         </div>
-        <div id="options-master">
-          <Options product={product} sku={selectedSku} style={style} chs={clickHandlers} />
-        </div>
+        <Description product={product} />
       </div>
-      <Description product={product} />
-    </div>
+    </ClickTracking>
   );
 }
 

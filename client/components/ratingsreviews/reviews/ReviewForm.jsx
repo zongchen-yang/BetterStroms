@@ -162,6 +162,7 @@ const ReviewForm = ({
             name="recommend"
             value="yes"
             onClick={(e) => (recommendationHandler(e))}
+            checked
           />
           <label htmlFor="yes">Yes</label>
         </div>

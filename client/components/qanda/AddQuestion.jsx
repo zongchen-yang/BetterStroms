@@ -45,7 +45,7 @@ const AddQuestion = (props) => {
         About the
         {name}
       </h4>
-      <div className="modal-input">
+      <div className="modal-input question-input">
         Your Question *
         <div className="modal-input">
           <textarea
@@ -58,7 +58,7 @@ const AddQuestion = (props) => {
           />
         </div>
       </div>
-      <div className="modal-input">
+      <div className="modal-input name-input">
         What is your nickname *
         <div className="modal-input">
           <input
@@ -73,7 +73,7 @@ const AddQuestion = (props) => {
       </div>
       <div className="modal-input">
         Your Email*
-        <div className="modal-input">
+        <div className="modal-input email-input">
           <input
             className="modal-input-box"
             onChange={handleEmailChange}

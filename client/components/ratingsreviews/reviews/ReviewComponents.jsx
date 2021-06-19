@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReviewItems from './ReviewItems';
 import ReviewsBreakdown from './ReviewsBreakdown';
+import ClickTracking from '../../../WithClickTrackingEventHandler';
 
 
 const ReviewList = (props) => {
@@ -47,33 +48,35 @@ const ReviewList = (props) => {
   };
 
   return (
-    <div id="reviews-component-holder">
-      <div id="reviews-component-header">Ratings and Reviews</div>
-      {reviews.length
-        ? (
-          <ReviewsBreakdown
+    <ClickTracking module="Ratings and Reviews">
+      <div id="reviews-component-holder">
+        <div id="reviews-component-header">Ratings and Reviews</div>
+        {reviews.length
+          ? (
+            <ReviewsBreakdown
+              reviews={reviews}
+              overallRating={overallRating}
+              reviewMeta={reviewMeta}
+              totalNumberOfRatings={totalNumberOfRatings}
+              reviewFilterHelper={reviewFilterHelper}
+              filtersUsedString={filtersUsedString}
+              theme={theme}
+            />
+          )
+          : null}
+        <>
+          <ReviewItems
+            key={reviewFilter}
             reviews={reviews}
-            overallRating={overallRating}
+            reviewFilter={reviewFilter}
             reviewMeta={reviewMeta}
-            totalNumberOfRatings={totalNumberOfRatings}
-            reviewFilterHelper={reviewFilterHelper}
-            filtersUsedString={filtersUsedString}
+            id={id}
             theme={theme}
+            product={product}
           />
-        )
-        : null}
-      <>
-        <ReviewItems
-          key={reviewFilter}
-          reviews={reviews}
-          reviewFilter={reviewFilter}
-          reviewMeta={reviewMeta}
-          id={id}
-          theme={theme}
-          product={product}
-        />
-      </>
-    </div>
+        </>
+      </div>
+    </ClickTracking>
   );
 };
 
