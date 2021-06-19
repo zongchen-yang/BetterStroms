@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Compare = ({ product, related, setShowCompare }) => {
+const Compare = ({
+  product, related, setShowCompare, theme,
+}) => {
   const [features, setFeature] = useState({});
   const node = useRef();
 
@@ -12,14 +14,13 @@ const Compare = ({ product, related, setShowCompare }) => {
     }
     if (related) {
       for (let i = 0; i < related.features.length; i++) {
-        let feature = related.features[i].feature;
-        let value = related.features[i].value || true;
+        const { feature } = related.features[i];
+        const value = related.features[i].value || true;
         if (!obj[feature]) {
           obj[feature] = {};
         }
         obj[feature].related = value;
       }
-      console.log(obj);
     }
     setFeature(obj);
   }, [related]);
@@ -35,15 +36,15 @@ const Compare = ({ product, related, setShowCompare }) => {
 
   useEffect(() => {
     // add when mounted
-    document.addEventListener("mousedown", handleClick);
+    document.addEventListener('mousedown', handleClick);
     // return function to be called when unmounted
     return () => {
-      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener('mousedown', handleClick);
     };
   }, []);
 
   return (
-    <div className="compare" id="compare" ref={node}>
+    <div className="compare" id={theme ? null : 'compareDark'} ref={node}>
       <h4 className="comparing">COMPARING</h4>
       <div className="compareName">
         <span className="compareNameLeft">{product.name}</span>
