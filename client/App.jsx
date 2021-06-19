@@ -31,7 +31,7 @@ function useLocalStorage(key, initialValue) {
 }
 
 function App() {
-  const [id, setId] = useState(20104);
+  const [id, setId] = useState(20852);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);
@@ -270,11 +270,13 @@ function App() {
         related={related}
         product={selectedProduct}
         displayItemCH={displayItemCH}
+        theme={theme}
       />
       <Inventory
         favorites={favorites}
         deleteFavoriteCH={deleteFavoriteCH}
         displayItemCH={displayItemCH}
+        theme={theme}
       />
       <QAndA
         product={selectedProduct}
