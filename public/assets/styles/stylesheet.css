@@ -9,6 +9,19 @@ button:hover {
   cursor: pointer;
 }
 
+#app {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+#app-inner {
+  max-width: 1440px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 #QandA-module {
   width: 80%;
   margin: auto;
@@ -652,12 +665,6 @@ button:hover {
   padding-bottom: 2%;
 }
 
-#announcement {
-  background-color: purple;
-  text-align: center;
-  margin: 0%;
-}
-
 #header-filter-container {
   float: left;
   width: 100%;
@@ -674,3 +681,73 @@ button:hover {
   background-color: black;
   color: whitesmoke;
 } */
+
+#main-header-container {
+  display: flex;
+  align-items: center;
+  min-height:75px;
+  background-color: #eafbfd;
+  max-width: 1300px;
+  margin-top:-10px;
+  justify-content: space-between;
+  margin-left:50px;
+}
+
+#announcement-container {
+  padding-top:20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main-header {
+  letter-spacing: .5rem;
+  text-decoration: underline;
+  padding-left: 100px;
+}
+
+#search-button {
+  height:24px;
+  width: 24px;
+}
+
+#header-inputbar {
+  background-color: transparent;
+  border: none;
+  border-bottom:2px solid black;
+  font-size:18px;
+  font-weight:600px
+}
+
+#header-inputbar:focus {
+  outline: none;
+}
+
+#header-searchbar {
+  padding-right: 40px;
+}
+
+#announcement {
+  font-style: oblique;
+}
+
+.announcement-text {
+  font-size: 14px;
+  padding-left: 4px;
+  padding-right:4px;
+  text-transform: uppercase;
+  font-weight:400;
+}
+
+.announcement-break {
+  border-top:1px solid black;
+  width: 12px;
+}
+
+#sale-offer {
+  font-weight:600;
+}
+
+#new-prod {
+  text-decoration: underline;
+}
