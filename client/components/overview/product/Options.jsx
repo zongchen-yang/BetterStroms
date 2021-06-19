@@ -60,7 +60,7 @@ function Options({ product, sku, style, chs }) {
 
   if (style.isFavorite) {
     favoriteButton = (
-      <ClickTracking element="Favorite button delete" module="Overview">
+      <ClickTracking element="Favorite button remove" module="Overview">
           <button id="favorite-button" type="button" onClick={() => deleteFavoriteCH(product, style)}>♡</button>
       </ClickTracking>
     );
