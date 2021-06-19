@@ -228,7 +228,7 @@ button:hover {
 }
 
 .button-questions:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
   border: 1px solid white;
 }
@@ -545,7 +545,7 @@ button:hover {
 }
 
 .yes-review-helpful:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
 }
 
@@ -560,7 +560,7 @@ button:hover {
 }
 
 #review-form-submit:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
 }
 
@@ -573,7 +573,7 @@ button:hover {
 }
 
 #review-form-close:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
 }
 
@@ -586,7 +586,7 @@ button:hover {
 }
 
 #show-review-form:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
 }
 
@@ -599,7 +599,7 @@ button:hover {
 }
 
 #submit-photos:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
 }
 
@@ -612,7 +612,7 @@ button:hover {
 }
 
 #toggle-theme:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
 }
 
@@ -629,7 +629,7 @@ button:hover {
 }
 
 #sortOptions:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
 }
 
@@ -642,7 +642,7 @@ button:hover {
 }
 
 #see-more-reviews:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
 }
 
@@ -656,7 +656,7 @@ button:hover {
 }
 
 #clearButton:hover {
-  background-color: black;
+  background-color: #325ec1;
   color: white;
 }
 

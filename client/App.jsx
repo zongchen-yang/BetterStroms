@@ -6,7 +6,6 @@ import ReviewComponents from './components/ratingsreviews/reviews/ReviewComponen
 import Overview from './components/overview/Overview';
 import Announcement from './components/annoucements/Announcements';
 import Header from './components/header/Header';
-import ClickTracking from './WithClickTrackingEventHandler';
 
 function useLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
@@ -31,7 +30,7 @@ function useLocalStorage(key, initialValue) {
 }
 
 function App() {
-  const [id, setId] = useState(20852);
+  const [id, setId] = useState(20100);
   const [selectedProduct, setSelectedProduct] = useState();
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const [reviews, setReviews] = useState([]);

@@ -447,10 +447,10 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
   outline: none;
 }
 
-.select-dropdowns:hover {
-  background-color: black;
+/* .select-dropdowns:hover {
+  background-color: #325ec1;
   color: white;
-}
+} */
 
 .select-wrapper {
   position: relative;
@@ -540,7 +540,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 }
 
 #favorite-button:hover {
-  background-color: black;
+  background-color: #325ec1;
   color:white;
 }
 
@@ -560,7 +560,7 @@ src="https://n.io.nordstrommedia.com/id/sr3/f7be7dcf-6612-4bc3-aae2-768f5f497efc
 }
 
 #cart-button:hover {
-  background-color: black;
+  background-color: #325ec1;
   color:white;
 }
 
