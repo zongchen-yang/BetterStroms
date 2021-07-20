@@ -14,14 +14,15 @@ Q&A
 The Questions & Answers module will allow asking and answering of questions for the product selected. This component will extend the ability to view and search questions, ask questions, answer questions and provide feedback on questions about the current product. All questions will be asked and answered per product.
 
 ## Tech Stack
-  Javascript (ES5 & ES6),
-  React.js w/ React Hooks,
-  Fetch/Axios,
-  localStorage,
-  Webpack,
-  Babel,
-  Lighthouse,
-  HTML, CSS,
+  Javascript (ES5 & ES6)
+  React.js w/ React Hooks
+  Fetch/Axios
+  localStorage
+  Webpack
+  Babel
+  Lighthouse
+  HTML
+  CSS
   AWS(EC2, AMI)
 
 ## Setup
