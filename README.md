@@ -22,6 +22,7 @@ The Questions & Answers module will allow asking and answering of questions for 
 - Babel
 - Lighthouse
 - HTML, CSS
+- Express.js
 - AWS(EC2, AMI)
 
 ## Setup
